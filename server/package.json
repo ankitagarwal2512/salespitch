@@ -1,0 +1,19 @@
+{
+  "name": "hrone-deck-gate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Azure Entra SSO gate for the HROne presentation deck",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env server.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.16.2",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}

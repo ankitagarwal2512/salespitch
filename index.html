@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HROne Deck</title>
+<link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:'Public Sans',system-ui,sans-serif;}
+.deck{display:flex;width:100vw;height:100vh;overflow:hidden;}
+
+/* ═══════════════════════════════
+   SIDEBAR
+═══════════════════════════════ */
+.sidebar{
+  flex-shrink:0;
+  width:264px;
+  height:100vh;
+  background:#0d1f14;
+  display:flex;
+  flex-direction:column;
+  transition:width .3s cubic-bezier(.4,0,.2,1);
+  border-right:1px solid rgba(255,255,255,.06);
+  z-index:10;
+  overflow:hidden;
+}
+.sidebar.collapsed{ width:60px; }
+
+/* ── Header ──────────────────── */
+.nav-hdr{
+  flex-shrink:0;
+  height:60px;
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+  gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  overflow:hidden;
+}
+.hdr-logo{
+  width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.hdr-logo svg{ width:100%;height:100%; }
+.hdr-title{
+  flex:1;
+  font-size:14px;font-weight:700;color:#fff;
+  white-space:nowrap;overflow:hidden;
+  transition:opacity .18s;
+}
+.hdr-toggle{
+  flex-shrink:0;
+  width:30px;height:30px;
+  border-radius:8px;border:none;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.55);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s;
+}
+.hdr-toggle:hover{background:rgba(255,255,255,.14);color:#fff;}
+.hdr-toggle svg{
+  width:15px;height:15px;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+/* When expanded, chevron points left (collapse) */
+.sidebar:not(.collapsed) .hdr-toggle svg{ transform:rotate(180deg); }
+
+/* Collapsed header — only toggle, centered */
+.sidebar.collapsed .nav-hdr{ padding:0; justify-content:center; }
+.sidebar.collapsed .hdr-logo,
+.sidebar.collapsed .hdr-title{ display:none; }
+.sidebar.collapsed .hdr-toggle{ width:34px;height:34px; }
+
+/* ── Search ──────────────────── */
+.nav-srch{
+  flex-shrink:0;
+  overflow:hidden;
+  max-height:58px;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:max-height .28s ease, padding .28s ease, opacity .18s;
+}
+.sidebar.collapsed .nav-srch{
+  max-height:0; padding-top:0; padding-bottom:0;
+  opacity:0; pointer-events:none;
+}
+.srch-inner{ position:relative; }
+.srch-icon{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.3);pointer-events:none;line-height:0;
+}
+.srch-icon svg{ width:14px;height:14px; }
+.nav-srch input{
+  width:100%;height:36px;
+  border-radius:9px;
+  background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.08);
+  color:#fff;font-family:inherit;font-size:13px;
+  padding:0 10px 0 34px;
+  outline:none;
+  transition:border-color .15s,background .15s;
+}
+.nav-srch input::placeholder{ color:rgba(255,255,255,.28); }
+.nav-srch input:focus{
+  border-color:rgba(35,165,120,.5);
+  background:rgba(35,165,120,.05);
+}
+
+/* ── Scroll area ─────────────── */
+.nav-scroll{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  padding:8px 0 20px;
+  transition:opacity .18s;
+}
+.nav-scroll::-webkit-scrollbar{ width:3px; }
+.nav-scroll::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.1);border-radius:2px; }
+.nav-scroll::-webkit-scrollbar-track{ background:transparent; }
+
+/* Collapsed: fully hidden scroll content */
+.sidebar.collapsed .nav-scroll{ opacity:0; pointer-events:none; overflow:hidden; }
+
+/* ── Group ───────────────────── */
+.nav-grp{ margin:0 8px 2px; }
+
+.grp-hdr{
+  display:flex;align-items:center;gap:9px;
+  height:42px;padding:0 10px;
+  border-radius:9px;
+  cursor:pointer;user-select:none;
+  transition:background .12s;
+}
+.grp-hdr:hover{ background:rgba(255,255,255,.06); }
+.nav-grp.open > .grp-hdr{ background:rgba(255,255,255,.05); }
+
+.grp-icon{
+  width:20px;height:20px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.38);
+  transition:color .15s;
+}
+.grp-icon svg{ width:14px;height:14px; }
+.nav-grp.open .grp-icon,
+.grp-hdr:hover .grp-icon{ color:rgba(255,255,255,.65); }
+
+.grp-label{
+  flex:1;
+  font-size:13px;font-weight:600;letter-spacing:.01em;
+  color:rgba(255,255,255,.6);
+  white-space:nowrap;overflow:hidden;
+  transition:color .15s;
+}
+.nav-grp.open .grp-label,
+.grp-hdr:hover .grp-label{ color:rgba(255,255,255,.88); }
+
+.grp-badge{
+  flex-shrink:0;
+  font-size:10.5px;font-weight:700;
+  color:rgba(255,255,255,.28);
+  background:rgba(255,255,255,.07);
+  border-radius:20px;padding:2px 7px;
+  letter-spacing:.02em;
+}
+
+.grp-chevron{
+  flex-shrink:0;
+  width:14px;height:14px;
+  color:rgba(255,255,255,.22);
+  transition:transform .22s, color .15s;
+}
+.nav-grp.open .grp-chevron{ transform:rotate(90deg); color:rgba(255,255,255,.4); }
+.grp-hdr:hover .grp-chevron{ color:rgba(255,255,255,.35); }
+
+/* ── Slide rows ──────────────── */
+.grp-slides{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .24s ease;
+  padding:2px 0 4px;
+}
+.nav-grp.open .grp-slides{ max-height:600px; }
+
+.slide-row{
+  display:flex;align-items:center;gap:9px;
+  height:36px;
+  padding:0 10px 0 40px;
+  border-radius:7px;
+  cursor:pointer;
+  position:relative;
+  transition:background .1s;
+}
+.slide-row:hover:not(.stub){ background:rgba(255,255,255,.05); }
+
+.slide-row.active{ background:rgba(35,165,120,.13); }
+.slide-row.active::before{
+  content:'';position:absolute;
+  left:0;top:9px;bottom:9px;
+  width:3px;background:#23A578;
+  border-radius:0 3px 3px 0;
+}
+
+.slide-row.stub{ opacity:.3; cursor:default; }
+.slide-row.row-disabled{ opacity:.4; }
+.slide-row.row-disabled .slide-name{ text-decoration:line-through; text-decoration-color:rgba(255,255,255,.3); }
+
+.slide-eye{
+  flex-shrink:0;width:24px;height:24px;border-radius:6px;border:none;
+  background:transparent;color:rgba(255,255,255,.32);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,color .15s;
+}
+.slide-eye:hover{ background:rgba(255,255,255,.1); color:rgba(255,255,255,.85); }
+.slide-eye svg{ width:15px;height:15px; }
+.slide-row.row-disabled .slide-eye{ color:#e2735a; }
+
+.slide-num{
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.22);
+  min-width:18px;text-align:right;flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.03em;
+}
+.slide-row.active .slide-num{ color:#23A578; }
+
+.slide-name{
+  flex:1;
+  font-size:13px;font-weight:400;
+  color:rgba(255,255,255,.58);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.slide-row.active .slide-name{ color:#fff;font-weight:500; }
+.slide-row:hover:not(.stub) .slide-name{ color:rgba(255,255,255,.82); }
+
+/* ── Empty state ─────────────── */
+.nav-empty{
+  display:none;
+  padding:36px 16px;text-align:center;
+  font-size:13px;color:rgba(255,255,255,.18);line-height:1.7;
+}
+
+/* ── Footer ──────────────────── */
+.nav-ftr{
+  flex-shrink:0;
+  height:58px;
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:0 12px;
+  display:flex;align-items:center;gap:10px;
+  overflow:hidden;
+}
+.sidebar.collapsed .nav-ftr{ padding:0;justify-content:center; }
+
+.btn-present{
+  flex:1;height:36px;border-radius:9px;
+  background:#23A578;border:none;color:#fff;
+  font-family:inherit;font-size:13px;font-weight:600;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  overflow:hidden;white-space:nowrap;
+  box-shadow:0 2px 12px rgba(35,165,120,.22);
+  transition:background .15s,box-shadow .15s;
+}
+.btn-present:hover{
+  background:#1c9c6e;
+  box-shadow:0 4px 16px rgba(35,165,120,.32);
+}
+.btn-present svg{ width:10px;height:10px;flex-shrink:0; }
+.btn-present-lbl{
+  overflow:hidden;
+  transition:max-width .3s ease, opacity .2s;
+  max-width:80px;
+}
+.sidebar.collapsed .btn-present{ flex:none;width:36px;height:36px;padding:0;box-shadow:none; }
+.sidebar.collapsed .btn-present-lbl{ display:none; }
+
+.slide-ctr{
+  flex-shrink:0;
+  font-size:12px;font-weight:700;letter-spacing:.06em;
+  color:rgba(255,255,255,.28);
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  transition:opacity .2s;
+}
+.sidebar.collapsed .slide-ctr{ display:none; }
+
+/* ═══════════════════════════════
+   STAGE
+═══════════════════════════════ */
+.stage-host{
+  flex:1;min-width:0;overflow:hidden;
+  background:#013a29;
+  display:flex;
+  position:relative;
+  isolation:isolate;
+}
+#slideFrame{ flex:1;border:none;display:block;z-index:0;position:relative; }
+
+/* ── Nav arrows (style matches individual slide buttons) ── */
+.stage-nav{
+  position:absolute;bottom:26px;right:30px;
+  display:flex;align-items:center;gap:12px;
+  z-index:20;
+}
+.nav-btn{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.06);
+  color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s, border-color .18s, transform .12s;
+}
+.nav-btn:hover{ background:rgba(35,165,120,.5); border-color:#23A578; }
+.nav-btn:active{ transform:scale(.92); }
+.nav-btn svg{ width:20px;height:20px; }
+.nav-btn.hidden{ opacity:0;pointer-events:none; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ════ SIDEBAR ════ -->
+  <nav class="sidebar" id="sidebar">
+
+    <div class="nav-hdr">
+      <div class="hdr-logo">
+        <svg viewBox="0 0 47 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.7176 20.3174L22.2354 22.5769L18.5012 36.8956L16.7309 45.0003C7.4534 42.1998 -0.000488281 33.8365 -0.000488281 23.4865C-0.000488281 21.428 0.270386 19.4365 0.792788 17.536C0.991107 17.6126 1.18459 17.7035 1.3684 17.8041L5.91038 20.303C6.99388 20.9014 8.26603 21.0977 9.47529 20.8583L14.3172 19.8769C15.4684 19.6424 16.668 19.8051 17.7128 20.3222L17.7176 20.3174Z" fill="white"/>
+          <path d="M15.6542 14.8012L23.2823 18.6166V18.6262L18.1066 16.3091C16.849 15.7538 15.4124 15.7012 14.1257 16.1847L9.65145 17.8506C8.35996 18.3389 6.92819 18.2863 5.67056 17.7262L1.35107 15.7873C1.58809 15.1315 1.85413 14.4852 2.15402 13.8629L3.85183 14.7964C4.93533 15.39 6.20263 15.5815 7.41673 15.3325L12.2635 14.3512C13.4098 14.1214 14.6046 14.2794 15.6494 14.8059L15.6542 14.8012Z" fill="white"/>
+          <path d="M46.9883 23.1032V23.2516C46.9834 24.5968 46.8528 25.9133 46.6255 27.1915C46.6013 27.3255 46.5723 27.45 46.5529 27.5793C46.5336 27.6846 46.5094 27.7899 46.4852 27.8952C46.4513 28.0484 46.4175 28.1968 46.3836 28.3452C45.6194 31.4761 44.1779 34.3771 42.2189 36.8904H28.4672L27.3837 27.225H40.11L41.5272 22.0404L23.2819 13.9883L16.0408 10.7952C14.788 10.2351 13.3563 10.1872 12.0696 10.6707L7.59533 12.3415C6.30384 12.825 4.87691 12.7819 3.61928 12.217L3.16943 12.016C3.30487 11.7766 3.43547 11.5468 3.57575 11.3122C7.64854 4.53351 15.1121 0 23.6495 0C25.7101 0 27.7029 0.263298 29.6039 0.76117C29.6087 0.76117 29.6184 0.76117 29.6233 0.76117C39.2441 3.27926 46.432 11.7144 46.9544 21.9016C46.9738 22.2989 46.9883 22.6963 46.9883 23.0984V23.1032Z" fill="white"/>
+        </svg>
+      </div>
+      <span class="hdr-title">HROne deck</span>
+      <button class="hdr-toggle" id="toggleBtn" title="Expand sidebar">
+        <!-- Right-pointing chevron. Rotates 180° when sidebar is open. -->
+        <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5.5 3l5 4.5-5 4.5"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-srch">
+      <div class="srch-inner">
+        <span class="srch-icon">
+          <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <circle cx="6.5" cy="6.5" r="4.5"/>
+            <path d="M10.5 10.5L13 13"/>
+          </svg>
+        </span>
+        <input type="text" id="searchInput" placeholder="Jump to slide…" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="nav-scroll" id="navScroll">
+      <div class="nav-empty" id="navEmpty">No slides match</div>
+    </div>
+
+    <div class="nav-ftr">
+      <button class="btn-present" id="presentBtn" title="Present fullscreen">
+        <svg viewBox="0 0 10 10" fill="currentColor">
+          <polygon points="1,0.5 9.5,5 1,9.5"/>
+        </svg>
+        <span class="btn-present-lbl">Present</span>
+      </button>
+      <span class="slide-ctr" id="slideCtr">05 / 34</span>
+    </div>
+
+  </nav>
+
+  <!-- ════ STAGE ════ -->
+  <div class="stage-host">
+    <iframe id="slideFrame" src="hrone-slide1.html" allowfullscreen title="Slide stage"></iframe>
+    <div class="stage-nav">
+      <button class="nav-btn hidden" id="btnPrev" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-btn" id="btnNext" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+<script>
+// ── Manifest ─────────────────────────────────────────────────────
+const GROUPS = [
+  { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
+    slides:[
+      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1.html' },
+      { n:2,  t:'Group Overview',               f:'hrone-group-overview.html' },
+      { n:3,  t:'Why HROne',                   f:'hrone-why-hrone.html' },
+      { n:4,  t:'Recognition',                  f:'hrone-recognised.html' },
+    ]},
+  { id:'platform', label:'The Platform', icon:'M2 2h4v4H2zM8 2h4v4H8zM2 8h4v4H2zM8 8h4v4H8z',
+    slides:[
+      { n:5,  t:'Outgrow the Team, Not the Tool', f:'hrone-outgrow.html', optional:true },
+      { n:6,  t:'The Comprehensive HCM Suite', f:'hrone-slide5.html' },
+      { n:7,  t:'Payroll Outsourcing',          f:'hrone-payroll-outsourcing.html' },
+      { n:8,  t:'InboxforHR', html:'InboxforHR<sup style="font-size:.55em;vertical-align:super;line-height:0">TM</sup>', f:'hrone-inboxforhr.html' },
+      { n:9,  t:'Two Problems, One Inbox',     f:'hrone-what-it-kills.html' },
+      { n:10, t:'The Facts',                   f:'hrone-the-facts.html' },
+      { n:11, t:'Infosec & Trust',               f:'hrone-infosec.html' },
+    ]},
+  { id:'mobile', label:'Mobile & AI', icon:'M4.5 1h5a1 1 0 011 1v10a1 1 0 01-1 1h-5a1 1 0 01-1-1V2a1 1 0 011-1zM6 11.5h2',
+    slides:[
+      { n:12, t:'Mobile-First Experience',     f:'hrone-mobile.html' },
+      { n:13, t:'OneAI Voice Agent',           f:'hrone-oneai.html' },
+      { n:14, t:'OneAI Efficiency in Every Module', f:'hrone-efficiency.html' },
+      { n:15, t:'Integrations',                 f:'hrone-integrations.html' },
+      { n:16, t:'Service & Our Strength',         f:'hrone-service.html' },
+    ]},
+  { id:'build', label:'Build & Extend', icon:'M4 2.5L2 7l2 4.5M10 2.5l2 4.5-2 4.5',
+    slides:[
+      { n:17, t:'Studio — Build your own app',  f:'hrone-studio.html' },
+      { n:18, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
+      { n:19, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
+    ]},
+
+  { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
+    slides:[
+      { n:20, t:'Add-Ons',                      f:'hrone-marketplace.html' },
+    ]},
+  { id:'modules', label:'Modules', icon:'M1 4l6-3 6 3-6 3-6-3M1 8l6 3 6-3M1 11l6 3 6-3',
+    slides:[
+      { n:21, t:'Overview',                    f:'hrone-modules-overview.html' },
+      { n:22, t:'Recruitment',                 f:'hrone-recruitment.html' },
+      { n:23, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
+      { n:24, t:'Workforce Management',        f:'hrone-module-workforce.html' },
+      { n:25, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
+      { n:26, t:'Payroll',                     f:'hrone-module-payroll.html' },
+      { n:27, t:'Performance',                 f:'hrone-module-performance.html' },
+      { n:28, t:'Engagement',                  f:'hrone-module-engagement.html' },
+      { n:29, t:'Expense',                     f:'hrone-module-expense.html' },
+      { n:30, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
+    ]},
+  { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
+    slides:[
+      { n:31, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
+    ]},
+];
+
+// filename → slide lookup
+const FILE_MAP = {};
+GROUPS.forEach(g => g.slides.forEach(s => { if (s.f) FILE_MAP[s.f] = s; }));
+
+// Slides the presenter has hidden from numbering/arrow-nav for this session (not persisted).
+const disabledSlides = new Set();
+
+const EYE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const EYE_OFF_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.5 18.5 0 015.06-5.94M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+
+// ── Build nav DOM ─────────────────────────────────────────────────
+const navScroll = document.getElementById('navScroll');
+const navEmpty  = document.getElementById('navEmpty');
+
+GROUPS.forEach(g => {
+  const el = document.createElement('div');
+  el.className = 'nav-grp';
+  el.dataset.gid = g.id;
+
+  el.innerHTML =
+    `<div class="grp-hdr">
+       <span class="grp-icon">
+         <svg viewBox="0 0 14 14" fill="none" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+           <path d="${g.icon}"/>
+         </svg>
+       </span>
+       <span class="grp-label">${g.label}</span>
+       <span class="grp-badge">${g.slides.length}</span>
+       <svg class="grp-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+         <path d="M5 3l4 4-4 4"/>
+       </svg>
+     </div>
+     <div class="grp-slides">
+       ${g.slides.map(s =>
+         `<div class="slide-row${s.f ? '' : ' stub'}"
+               data-n="${s.n}" data-q="${s.t.toLowerCase()}" data-file="${s.f || ''}">
+            <span class="slide-num">${String(s.n).padStart(2,'0')}</span>
+            <span class="slide-name">${s.html || s.t}</span>
+            ${s.optional ? `<button class="slide-eye" type="button" title="Show/hide this slide when presenting" aria-label="Toggle slide visibility">${EYE_SVG}</button>` : ''}
+          </div>`
+       ).join('')}
+     </div>`;
+
+  el.querySelector('.grp-hdr').addEventListener('click', () => {
+    if (!sidebar.classList.contains('collapsed')) el.classList.toggle('open');
+  });
+
+  el.querySelectorAll('.slide-row:not(.stub)').forEach(row => {
+    row.addEventListener('click', () => goTo(+row.dataset.n, row.dataset.file));
+  });
+
+  el.querySelectorAll('.slide-eye').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const n = +btn.closest('.slide-row').dataset.n;
+      if (disabledSlides.has(n)) disabledSlides.delete(n); else disabledSlides.add(n);
+      renumberUI();
+    });
+  });
+
+  navScroll.insertBefore(el, navEmpty);
+});
+
+// ── State ─────────────────────────────────────────────────────────
+const sidebar  = document.getElementById('sidebar');
+const frame    = document.getElementById('slideFrame');
+const slideCtr = document.getElementById('slideCtr');
+let   current  = 1;
+
+// All slides with a real file, static manifest order.
+function getFullList() {
+  return GROUPS.flatMap(g => g.slides.filter(s => s.f)).sort((a,b) => a.n - b.n);
+}
+// Slides currently switched on (excludes anything the presenter hid via the eye toggle).
+function getActiveList() {
+  return getFullList().filter(s => !disabledSlides.has(s.n));
+}
+// 1-based position `n` would occupy among the active slides, whether or not it's active itself.
+function displayNumberFor(n) {
+  return getActiveList().filter(s => s.n < n).length + 1;
+}
+
+function renumberUI() {
+  const active = getActiveList();
+  const total  = active.length;
+
+  document.querySelectorAll('.slide-row').forEach(r => {
+    const n = +r.dataset.n;
+    const disabled = disabledSlides.has(n);
+    r.classList.toggle('row-disabled', disabled);
+    const numEl = r.querySelector('.slide-num');
+    if (numEl) numEl.textContent = disabled ? '—' : String(displayNumberFor(n)).padStart(2,'0');
+    const eyeBtn = r.querySelector('.slide-eye');
+    if (eyeBtn) eyeBtn.innerHTML = disabled ? EYE_OFF_SVG : EYE_SVG;
+  });
+
+  document.querySelectorAll('.nav-grp').forEach(g => {
+    const grp = GROUPS.find(x => x.id === g.dataset.gid);
+    const badge = g.querySelector('.grp-badge');
+    if (grp && badge) badge.textContent = grp.slides.filter(s => s.f && !disabledSlides.has(s.n)).length;
+  });
+
+  slideCtr.textContent = `${String(displayNumberFor(current)).padStart(2,'0')} / ${total}`;
+  syncFrameCounter();
+}
+
+function syncFrameCounter() {
+  try { frame.contentWindow.postMessage({ type:'set-counter', text: slideCtr.textContent }, '*'); } catch(e) {}
+}
+
+function setActive(n) {
+  current = n;
+
+  document.querySelectorAll('.slide-row').forEach(r => {
+    r.classList.toggle('active', +r.dataset.n === n);
+  });
+
+  // Auto-open parent group
+  document.querySelectorAll('.nav-grp').forEach(g => {
+    const has = [...g.querySelectorAll('.slide-row')].some(r => +r.dataset.n === n);
+    if (has) g.classList.add('open');
+  });
+
+  requestAnimationFrame(() => {
+    const row = navScroll.querySelector('.slide-row.active');
+    if (row) row.scrollIntoView({ block:'nearest', behavior:'smooth' });
+  });
+
+  renumberUI();
+}
+
+function goTo(n, file) {
+  if (!file) return;
+  frame.src = file;
+  setActive(n);
+  updateShellNav();
+}
+
+function updateShellNav() {
+  btnPrev.style.visibility = 'hidden';
+  btnNext.style.visibility = 'hidden';
+}
+
+// Sync when slide's own prev/next buttons are used
+frame.addEventListener('load', () => {
+  try {
+    const file = frame.contentWindow.location.href.split('/').pop().split('?')[0];
+    const s = FILE_MAP[file];
+    if (s) setActive(s.n);
+    updateShellNav();
+  } catch(e) {}
+  try { frame.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
+  syncFrameCounter();
+});
+
+setActive(1);
+
+// ── Toggle ────────────────────────────────────────────────────────
+document.getElementById('toggleBtn').addEventListener('click', () => {
+  sidebar.classList.toggle('collapsed');
+  document.getElementById('toggleBtn').title =
+    sidebar.classList.contains('collapsed') ? 'Expand sidebar' : 'Collapse sidebar';
+  scheduleResize();
+});
+
+function scheduleResize() {
+  setTimeout(() => {
+    try { frame.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
+  }, 310);
+}
+
+// ── Search ────────────────────────────────────────────────────────
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  let any = false;
+
+  document.querySelectorAll('.nav-grp').forEach(g => {
+    let hit = false;
+    g.querySelectorAll('.slide-row').forEach(r => {
+      const show = !q || r.dataset.q.includes(q) || r.dataset.n.includes(q);
+      r.style.display = show ? '' : 'none';
+      if (show) hit = true;
+    });
+    g.style.display = hit ? '' : 'none';
+    if (q && hit) g.classList.add('open');
+    if (hit) any = true;
+  });
+
+  navEmpty.style.display = (!any && q) ? 'block' : 'none';
+});
+
+// ── Present / Fullscreen ──────────────────────────────────────────
+let wasCollapsed = false;
+document.getElementById('presentBtn').addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    wasCollapsed = sidebar.classList.contains('collapsed');
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+});
+
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement) {
+    sidebar.classList.add('collapsed');
+  } else {
+    if (!wasCollapsed) sidebar.classList.remove('collapsed');
+  }
+  scheduleResize();
+});
+
+// ── Keyboard (shell focus) ────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  navArrow(e.key);
+});
+
+// ── Keyboard (iframe focus → postMessage) ─────────────────────────
+window.addEventListener('message', e => {
+  if (e.data && e.data.type === 'nav-key') navArrow(e.data.key);
+});
+
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
+btnPrev.addEventListener('click', () => navArrow('ArrowLeft'));
+btnNext.addEventListener('click', () => navArrow('ArrowRight'));
+
+function updateNavBtns() {
+  const built = getActiveList();
+  const idx   = built.findIndex(s => s.n === current);
+  if (idx === -1) {
+    btnPrev.classList.toggle('hidden', !built.some(s => s.n < current));
+    btnNext.classList.toggle('hidden', !built.some(s => s.n > current));
+    return;
+  }
+  btnPrev.classList.toggle('hidden', idx <= 0);
+  btnNext.classList.toggle('hidden', idx >= built.length - 1);
+}
+
+function navArrow(key) {
+  const built = getActiveList();
+  const idx   = built.findIndex(s => s.n === current);
+  // Previewing a slide the presenter has hidden — jump relative to its manifest position.
+  if (idx === -1) {
+    if (key === 'ArrowRight') { const nxt = built.find(s => s.n > current); if (nxt) goTo(nxt.n, nxt.f); }
+    if (key === 'ArrowLeft')  { const prv = [...built].reverse().find(s => s.n < current); if (prv) goTo(prv.n, prv.f); }
+    updateNavBtns();
+    return;
+  }
+  if (key === 'ArrowRight' && idx < built.length - 1) goTo(built[idx+1].n, built[idx+1].f);
+  if (key === 'ArrowLeft'  && idx > 0)                goTo(built[idx-1].n, built[idx-1].f);
+  updateNavBtns();
+}
+
+updateNavBtns();
+</script>
+</body>
+</html>
