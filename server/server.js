@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// temp changes
 // Non-secret config has defaults baked in (these are public: the client/tenant IDs appear
 // in the browser auth redirect, and the redirect URIs are public). Only the two real secrets
 // have no default — they arrive via image ENV (build-arg) in prod, or server/.env locally.
