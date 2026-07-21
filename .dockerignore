@@ -6,3 +6,7 @@ server/node_modules
 server/.env
 npm-debug.log
 .DS_Store
+.nojekyll
+.github
+HROne_Overview.pptx
+Slide1-Updated.png

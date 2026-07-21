@@ -15,6 +15,14 @@ COPY . ./public
 # Strip anything that isn't deck content so it can never be served
 RUN rm -rf ./public/server ./public/.git ./public/.claude ./public/node_modules
 
+# Secrets injected at build time from CI (GitHub secrets) and baked into the image,
+# so the container is self-contained (AKS pulls & runs with no external config).
+# NOTE: these are readable via `docker history`/`inspect` — keep this image in a PRIVATE registry.
+ARG CLIENT_SECRET
+ARG SESSION_SECRET
+ENV CLIENT_SECRET=$CLIENT_SECRET
+ENV SESSION_SECRET=$SESSION_SECRET
+
 ENV NODE_ENV=production
 ENV STATIC_DIR=/app/public
 ENV PORT=8080

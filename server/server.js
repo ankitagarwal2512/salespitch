@@ -14,23 +14,26 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Non-secret config has defaults baked in (these are public: the client/tenant IDs appear
+// in the browser auth redirect, and the redirect URIs are public). Only the two real secrets
+// have no default — they arrive via image ENV (build-arg) in prod, or server/.env locally.
 const {
   PORT = 8080,
-  CLIENT_ID,
-  TENANT_ID,
+  CLIENT_ID = 'efda3e3f-0dc6-4684-b0b8-e6f50fd8f35c',
+  TENANT_ID = '0ff95a09-92f4-4e6b-88b0-d5d0519242e0',
   CLIENT_SECRET,
-  REDIRECT_URI,                 
-  POST_LOGOUT_REDIRECT_URI,
+  REDIRECT_URI = 'https://pitch.hrone.cloud/auth/callback',
+  POST_LOGOUT_REDIRECT_URI = 'https://pitch.hrone.cloud/',
   SESSION_SECRET,
   STATIC_DIR,
-  NODE_ENV = 'development',
+  NODE_ENV = 'development',   // Dockerfile sets production; local dev stays development
 } = process.env;
 
 // Blank or unset → serve the repo root (local dev). The container sets /app/public.
 const staticRoot = STATIC_DIR && STATIC_DIR.trim() ? STATIC_DIR : path.join(__dirname, '..');
 
-// Fail fast if misconfigured — better than a confusing runtime error later.
-for (const [k, v] of Object.entries({ CLIENT_ID, TENANT_ID, CLIENT_SECRET, REDIRECT_URI, SESSION_SECRET })) {
+// Fail fast if a real secret is missing — everything else now has a default.
+for (const [k, v] of Object.entries({ CLIENT_SECRET, SESSION_SECRET })) {
   if (!v) { console.error(`[config] Missing required env var: ${k}`); process.exit(1); }
 }
 
