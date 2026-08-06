@@ -5,10 +5,15 @@
 // The server's only job: validate the session, then serve the static deck.
 // The Entra token exchange is the ONLY server-side external call; everything the
 // deck itself does (fonts, app APIs) stays in the browser.
+//
+// >>> TEMPORARILY DISABLED — the deck is served PUBLICLY. <<<
+// Every SSO block below is commented out and marked "SSO DISABLED". To restore the
+// gate: uncomment those blocks, re-add `requireAuth` to the static handler at the
+// bottom, and make sure CLIENT_SECRET + SESSION_SECRET are supplied via env.
 // ─────────────────────────────────────────────────────────────────────────────
 import express from 'express';
-import session from 'express-session';
-import { ConfidentialClientApplication, CryptoProvider, LogLevel } from '@azure/msal-node';
+// SSO DISABLED — import session from 'express-session';
+// SSO DISABLED — import { ConfidentialClientApplication, CryptoProvider, LogLevel } from '@azure/msal-node';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,19 +25,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // have no default — they arrive via image ENV (build-arg) in prod, or server/.env locally.
 const {
   PORT = 8080,
-  CLIENT_ID = 'efda3e3f-0dc6-4684-b0b8-e6f50fd8f35c',
-  TENANT_ID = '0ff95a09-92f4-4e6b-88b0-d5d0519242e0',
-  CLIENT_SECRET,
-  REDIRECT_URI = 'https://pitch.hrone.cloud/auth/callback',
-  POST_LOGOUT_REDIRECT_URI = 'https://pitch.hrone.cloud/',
-  SESSION_SECRET,
+  // SSO DISABLED — CLIENT_ID = 'efda3e3f-0dc6-4684-b0b8-e6f50fd8f35c',
+  // SSO DISABLED — TENANT_ID = '0ff95a09-92f4-4e6b-88b0-d5d0519242e0',
+  // SSO DISABLED — CLIENT_SECRET,
+  // SSO DISABLED — REDIRECT_URI = 'https://pitch.hrone.cloud/auth/callback',
+  // SSO DISABLED — POST_LOGOUT_REDIRECT_URI = 'https://pitch.hrone.cloud/',
+  // SSO DISABLED — SESSION_SECRET,
   STATIC_DIR,
-  NODE_ENV = 'development',   // Dockerfile sets production; local dev stays development
+  // SSO DISABLED — NODE_ENV = 'development',   // Dockerfile sets production; local dev stays development
 } = process.env;
 
 // Blank or unset → serve the repo root (local dev). The container sets /app/public.
 const staticRoot = STATIC_DIR && STATIC_DIR.trim() ? STATIC_DIR : path.join(__dirname, '..');
 
+/* ── SSO DISABLED ─────────────────────────────────────────────────────────────
 // Fail fast if a real secret is missing — everything else now has a default.
 for (const [k, v] of Object.entries({ CLIENT_SECRET, SESSION_SECRET })) {
   if (!v) { console.error(`[config] Missing required env var: ${k}`); process.exit(1); }
@@ -54,11 +60,13 @@ const msal = new ConfidentialClientApplication({
 });
 const cryptoProvider = new CryptoProvider();
 const SCOPES = ['User.Read']; // implies openid/profile — enough to identify the user
+──────────────────────────────────────────────────────────────────────────── */
 
 // ── App ──────────────────────────────────────────────────────────────────────
 const app = express();
 app.set('trust proxy', 1); // behind Cloudflare: trust X-Forwarded-Proto for secure cookies
 
+/* ── SSO DISABLED — no session cookie is needed while the deck is public ──────
 app.use(session({
   name: 'hrone.sid',
   secret: SESSION_SECRET,
@@ -73,10 +81,12 @@ app.use(session({
   // NOTE: default MemoryStore is fine for a single container. For multi-instance
   // or restart-durable sessions, swap in connect-redis (see README).
 }));
+──────────────────────────────────────────────────────────────────────────── */
 
 // Health check — must stay public for the container platform's probes.
 app.get('/healthz', (_req, res) => res.status(200).send('ok'));
 
+/* ── SSO DISABLED — sign-in screen, login, callback, logout, gate, /me ────────
 // ── Auth: branded sign-in screen (interstitial) ──────────────────────────────
 function renderSignIn(callbackUrl) {
   const target = `/login?redirectTo=${encodeURIComponent(callbackUrl)}`;
@@ -212,7 +222,7 @@ app.get('/auth/callback', async (req, res, next) => {
 
     // Recover intended destination before we regenerate the session.
     let redirectTo = '/';
-    try { redirectTo = JSON.parse(cryptoProvider.base64Decode(req.session.authState)).redirectTo || '/'; } catch { /* ignore */ }
+    try { redirectTo = JSON.parse(cryptoProvider.base64Decode(req.session.authState)).redirectTo || '/'; } catch { }
     // Only allow same-site relative paths — never an open redirect.
     if (!redirectTo.startsWith('/') || redirectTo.startsWith('//')) redirectTo = '/';
 
@@ -242,6 +252,7 @@ function requireAuth(req, res, next) {
 
 // Optional: let the deck fetch the signed-in user (e.g. to show a name / sign-out).
 app.get('/me', requireAuth, (req, res) => res.json(req.session.user || {}));
+──────────────────────────────────────────────────────────────────────────── */
 
 // Defense in depth: never serve server internals or dotfiles, whatever STATIC_DIR points at.
 app.use((req, res, next) => {
@@ -251,8 +262,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Everything else is the gated deck.
-app.use(requireAuth, express.static(staticRoot, { extensions: ['html'] }));
+// Everything else is the deck — public for now (was: app.use(requireAuth, express.static(...))).
+app.use(express.static(staticRoot, { extensions: ['html'] }));
 
 // Generic error handler — don't leak internals.
 app.use((err, _req, res, _next) => {
@@ -260,4 +271,4 @@ app.use((err, _req, res, _next) => {
   res.status(500).send('Something went wrong.');
 });
 
-app.listen(PORT, () => console.log(`HROne deck gate listening on :${PORT} (serving ${staticRoot})`));
+app.listen(PORT, () => console.log(`HROne deck listening on :${PORT} (serving ${staticRoot}) — SSO DISABLED, public access`));
