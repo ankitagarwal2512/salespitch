@@ -43,10 +43,16 @@
       "Bash(python3 -m http.server 8899)",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1920,1080 --virtual-time-budget=2000 --screenshot=/tmp/facts_full.png \"http://localhost:8899/hrone-the-facts.html\")",
       "Bash(kill %1)",
-      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1920,1080 --virtual-time-budget=2000 --screenshot=/tmp/facts_full2.png \"http://localhost:8899/hrone-the-facts.html\")"
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1920,1080 --virtual-time-budget=2000 --screenshot=/tmp/facts_full2.png \"http://localhost:8899/hrone-the-facts.html\")",
+      "Bash(cd \"/Users/ankit.agarwal/Documents/Web Presentation\" && ls -la | grep -i brochure; mkdir -p Brochure && ls -d Brochure)",
+      "Bash(cd \"/Users/ankit.agarwal/Documents/Web Presentation\" && cp hrone-slide5.html hrone-hcm-suite-modules.html && echo done)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1920,1080 --screenshot=\"/private/tmp/claude-1897574812/-Users-ankit-agarwal-Documents-Web-Presentation/5c1dc9a2-73ae-4c00-8199-9e5841ece84e/scratchpad/qa-hcm-modules2.png\" --virtual-time-budget=2500 \"http://localhost:8934/hrone-hcm-suite-modules.html\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --window-size=1920,1080 --screenshot=\"/private/tmp/claude-1897574812/-Users-ankit-agarwal-Documents-Web-Presentation/5c1dc9a2-73ae-4c00-8199-9e5841ece84e/scratchpad/qa-hcm-modules3.png\" --virtual-time-budget=2500 \"http://localhost:8934/hrone-hcm-suite-modules.html\")",
+      "Bash(sips -s format jpeg -s formatOptions 92 \"/private/tmp/claude-1897574812/-Users-ankit-agarwal-Documents-Web-Presentation/5c1dc9a2-73ae-4c00-8199-9e5841ece84e/scratchpad/qa-hcm-modules3.png\" --out \"/Users/ankit.agarwal/Documents/Web Presentation/Exports/HROne-HCM-Suite-Modules-Only.jpg\")"
     ],
     "additionalDirectories": [
-      "/tmp"
+      "/tmp",
+      "/Users/ankit.agarwal/Documents/Web Presentation"
     ]
   }
 }

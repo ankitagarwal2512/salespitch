@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Reports &amp; MIS</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Public Sans',sans-serif}
+#vp{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1920px;height:1080px;background:#013a29;flex-shrink:0;transform-origin:center;overflow:hidden}
+.a{position:absolute}
+.glow{position:absolute;pointer-events:none}
+.crumb{left:72px;top:58px;display:flex;align-items:center;gap:12px}
+.crumb .home{color:rgba(255,255,255,.46);font-size:15px;font-weight:600;letter-spacing:1.6px}
+.crumb .chev{color:rgba(255,255,255,.28);font-size:14px}
+.crumb .here{color:#F2D98C;font-size:15px;font-weight:700;letter-spacing:1.6px}
+.h1{font-size:64px;font-weight:800;color:#fff;line-height:68px}
+.ubar{width:115px;height:6px;background:#32d583;border-radius:1px}
+.card{background:#fdf5e7;border-radius:28px;box-shadow:0 8px 60px rgba(0,0,0,.22)}
+.dcard{background:#00583e;border:1px solid rgba(255,255,255,.09);border-radius:28px;box-shadow:0 8px 60px rgba(0,0,0,.26)}
+.clabel{font-size:18px;font-weight:700;letter-spacing:2.4px;color:#e56046}
+.disc{border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.disc-p{background:#eec6b3}.disc-w{background:rgba(255,255,255,.14)}
+.disc svg{stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.tile{background:#fff;border:1px solid #e8ded0;border-radius:16px;display:flex;align-items:center;transition:transform .16s,box-shadow .16s}
+.tile:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.1)}
+.bullet{display:flex;align-items:flex-start;gap:14px}
+.bullet i{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:10px;display:block}
+.rail{left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:13px;z-index:60}
+.rail .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.24)}
+.rail .dot.cur{background:#F2D98C;transform:scale(1.5)}
+.rail .par{width:9px;height:9px;border-radius:3px;background:rgba(255,255,255,.4)}
+.rail .sep{width:1px;height:13px;background:rgba(255,255,255,.18)}
+.nav{position:fixed;bottom:26px;right:30px;display:flex;align-items:center;gap:12px;z-index:200;background:rgba(1,58,41,.84);backdrop-filter:blur(6px);padding:8px 14px 8px 16px;border-radius:40px}
+.nav-depth{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#013a29;background:#F2D98C;padding:5px 11px;border-radius:20px}
+.nav-cnt{color:rgba(255,255,255,.6);font-size:14px;font-weight:500;letter-spacing:.5px;margin-right:4px}
+.nav-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,transform .12s}
+.nav-btn:hover{background:rgba(35,165,120,.5)}.nav-btn:active{transform:scale(.92)}
+.nav-btn svg{width:20px;height:20px}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.17) 0%,transparent 65%)"></div><div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.12) 0%,transparent 60%)"></div><div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.09) 0%,transparent 60%)"></div>
+<div class="a crumb" style="animation:fi .4s .05s ease both"><span class="home">07 · PAYROLL OUTSOURCING</span><span class="chev">&rsaquo;</span><span class="here">REPORTS &amp; MIS</span></div>
+<div class="a rail"><div class="par"></div><div class="sep"></div><div class="dot"></div><div class="dot"></div><div class="dot cur"></div><div class="dot"></div></div>
+
+<div class="a h1" style="left:70px;top:112px;animation:fd .5s .12s ease both">Reports &amp; MIS</div>
+<div class="a ubar" style="left:72px;top:212px;animation:fi .4s .2s ease both"></div>
+<p class="a" style="left:72px;top:246px;width:900px;font-size:21px;font-weight:400;color:rgba(255,255,255,.62);line-height:29px;animation:fu .45s .24s ease both">
+  The standard report pack shared every payroll cycle.
+</p>
+<div class="a card" style="left:72px;top:300px;width:557px;height:600px;animation:fu .5s 0.22s ease both"></div><div class="a" style="left:120px;top:352px;animation:fu .45s 0.28s ease both"><div class="disc disc-p" style="width:62px;height:62px"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#cf5f3c"><path d="M13.6 3H7.2A2.2 2.2 0 0 0 5 5.2v13.6A2.2 2.2 0 0 0 7.2 21h9.6a2.2 2.2 0 0 0 2.2-2.2V8.6z"/><path d="M13.6 3v5.6H19"/><path d="M8.6 13h6.8M8.6 16.6h4.4"/></svg></div></div><p class="a" style="left:120px;top:442px;width:470px;font-size:28px;font-weight:700;color:#0e0e0e;line-height:34px;animation:fu .45s 0.32s ease both">Payroll Reports</p><div class="a bullet" style="left:120px;top:524px;width:470px;animation:fu .4s 0.38s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Salary Register</span></div><div class="a bullet" style="left:120px;top:580px;width:470px;animation:fu .4s 0.42s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Tax Slip</span></div><div class="a bullet" style="left:120px;top:636px;width:470px;animation:fu .4s 0.45s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Payslip</span></div><div class="a bullet" style="left:120px;top:692px;width:470px;animation:fu .4s 0.48s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Variance Report</span></div><div class="a bullet" style="left:120px;top:748px;width:470px;animation:fu .4s 0.52s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Bank Transfer Statement</span></div><div class="a card" style="left:681px;top:300px;width:557px;height:600px;animation:fu .5s 0.29s ease both"></div><div class="a" style="left:729px;top:352px;animation:fu .45s 0.35s ease both"><div class="disc disc-p" style="width:62px;height:62px"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#cf5f3c"><path d="M12 2.8l7.4 3v5.4c0 4.4-3 8.2-7.4 9.8-4.4-1.6-7.4-5.4-7.4-9.8V5.8z"/><path d="M8.9 11.9l2.2 2.2 4.1-4.3"/></svg></div></div><p class="a" style="left:729px;top:442px;width:470px;font-size:28px;font-weight:700;color:#0e0e0e;line-height:34px;animation:fu .45s 0.39s ease both">Statutory Reports</p><div class="a bullet" style="left:729px;top:524px;width:470px;animation:fu .4s 0.45s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">PF Report</span></div><div class="a bullet" style="left:729px;top:580px;width:470px;animation:fu .4s 0.48s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">ESI Report</span></div><div class="a bullet" style="left:729px;top:636px;width:470px;animation:fu .4s 0.52s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">PT Report</span></div><div class="a bullet" style="left:729px;top:692px;width:470px;animation:fu .4s 0.56s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">LWF Report</span></div><div class="a bullet" style="left:729px;top:748px;width:470px;animation:fu .4s 0.59s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">TDS Report</span></div><div class="a bullet" style="left:729px;top:804px;width:470px;animation:fu .4s 0.62s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Reimbursement Register</span></div><div class="a card" style="left:1290px;top:300px;width:557px;height:600px;animation:fu .5s 0.36s ease both"></div><div class="a" style="left:1338px;top:352px;animation:fu .45s 0.42s ease both"><div class="disc disc-p" style="width:62px;height:62px"><svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:#cf5f3c"><path d="M3 20.2h18"/><rect x="5" y="11" width="3.4" height="6.2"/><rect x="10.3" y="6.8" width="3.4" height="10.4"/><rect x="15.6" y="13.4" width="3.4" height="3.8"/></svg></div></div><p class="a" style="left:1338px;top:442px;width:470px;font-size:28px;font-weight:700;color:#0e0e0e;line-height:34px;animation:fu .45s 0.46s ease both">Employee &amp; Provision Reports</p><div class="a bullet" style="left:1338px;top:524px;width:470px;animation:fu .4s 0.52s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">YTD Register</span></div><div class="a bullet" style="left:1338px;top:580px;width:470px;animation:fu .4s 0.56s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">TDS Computation Report</span></div><div class="a bullet" style="left:1338px;top:636px;width:470px;animation:fu .4s 0.59s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Reimbursement Register</span></div><div class="a bullet" style="left:1338px;top:692px;width:470px;animation:fu .4s 0.62s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">CTC Report</span></div><div class="a bullet" style="left:1338px;top:748px;width:470px;animation:fu .4s 0.66s ease both"><i style="background:#e56046"></i><span style="font-size:20px;font-weight:400;color:rgba(45,45,45,.9);line-height:27px">Investment Report</span></div>
+<p class="a" style="left:72px;top:944px;width:1700px;font-size:19px;font-weight:400;font-style:italic;color:rgba(255,255,255,.5);line-height:27px;animation:fi .45s .7s ease both">
+  Note: Customized MIS reports, dashboards, and management reports may be provided based on business requirements and mutual agreement.
+</p>
+
+<div class="nav"><span class="nav-depth">DEPTH 3 / 4</span><span class="nav-cnt">7 / 31</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script>
+function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);document.getElementById('stage').style.transform='scale('+s+')';}
+fit();addEventListener('resize',fit);
+document.getElementById('prevBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowLeft'},'*');};
+document.getElementById('nextBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowRight'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+window.addEventListener('message',function(e){if(e.data&&e.data.type==='set-counter'){var el=document.querySelector('.nav-cnt');if(el)el.textContent=e.data.text;}});
+</script>
+</body>
+</html>

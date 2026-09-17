@@ -30,6 +30,17 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;display:flex;al
 .nav-btn:active{transform:scale(.92)}
 .nav-btn svg{width:20px;height:20px}
 
+.depthchip{position:absolute;left:72px;bottom:44px;display:flex;align-items:center;gap:11px;
+  background:rgba(242,217,140,.13);border:1px solid rgba(242,217,140,.45);
+  padding:10px 20px 10px 14px;border-radius:40px;cursor:pointer;z-index:90;
+  transition:background .18s,transform .14s;animation:fu .5s .7s ease both}
+.depthchip:hover{background:rgba(242,217,140,.22);transform:translateY(-2px)}
+.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#F2D98C;color:#013a29;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+  animation:bob 1.9s ease-in-out infinite}
+.depthchip span.t{color:#F2D98C;font-size:16px;font-weight:600;letter-spacing:.2px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion:reduce){.depthchip .arw{animation:none}}
 @keyframes fi{from{opacity:0}to{opacity:1}}
 @keyframes fd{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -152,6 +163,12 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;display:flex;al
 <p class="a" style="left:1107px;top:889px;width:290px;font-size:22px;font-weight:700;color:#00583e;line-height:23px;white-space:pre-wrap;animation:fu .4s .55s ease both">Less effort in.&#10;Zero errors out.</p>
 <p class="a" style="left:1486px;top:889px;width:300px;font-size:22px;font-weight:700;color:#00583e;line-height:23px;white-space:pre-wrap;animation:fu .4s .6s ease both">Always current.&#10;Never caught out.</p>
 
+<!-- ══ DEPTH AFFORDANCE ══ -->
+<div class="depthchip" id="depthChip" title="Press the down arrow to open the detailed breakdown">
+  <span class="arw">&#8595;</span>
+  <span class="t">4 more: how the service actually runs</span>
+</div>
+
 <!-- ══ NAV ══ -->
 <div class="nav">
   <span class="nav-cnt">7 / 31</span>
@@ -169,6 +186,13 @@ function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);document.getElem
 fit();addEventListener('resize',fit);
 document.getElementById('prevBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowLeft'},'*');};
 document.getElementById('nextBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowRight'},'*');};
+
+document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
 
 // counter sync from shell
 window.addEventListener('message',function(e){if(e.data&&e.data.type==='set-counter'){var el=document.querySelector('.nav-cnt');if(el)el.textContent=e.data.text;}});

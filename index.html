@@ -235,6 +235,20 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 }
 .slide-row.active .slide-name{ color:#fff;font-weight:500; }
 .slide-row:hover:not(.stub) .slide-name{ color:rgba(255,255,255,.82); }
+.sub-row{
+  display:flex;align-items:center;gap:9px;position:relative;cursor:pointer;
+  padding:6px 14px 6px 72px;margin:1px 0;border-radius:7px;transition:background .15s;
+}
+.sub-row::before{ content:'';position:absolute;left:52px;top:2px;bottom:2px;width:1px;background:rgba(255,255,255,.13); }
+.sub-row:hover{ background:rgba(255,255,255,.05); }
+.sub-row.active{ background:rgba(242,217,140,.12); }
+.sub-row.active::before{ background:#F2D98C;width:2px; }
+.sub-dot{ width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0; }
+.sub-row.active .sub-dot{ background:#F2D98C; }
+.sub-name{ flex:1;font-size:12px;color:rgba(255,255,255,.5);line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.sub-row.active .sub-name{ color:#F2D98C;font-weight:500; }
+.slide-row.has-sub .slide-name::after{ content:'\2193';margin-left:7px;font-size:11px;font-weight:700;color:#F2D98C;opacity:.65; }
 
 /* ── Empty state ─────────────── */
 .nav-empty{
@@ -398,7 +412,13 @@ const GROUPS = [
     slides:[
       { n:5,  t:'Outgrow the Team, Not the Tool', f:'hrone-outgrow.html', optional:true },
       { n:6,  t:'The Comprehensive HCM Suite', f:'hrone-slide5.html' },
-      { n:7,  t:'Payroll Outsourcing',          f:'hrone-payroll-outsourcing.html' },
+      { n:7,  t:'Payroll Outsourcing',          f:'hrone-payroll-outsourcing.html',
+        sub:[
+          { t:'Core Payroll Processing',        f:'hrone-po-processing.html' },
+          { t:'F&F and Reimbursement',          f:'hrone-po-settlement.html' },
+          { t:'Reports & MIS',                  f:'hrone-po-reports.html' },
+          { t:'TAT, Support & Governance',      f:'hrone-po-governance.html' },
+        ]},
       { n:8,  t:'InboxforHR', html:'InboxforHR<sup style="font-size:.55em;vertical-align:super;line-height:0">TM</sup>', f:'hrone-inboxforhr.html' },
       { n:9,  t:'Two Problems, One Inbox',     f:'hrone-what-it-kills.html' },
       { n:10, t:'The Facts',                   f:'hrone-the-facts.html' },
@@ -478,12 +498,17 @@ GROUPS.forEach(g => {
      </div>
      <div class="grp-slides">
        ${g.slides.map(s =>
-         `<div class="slide-row${s.f ? '' : ' stub'}"
+         `<div class="slide-row${s.f ? '' : ' stub'}${s.sub ? ' has-sub' : ''}"
                data-n="${s.n}" data-q="${s.t.toLowerCase()}" data-file="${s.f || ''}">
             <span class="slide-num">${String(s.n).padStart(2,'0')}</span>
             <span class="slide-name">${s.html || s.t}</span>
             ${s.optional ? `<button class="slide-eye" type="button" title="Show/hide this slide when presenting" aria-label="Toggle slide visibility">${EYE_SVG}</button>` : ''}
-          </div>`
+          </div>` +
+         (s.sub ? s.sub.map((sb,i) =>
+           `<div class="sub-row" data-n="${s.n}" data-parent="${s.n}" data-sub="${i}"
+                 data-q="${sb.t.toLowerCase()}" data-file="${sb.f}" title="${sb.t} — depth ${i+1} of ${s.sub.length}">
+              <span class="sub-dot"></span><span class="sub-name">${sb.t}</span>
+            </div>`).join('') : '')
        ).join('')}
      </div>`;
 
@@ -493,6 +518,13 @@ GROUPS.forEach(g => {
 
   el.querySelectorAll('.slide-row:not(.stub)').forEach(row => {
     row.addEventListener('click', () => goTo(+row.dataset.n, row.dataset.file));
+  });
+
+  el.querySelectorAll('.sub-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goDepth(+row.dataset.parent, +row.dataset.sub);
+    });
   });
 
   el.querySelectorAll('.slide-eye').forEach(btn => {
@@ -512,6 +544,18 @@ const sidebar  = document.getElementById('sidebar');
 const frame    = document.getElementById('slideFrame');
 const slideCtr = document.getElementById('slideCtr');
 let   current  = 1;
+// -1 = on the spine slide itself; 0..n = index into that slide's depth stack.
+let   curSub   = -1;
+
+// depth filename -> { n: parent slide number, i: depth index }
+const SUB_MAP = {};
+GROUPS.forEach(g => g.slides.forEach(s => {
+  if (s.sub) s.sub.forEach((sb, i) => { SUB_MAP[sb.f] = { n: s.n, i }; });
+}));
+function subsFor(n) {
+  const s = GROUPS.flatMap(g => g.slides).find(x => x.n === n);
+  return (s && s.sub) || null;
+}
 
 // All slides with a real file, static manifest order.
 function getFullList() {
@@ -561,6 +605,10 @@ function setActive(n) {
     r.classList.toggle('active', +r.dataset.n === n);
   });
 
+  document.querySelectorAll('.sub-row').forEach(r => {
+    r.classList.toggle('active', +r.dataset.parent === n && +r.dataset.sub === curSub);
+  });
+
   // Auto-open parent group
   document.querySelectorAll('.nav-grp').forEach(g => {
     const has = [...g.querySelectorAll('.slide-row')].some(r => +r.dataset.n === n);
@@ -577,7 +625,18 @@ function setActive(n) {
 
 function goTo(n, file) {
   if (!file) return;
+  curSub = -1;
   frame.src = file;
+  setActive(n);
+  updateShellNav();
+}
+
+// Drop into the i-th depth slide behind spine slide n.
+function goDepth(n, i) {
+  const subs = subsFor(n);
+  if (!subs || !subs[i]) return;
+  curSub = i;
+  frame.src = subs[i].f;
   setActive(n);
   updateShellNav();
 }
@@ -591,8 +650,9 @@ function updateShellNav() {
 frame.addEventListener('load', () => {
   try {
     const file = frame.contentWindow.location.href.split('/').pop().split('?')[0];
-    const s = FILE_MAP[file];
-    if (s) setActive(s.n);
+    const sub = SUB_MAP[file];
+    if (sub) { curSub = sub.i; setActive(sub.n); }
+    else { const s = FILE_MAP[file]; if (s) { curSub = -1; setActive(s.n); } }
     updateShellNav();
   } catch(e) {}
   try { frame.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
@@ -622,7 +682,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
   document.querySelectorAll('.nav-grp').forEach(g => {
     let hit = false;
-    g.querySelectorAll('.slide-row').forEach(r => {
+    g.querySelectorAll('.slide-row, .sub-row').forEach(r => {
       const show = !q || r.dataset.q.includes(q) || r.dataset.n.includes(q);
       r.style.display = show ? '' : 'none';
       if (show) hit = true;
@@ -658,6 +718,7 @@ document.addEventListener('fullscreenchange', () => {
 // ── Keyboard (shell focus) ────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
+  if ([' ','PageDown','PageUp','ArrowDown','ArrowUp'].indexOf(e.key) > -1) e.preventDefault();
   navArrow(e.key);
 });
 
@@ -686,15 +747,36 @@ function updateNavBtns() {
 function navArrow(key) {
   const built = getActiveList();
   const idx   = built.findIndex(s => s.n === current);
+  const subs  = subsFor(current);
+  const spine = built.find(x => x.n === current) || getFullList().find(x => x.n === current);
+
+  // ── VERTICAL AXIS: the depth stack. Keyboard-only, deliberate. ──
+  if (key === 'ArrowDown') {
+    if (subs && curSub < subs.length - 1) goDepth(current, curSub + 1);
+    return;
+  }
+  if (key === 'ArrowUp' || key === 'Escape') {
+    if (curSub === -1) return;
+    if (key === 'Escape' || curSub === 0) { if (spine) goTo(spine.n, spine.f); }
+    else goDepth(current, curSub - 1);
+    return;
+  }
+
+  // ── HORIZONTAL AXIS: the spine. Always leaves depth, so a clicker
+  //    can never strand the presenter inside a sub-slide. ──
+  const fwd = (key === 'ArrowRight' || key === 'PageDown' || key === ' ');
+  const bwd = (key === 'ArrowLeft'  || key === 'PageUp');
+  if (!fwd && !bwd) return;
+
   // Previewing a slide the presenter has hidden — jump relative to its manifest position.
   if (idx === -1) {
-    if (key === 'ArrowRight') { const nxt = built.find(s => s.n > current); if (nxt) goTo(nxt.n, nxt.f); }
-    if (key === 'ArrowLeft')  { const prv = [...built].reverse().find(s => s.n < current); if (prv) goTo(prv.n, prv.f); }
+    if (fwd) { const nxt = built.find(s => s.n > current); if (nxt) goTo(nxt.n, nxt.f); }
+    if (bwd) { const prv = [...built].reverse().find(s => s.n < current); if (prv) goTo(prv.n, prv.f); }
     updateNavBtns();
     return;
   }
-  if (key === 'ArrowRight' && idx < built.length - 1) goTo(built[idx+1].n, built[idx+1].f);
-  if (key === 'ArrowLeft'  && idx > 0)                goTo(built[idx-1].n, built[idx-1].f);
+  if (fwd && idx < built.length - 1) goTo(built[idx+1].n, built[idx+1].f);
+  if (bwd && idx > 0)                goTo(built[idx-1].n, built[idx-1].f);
   updateNavBtns();
 }
 
