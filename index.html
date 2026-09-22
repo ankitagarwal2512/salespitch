@@ -248,7 +248,18 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 .sub-name{ flex:1;font-size:12px;color:rgba(255,255,255,.5);line-height:1.35;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 .sub-row.active .sub-name{ color:#F2D98C;font-weight:500; }
-.slide-row.has-sub .slide-name::after{ content:'\2193';margin-left:7px;font-size:11px;font-weight:700;color:#F2D98C;opacity:.65; }
+.sub-wrap{ overflow:hidden; max-height:0; transition:max-height .24s ease; }
+.sub-wrap.open{ max-height:280px; }
+.sub-toggle{
+  flex-shrink:0;width:22px;height:22px;border-radius:6px;border:none;
+  background:transparent;color:rgba(242,217,140,.7);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,color .15s,transform .2s;
+}
+.sub-toggle:hover{ background:rgba(242,217,140,.16); color:#F2D98C; }
+.sub-toggle.open{ transform:rotate(90deg); }
+.sub-toggle svg{ width:11px;height:11px; }
+.slide-row.has-sub.active .sub-toggle{ color:#F2D98C; }
 
 /* ── Empty state ─────────────── */
 .nav-empty{
@@ -434,31 +445,41 @@ const GROUPS = [
     ]},
   { id:'build', label:'Build & Extend', icon:'M4 2.5L2 7l2 4.5M10 2.5l2 4.5-2 4.5',
     slides:[
-      { n:17, t:'Studio — Build your own app',  f:'hrone-studio.html' },
-      { n:18, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
+      { n:17, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
+      { n:18, t:'Studio — Use Cases',           f:'hrone-studio-usecases.html' },
       { n:19, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
     ]},
 
   { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
     slides:[
       { n:20, t:'Add-Ons',                      f:'hrone-marketplace.html' },
+      { n:21, t:'Visitor Management',           f:'hrone-visitor-management.html',
+        sub:[
+          { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
+          { t:'Walk-in Visitors',               f:'hrone-visitor-walkin.html' },
+          { t:'Facial Check-in & Checkout',     f:'hrone-visitor-facial.html' },
+          { t:'Visibility & Control',           f:'hrone-visitor-control.html' },
+        ]},
     ]},
   { id:'modules', label:'Modules', icon:'M1 4l6-3 6 3-6 3-6-3M1 8l6 3 6-3M1 11l6 3 6-3',
     slides:[
-      { n:21, t:'Overview',                    f:'hrone-modules-overview.html' },
-      { n:22, t:'Recruitment',                 f:'hrone-recruitment.html' },
-      { n:23, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
-      { n:24, t:'Workforce Management',        f:'hrone-module-workforce.html' },
-      { n:25, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
-      { n:26, t:'Payroll',                     f:'hrone-module-payroll.html' },
-      { n:27, t:'Performance',                 f:'hrone-module-performance.html' },
-      { n:28, t:'Engagement',                  f:'hrone-module-engagement.html' },
-      { n:29, t:'Expense',                     f:'hrone-module-expense.html' },
-      { n:30, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
+      { n:22, t:'Overview',                    f:'hrone-modules-overview.html' },
+      { n:23, t:'Recruitment',                 f:'hrone-recruitment.html' },
+      { n:24, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
+      { n:25, t:'Workforce Management',        f:'hrone-module-workforce.html' },
+      { n:26, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
+      { n:27, t:'Payroll',                     f:'hrone-module-payroll.html',
+        sub:[
+          { t:'New Wage Code',                  f:'hrone-payroll-wagecode.html' },
+        ]},
+      { n:28, t:'Performance',                 f:'hrone-module-performance.html' },
+      { n:29, t:'Engagement',                  f:'hrone-module-engagement.html' },
+      { n:30, t:'Expense',                     f:'hrone-module-expense.html' },
+      { n:31, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
     ]},
   { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
     slides:[
-      { n:31, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
+      { n:32, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
     ]},
 ];
 
@@ -470,6 +491,7 @@ GROUPS.forEach(g => g.slides.forEach(s => { if (s.f) FILE_MAP[s.f] = s; }));
 const disabledSlides = new Set();
 
 const EYE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const CHEV_SVG = `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5L8 6l-3.5 3.5"/></svg>`;
 const EYE_OFF_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.5 18.5 0 015.06-5.94M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
 
 // ── Build nav DOM ─────────────────────────────────────────────────
@@ -502,13 +524,14 @@ GROUPS.forEach(g => {
                data-n="${s.n}" data-q="${s.t.toLowerCase()}" data-file="${s.f || ''}">
             <span class="slide-num">${String(s.n).padStart(2,'0')}</span>
             <span class="slide-name">${s.html || s.t}</span>
+            ${s.sub ? `<button class="sub-toggle" type="button" data-toggle="${s.n}" aria-expanded="false" title="Show the ${s.sub.length} depth slides">${CHEV_SVG}</button>` : ''}
             ${s.optional ? `<button class="slide-eye" type="button" title="Show/hide this slide when presenting" aria-label="Toggle slide visibility">${EYE_SVG}</button>` : ''}
           </div>` +
-         (s.sub ? s.sub.map((sb,i) =>
+         (s.sub ? `<div class="sub-wrap" data-subwrap="${s.n}">` + s.sub.map((sb,i) =>
            `<div class="sub-row" data-n="${s.n}" data-parent="${s.n}" data-sub="${i}"
                  data-q="${sb.t.toLowerCase()}" data-file="${sb.f}" title="${sb.t} — depth ${i+1} of ${s.sub.length}">
               <span class="sub-dot"></span><span class="sub-name">${sb.t}</span>
-            </div>`).join('') : '')
+            </div>`).join('') + `</div>` : '')
        ).join('')}
      </div>`;
 
@@ -524,6 +547,13 @@ GROUPS.forEach(g => {
     row.addEventListener('click', (e) => {
       e.stopPropagation();
       goDepth(+row.dataset.parent, +row.dataset.sub);
+    });
+  });
+
+  el.querySelectorAll('.sub-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setSubOpen(+btn.dataset.toggle, !btn.classList.contains('open'));
     });
   });
 
@@ -552,6 +582,12 @@ const SUB_MAP = {};
 GROUPS.forEach(g => g.slides.forEach(s => {
   if (s.sub) s.sub.forEach((sb, i) => { SUB_MAP[sb.f] = { n: s.n, i }; });
 }));
+function setSubOpen(n, open) {
+  const btn  = document.querySelector(`.sub-toggle[data-toggle="${n}"]`);
+  const wrap = document.querySelector(`.sub-wrap[data-subwrap="${n}"]`);
+  if (btn)  btn.classList.toggle('open', open), btn.setAttribute('aria-expanded', String(open));
+  if (wrap) wrap.classList.toggle('open', open);
+}
 function subsFor(n) {
   const s = GROUPS.flatMap(g => g.slides).find(x => x.n === n);
   return (s && s.sub) || null;
@@ -608,6 +644,9 @@ function setActive(n) {
   document.querySelectorAll('.sub-row').forEach(r => {
     r.classList.toggle('active', +r.dataset.parent === n && +r.dataset.sub === curSub);
   });
+
+  // the slide you're on reveals its own depth stack; others stay as you left them
+  if (subsFor(n)) setSubOpen(n, true);
 
   // Auto-open parent group
   document.querySelectorAll('.nav-grp').forEach(g => {
@@ -686,6 +725,8 @@ document.getElementById('searchInput').addEventListener('input', function() {
       const show = !q || r.dataset.q.includes(q) || r.dataset.n.includes(q);
       r.style.display = show ? '' : 'none';
       if (show) hit = true;
+      // a matching depth slide is useless inside a collapsed stack
+      if (show && q && r.classList.contains('sub-row')) setSubOpen(+r.dataset.parent, true);
     });
     g.style.display = hit ? '' : 'none';
     if (q && hit) g.classList.add('open');

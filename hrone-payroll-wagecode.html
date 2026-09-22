@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — New Wage Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Public Sans',sans-serif}
+#vp{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1920px;height:1080px;background:#fdf5e7;flex-shrink:0;transform-origin:center;overflow:hidden}
+.a{position:absolute}
+.crumb{left:72px;top:52px;display:flex;align-items:center;gap:12px}
+.crumb .home{color:#8fa39a;font-size:15px;font-weight:700;letter-spacing:1.6px}
+.crumb .chev{color:#bccac3;font-size:14px}
+.crumb .here{color:#ee5a3c;font-size:15px;font-weight:700;letter-spacing:1.6px}
+.h1{font-size:76px;font-weight:800;color:#0e1a15;line-height:80px;letter-spacing:-2.2px}
+.sub{font-size:26px;font-weight:500;color:#2c4a3c;line-height:34px}
+.card{background:#fff;border:1px solid #ece3d4;border-radius:22px;box-shadow:0 6px 28px rgba(20,50,38,.06)}
+.eyb{font-size:14px;font-weight:800;color:#ee5a3c;letter-spacing:2.4px}
+.ttl{font-size:29px;font-weight:800;color:#0d4430;line-height:37px;letter-spacing:-.4px}
+.bdy{font-size:18.5px;font-weight:400;color:#55665e;line-height:27px}
+.panel{background:#e3f2e9;border-radius:14px}
+.ui{background:#fff;border:1px solid #dfe8e3;border-radius:10px;box-shadow:0 1px 3px rgba(20,50,38,.05)}
+.uih{font-size:17px;font-weight:700;color:#0e1a15;line-height:1}
+.uis{font-size:14px;font-weight:400;color:#8b9a93;line-height:1}
+.uil{font-size:14px;font-weight:400;color:#2c3b34;line-height:1}
+.uiv{font-size:14px;font-weight:400;color:#2c3b34;line-height:1}
+.big{font-size:16px;font-weight:800;color:#ee5a3c;line-height:1}
+.pill{display:inline-flex;align-items:center;padding:0 18px;height:36px;border:1.5px solid #ee5a3c;
+  border-radius:8px;color:#ee5a3c;font-size:15px;font-weight:700;background:#fff}
+.alert{background:#fdecea;border:1px solid #f7cec7;border-radius:10px}
+.alh{font-size:14.5px;font-weight:700;color:#1d2b24;line-height:20px}
+.alb{font-size:13.5px;font-weight:400;color:#4a5852;line-height:19px}
+.dl{font-size:13.5px;font-weight:700;color:#0d6b4a;text-decoration:underline;line-height:1}
+.lbl{font-size:13px;font-weight:400;color:#6b7a73;line-height:1}
+.lbl2{font-size:13.5px;font-weight:600;color:#2c3b34;line-height:1}
+.fld{height:30px;border:1px solid #dbe4df;border-radius:6px;display:flex;align-items:center;
+  padding:0 12px;font-size:14px;font-weight:400;color:#1d2b24}
+.radiobox{border:1.5px solid #9fd4bb;border-radius:8px;background:#f6fbf8}
+.rad{font-size:13.5px;font-weight:400;color:#2c3b34;line-height:18px}
+.note{font-size:15px;font-weight:400;color:#9aa8a1}
+.rail{left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:13px;z-index:60}
+.rail .par{width:9px;height:9px;border-radius:3px;background:rgba(1,59,42,.28)}
+.rail .sep{width:1px;height:13px;background:rgba(1,59,42,.16)}
+.rail .dot{width:9px;height:9px;border-radius:50%;background:rgba(1,59,42,.2)}
+.rail .dot.cur{background:#ee5a3c;transform:scale(1.5)}
+.nav{position:fixed;bottom:26px;right:30px;display:flex;align-items:center;gap:12px;z-index:200;background:rgba(1,59,42,.9);backdrop-filter:blur(6px);padding:8px 14px 8px 16px;border-radius:40px}
+.nav-depth{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#013a29;background:#F2D98C;padding:5px 11px;border-radius:20px}
+.nav-cnt{color:rgba(255,255,255,.6);font-size:14px;font-weight:500;letter-spacing:.5px;margin-right:4px}
+.nav-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,transform .12s}
+.nav-btn:hover{background:rgba(35,165,120,.5)}.nav-btn:active{transform:scale(.92)}
+.nav-btn svg{width:20px;height:20px}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a crumb" style="animation:fi .4s .05s ease both">
+  <span class="home">27 &middot; PAYROLL</span>
+</div>
+<div class="a rail"><div class="par"></div><div class="sep"></div><div class="dot cur"></div></div>
+
+<img class="a" src="Assets/hrone-logo-dark.svg" style="right:72px;top:50px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:70px;top:96px;animation:fd .55s .14s ease both">New Wage Code</div>
+<p class="a sub" style="left:72px;top:192px;animation:fu .5s .2s ease both">Compliance checks built into salary design and payroll.</p>
+
+
+<div class="a card" style="left:72px;top:280px;width:568px;height:620px;animation:fu .55s 0.26s ease both"></div>
+<p class="a eyb" style="left:106px;top:316px;animation:fu .45s 0.30s ease both">01 &middot; CHECK</p>
+<div class="a ttl" style="left:106px;top:344px;width:500px;animation:fu .45s 0.32s ease both">Automated Wage Code<br>Compliance</div>
+<div class="a" style="left:106px;top:436px;width:44px;height:4px;background:#ee5a3c;border-radius:2px;animation:fi .4s 0.34s ease both"></div>
+<p class="a bdy" style="left:106px;top:460px;width:500px;animation:fu .45s 0.36s ease both">Ensures salary structures adhere to Code on Wages requirements (50&ndash;50 rule).</p>
+<div class="a panel" style="left:106px;top:560px;width:500px;height:306px;animation:fu .5s 0.40s ease both"></div>
+<div class="a" style="inset:0;pointer-events:none;animation:fu .5s 0.52s ease both"><div class="a ui" style="left:122px;top:576px;width:468px;height:208px"></div><p class="a uih" style="left:138px;top:587px">Salary structure</p><div class="a" style="left:122px;top:614px;width:468px;height:1px;background:#e7ede9"></div><p class="a uil" style="left:138px;top:624px;width:276px">Gross (B)</p><p class="a uiv" style="left:438px;top:624px">81,533</p><div class="a" style="left:122px;top:648px;width:468px;height:1px;background:#eef2f0"></div><p class="a uil" style="left:138px;top:658px;width:276px">Net take home (Excluding TDS)</p><p class="a uiv" style="left:438px;top:658px">79,733</p><div class="a" style="left:123px;top:683px;width:466px;height:33px;background:#d9efe3"></div><div class="a" style="left:122px;top:682px;width:468px;height:1px;background:#eef2f0"></div><p class="a uil" style="left:138px;top:692px;width:276px">Wages</p><p class="a uiv" style="left:438px;top:692px">60,000</p><div class="a" style="left:123px;top:717px;width:466px;height:33px;background:#d9efe3"></div><div class="a" style="left:122px;top:716px;width:468px;height:1px;background:#eef2f0"></div><p class="a uil" style="left:138px;top:726px;width:276px">Exclusions</p><p class="a uiv" style="left:438px;top:726px">23,333</p><div class="a" style="left:122px;top:750px;width:468px;height:1px;background:#eef2f0"></div><p class="a uil" style="left:138px;top:760px;width:276px">Not part of Wages/Exclusions</p><p class="a uiv" style="left:438px;top:760px">0</p><div class="a" style="left:422px;top:614px;width:1px;height:170px;background:#eef2f0"></div><div class="a pill" style="left:122px;top:798px">50&ndash;50 rule check</div></div>
+
+<div class="a card" style="left:676px;top:280px;width:568px;height:620px;animation:fu .55s 0.36s ease both"></div>
+<p class="a eyb" style="left:710px;top:316px;animation:fu .45s 0.40s ease both">02 &middot; VALIDATE</p>
+<div class="a ttl" style="left:710px;top:344px;width:500px;animation:fu .45s 0.42s ease both">Minimum Wage<br>Validation</div>
+<div class="a" style="left:710px;top:436px;width:44px;height:4px;background:#ee5a3c;border-radius:2px;animation:fi .4s 0.44s ease both"></div>
+<p class="a bdy" style="left:710px;top:460px;width:500px;animation:fu .45s 0.46s ease both">Detects employees falling below statutory minimum wage thresholds before payroll is processed.</p>
+<div class="a panel" style="left:710px;top:560px;width:500px;height:306px;animation:fu .5s 0.50s ease both"></div>
+<div class="a" style="inset:0;pointer-events:none;animation:fu .5s 0.62s ease both"><div class="a ui" style="left:726px;top:576px;width:468px;height:264px"></div><p class="a uih" style="left:744px;top:592px">September 2026</p><p class="a uis" style="left:916px;top:595px">Payroll validation</p><div class="a alert" style="left:742px;top:628px;width:436px;height:112px"></div><div class="a" style="left:758px;top:646px;width:26px;height:26px;border-radius:50%;background:#e03b2e;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:800;line-height:1">!</div><p class="a alh" style="left:796px;top:644px;width:352px">365 employees&rsquo; wages are below the defined minimum wage.</p><p class="a alb" style="left:796px;top:692px;width:278px">Review and update the salary structure to ensure compliance.</p><p class="a dl" style="left:1098px;top:708px">Download</p><div class="a" style="left:742px;top:774px;width:436px;height:1px;background:#eef2f0"></div><div class="a" style="left:744px;top:792px;width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:#55665e;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="8" r="3.4"/><path d="M4.8 20v-.8a4.6 4.6 0 0 1 4.6-4.6h5.2a4.6 4.6 0 0 1 4.6 4.6v.8"/></svg></div><p class="a uil" style="left:774px;top:795px;width:260px">Employees Below Minimum Wage</p><p class="a big" style="left:1056px;top:793px">365</p><div class="a" style="left:1152px;top:792px;width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:#2c3b34;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round"><path d="M12 3.5v12M7 11l5 4.5 5-4.5M4.5 20.5h15"/></svg></div></div>
+
+<div class="a card" style="left:1280px;top:280px;width:568px;height:620px;animation:fu .55s 0.46s ease both"></div>
+<p class="a eyb" style="left:1314px;top:316px;animation:fu .45s 0.50s ease both">03 &middot; CLASSIFY</p>
+<div class="a ttl" style="left:1314px;top:344px;width:500px;animation:fu .45s 0.52s ease both">Compliant Salary<br>Structure Design</div>
+<div class="a" style="left:1314px;top:436px;width:44px;height:4px;background:#ee5a3c;border-radius:2px;animation:fi .4s 0.54s ease both"></div>
+<p class="a bdy" style="left:1314px;top:460px;width:500px;animation:fu .45s 0.56s ease both">Automatically classifies earnings into Wages and Exclusions as per labour laws.</p>
+<div class="a panel" style="left:1314px;top:560px;width:500px;height:306px;animation:fu .5s 0.60s ease both"></div>
+<div class="a" style="inset:0;pointer-events:none;animation:fu .5s 0.72s ease both"><div class="a ui" style="left:1330px;top:576px;width:468px;height:270px"></div><p class="a uih" style="left:1348px;top:588px">Pay component</p><p class="a lbl" style="left:1348px;top:616px">Component name</p><div class="a fld" style="left:1348px;top:632px;width:432px">Basic</div><p class="a lbl" style="left:1348px;top:672px">Component type</p><div class="a fld" style="left:1348px;top:688px;width:432px">Basic</div><div class="a" style="left:1758px;top:701px;width:12px;height:12px"><svg viewBox="0 0 12 12" style="width:12px;height:12px;fill:#2c3b34"><path d="M1.5 4l4.5 4.5L10.5 4z"/></svg></div><div class="a radiobox" style="left:1344px;top:730px;width:440px;height:104px"></div><p class="a lbl2" style="left:1358px;top:740px">Remuneration category</p><div class="a" style="left:1358px;top:764px;width:16px;height:16px;border-radius:50%;border:2px solid #0d6b4a;box-sizing:border-box"><div style="position:absolute;left:2px;top:2px;width:8px;height:8px;border-radius:50%;background:#0d6b4a"></div></div><p class="a rad" style="left:1384px;top:763px">Wages</p><div class="a" style="left:1358px;top:788px;width:16px;height:16px;border-radius:50%;border:2px solid #c6d2cc;box-sizing:border-box"></div><p class="a rad" style="left:1384px;top:787px">Specified exclusion</p><div class="a" style="left:1358px;top:812px;width:16px;height:16px;border-radius:50%;border:2px solid #c6d2cc;box-sizing:border-box"></div><p class="a rad" style="left:1384px;top:811px">Not part of Wages/Exclusions</p></div>
+
+
+
+<div class="nav">
+  <span class="nav-depth">DEPTH 1 / 1</span>
+  <span class="nav-cnt">27 / 32</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script>
+function fit(){var s=Math.min(innerWidth/1920,innerHeight/1080);document.getElementById('stage').style.transform='scale('+s+')';}
+fit();addEventListener('resize',fit);
+document.getElementById('prevBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowLeft'},'*');};
+document.getElementById('nextBtn').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowRight'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+window.addEventListener('message',function(e){if(e.data&&e.data.type==='set-counter'){var el=document.querySelector('.nav-cnt');if(el)el.textContent=e.data.text;}});
+</script>
+</body>
+</html>
