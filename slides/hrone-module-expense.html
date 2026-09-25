@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Expense</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#fdf5e7;--stage-bg:#fdf5e7}
+#stage{font-family:'Public Sans',sans-serif}
+
+@keyframes fd   {from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu   {from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scIn {from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes march{to{stroke-dashoffset:-9}}
+
+.stage-circle{width:64px;height:64px;border-radius:50%;background:#ee5a3c;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(238,90,60,.35)}
+.stage-num{font-size:13px;font-weight:800;color:#ee5a3c;letter-spacing:2px;text-align:center}
+.stage-label{font-size:25px;font-weight:800;color:#013b2a;text-align:center;margin-top:4px;letter-spacing:-.4px}
+
+.row{background:#fff;border:1px solid rgba(200,185,165,.6);border-radius:12px;box-shadow:0 3px 14px rgba(0,0,0,.04);display:flex;align-items:center;gap:10px;padding:0 18px;transition:transform .18s ease,box-shadow .18s ease}
+.row:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.row-mint{background:#e9f5ef;border:2px dashed rgba(35,165,120,.55)}
+.row-num{font-size:13px;font-weight:700;color:#c1ac8d;flex-shrink:0}
+.row-label{font-size:15.5px;font-weight:700;color:#013b2a;flex:1;white-space:nowrap;letter-spacing:-.1px}
+
+.pill{display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 12px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:.6px;color:#fff;flex-shrink:0;white-space:nowrap}
+.pill-joy{background:#ee5a3c}
+.pill-api{background:#23a578}
+
+.legend-item{display:flex;align-items:center;gap:10px}
+.legend-item span.lbl{font-size:14px;color:#5d7a68}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ EYEBROW ══ -->
+<div class="a" style="left:72px;top:104px;display:flex;align-items:center;gap:12px;animation:fi .4s .06s ease both">
+  <div style="width:40px;height:2.5px;background:#ee5a3c;border-radius:2px;flex-shrink:0"></div>
+  <p style="font-size:14px;font-weight:700;color:#ee5a3c;letter-spacing:3px;white-space:nowrap">MODULE 08 · SPEND TO LEDGER</p>
+</div>
+
+<!-- ══ TITLE ══ -->
+<p class="a" style="left:72px;top:128px;font-size:90px;font-weight:800;color:#0e0e0e;line-height:1.05;letter-spacing:-2px;white-space:nowrap;animation:fd .6s .16s ease both">Expense</p>
+
+<!-- ══ SUBTITLE ══ -->
+<p class="a" style="left:560px;top:165px;width:900px;font-size:21px;font-weight:400;color:#3d3d3d;line-height:1.55;animation:fi .6s .26s ease both">Whether the spend started with a trip or not — receipts get captured, policy-checked, approved and posted to your books in one cycle. No CSV exports to finance.</p>
+
+<!-- ══ HROne LOGO ══ -->
+<div class="a" style="right:80px;top:58px;animation:fi .5s .08s ease both">
+  <svg height="44" width="190" viewBox="0 0 228 51" fill="none">
+    <g clip-path="url(#exp-h)">
+      <path d="M19.9582 23.0264L25.0472 25.5872L20.8408 41.815L18.8467 51C8.39627 47.8265 0 38.3481 0 26.618C0 24.285.305121 22.028.893568 19.874C1.11696 19.961 1.3349 20.064 1.54195 20.178L6.65817 23.01C7.87866 23.688 9.31163 23.911 10.6738 23.64L16.1278 22.527C17.4246 22.261 18.7758 22.446 19.9527 23.032L19.9582 23.0264Z" fill="#013b2a"/>
+      <path d="M17.6325 16.7746L26.2249 21.0987V21.1096L20.3949 18.4836C18.9783 17.8543 17.36 17.7946 15.9107 18.3426L10.8708 20.2306C9.416 20.7841 7.80322 20.7244 6.38658 20.0896L1.521 17.8922C1.78798 17.1489 2.08765 16.4165 2.42546 15.7112L4.33792 16.7692C5.5584 17.4419 6.98593 17.6589 8.35352 17.3768L13.813 16.2646C15.1043 16.0042 16.4501 16.1832 17.627 16.78L17.6325 16.7746Z" fill="#013b2a"/>
+      <path d="M52.9274 26.1836V26.3518C52.9219 27.8764 52.7748 29.3684 52.5187 30.817C52.4915 30.9689 52.4588 31.11 52.437 31.2565C52.4152 31.3759 52.3879 31.4952 52.3607 31.6146C52.3226 31.7882 52.2844 31.9564 52.2463 32.1246C51.3854 35.6729 49.7617 38.9607 47.555 41.8091H32.0647L30.8442 30.855H45.1795L46.7759 24.9791L26.2238 15.8534L18.0673 12.2346C16.6561 11.5998 15.0433 11.5455 13.594 12.0935L8.55406 13.987C7.09929 14.535 5.49195 14.4862 4.07532 13.846L3.5686 13.6181C3.72116 13.3468 3.86828 13.0864 4.02628 12.8205C8.614 5.13798 17.0212 0 26.6379 0C28.959 0 31.2038.298 33.3451.86266C44.2042 3.71649 52.3008 13.2763 52.8892 24.8218C52.911 25.2721 52.9274 25.7224 52.9274 26.1782V26.1836Z" fill="#013b2a"/>
+      <path d="M67.4917 41.7783V9.2251H76.3674V21.9425H88.1146V9.2251H96.9903V41.7783H88.1146V29.0608H76.3674V41.7783H67.4917Z" fill="#013b2a"/>
+      <path d="M100.303 41.7783V9.2251H114.415C116.839 9.2251 118.964 9.66457 120.784 10.5435C122.604 11.4224 124.02 12.692 125.028 14.3414C126.042 15.9962 126.543 17.9765 126.543 20.2878C126.543 22.599 126.02 24.5848 124.979 26.1853C123.95 27.7858 122.495 28.9957 120.621 29.8096C118.757 30.6234 116.583 31.0357 114.093 31.0357H105.664V24.167H112.306C113.347 24.167 114.235 24.0422 114.97 23.7872C115.717 23.5214 116.283 23.1036 116.676 22.5339C117.079 21.9642 117.281 21.2155 117.281 20.2932C117.281 19.3708 117.079 18.6004 116.676 18.0199C116.283 17.4285 115.711 16.9945 114.97 16.7178C114.235 16.4302 113.347 16.2891 112.306 16.2891H109.178V41.7837H100.303V41.7783ZM119.46 26.8364L127.633 41.7783H117.989L110.007 26.8364H119.455H119.46Z" fill="#013b2a"/>
+      <path d="M136.994 39.6117C134.504 38.1685 132.565 36.1882 131.115 33.6653C129.666 31.1913 128.99 28.4406 128.99 25.4674C128.99 22.4942 129.715 19.7489 131.159 17.226C132.608 14.7465 134.553 12.7662 137.081 11.3284C139.571 9.88524 142.328 9.16907 145.358 9.16907C148.387 9.16907 151.101 9.89066 153.634 11.3284C156.124 12.7716 158.113 14.7519 159.557 17.226C161.006 19.7489 161.725 22.4942 161.725 25.4674C161.725 28.4406 161.001 31.2293 159.557 33.7088C158.107 36.2316 156.168 38.1685 153.678 39.6063C151.144 41.0495 148.387 41.7657 145.358 41.7657C142.328 41.7657 139.479 41.0441 136.989 39.6063L136.994 39.6117ZM152.141 36.9532C154.13 35.7813 155.716 34.1591 156.843 32.1353C157.971 30.155 158.56 27.9034 158.56 25.4728C158.56 23.0422 157.971 20.834 156.843 18.8102C155.667 16.8299 154.086 15.2077 152.098 14.0358C150.06 12.8639 147.799 12.2345 145.358 12.2345C142.917 12.2345 140.612 12.8205 138.618 13.9924C136.629 15.1643 135.044 16.7865 133.872 18.8102C132.695 20.8394 132.156 23.0422 132.156 25.4728C132.156 27.9034 132.701 30.2039 133.872 32.1842C135 34.2079 136.586 35.7867 138.574 36.9586C140.563 38.1306 142.824 38.7165 145.358 38.7165C147.891 38.7165 150.153 38.1306 152.141 36.9586V36.9532Z" fill="#013b2a"/>
+      <path d="M164.93 41.7777V9.22453H168.782V14.4656C171.163 10.9661 174.786 9.15942 179.717 9.15942C182.436 9.15942 184.817 9.72368 186.855 10.7383C188.669 11.7528 190.026 13.1092 191.05 14.9159C192.015 16.7226 192.521 18.8114 192.521 21.2367V41.7777H188.669V21.2367C188.669 18.6433 187.819 16.6087 186.119 15.1438C184.419 13.6789 182.207 12.8868 179.374 12.8868C175.974 12.8868 173.37 13.8471 171.555 15.7623C169.686 17.6829 168.776 20.3903 168.776 23.8897V41.7777H164.924H164.93Z" fill="#013b2a"/>
+      <path d="M203.919 39.7422C201.472 38.3045 199.581 36.3133 198.192 33.823C196.803 31.3326 196.138 28.5656 196.138 25.5762C196.138 22.5867 196.803 19.8739 198.192 17.3836C199.581 14.8933 201.472 12.9021 203.919 11.4643C206.31 10.0266 208.975 9.25073 211.868 9.25073C214.761 9.25073 217.371 10.0266 219.758 11.4643C222.149 12.9021 224.035 14.8933 225.424 17.3836C226.813 19.8739 227.538 22.5867 227.538 25.5762C227.538 26.352 227.484 26.8512 227.484 27.1821H200.028C200.252 29.2872 200.916 31.1645 202.028 32.8247C203.139 34.5391 204.529 35.8684 206.251 36.807C207.918 37.8053 209.808 38.2448 211.863 38.2448C213.917 38.2448 215.698 37.7999 217.366 36.8613C219.033 35.9769 220.422 34.7019 221.534 33.0959H225.871C224.536 35.8087 222.591 37.9681 220.144 39.5144C217.644 41.1203 214.865 41.8962 211.863 41.8962C208.86 41.8962 206.305 41.1746 203.913 39.7368L203.919 39.7422ZM223.702 23.6392C223.37 21.6481 222.7 19.8197 221.588 18.1595C220.477 16.4992 219.033 15.2242 217.366 14.2856C215.698 13.4013 213.862 12.9021 211.863 12.9021C209.863 12.9021 207.972 13.4013 206.305 14.2856C204.638 15.2242 203.248 16.4992 202.137 18.1595C201.025 19.8197 200.301 21.6481 200.023 23.6392H223.697H223.702Z" fill="#013b2a"/>
+    </g>
+    <defs><clipPath id="exp-h"><rect width="227.538" height="51" fill="white"/></clipPath></defs>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- STAGE ROW — 4 circles + connectors        -->
+<!-- ══════════════════════════════════════════ -->
+
+<!-- Stage 01 — Plan travel -->
+<div class="a stage-circle" style="left:253px;top:290px;animation:scIn .45s .32s ease both">
+  <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M21.9078 23.6308L19.6924 13.5385L24.0001 9.23078C25.8462 7.38462 26.4616 4.92309 25.8462 3.69232C24.6155 3.07693 22.1539 3.69232 20.3078 5.53847L16.0001 9.84616L5.90777 7.63078C5.29238 7.5077 4.80008 7.75386 4.55392 8.24616L4.18469 8.86155C3.93854 9.47693 4.06161 10.0923 4.55392 10.4615L11.077 14.7692L8.61546 18.4615H4.92315L3.69238 19.6923L7.38469 22.1539L9.84623 25.8462L11.077 24.6154V20.9231L14.7693 18.4615L19.077 24.9846C19.4462 25.4769 20.0616 25.6 20.677 25.3539L21.2924 25.1077C21.7847 24.7385 22.0308 24.2462 21.9078 23.6308Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="a stage-num" style="left:72px;top:372px;width:426px;animation:fi .35s .5s ease both">01</p>
+<p class="a stage-label" style="left:72px;top:392px;width:426px;animation:fi .35s .52s ease both">Plan travel</p>
+
+<!-- Stage 02 — Capture spend -->
+<div class="a stage-circle" style="left:703px;top:290px;animation:scIn .45s .4s ease both">
+  <svg width="21" height="28" viewBox="0 0 21 28" fill="none"><path d="M1 1V26.3846L5.61538 22.9231L10.2308 26.3846L14.8462 22.9231L19.4615 26.3846V1H1Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.61523 9.07693H14.846" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.61523 14.8462H12.5383" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="a stage-num" style="left:522px;top:372px;width:426px;animation:fi .35s .58s ease both">02</p>
+<p class="a stage-label" style="left:522px;top:392px;width:426px;animation:fi .35s .6s ease both">Capture spend</p>
+
+<!-- Stage 03 — Approve -->
+<div class="a stage-circle" style="left:1153px;top:290px;animation:scIn .45s .48s ease both">
+  <svg width="23" height="27" viewBox="0 0 23 27" fill="none"><path d="M11.3846 1L21.7692 4.46154V13.6923C21.7692 19.4615 17.1538 24.0769 11.3846 25.2308C5.61538 24.0769 1 19.4615 1 13.6923V4.46154L11.3846 1Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.76953 12.5386L10.2311 16.0001L16.0003 9.07703" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="a stage-num" style="left:972px;top:372px;width:426px;animation:fi .35s .66s ease both">03</p>
+<p class="a stage-label" style="left:972px;top:392px;width:426px;animation:fi .35s .68s ease both">Approve</p>
+
+<!-- Stage 04 — Pay & post -->
+<div class="a stage-circle" style="left:1603px;top:290px;animation:scIn .45s .56s ease both">
+  <svg width="16" height="23" viewBox="0 0 16 23" fill="none"><path d="M1 1.00006H14.8462" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.00098 5.61539H14.8471" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.30859 1C10.2317 1 10.2317 11.3846 3.30859 11.3846L12.5394 21.7692" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="a stage-num" style="left:1422px;top:372px;width:426px;animation:fi .35s .74s ease both">04</p>
+<p class="a stage-label" style="left:1422px;top:392px;width:426px;animation:fi .35s .76s ease both">Pay &amp; post</p>
+
+<!-- ══ CONNECTORS ══ -->
+<svg class="a" style="left:0;top:0;width:1920px;height:1080px;pointer-events:none" viewBox="0 0 1920 1080">
+  <defs>
+    <marker id="exp-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 1L9 5L0 9Z" fill="#ee5a3c"/>
+    </marker>
+  </defs>
+  <line id="exp-link1" x1="321" y1="322" x2="695" y2="322" stroke="#ee5a3c" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#exp-ah)" opacity="0"/>
+  <line id="exp-link2" x1="771" y1="322" x2="1145" y2="322" stroke="#ee5a3c" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#exp-ah)" opacity="0"/>
+  <line id="exp-link3" x1="1221" y1="322" x2="1595" y2="322" stroke="#ee5a3c" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#exp-ah)" opacity="0"/>
+</svg>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COLUMN 01 — PLAN TRAVEL (5 rows)          -->
+<!-- ══════════════════════════════════════════ -->
+<div class="a row" style="left:72px;top:468px;width:426px;height:56px;animation:fu .4s .78s ease both">
+  <span class="row-num">01</span><span class="row-label">Travel request</span>
+</div>
+<div class="a row" style="left:72px;top:538px;width:426px;height:56px;animation:fu .4s .82s ease both">
+  <span class="row-num">02</span><span class="row-label">One-way / round / multi-city</span>
+</div>
+<div class="a row" style="left:72px;top:608px;width:426px;height:56px;animation:fu .4s .86s ease both">
+  <span class="row-num">03</span><span class="row-label">Self-book or travel desk</span>
+</div>
+<div class="a row" style="left:72px;top:678px;width:426px;height:56px;animation:fu .4s .9s ease both">
+  <span class="row-num">04</span><span class="row-label">Internal or external agent</span>
+</div>
+<div class="a row" style="left:72px;top:748px;width:426px;height:56px;animation:fu .4s .94s ease both">
+  <span class="row-num">05</span><span class="row-label">Travel approval</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COLUMN 02 — CAPTURE SPEND (6 rows)        -->
+<!-- ══════════════════════════════════════════ -->
+<div class="a row" style="left:522px;top:468px;width:426px;height:56px;animation:fu .4s .8s ease both">
+  <span class="row-num">01</span><span class="row-label">Travel-linked or standalone</span>
+</div>
+<div class="a row" style="left:522px;top:538px;width:426px;height:56px;animation:fu .4s .84s ease both">
+  <span class="row-num">02</span><span class="row-label">Categories · multi-currency</span>
+</div>
+<div class="a row" style="left:522px;top:608px;width:426px;height:56px;animation:fu .4s .88s ease both">
+  <span class="row-num">03</span><span class="row-label">Tax rules · mileage</span>
+</div>
+<div class="a row" style="left:522px;top:678px;width:426px;height:56px;animation:fu .4s .92s ease both">
+  <span class="row-num">04</span><span class="row-label">Expense advance</span>
+</div>
+<div class="a row" style="left:522px;top:748px;width:426px;height:56px;animation:fu .4s .96s ease both">
+  <span class="row-num">05</span><span class="row-label">Live trip capture</span><span class="pill pill-api">API</span>
+</div>
+<div class="a row row-mint" style="left:522px;top:818px;width:426px;height:56px;animation:fu .4s 1.0s ease both">
+  <span class="row-num">06</span><span class="row-label">AI receipt parser</span><span class="pill pill-joy">One AI</span>
+  <svg width="15" height="15" viewBox="0 0 20 20" fill="none" style="flex-shrink:0"><path d="M10 0L12.2 7.8L20 10L12.2 12.2L10 20L7.8 12.2L0 10L7.8 7.8L10 0Z" fill="#23a578"/></svg>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COLUMN 03 — APPROVE (6 rows)              -->
+<!-- ══════════════════════════════════════════ -->
+<div class="a row" style="left:972px;top:468px;width:426px;height:56px;animation:fu .4s .86s ease both">
+  <span class="row-num">01</span><span class="row-label">Policy enforcement</span>
+</div>
+<div class="a row" style="left:972px;top:538px;width:426px;height:56px;animation:fu .4s .9s ease both">
+  <span class="row-num">02</span><span class="row-label">Limit-wise exceptions</span>
+</div>
+<div class="a row" style="left:972px;top:608px;width:426px;height:56px;animation:fu .4s .94s ease both">
+  <span class="row-num">03</span><span class="row-label">Exceptional expense flow</span>
+</div>
+<div class="a row" style="left:972px;top:678px;width:426px;height:56px;animation:fu .4s .98s ease both">
+  <span class="row-num">04</span><span class="row-label">Category-wise approval</span>
+</div>
+<div class="a row" style="left:972px;top:748px;width:426px;height:56px;animation:fu .4s 1.02s ease both">
+  <span class="row-num">05</span><span class="row-label">Location-wise approval</span>
+</div>
+<div class="a row" style="left:972px;top:818px;width:426px;height:56px;animation:fu .4s 1.06s ease both">
+  <span class="row-num">06</span><span class="row-label">Multi-level approval</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COLUMN 04 — PAY & POST (6 rows)           -->
+<!-- ══════════════════════════════════════════ -->
+<div class="a row" style="left:1422px;top:468px;width:426px;height:56px;animation:fu .4s .92s ease both">
+  <span class="row-num">01</span><span class="row-label">Expense payment</span>
+</div>
+<div class="a row" style="left:1422px;top:538px;width:426px;height:56px;animation:fu .4s .96s ease both">
+  <span class="row-num">02</span><span class="row-label">Payment ledger</span>
+</div>
+<div class="a row" style="left:1422px;top:608px;width:426px;height:56px;animation:fu .4s 1.0s ease both">
+  <span class="row-num">03</span><span class="row-label">JV / ERP posting</span><span class="pill pill-api">API</span>
+</div>
+<div class="a row" style="left:1422px;top:678px;width:426px;height:56px;animation:fu .4s 1.04s ease both">
+  <span class="row-num">04</span><span class="row-label">Multi-entity posting</span>
+</div>
+<div class="a row" style="left:1422px;top:748px;width:426px;height:56px;animation:fu .4s 1.08s ease both">
+  <span class="row-num">05</span><span class="row-label">Audit trail</span>
+</div>
+<div class="a row" style="left:1422px;top:818px;width:426px;height:56px;animation:fu .4s 1.12s ease both">
+  <span class="row-num">06</span><span class="row-label">Bank reimbursement</span>
+</div>
+
+<!-- ══ LEGEND ══ -->
+<div class="a" style="left:72px;top:936px;display:flex;align-items:center;gap:28px;animation:fi .5s 1.2s ease both">
+  <div class="legend-item"><span class="pill pill-joy">One AI</span><span class="lbl">HROne's AI brain</span></div>
+  <div class="legend-item"><span class="pill pill-api">API</span><span class="lbl">Integration-powered</span></div>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav">
+  <span class="nav-cnt">30 / 32</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+
+setTimeout(function(){
+  ['exp-link1','exp-link2','exp-link3'].forEach(function(id,i){
+    var l=document.getElementById(id);
+    l.style.transition='opacity .4s ease';
+    l.style.opacity='1';
+    setTimeout(function(){l.style.transition='';l.style.animation='march .6s linear infinite';},450+i*60);
+  });
+},650);
+
+</script>
+</body>
+</html>

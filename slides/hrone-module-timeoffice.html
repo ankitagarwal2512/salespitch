@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Time Office</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#fdf5e7;--stage-bg:#fdf5e7}
+#stage{font-family:'Public Sans',sans-serif}
+
+@keyframes fd  { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fu  { from{opacity:0;transform:translateY(18px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes scIn{ from{opacity:0;transform:scale(.94)}        to{opacity:1;transform:scale(1)} }
+
+.card{width:568px;height:310px;border-radius:16px;padding:28px;transition:transform .2s ease}
+.card.plain{background:#fff;border:1px solid rgba(200,185,165,0.7);box-shadow:0 3px 18px rgba(0,0,0,0.05)}
+.card:hover{transform:translateY(-4px)}
+.icon-disc{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-disc.plain{background:rgba(238,90,60,0.1)}
+.card-head{display:flex;align-items:flex-start;gap:16px;position:relative}
+.card-title{font-size:30px;font-weight:800;color:#013b2a;letter-spacing:-0.5px;line-height:1.15}
+.card-sub{font-size:15px;font-style:italic;color:#5d7a68;margin-top:5px}
+.card-num{position:absolute;right:0;top:2px;font-size:18px;font-weight:600;color:#c1ac8d}
+.divider{width:38px;height:3px;background:#ee5a3c;border-radius:2px;margin:22px 0 20px}
+.bullets{display:flex;gap:24px}
+.bcol{display:flex;flex-direction:column;gap:13px;flex:1;min-width:0}
+.bcol p{font-size:17px;color:#1f2f27;white-space:nowrap}
+.bcol p span{color:#ee5a3c;font-weight:700;margin-right:8px}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ EYEBROW ══ -->
+<div class="a" style="left:72px;top:104px;display:flex;align-items:center;gap:12px;animation:fi .4s .06s ease both">
+  <div style="width:40px;height:2.5px;background:#ee5a3c;border-radius:2px;flex-shrink:0"></div>
+  <p style="font-size:14px;font-weight:700;color:#ee5a3c;letter-spacing:3px;white-space:nowrap">MODULE 04 · WORK TIME &amp; ATTENDANCE</p>
+</div>
+
+<!-- ══ TITLE ══ -->
+<p class="a" style="left:72px;top:128px;font-size:90px;font-weight:800;color:#0e0e0e;line-height:1.05;letter-spacing:-2px;white-space:nowrap;animation:fd .6s .16s ease both">Timeoffice</p>
+
+<!-- ══ SUBTITLE ══ -->
+<p class="a" style="left:648px;top:161px;width:860px;font-size:22px;font-weight:400;color:#3d3d3d;line-height:1.55;animation:fi .6s .26s ease both">Every shift change, every leave request, every minute of overtime - captured, validated and policy-checked in real time. Whatever configuration your HR has written, HROne already handles it.</p>
+
+<!-- ══ HROne LOGO ══ -->
+<div class="a" style="right:80px;top:58px;animation:fi .5s .08s ease both">
+  <svg height="44" width="190" viewBox="0 0 228 51" fill="none">
+    <g clip-path="url(#to-h)">
+      <path d="M19.9582 23.0264L25.0472 25.5872L20.8408 41.815L18.8467 51C8.39627 47.8265 0 38.3481 0 26.618C0 24.285.305121 22.028.893568 19.874C1.11696 19.961 1.3349 20.064 1.54195 20.178L6.65817 23.01C7.87866 23.688 9.31163 23.911 10.6738 23.64L16.1278 22.527C17.4246 22.261 18.7758 22.446 19.9527 23.032L19.9582 23.0264Z" fill="#013b2a"/>
+      <path d="M17.6325 16.7746L26.2249 21.0987V21.1096L20.3949 18.4836C18.9783 17.8543 17.36 17.7946 15.9107 18.3426L10.8708 20.2306C9.416 20.7841 7.80322 20.7244 6.38658 20.0896L1.521 17.8922C1.78798 17.1489 2.08765 16.4165 2.42546 15.7112L4.33792 16.7692C5.5584 17.4419 6.98593 17.6589 8.35352 17.3768L13.813 16.2646C15.1043 16.0042 16.4501 16.1832 17.627 16.78L17.6325 16.7746Z" fill="#013b2a"/>
+      <path d="M52.9274 26.1836V26.3518C52.9219 27.8764 52.7748 29.3684 52.5187 30.817C52.4915 30.9689 52.4588 31.11 52.437 31.2565C52.4152 31.3759 52.3879 31.4952 52.3607 31.6146C52.3226 31.7882 52.2844 31.9564 52.2463 32.1246C51.3854 35.6729 49.7617 38.9607 47.555 41.8091H32.0647L30.8442 30.855H45.1795L46.7759 24.9791L26.2238 15.8534L18.0673 12.2346C16.6561 11.5998 15.0433 11.5455 13.594 12.0935L8.55406 13.987C7.09929 14.535 5.49195 14.4862 4.07532 13.846L3.5686 13.6181C3.72116 13.3468 3.86828 13.0864 4.02628 12.8205C8.614 5.13798 17.0212 0 26.6379 0C28.959 0 31.2038.298 33.3451.86266C44.2042 3.71649 52.3008 13.2763 52.8892 24.8218C52.911 25.2721 52.9274 25.7224 52.9274 26.1782V26.1836Z" fill="#013b2a"/>
+      <path d="M67.4917 41.7783V9.2251H76.3674V21.9425H88.1146V9.2251H96.9903V41.7783H88.1146V29.0608H76.3674V41.7783H67.4917Z" fill="#013b2a"/>
+      <path d="M100.303 41.7783V9.2251H114.415C116.839 9.2251 118.964 9.66457 120.784 10.5435C122.604 11.4224 124.02 12.692 125.028 14.3414C126.042 15.9962 126.543 17.9765 126.543 20.2878C126.543 22.599 126.02 24.5848 124.979 26.1853C123.95 27.7858 122.495 28.9957 120.621 29.8096C118.757 30.6234 116.583 31.0357 114.093 31.0357H105.664V24.167H112.306C113.347 24.167 114.235 24.0422 114.97 23.7872C115.717 23.5214 116.283 23.1036 116.676 22.5339C117.079 21.9642 117.281 21.2155 117.281 20.2932C117.281 19.3708 117.079 18.6004 116.676 18.0199C116.283 17.4285 115.711 16.9945 114.97 16.7178C114.235 16.4302 113.347 16.2891 112.306 16.2891H109.178V41.7837H100.303V41.7783ZM119.46 26.8364L127.633 41.7783H117.989L110.007 26.8364H119.455H119.46Z" fill="#013b2a"/>
+      <path d="M136.994 39.6117C134.504 38.1685 132.565 36.1882 131.115 33.6653C129.666 31.1913 128.99 28.4406 128.99 25.4674C128.99 22.4942 129.715 19.7489 131.159 17.226C132.608 14.7465 134.553 12.7662 137.081 11.3284C139.571 9.88524 142.328 9.16907 145.358 9.16907C148.387 9.16907 151.101 9.89066 153.634 11.3284C156.124 12.7716 158.113 14.7519 159.557 17.226C161.006 19.7489 161.725 22.4942 161.725 25.4674C161.725 28.4406 161.001 31.2293 159.557 33.7088C158.107 36.2316 156.168 38.1685 153.678 39.6063C151.144 41.0495 148.387 41.7657 145.358 41.7657C142.328 41.7657 139.479 41.0441 136.989 39.6063L136.994 39.6117ZM152.141 36.9532C154.13 35.7813 155.716 34.1591 156.843 32.1353C157.971 30.155 158.56 27.9034 158.56 25.4728C158.56 23.0422 157.971 20.834 156.843 18.8102C155.667 16.8299 154.086 15.2077 152.098 14.0358C150.06 12.8639 147.799 12.2345 145.358 12.2345C142.917 12.2345 140.612 12.8205 138.618 13.9924C136.629 15.1643 135.044 16.7865 133.872 18.8102C132.695 20.8394 132.156 23.0422 132.156 25.4728C132.156 27.9034 132.701 30.2039 133.872 32.1842C135 34.2079 136.586 35.7867 138.574 36.9586C140.563 38.1306 142.824 38.7165 145.358 38.7165C147.891 38.7165 150.153 38.1306 152.141 36.9586V36.9532Z" fill="#013b2a"/>
+      <path d="M164.93 41.7777V9.22453H168.782V14.4656C171.163 10.9661 174.786 9.15942 179.717 9.15942C182.436 9.15942 184.817 9.72368 186.855 10.7383C188.669 11.7528 190.026 13.1092 191.05 14.9159C192.015 16.7226 192.521 18.8114 192.521 21.2367V41.7777H188.669V21.2367C188.669 18.6433 187.819 16.6087 186.119 15.1438C184.419 13.6789 182.207 12.8868 179.374 12.8868C175.974 12.8868 173.37 13.8471 171.555 15.7623C169.686 17.6829 168.776 20.3903 168.776 23.8897V41.7777H164.924H164.93Z" fill="#013b2a"/>
+      <path d="M203.919 39.7422C201.472 38.3045 199.581 36.3133 198.192 33.823C196.803 31.3326 196.138 28.5656 196.138 25.5762C196.138 22.5867 196.803 19.8739 198.192 17.3836C199.581 14.8933 201.472 12.9021 203.919 11.4643C206.31 10.0266 208.975 9.25073 211.868 9.25073C214.761 9.25073 217.371 10.0266 219.758 11.4643C222.149 12.9021 224.035 14.8933 225.424 17.3836C226.813 19.8739 227.538 22.5867 227.538 25.5762C227.538 26.352 227.484 26.8512 227.484 27.1821H200.028C200.252 29.2872 200.916 31.1645 202.028 32.8247C203.139 34.5391 204.529 35.8684 206.251 36.807C207.918 37.8053 209.808 38.2448 211.863 38.2448C213.917 38.2448 215.698 37.7999 217.366 36.8613C219.033 35.9769 220.422 34.7019 221.534 33.0959H225.871C224.536 35.8087 222.591 37.9681 220.144 39.5144C217.644 41.1203 214.865 41.8962 211.863 41.8962C208.86 41.8962 206.305 41.1746 203.913 39.7368L203.919 39.7422ZM223.702 23.6392C223.37 21.6481 222.7 19.8197 221.588 18.1595C220.477 16.4992 219.033 15.2242 217.366 14.2856C215.698 13.4013 213.862 12.9021 211.863 12.9021C209.863 12.9021 207.972 13.4013 206.305 14.2856C204.638 15.2242 203.248 16.4992 202.137 18.1595C201.025 19.8197 200.301 21.6481 200.023 23.6392H223.697H223.702Z" fill="#013b2a"/>
+    </g>
+    <defs><clipPath id="to-h"><rect width="227.538" height="51" fill="white"/></clipPath></defs>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CARD GRID — 2 rows x 3 cols                -->
+<!-- ══════════════════════════════════════════ -->
+
+<!-- 01 Shift -->
+<div class="a card plain" style="left:72px;top:308px;animation:fu .45s .5s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="26" height="26" viewBox="0 0 29 29" fill="none">
+        <path d="M23 4H3C1.89543 4 1 4.89543 1 6V24C1 25.1046 1.89543 26 3 26H23C24.1046 26 25 25.1046 25 24V6C25 4.89543 24.1046 4 23 4Z" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M1 10H25" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M7 1V7" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M19 1V7" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M22 28C25.3137 28 28 25.3137 28 22C28 18.6863 25.3137 16 22 16C18.6863 16 16 18.6863 16 22C16 25.3137 18.6863 28 22 28Z" fill="#FDE2DA" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M22 22V19" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 22H25" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Shift</p>
+      <p class="card-sub">Schedule who works when</p>
+    </div>
+    <span class="card-num">01</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>Fixed roster</p><p><span>›</span>Shift week-off</p><p><span>›</span>Auto-shift from punches</p></div>
+    <div class="bcol"><p><span>›</span>Multiple shifts</p><p><span>›</span>Custom roster</p><p><span>›</span>Manual override</p></div>
+  </div>
+</div>
+
+<!-- 02 Holiday -->
+<div class="a card plain" style="left:676px;top:308px;animation:fu .45s .56s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="27" height="26" viewBox="0 0 30 29" fill="none">
+        <path d="M27 4H3C1.89543 4 1 4.89543 1 6V26C1 27.1046 1.89543 28 3 28H27C28.1046 28 29 27.1046 29 26V6C29 4.89543 28.1046 4 27 4Z" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M1 12H29" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M8 1V7" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M22 1V7" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 16L17 21H22L18 24L20 29L15 27L10 29L12 24L8 21H13L15 16Z" fill="#EE5A3C"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Holiday</p>
+      <p class="card-sub">Calendars per location and entity</p>
+    </div>
+    <span class="card-num">02</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>National holidays</p><p><span>›</span>Restricted (prorata)</p><p><span>›</span>Holiday bank</p></div>
+    <div class="bcol"><p><span>›</span>Location-wise</p><p><span>›</span>Manual assignment</p><p><span>›</span>Multi-year setup</p></div>
+  </div>
+</div>
+
+<!-- 03 Check-in -->
+<div class="a card plain" style="left:1280px;top:308px;animation:fu .45s .62s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="20" height="19" viewBox="0 0 20 19" fill="none">
+        <path d="M0.75 14.75C0.75 5.41667 3.75 0.75 9.75 0.75C15.75 0.75 18.75 5.41667 18.75 14.75" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M3.75 16.75C3.75 8.08333 5.75 3.75 9.75 3.75C13.75 3.75 15.75 8.08333 15.75 16.75" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M6.75 17.75C6.75 10.4167 7.75 6.75 9.75 6.75C11.75 6.75 12.75 10.4167 12.75 17.75" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M9.75 10.75V17.75" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Check-in</p>
+      <p class="card-sub">Capture attendance · prevent fraud</p>
+    </div>
+    <span class="card-num">03</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>Mobile check-in</p><p><span>›</span>Facial kiosk</p><p><span>›</span>Geo-fence radius</p></div>
+    <div class="bcol"><p><span>›</span>Web (IP-validated)</p><p><span>›</span>Geo-tagging</p><p><span>›</span>Multi-user device</p></div>
+  </div>
+</div>
+
+<!-- 04 Leave -->
+<div class="a card plain" style="left:72px;top:650px;animation:fu .45s .68s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="22" height="27" viewBox="0 0 26 32" fill="none">
+        <path d="M23 5H3C1.89543 5 1 5.89543 1 7V29C1 30.1046 1.89543 31 3 31H23C24.1046 31 25 30.1046 25 29V7C25 5.89543 24.1046 5 23 5Z" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M18 1H8C7.44772 1 7 1.44772 7 2V6C7 6.55228 7.44772 7 8 7H18C18.5523 7 19 6.55228 19 6V2C19 1.44772 18.5523 1 18 1Z" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M6 19L11 24L21 13" stroke="#EE5A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Leave</p>
+      <p class="card-sub">Whatever leave policy you've written</p>
+    </div>
+    <span class="card-num">04</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>Custom leave cycle</p><p><span>›</span>Carry-forward / lapse</p><p><span>›</span>Anniversary leave</p></div>
+    <div class="bcol"><p><span>›</span>Auto-accrual</p><p><span>›</span>Sandwich leave</p><p><span>›</span>Encashment</p></div>
+  </div>
+</div>
+
+<!-- 05 Comp-off -->
+<div class="a card plain" style="left:676px;top:650px;animation:fu .45s .74s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="24" height="24" viewBox="0 0 23 28" fill="none">
+        <path d="M1.1001 7.5174C1.97758 5.60256 3.38637 3.97995 5.15906 2.84235C6.93174 1.70474 8.99378 1.09998 11.1001 1.09998C13.2064 1.09998 15.2685 1.70474 17.0411 2.84235C18.8138 3.97995 20.2226 5.60256 21.1001 7.5174" stroke="#EE5A3C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M19.1001 4.51746L21.1001 7.51746L18.1001 9.51746" stroke="#EE5A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21.1001 19.5175C20.2226 21.4323 18.8138 23.0549 17.0411 24.1925C15.2685 25.3301 13.2064 25.9349 11.1001 25.9349C8.99378 25.9349 6.93174 25.3301 5.15906 24.1925C3.38637 23.0549 1.97758 21.4323 1.1001 19.5175" stroke="#EE5A3C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3.1001 22.5175L1.1001 19.5175L4.1001 17.5175" stroke="#EE5A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Comp-off</p>
+      <p class="card-sub">Earn it, approve it, expire it</p>
+    </div>
+    <span class="card-num">05</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>Applicability rules</p><p><span>›</span>Approval workflow</p><p><span>›</span>Auto-balance</p></div>
+    <div class="bcol"><p><span>›</span>Half / full day rules</p><p><span>›</span>Expiry policy</p><p><span>›</span>Manager sign-off</p></div>
+  </div>
+</div>
+
+<!-- 06 Overtime -->
+<div class="a card plain" style="left:1280px;top:650px;animation:fu .45s .8s ease both">
+  <div class="card-head">
+    <div class="icon-disc plain">
+      <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+        <path d="M13 25C19.6274 25 25 19.6274 25 13C25 6.37258 19.6274 1 13 1C6.37258 1 1 6.37258 1 13C1 19.6274 6.37258 25 13 25Z" stroke="#EE5A3C" stroke-width="2"/>
+        <path d="M13 1V3" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M25 13H23" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13 25V23" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M1 13H3" stroke="#EE5A3C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13 13V6" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M13 13L20 10" stroke="#EE5A3C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="card-title">Overtime</p>
+      <p class="card-sub">OT calculated to your statute</p>
+    </div>
+    <span class="card-num">06</span>
+  </div>
+  <div class="divider"></div>
+  <div class="bullets">
+    <div class="bcol"><p><span>›</span>Eligibility rules</p><p><span>›</span>Break deduction</p><p><span>›</span>OT round-off</p></div>
+    <div class="bcol"><p><span>›</span>Verification</p><p><span>›</span>Max threshold cap</p><p><span>›</span>Exclusion · arrear</p></div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav">
+  <span class="nav-cnt">26 / 32</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Three Agents, One Brain</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#fdf5e7;--stage-bg:#fdf5e7}
+
+/* ── Entrance animations ── */
+@keyframes fd   {from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu   {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fsl  {from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── Screenshot animations ── */
+@keyframes barGrow {
+  from{transform:scaleY(0)}
+  to  {transform:scaleY(1)}
+}
+@keyframes chipIn {
+  from{opacity:0;transform:translateX(-14px)}
+  to  {opacity:1;transform:translateX(0)}
+}
+@keyframes answerReveal {
+  0%  {opacity:0;transform:translateY(6px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+@keyframes btnUp {
+  from{opacity:0;transform:translateY(7px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+@keyframes micPulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%    {opacity:0.5;transform:scale(0.88)}
+}
+/* ── Connector line flow (same system as Two Problems One Inbox) ── */
+@keyframes dash-fwd { to { stroke-dashoffset: -12 } }
+@keyframes dash-bwd { to { stroke-dashoffset:  12 } }
+#oa-lh { animation: dash-fwd .55s linear infinite }
+#oa-rh { animation: dash-bwd .55s linear infinite }
+#oa-lv { animation: dash-fwd .55s linear infinite }
+#oa-rv { animation: dash-fwd .55s linear infinite }
+#oa-cv { animation: dash-fwd .55s linear infinite }
+
+/* ── Brain hero (same float + ring system) ── */
+@keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes ring-out{ 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.6);opacity:0} }
+.oa-ring {
+  position:absolute;width:120px;height:120px;
+  left:50%;top:50%;margin:-60px 0 0 -60px;
+  border-radius:50%;border:1.5px solid rgba(50,213,131,.5);
+  animation:ring-out 2.4s ease-out infinite;
+}
+
+/* ── Nav ── */
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ EYEBROW ══ -->
+<div class="a" style="left:79px;top:103px;display:flex;align-items:center;gap:12px;animation:fi .4s .1s ease both">
+  <div style="width:38px;height:3px;background:#ee5a3c;border-radius:2px;flex-shrink:0"></div>
+  <p style="font-size:14px;font-weight:700;color:#ee5a3c;letter-spacing:3px;text-transform:uppercase;white-space:nowrap">India's First Voice-powered AI Agent</p>
+</div>
+
+<!-- ══ ONEAI LOGO ══ -->
+<div class="a" style="left:79px;top:128px;width:417px;overflow:hidden;animation:fd .6s .2s ease both">
+  <img src="../Assets/oneai_logo.svg" style="width:417px;height:auto;display:block">
+</div>
+
+<!-- ══ VERTICAL DIVIDER ══ -->
+<div class="a" style="left:537px;top:141px;width:2px;height:155px;background:rgba(0,61,46,0.2);animation:fi .5s .3s ease both"></div>
+
+<!-- ══ HEADLINE ══ -->
+<p class="a" style="left:596px;top:158px;font-size:66.553px;font-weight:700;color:#0e0e0e;line-height:1.04;animation:fd .7s .25s ease both">Three Agents,<br>One Brain</p>
+
+<!-- ══ DESCRIPTION ══ -->
+<p class="a" style="left:1111px;top:171px;width:640px;font-size:28px;font-weight:400;color:rgba(37,48,44,0.95);line-height:1.29;animation:fd .6s .3s ease both"><strong style="font-weight:700">One AI across the whole org</strong> - for the leader who needs to decide, the employee who needs it done, and everyone who just needs to ask.</p>
+
+<!-- ══ CONNECTOR SVG (flowing dashed lines — same system as Two Problems One Inbox) ══
+     SVG origin = stage (360, 325); covers left-card-centre → right-card-centre + brain area
+     Key coords in SVG-space:
+       x=0    → left card centre (stage 360)
+       x=600  → brain centre    (stage 960)
+       x=1200 → right card centre(stage 1560)
+       y=50   → horizontal line  (stage 375)
+       y=48   → brain centre     (stage 373)
+       y=90   → brain bottom     (stage 415)
+       y=120  → card tops        (stage 445)
+══ -->
+<svg class="a" viewBox="0 0 1200 130" width="1200" height="130" fill="none" overflow="visible"
+  style="left:360px;top:325px;animation:fi .5s .55s ease both"
+  xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Left horizontal → flows right toward brain -->
+  <path id="oa-lh" d="M0 50 H556"    stroke="#02563d" stroke-opacity=".75" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- Right horizontal → flows left toward brain -->
+  <path id="oa-rh" d="M644 50 H1200" stroke="#02563d" stroke-opacity=".75" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- Left vertical drop ↓ -->
+  <line id="oa-lv" x1="0"    y1="50"  x2="0"    y2="120" stroke="#02563d" stroke-opacity=".75" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- Right vertical drop ↓ -->
+  <line id="oa-rv" x1="1200" y1="50"  x2="1200" y2="120" stroke="#02563d" stroke-opacity=".75" stroke-width="2" stroke-dasharray="6 6"/>
+  <!-- Centre vertical drop ↓ (from brain bottom) -->
+  <line id="oa-cv" x1="600"  y1="90"  x2="600"  y2="120" stroke="#02563d" stroke-opacity=".75" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- Endpoint dots at each card -->
+  <circle cx="0"    cy="120" r="7" fill="#02563d"/>
+  <circle cx="600"  cy="120" r="7" fill="#02563d"/>
+  <circle cx="1200" cy="120" r="7" fill="#02563d"/>
+</svg>
+
+<!-- ══ BRAIN HERO ══
+     Two-circle design: outer translucent halo (120×120) + inner solid orb (76×76).
+     Both float together so they never misalign.
+     The outer halo (r=60) fully covers the 88-px connector gap below it.
+-->
+<div class="a" style="left:900px;top:313px;width:120px;height:120px;z-index:10;animation:fi .4s .4s ease both,float 3.2s .8s ease-in-out infinite">
+  <!-- Expanding pulse rings -->
+  <div class="oa-ring" style="animation-delay:0s"></div>
+  <div class="oa-ring" style="animation-delay:.8s"></div>
+  <div class="oa-ring" style="animation-delay:1.6s"></div>
+
+  <!-- Outer halo circle — translucent teal, serves as the "back" circle -->
+  <div style="position:absolute;inset:0;border-radius:50%;
+              background:rgba(2,86,61,0.13);
+              border:1.5px solid rgba(2,86,61,0.38);
+              backdrop-filter:blur(2px)"></div>
+
+  <!-- Inner orb — solid gradient with depth shadow -->
+  <div style="position:absolute;left:22px;top:22px;width:76px;height:76px;border-radius:50%;
+              background:linear-gradient(145deg,#0a8e5f 0%,#02563d 60%,#013d2b 100%);
+              box-shadow:0 6px 24px rgba(1,43,31,0.55),0 0 0 2px rgba(10,142,95,0.25);
+              display:flex;align-items:center;justify-content:center">
+    <img src="../Assets/oneai_brain_icon.svg" style="width:42px;height:36px;object-fit:contain;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3))">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     ANALYTICS AGENT CARD
+══════════════════════════════════════════════════════ -->
+<!-- Card background -->
+<div class="a" style="left:80px;top:443px;width:560px;height:550px;background:#ffffff;border:1.5px solid rgba(10,142,95,0.35);border-radius:20px;animation:fu .55s .4s ease both"></div>
+
+<!-- Icon disc -->
+<div class="a" style="left:114px;top:497px;width:62px;height:62px;border-radius:50%;background:#e2f5ec;display:flex;align-items:center;justify-content:center;animation:fi .5s .45s ease both">
+  <img src="../Assets/Analytics Agent.svg" style="width:24px;height:24px">
+</div>
+
+<!-- Tag, title, desc -->
+<p class="a" style="left:191px;top:501px;font-size:15px;font-weight:700;color:#0a8e5f;letter-spacing:2px;white-space:nowrap;animation:fi .4s .5s ease both">FOR HR &amp; LEADERSHIP · ANALYZES</p>
+<p class="a" style="left:191px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .52s ease both">Analytics Agent</p>
+<p class="a" style="left:191px;top:576px;width:411px;font-size:18px;font-weight:400;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .55s ease both">Ask MIS questions in plain language.<br>It summarises numbers and builds the chart.</p>
+
+<!-- ── Analytics screenshot shell ── -->
+<div class="a" style="left:115px;top:652px;width:490px;height:320px;background:#f9f5ef;border:1.5px solid #dcd2c0;border-radius:10px;overflow:hidden;animation:fi .5s .6s ease both">
+  <!-- Browser chrome bar -->
+  <div style="height:32px;background:#ede7dc;border-bottom:1px solid #d8cebc;display:flex;align-items:center;padding:0 14px;gap:6px;flex-shrink:0">
+    <div style="width:12px;height:12px;border-radius:50%;background:#ff6059"></div>
+    <div style="width:12px;height:12px;border-radius:50%;background:#ffbc2e"></div>
+    <div style="width:12px;height:12px;border-radius:50%;background:#29c740"></div>
+  </div>
+  <!-- Content: left panel + arrow + right chart panel — fills remaining 288px -->
+  <div style="display:flex;height:288px">
+    <!-- Left: You ask panel -->
+    <div style="width:210px;background:#fff;border-right:1px solid #e4d9ca;padding:16px 14px 12px;flex-shrink:0;display:flex;flex-direction:column">
+      <p style="font-size:13px;font-weight:700;color:#10231b;margin-bottom:14px">You ask</p>
+      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;margin-bottom:8px;animation:btnUp .4s .7s ease both">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
+        <span style="font-size:9px;font-weight:600;color:#42554c">Show attrition by dept</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;margin-bottom:8px;animation:btnUp .4s .8s ease both">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
+        <span style="font-size:9px;font-weight:600;color:#42554c">Sites with high overtime</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;animation:btnUp .4s .9s ease both">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
+        <span style="font-size:9px;font-weight:600;color:#42554c">Summarise payroll cost</span>
+      </div>
+    </div>
+    <!-- Arrow -->
+    <div style="width:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:fi .4s .95s ease both">
+      <span style="font-size:22px;font-weight:900;color:#0a8e5f;line-height:1">→</span>
+    </div>
+    <!-- Right: chart panel — tighter margin so bars have room to breathe -->
+    <div style="flex:1;background:#fbf8f1;border:1px solid #ded4c2;margin:12px 12px 12px 0;border-radius:10px;padding:12px 14px 10px;display:flex;flex-direction:column">
+      <p style="font-size:11px;font-weight:700;color:#10231b;margin-bottom:10px;flex-shrink:0">Attrition by department</p>
+      <!-- Explicit 160px chart area so bars grow to nearly full height -->
+      <div style="height:160px;display:flex;align-items:flex-end;gap:8px">
+        <div style="width:26px;height:48px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s .85s ease-out both"></div>
+        <div style="width:26px;height:112px;background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s .93s ease-out both"></div>
+        <div style="width:26px;height:74px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.01s ease-out both"></div>
+        <div style="width:26px;height:152px;background:rgba(244,81,55,0.82); border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.09s ease-out both"></div>
+        <div style="width:26px;height:96px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.17s ease-out both"></div>
+      </div>
+      <!-- Axis baseline -->
+      <div style="height:1px;background:#d4ccbf;margin-bottom:8px;flex-shrink:0"></div>
+      <p style="font-size:10px;font-weight:700;color:#0a8e5f;flex-shrink:0;animation:fi .5s 1.3s ease both">↓ 12% <span style="color:#999;font-weight:400">QoQ — summary ready</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     EMPLOYEE AGENT CARD
+══════════════════════════════════════════════════════ -->
+<!-- Card background -->
+<div class="a" style="left:680px;top:443px;width:560px;height:550px;background:#ffffff;border:1.5px solid rgba(244,81,55,0.35);border-radius:20px;animation:fu .55s .45s ease both"></div>
+
+<!-- Icon disc -->
+<div class="a" style="left:714px;top:497px;width:62px;height:62px;border-radius:50%;background:#fee8e0;display:flex;align-items:center;justify-content:center;animation:fi .5s .5s ease both">
+  <img src="../Assets/Employee Agent.svg" style="width:24px;height:24px">
+</div>
+
+<!-- Tag, title, desc -->
+<p class="a" style="left:794px;top:501px;font-size:15px;font-weight:700;color:#f45137;letter-spacing:2px;white-space:nowrap;animation:fi .4s .55s ease both">FOR EVERY EMPLOYEE · ACTS</p>
+<p class="a" style="left:794px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .57s ease both">Employee Agent</p>
+<p class="a" style="left:794px;top:576px;width:369px;font-size:18px;font-weight:500;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .6s ease both">20+ tasks by text or voice. It does not tell you how - it does it.</p>
+
+<!-- ── Phone shell ── -->
+<div class="a" style="left:796px;top:653px;width:310px;height:276px;border-radius:34px;background:#1a1a1a;box-shadow:0 8px 28px rgba(0,0,0,0.22),inset 0 0 0 1px rgba(255,255,255,0.08);animation:fu .5s .65s ease both">
+  <!-- Screen inset -->
+  <div style="position:absolute;left:8px;top:8px;right:8px;bottom:8px;border-radius:26px;background:#ffffff;overflow:hidden">
+    <!-- Status bar -->
+    <div style="height:28px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;flex-shrink:0">
+      <span style="font-size:10px;font-weight:700;color:#1a1a1a;letter-spacing:-0.2px">9:41</span>
+      <div style="display:flex;align-items:center;gap:5px">
+        <!-- signal bars -->
+        <svg width="17" height="11" viewBox="0 0 17 11" fill="#1a1a1a">
+          <rect x="0"  y="7" width="3" height="4" rx="0.8"/>
+          <rect x="4"  y="4" width="3" height="7" rx="0.8"/>
+          <rect x="8"  y="2" width="3" height="9" rx="0.8"/>
+          <rect x="12" y="0" width="3" height="11" rx="0.8" opacity=".3"/>
+        </svg>
+        <!-- wifi -->
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round">
+          <path d="M1 4.5c3.9-3.9 10.1-3.9 14 0"/>
+          <path d="M3.5 7c2.5-2.5 6.5-2.5 9 0"/>
+          <path d="M6 9.5c1.1-1.1 3-1.1 4 0"/>
+          <circle cx="8" cy="11" r="1" fill="#1a1a1a" stroke="none"/>
+        </svg>
+        <!-- battery -->
+        <svg width="22" height="11" viewBox="0 0 22 11" fill="none">
+          <rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="#1a1a1a" stroke-width="1"/>
+          <rect x="19.5" y="3.5" width="2" height="4" rx="1" fill="#1a1a1a" opacity=".4"/>
+          <rect x="2" y="2" width="13" height="7" rx="1.5" fill="#1a1a1a"/>
+        </svg>
+      </div>
+    </div>
+    <!-- "How can I help you?" + mic icon -->
+    <div style="padding:10px 16px 8px;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:18px;font-weight:700;color:#10231b">How can I help you?</span>
+      <!-- mic icon pulses to suggest voice -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a8e5f" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;animation:micPulse 1.6s 1.2s ease-in-out infinite">
+        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+        <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+        <line x1="12" y1="19" x2="12" y2="23"/>
+        <line x1="8" y1="23" x2="16" y2="23"/>
+      </svg>
+    </div>
+    <!-- 2×2 action grid -->
+    <div style="padding:0 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .75s ease both">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span style="font-size:11px;font-weight:500;color:#272727">Apply leave</span>
+      </div>
+      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .82s ease both">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span style="font-size:11px;font-weight:500;color:#272727">Get payslip</span>
+      </div>
+      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .89s ease both">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span style="font-size:11px;font-weight:500;color:#272727">Raise ticket</span>
+      </div>
+      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .96s ease both">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <span style="font-size:11px;font-weight:500;color:#272727">On-duty</span>
+      </div>
+    </div>
+    <!-- +16 more -->
+    <div style="margin:8px 14px 0;background:#f5f5f5;border-radius:8px;padding:5px 10px;text-align:center;animation:btnUp .35s 1.03s ease both">
+      <span style="font-size:10px;font-weight:500;color:#003d2e;letter-spacing:0.4px">+16 more</span>
+    </div>
+  </div>
+</div>
+
+<!-- Employee proof strip -->
+<div class="a" style="left:720px;top:885px;width:480px;height:46px;background:#ffe6da;border-radius:12px;display:flex;align-items:center;padding:0 22px;gap:12px;animation:fu .5s .7s ease both">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  <p style="font-size:18px;font-weight:400;color:#10231b;white-space:nowrap">
+    <strong style="font-weight:700;color:#f45137">3 Cr+ tasks</strong> completed every month
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     POLICY AGENT CARD
+══════════════════════════════════════════════════════ -->
+<!-- Card background -->
+<div class="a" style="left:1280px;top:443px;width:560px;height:550px;background:#ffffff;border:1.5px solid rgba(10,142,95,0.35);border-radius:20px;animation:fu .55s .5s ease both"></div>
+
+<!-- Icon disc -->
+<div class="a" style="left:1314px;top:497px;width:62px;height:62px;border-radius:50%;background:#e2f5ec;display:flex;align-items:center;justify-content:center;animation:fi .5s .55s ease both">
+  <img src="../Assets/Policy Agent.svg" style="width:24px;height:24px">
+</div>
+
+<!-- Tag, title, desc -->
+<p class="a" style="left:1394px;top:501px;font-size:15px;font-weight:700;color:#0a8e5f;letter-spacing:2px;white-space:nowrap;animation:fi .4s .6s ease both">FOR EVERY EMPLOYEE · ANSWERS</p>
+<p class="a" style="left:1394px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .62s ease both">Policy Agent</p>
+<p class="a" style="left:1394px;top:576px;width:369px;font-size:18px;font-weight:500;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .65s ease both">Any HR-policy question, answered instantly, so HR stops being the help desk.</p>
+
+<!-- ── Policy dark chat panel ── -->
+<div class="a" style="left:1320px;top:668px;width:485px;height:210px;background:#003d2e;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,0.1);overflow:hidden;animation:fi .5s .7s ease both">
+  <div style="padding:22px 24px 0">
+    <!-- Header -->
+    <p style="font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;animation:fi .4s .75s ease both">Ask a policy question</p>
+    <!-- Horizontal separator -->
+    <div style="height:1px;background:rgba(255,255,255,0.12);margin-bottom:12px"></div>
+    <!-- Chip 1 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;background:#0a8e5f;border-radius:12px;padding:6px 14px;margin-bottom:8px;animation:chipIn .45s .8s ease both">
+      <span style="font-size:9.6px;font-weight:700;color:#fff">How many leaves do I have?</span>
+      <span style="font-size:13px;font-weight:900;color:#fff;line-height:1">›</span>
+    </div>
+    <!-- Chip 2 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;background:#0a8e5f;border-radius:12px;padding:6px 14px;margin-bottom:14px;animation:chipIn .45s .9s ease both">
+      <span style="font-size:9.6px;font-weight:700;color:#fff">Maternity eligibility?</span>
+      <span style="font-size:13px;font-weight:900;color:#fff;line-height:1">›</span>
+    </div>
+    <!-- Answer row -->
+    <div style="display:flex;align-items:flex-start;gap:10px;animation:answerReveal .5s 1.1s ease both">
+      <div style="flex-shrink:0;margin-top:2px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div style="flex:1">
+        <p style="font-size:11.2px;font-weight:500;color:#fff;line-height:1.45">You have 12 earned leaves remaining this year.</p>
+        <p style="font-size:10px;font-weight:500;color:rgba(221,240,231,0.75);margin-top:4px;letter-spacing:0.2px">Source: Leave Policy · 4.2</p>
+      </div>
+      <div style="flex-shrink:0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Policy proof strip -->
+<div class="a" style="left:1320px;top:898px;width:485px;height:46px;background:#e7f4ee;border-radius:12px;display:flex;align-items:center;padding:0 20px;gap:12px;animation:fu .5s .75s ease both">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0a8e5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+  <p style="font-size:16px;font-weight:400;color:#003d2e;white-space:nowrap">
+    <strong style="font-weight:600">Answers</strong> from your actual policy · In plain language
+  </p>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav">
+  <span class="nav-cnt">13 / 32</span>
+  <button class="nav-btn" id="prevBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="nav-btn" id="nextBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

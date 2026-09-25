@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Visitor Visibility &amp; Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9)}
+.crumb{left:72px;top:52px;display:flex;align-items:center;gap:12px}
+.crumb .home{color:#8fa39a;font-size:15px;font-weight:700;letter-spacing:1.6px}
+.h1{font-size:76px;font-weight:800;color:#0e1a15;line-height:80px;letter-spacing:-2.2px}
+.sub{font-size:26px;font-weight:500;color:#2c4a3c;line-height:34px}
+.card{background:#fff;border:1px solid #ece3d4;border-radius:22px;box-shadow:0 6px 28px rgba(20,50,38,.06)}
+.ctl{font-size:30px;font-weight:800;color:#0d4430;line-height:36px;letter-spacing:-.5px}
+.mint{background:#d9ebe1;border-radius:14px;box-shadow:inset 0 2px 5px rgba(20,50,38,.07)}
+.ui{background:#fff;border:1px solid #d5e0da;border-radius:9px;overflow:hidden;
+  box-shadow:0 10px 24px rgba(20,50,38,.16),0 2px 5px rgba(20,50,38,.10);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif}
+.chrome{height:26px;background:#f2f5f3;border-bottom:1px solid #e4ebe7;display:flex;align-items:center;gap:5px;padding:0 11px}
+.chrome i{width:7px;height:7px;border-radius:50%;background:#d6dfda;display:block;flex-shrink:0}
+.chrome span{font-size:9.5px;font-weight:500;color:#9aa8a1;letter-spacing:.3px;margin-left:9px}
+.ibar{width:3px;border-radius:2px;background:#ee5a3c}
+.itl{font-size:20px;font-weight:800;color:#0d4430;line-height:24px;letter-spacing:-.2px}
+.ibd{font-size:17px;font-weight:400;color:#55665e;line-height:23px}
+/* --- product view internals --- */
+.tb-h{display:flex;align-items:center;height:26px;background:#f4f7f5;border-radius:5px;font-size:9.5px;font-weight:600;color:#6b7a73;letter-spacing:.3px}
+.tb-r{display:flex;align-items:center;height:28px;border-bottom:1px solid #eef2f0;font-size:10.5px;color:#3a4a43}
+.k1{width:146px;padding-left:10px}.k2{width:84px}.k3{width:94px}
+.chip{display:flex;align-items:center;gap:6px;border:1px solid #dbe4df;border-radius:6px;height:26px;padding:0 10px;font-size:10px;font-weight:500;color:#55665e;flex-shrink:0}
+.btnp{display:flex;align-items:center;gap:5px;background:#00583e;border-radius:6px;height:26px;padding:0 11px;font-size:10.5px;font-weight:600;color:#f0f6f3;flex-shrink:0}
+.pg{display:flex;align-items:center;gap:6px;font-size:10px;color:#9aa8a1}
+.rl{font-size:11px;font-weight:500;color:#5d6d65;line-height:14px}
+.rl s{color:#e5484d;text-decoration:none}
+.rv{font-size:14px;font-weight:400;color:#33423b;line-height:19px}
+.rv.g{color:#0d6b4a}
+.rr{display:flex;gap:12px;margin-top:11px}
+.rr:first-child{margin-top:0}
+.pg b{background:#013a29;color:#fff;border-radius:4px;width:17px;height:17px;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:600}
+.st{display:flex;align-items:center;gap:8px}
+.st i{width:9px;height:9px;border-radius:50%;display:block;flex-shrink:0}
+.srch{display:flex;align-items:center;gap:7px;border:1px solid #dbe4df;border-radius:6px;height:26px;padding:0 10px;flex:1}
+.srch span{font-size:10px;color:#9aa8a1}
+.pf{border:1px solid #dbe4df;border-radius:6px;padding:4px 11px}
+.pfl{font-size:10.5px;font-weight:400;color:#8b9a93;line-height:13px}
+.pfv{font-size:12.5px;font-weight:500;color:#36453e;line-height:16px}
+.prow{display:flex;gap:9px;margin-top:6px}
+.rail{left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:13px;z-index:60}
+.rail .par{width:9px;height:9px;border-radius:3px;background:rgba(1,59,42,.28)}
+.rail .sep{width:1px;height:13px;background:rgba(1,59,42,.16)}
+.rail .dot{width:9px;height:9px;border-radius:50%;background:rgba(1,59,42,.2)}
+.rail .dot.cur{background:#ee5a3c;transform:scale(1.5)}
+.nav-depth{font-size:12px;font-weight:800;letter-spacing:1.4px;color:#013a29;background:#F2D98C;padding:5px 11px;border-radius:20px}
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a crumb" style="animation:fi .4s .05s ease both"><span class="home">21 &middot; VISITOR MANAGEMENT</span></div>
+<div class="a rail"><div class="par"></div><div class="sep"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot cur"></div></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:50px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+<div class="a h1" style="left:70px;top:96px;animation:fd .55s .14s ease both">Visitor visibility &amp; control</div>
+<p class="a sub" style="left:72px;top:192px;animation:fu .5s .2s ease both">Monitor visits, manage approvals and maintain comprehensive visitor records.</p>
+
+<!-- ══ CARD 1 ─ Visitor dashboard ══ -->
+<div class="a card" style="left:72px;top:262px;width:560px;height:718px;animation:fu .55s 0.28s ease both"></div>
+<div class="a ctl" style="left:106px;top:292px;width:492px;animation:fu .45s 0.32s ease both">Visitor dashboard</div>
+<div class="a mint" style="left:106px;top:344px;width:492px;height:398px;animation:fu .5s 0.34s ease both"></div>
+<div class="a ui" style="left:122px;top:360px;width:460px;height:366px;animation:fu .5s 0.36s ease both"><div class="chrome"><i></i><i></i><i></i><span>Visitor Management ‹ Visit Approval</span></div><div style="padding:12px 14px 0"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13.5px;font-weight:600;color:#24322c">All Visit Approval</span><span class="btnp"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round"><path d="M12 5.5v13M5.5 12h13"/></svg>Add Record</span></div><div style="display:flex;align-items:center;gap:8px;margin-top:9px"><div class="srch"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#9aa8a1;stroke-width:2;fill:none;stroke-linecap:round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4L20 20"/></svg><span>Search for records</span></div><span class="chip"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#7d8c85;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round"><path d="M3.5 5h17l-6.8 8v5.6l-3.4 1.7V13z"/></svg>Filter and Sort</span><span class="chip"><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:#7d8c85;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.6h17M9.8 9.6v9.9"/></svg>Layout</span></div><div style="margin-top:12px"><div class="tb-h"><span class="k1">Request At</span><span class="k2">Visit Code</span><span class="k3">Status</span><span>Visitor ID</span></div><div class="tb-r"><span class="k1">Sep 17, 2026, 09:12 AM</span><span class="k2">985831</span><span class="k3 st"><i style="background:#2f9e68"></i>Approved</span><span style="font-weight:500">VMS1051</span></div><div class="tb-r"><span class="k1">Sep 17, 2026, 08:47 AM</span><span class="k2">985825</span><span class="k3 st"><i style="background:#f0a92e"></i>Pending</span><span style="font-weight:500">VMS1050</span></div><div class="tb-r"><span class="k1">Sep 16, 2026, 05:38 PM</span><span class="k2">985807</span><span class="k3 st"><i style="background:#2f9e68"></i>Approved</span><span style="font-weight:500">VMS1049</span></div><div class="tb-r"><span class="k1">Sep 16, 2026, 04:21 PM</span><span class="k2">985792</span><span class="k3 st"><i style="background:#e5484d"></i>Rejected</span><span style="font-weight:500">VMS1048</span></div><div class="tb-r"><span class="k1">Sep 16, 2026, 11:05 AM</span><span class="k2">985774</span><span class="k3 st"><i style="background:#2f9e68"></i>Approved</span><span style="font-weight:500">VMS1047</span></div><div class="tb-r"><span class="k1">Sep 15, 2026, 03:29 PM</span><span class="k2">985761</span><span class="k3 st"><i style="background:#2f9e68"></i>Approved</span><span style="font-weight:500">VMS1046</span></div></div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;padding-top:9px;border-top:1px solid #eef2f0"><span style="font-size:10px;color:#55665e">Results : <span style="color:#9aa8a1">1–6 of 45</span></span><span class="pg">‹<b>1</b>2 3 ›</span></div></div></div>
+<div class="a ibar" style="left:106px;top:766px;height:22px;animation:fi .4s 0.42s ease both"></div>
+<p class="a itl" style="left:126px;top:764px;width:462px;animation:fu .45s 0.42s ease both">All visitors</p>
+<p class="a ibd" style="left:126px;top:790px;width:462px;animation:fu .45s 0.44s ease both">Monitor all visitors from a single dashboard.</p>
+<div class="a ibar" style="left:106px;top:826px;height:22px;animation:fi .4s 0.46s ease both"></div>
+<p class="a itl" style="left:126px;top:824px;width:462px;animation:fu .45s 0.46s ease both">Visit context</p>
+<p class="a ibd" style="left:126px;top:850px;width:462px;animation:fu .45s 0.48s ease both">View history, host details and visit status.</p>
+<div class="a ibar" style="left:106px;top:886px;height:22px;animation:fi .4s 0.50s ease both"></div>
+<p class="a itl" style="left:126px;top:884px;width:462px;animation:fu .45s 0.50s ease both">Actual timings</p>
+<p class="a ibd" style="left:126px;top:910px;width:462px;animation:fu .45s 0.52s ease both">Track actual check-in and checkout times.</p>
+
+<!-- ══ CARD 2 ─ Approval management ══ -->
+<div class="a card" style="left:680px;top:262px;width:560px;height:718px;animation:fu .55s 0.34s ease both"></div>
+<div class="a ctl" style="left:714px;top:292px;width:492px;animation:fu .45s 0.38s ease both">Approval management</div>
+<div class="a mint" style="left:714px;top:344px;width:492px;height:398px;animation:fu .5s 0.40s ease both"></div>
+<div class="a ui" style="left:730px;top:360px;width:460px;height:366px;animation:fu .5s 0.42s ease both"><div class="chrome"><i></i><i></i><i></i><span>Visitor Management ‹ Approval Inbox</span></div><div style="background:#013a29;padding:15px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px"><div><p style="font-size:11.5px;font-weight:600;letter-spacing:2.8px;color:#cfbd8b;line-height:15px">VISITPASS</p><p style="font-size:19.5px;font-weight:600;color:#e4eee8;line-height:26px;margin-top:4px">New visitor awaiting approval</p></div><div style="background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.16);border-radius:7px;padding:6px 12px;text-align:right;flex-shrink:0"><p style="font-size:9.5px;font-weight:600;letter-spacing:1.4px;color:rgba(226,240,233,.52);line-height:13px">VISIT DATE</p><p style="font-size:14px;font-weight:600;color:#dbe7e0;line-height:19px">2026-09-17</p><p style="font-size:11px;font-weight:500;color:rgba(226,240,233,.66);line-height:15px">13:10 - 15:00</p></div></div><div style="padding:10px 13px 0"><p style="font-size:12px;font-weight:400;color:#55665e;line-height:16px">Hi <b style="font-weight:600;color:#36453e">Kavya</b>, a visitor has submitted a request to meet with you.</p><div style="background:#eef7f1;border:1px solid #bfe0cd;border-radius:7px;height:37px;display:flex;align-items:center;justify-content:space-between;padding:0 13px;margin-top:10px"><span style="font-size:15px;font-weight:600;color:#0d4430">Rohan Mehta</span><span style="font-size:12px;font-weight:500;color:#9aa8a1;letter-spacing:.4px">9810745632</span></div><p style="font-size:12px;font-weight:600;color:#0d6b4a;letter-spacing:.5px;margin-top:9px">Visit Details</p><div class="prow"><div class="pf" style="flex:1"><p class="pfl">Host</p><p class="pfv">Kavya Nair</p></div><div class="pf" style="flex:1"><p class="pfl">Purpose</p><p class="pfv">Vendor meeting</p></div></div><div class="prow"><div class="pf" style="flex:1"><p class="pfl">Check-in Time</p><p class="pfv">13:10</p></div><div class="pf" style="flex:1"><p class="pfl">Check-out Time</p><p class="pfv">15:00</p></div></div><div class="prow"><div class="pf" style="flex:1"><p class="pfl">Branch</p><p class="pfv">Noida Sector 62</p></div><div class="pf" style="flex:1"><p class="pfl">Sub Branch</p><p class="pfv">Tower B</p></div></div></div></div>
+<div class="a ibar" style="left:714px;top:766px;height:22px;animation:fi .4s 0.48s ease both"></div>
+<p class="a itl" style="left:734px;top:764px;width:462px;animation:fu .45s 0.48s ease both">Approval workflows</p>
+<p class="a ibd" style="left:734px;top:790px;width:462px;animation:fu .45s 0.50s ease both">Route requests through approval workflows.</p>
+<div class="a ibar" style="left:714px;top:826px;height:22px;animation:fi .4s 0.52s ease both"></div>
+<p class="a itl" style="left:734px;top:824px;width:462px;animation:fu .45s 0.52s ease both">Visit status</p>
+<p class="a ibd" style="left:734px;top:850px;width:462px;animation:fu .45s 0.54s ease both">See pending, approved and completed visits.</p>
+<div class="a ibar" style="left:714px;top:886px;height:22px;animation:fi .4s 0.56s ease both"></div>
+<p class="a itl" style="left:734px;top:884px;width:462px;animation:fu .45s 0.56s ease both">Automated actions</p>
+<p class="a ibd" style="left:734px;top:910px;width:462px;animation:fu .45s 0.58s ease both">Send notifications and generate access codes.</p>
+
+<!-- ══ CARD 3 ─ Visitor records ══ -->
+<div class="a card" style="left:1288px;top:262px;width:560px;height:718px;animation:fu .55s 0.40s ease both"></div>
+<div class="a ctl" style="left:1322px;top:292px;width:492px;animation:fu .45s 0.44s ease both">Visitor records</div>
+<div class="a mint" style="left:1322px;top:344px;width:492px;height:398px;animation:fu .5s 0.46s ease both"></div>
+<div class="a ui" style="left:1338px;top:360px;width:460px;height:366px;animation:fu .5s 0.48s ease both"><div class="chrome"><i></i><i></i><i></i><span>Visitor Management ‹ Visitor Record</span></div><div style="padding:13px 14px 0"><div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:14.5px;font-weight:600;color:#24322c">Invite Visitor</span><span style="background:#dff0e6;color:#0d6b4a;font-size:11px;font-weight:600;border-radius:4px;padding:4px 10px">Approved</span></div><div style="background:#f3f7f4;border:1px solid #e4ebe7;border-radius:7px;padding:10px 13px;margin-top:11px"><p style="font-size:17px;font-weight:600;color:#24322c;line-height:22px">Rohan Mehta</p><p style="font-size:12.5px;font-weight:500;color:#7d8c85;line-height:17px">9810745632</p></div><p style="font-size:11.5px;font-weight:600;color:#0d6b4a;letter-spacing:.5px;margin-top:14px">VISIT DETAILS</p><div style="margin-top:9px"><div class="rr"><div style="flex:1"><p class="rl">Host</p><p class="rv">Kavya Nair</p></div><div style="flex:1"><p class="rl">Purpose</p><p class="rv">Vendor meeting</p></div></div><div class="rr"><div style="flex:1"><p class="rl">Visit date</p><p class="rv">Sep 17, 2026</p></div><div style="flex:1"><p class="rl">Time</p><p class="rv">01:10 – 03:00 PM</p></div></div><div class="rr"><div style="flex:1"><p class="rl">Branch</p><p class="rv g">Noida Sector 62</p></div><div style="flex:1"><p class="rl">Sub Branch</p><p class="rv g">Tower B</p></div></div></div></div><div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding:9px 14px;background:#eef7f1;border-top:1px solid #dbe9e0;font-size:12px;font-weight:600;color:#1f5c42"><svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="9.2" fill="#2f9e68"/><path d="M8.2 12.3l2.6 2.6 5-5.2" stroke="#fff" stroke-width="2.2"/></svg>Your request is approved.</div></div>
+<div class="a ibar" style="left:1322px;top:766px;height:22px;animation:fi .4s 0.54s ease both"></div>
+<p class="a itl" style="left:1342px;top:764px;width:462px;animation:fu .45s 0.54s ease both">Visitor identity</p>
+<p class="a ibd" style="left:1342px;top:790px;width:462px;animation:fu .45s 0.56s ease both">Visitor profile, contact details and check-in photo.</p>
+<div class="a ibar" style="left:1322px;top:826px;height:22px;animation:fi .4s 0.58s ease both"></div>
+<p class="a itl" style="left:1342px;top:824px;width:462px;animation:fu .45s 0.58s ease both">Visit details</p>
+<p class="a ibd" style="left:1342px;top:850px;width:462px;animation:fu .45s 0.60s ease both">Company and purpose of visit.</p>
+<div class="a ibar" style="left:1322px;top:886px;height:22px;animation:fi .4s 0.62s ease both"></div>
+<p class="a itl" style="left:1342px;top:884px;width:462px;animation:fu .45s 0.62s ease both">Audit history</p>
+<p class="a ibd" style="left:1342px;top:910px;width:462px;animation:fu .45s 0.64s ease both">Unique visit code and audit history.</p>
+
+<div class="nav">
+  <span class="nav-depth">DEPTH 4 / 4</span>
+  <span class="nav-cnt">21 / 32</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
