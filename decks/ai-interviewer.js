@@ -11,11 +11,11 @@ DECKS['ai-interviewer'] = {
   pageTitle: 'AI Interviewer by HROne',
   hosts: ['ai-pitch.hrone.studio'],
   groups: [
-  { id:'intro', label:'Opening', icon:'M2 3.5h10M2 7h8M2 10.5h6',
+  { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
     slides:[
       { n:1,  t:'AI Interviewer',                       f:'ai-cover.html' },
-      { n:2,  t:'Group Overview',                       f:'hrone-group-overview.html' },
-      { n:3,  t:'Why HROne',                            f:'hrone-why-hrone.html' },
+      { n:2,  t:'Group Overview',                       f:'hrone-group-overview.html', optional:true },
+      { n:3,  t:'Why HROne',                            f:'hrone-why-hrone.html', optional:true },
       { n:4,  t:'The Screening Bottleneck',             f:'ai-bottleneck.html' },
     ]},
   { id:'product', label:'The Product', icon:'M2 2h4v4H2zM8 2h4v4H8zM2 8h4v4H2zM8 8h4v4H8z',
