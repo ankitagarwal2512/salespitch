@@ -8,6 +8,32 @@
 <link rel="stylesheet" href="../shared/slide.css"/>
 <link rel="stylesheet" href="../shared/studio.css"/>
 <link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+<style>
+/* light comparison cards (this slide only) */
+.vs{position:relative;grid-template-columns:1fr 1fr;gap:40px!important}
+.vs .col{border-radius:22px;padding:38px 44px 22px;box-shadow:0 18px 60px rgba(0,18,10,.28)}
+.vs .col.pb{background:#fdf8f7;border:1px solid #f6dcd6}
+.vs .col.so{background:#f5fbf7;border:1px solid #cdebd9}
+.vs .lbl{font-size:16px;letter-spacing:2.4px;margin-bottom:8px}
+.vs .col.pb .lbl{color:#e5534b}
+.vs .col.so .lbl{color:#16a05d}
+.vs .pts{list-style:none;padding:0;margin:0;gap:0;flex:1;display:grid;grid-template-rows:repeat(4,1fr)}
+.vs .pts li{display:flex;align-items:center;gap:18px;font-size:22px;line-height:1.45;color:#26332d;padding:20px 0;border-top:1px solid rgba(14,42,31,.07)}
+.vs .pts li:first-child{border-top:0}
+.vs .pts li::before{display:none!important}
+.vs .pts li.lead{font-weight:400;color:#26332d}
+.vs .mk{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.vs .mk svg{width:17px;height:17px}
+.vs .pb .mk{background:#fde6e2;color:#e5534b}
+.vs .so .mk{background:#dcf3e5;color:#16a05d}
+.vs .pts b{font-weight:700;color:#0e2a1f}
+.vs .col{transition:transform .25s ease,box-shadow .25s ease}
+.vs .col:hover{transform:translateY(-4px);box-shadow:0 26px 70px rgba(0,18,10,.36)}
+/* centre badge */
+.vs-mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:#013a29;border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 8px rgba(1,58,41,.9);display:flex;align-items:center;justify-content:center;color:#32d583;z-index:2}
+.vs-mid svg{width:26px;height:26px}
+@media (prefers-reduced-motion:reduce){.vs .col{transition:none}}
+</style>
 </head>
 <body>
 <div id="vp"><div id="stage">
@@ -21,17 +47,18 @@
     <div class="h1 in2" style="margin-top:0">The first round eats a recruiter’s <em>whole afternoon</em></div>
     <div class="lede in3">Volume is the problem, not judgement. Screening is where good candidates get lost.</div>
   </div>
-  <div class="body"><div class="grid in4" style="grid-template-columns:1fr 1fr">
+  <div class="body"><div class="grid vs in4">
     <div class="col pb"><div class="lbl">Without AI Interviewer</div><ul class="pts">
-      <li>Screening 200 CVs manually takes days before a single call happens</li>
-      <li>Endless scheduling, note-taking and inbox chasing between every step</li>
-      <li>Decisions rest on memory, mood and speed-of-recall — not evidence</li>
-      <li>Strong candidates get missed simply because the volume is unmanageable</li></ul></div>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></i><span>Screening 200 CVs manually takes days before a single call happens</span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></i><span>Endless scheduling, note-taking and inbox chasing between every step</span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></i><span>Decisions rest on memory, mood and speed-of-recall — not evidence</span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></i><span>Strong candidates get missed simply because the volume is unmanageable</span></li></ul></div>
     <div class="col so"><div class="lbl">With AI Interviewer</div><ul class="pts">
-      <li class="lead">All candidates interviewed in parallel — 200 screened before your day begins</li>
-      <li>Every response recorded, transcribed and scored against a standardised rubric</li>
-      <li>Evidence-backed insights surface top talent — no gut feel required</li>
-      <li>Recruiters spend their time on final conversations, not first-pass calls</li></ul></div>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>All candidates interviewed in parallel — <b>200 screened before your day begins</b></span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Every response recorded, transcribed and scored against a standardised rubric</span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Evidence-backed insights surface top talent — no gut feel required</span></li>
+      <li><i class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><span>Recruiters spend their time on final conversations, not first-pass calls</span></li></ul></div>
+    <div class="vs-mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
   </div></div>
 </div>
 <div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
