@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — Track Every Interview</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Step 05 <span class="sep">·</span> <span class="ind">Interviews</span></div>
+  <div class="hrow" style="margin-top:26px">
+    <div class="h1 in2" style="margin-top:0">One dashboard, <em>every candidate</em></div>
+    <div class="lede in3">Status, score and recommendation in a single list — filter to the shortlist and move.</div>
+  </div>
+  <div class="body"><div class="panel in4" style="padding:30px 30px 22px">
+    <table class="tbl"><thead><tr><th>Applicant</th><th>Email</th><th>Job</th><th>Round</th><th>Status</th><th>Recommendation</th></tr></thead><tbody>
+      <tr><td><b>Anant Agarwal</b></td><td class="m">anant.agarwal@example.com</td><td>Sales</td><td>Objection Handling</td><td><span class="st ok">Completed</span></td><td class="rec">Hire · 8.4</td></tr>
+      <tr><td><b>Meera Raghavan</b></td><td class="m">meera.r@example.com</td><td>Sales</td><td>Objection Handling</td><td><span class="st ok">Completed</span></td><td class="rec">Hire · 7.9</td></tr>
+      <tr><td><b>Kabir Sethi</b></td><td class="m">kabir.sethi@example.com</td><td>CEO</td><td>Introduction</td><td><span class="st wait">Scheduled</span></td><td class="m">—</td></tr>
+      <tr><td><b>Ritu Nair</b></td><td class="m">ritu.nair@example.com</td><td>Sales</td><td>Objection Handling</td><td><span class="st ok">Completed</span></td><td class="rec no">No hire · 5.2</td></tr>
+    </tbody></table>
+    <div style="display:flex;justify-content:space-between;margin-top:14px;padding:0 16px;font-size:16px;color:#7b8a82"><span>Showing 1–4 of 200</span><span>Previous · Next</span></div>
+  </div></div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

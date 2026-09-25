@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — Build Your AI Interviewer</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Step 02 <span class="sep">·</span> <span class="ind">AI interviewers</span></div>
+  <div class="split" style="margin-top:26px">
+    <div class="txt">
+      <div class="h1 in2" style="margin-top:0">Build your <em>AI interviewer</em></div>
+      <div class="ubar in3"></div>
+      <p class="in3">Pick a face, a voice and a language. Then dial in how the interviewer behaves — <b>warm or clinical, curious or brisk.</b></p>
+      <div class="chips in4"><span class="chip">8 avatars · multiple voices</span><span class="chip">Behavioral · technical · more</span><span class="chip">Reusable across jobs</span></div>
+      <div class="stat in5"><b>Maya</b><span>Behavioral · Female, warm voice · English<br/>Structured, evidence-first · 214 rounds run</span></div>
+    </div>
+    <div class="pan in4"><div class="panel">
+      <div class="ph">Personality traits</div>
+      <div class="rows">
+        <div class="row" style="display:block"><div class="bar"><div class="bl">Empathy</div><div class="bt"><i style="width:60%"></i></div><div class="bv">6/10</div></div><p>Moderately warm</p></div>
+        <div class="row" style="display:block"><div class="bar"><div class="bl">Rapport</div><div class="bt"><i style="width:60%"></i></div><div class="bv">6/10</div></div><p>Moderately friendly</p></div>
+        <div class="row" style="display:block"><div class="bar"><div class="bl">Exploration</div><div class="bt"><i style="width:60%"></i></div><div class="bv">6/10</div></div><p>Moderately curious — some follow-ups</p></div>
+        <div class="row" style="display:block"><div class="bar"><div class="bl">Speed</div><div class="bt"><i style="width:50%"></i></div><div class="bv">5/10</div></div><p>Balanced, steady pace</p></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

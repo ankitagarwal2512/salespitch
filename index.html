@@ -399,7 +399,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 
   <!-- ════ STAGE ════ -->
   <div class="stage-host">
-    <iframe id="slideFrame" src="slides/hrone-slide1.html" allowfullscreen title="Slide stage"></iframe>
+    <iframe id="slideFrame" allowfullscreen title="Slide stage"></iframe>
     <div class="stage-nav">
       <button class="nav-btn hidden" id="btnPrev" aria-label="Previous slide">
         <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -411,79 +411,25 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   </div>
 
 </div>
+<script>window.DECKS = {};</script>
+<script src="decks/hrone.js"></script>
+<script src="decks/studio.js"></script>
+<script src="decks/ai-interviewer.js"></script>
 <script>
-// ── Manifest ─────────────────────────────────────────────────────
-const GROUPS = [
-  { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
-    slides:[
-      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1.html' },
-      { n:2,  t:'Group Overview',               f:'hrone-group-overview.html' },
-      { n:3,  t:'Why HROne',                   f:'hrone-why-hrone.html' },
-      { n:4,  t:'Recognition',                  f:'hrone-recognised.html' },
-    ]},
-  { id:'platform', label:'The Platform', icon:'M2 2h4v4H2zM8 2h4v4H8zM2 8h4v4H2zM8 8h4v4H8z',
-    slides:[
-      { n:5,  t:'Outgrow the Team, Not the Tool', f:'hrone-outgrow.html', optional:true },
-      { n:6,  t:'The Comprehensive HCM Suite', f:'hrone-slide5.html' },
-      { n:7,  t:'Payroll Outsourcing',          f:'hrone-payroll-outsourcing.html',
-        sub:[
-          { t:'Project Scope',                  f:'hrone-po-scope.html' },
-          { t:'Deliverables',                   f:'hrone-po-deliverables.html' },
-          { t:'Process & Turnaround Times',     f:'hrone-po-tat.html' },
-          { t:'Add-on Services',                f:'hrone-po-addons.html' },
-        ]},
-      { n:8,  t:'InboxforHR', html:'InboxforHR<sup style="font-size:.55em;vertical-align:super;line-height:0">TM</sup>', f:'hrone-inboxforhr.html' },
-      { n:9,  t:'Two Problems, One Inbox',     f:'hrone-what-it-kills.html' },
-      { n:10, t:'The Facts',                   f:'hrone-the-facts.html' },
-      { n:11, t:'Infosec & Trust',               f:'hrone-infosec.html' },
-    ]},
-  { id:'mobile', label:'Mobile & AI', icon:'M4.5 1h5a1 1 0 011 1v10a1 1 0 01-1 1h-5a1 1 0 01-1-1V2a1 1 0 011-1zM6 11.5h2',
-    slides:[
-      { n:12, t:'Mobile-First Experience',     f:'hrone-mobile.html' },
-      { n:13, t:'OneAI Voice Agent',           f:'hrone-oneai.html' },
-      { n:14, t:'OneAI Efficiency in Every Module', f:'hrone-efficiency.html' },
-      { n:15, t:'Integrations',                 f:'hrone-integrations.html' },
-      { n:16, t:'Service & Our Strength',         f:'hrone-service.html' },
-    ]},
-  { id:'build', label:'Build & Extend', icon:'M4 2.5L2 7l2 4.5M10 2.5l2 4.5-2 4.5',
-    slides:[
-      { n:17, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
-      { n:18, t:'Studio — Use Cases',           f:'hrone-studio-usecases.html' },
-      { n:19, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
-    ]},
+// ── Deck selection ───────────────────────────────────────────────
+// Each deck file in /decks registers itself on DECKS. The deck is picked by
+// ?deck=<id> (handy for local testing), else by domain, else HROne.
+const DECK = (() => {
+  const q = new URLSearchParams(location.search).get('deck');
+  if (q && DECKS[q]) return DECKS[q];
+  const host = location.hostname;
+  return Object.values(DECKS).find(d => (d.hosts || []).includes(host)) || DECKS.hrone;
+})();
+document.title = DECK.pageTitle;
+document.querySelector('.hdr-title').textContent = DECK.title;
 
-  { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
-    slides:[
-      { n:20, t:'Add-Ons',                      f:'hrone-marketplace.html' },
-      { n:21, t:'Visitor Management',           f:'hrone-visitor-management.html',
-        sub:[
-          { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
-          { t:'Walk-in Visitors',               f:'hrone-visitor-walkin.html' },
-          { t:'Facial Check-in & Checkout',     f:'hrone-visitor-facial.html' },
-          { t:'Visibility & Control',           f:'hrone-visitor-control.html' },
-        ]},
-    ]},
-  { id:'modules', label:'Modules', icon:'M1 4l6-3 6 3-6 3-6-3M1 8l6 3 6-3M1 11l6 3 6-3',
-    slides:[
-      { n:22, t:'Overview',                    f:'hrone-modules-overview.html' },
-      { n:23, t:'Recruitment',                 f:'hrone-recruitment.html' },
-      { n:24, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
-      { n:25, t:'Workforce Management',        f:'hrone-module-workforce.html' },
-      { n:26, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
-      { n:27, t:'Payroll',                     f:'hrone-module-payroll.html',
-        sub:[
-          { t:'New Wage Code',                  f:'hrone-payroll-wagecode.html' },
-        ]},
-      { n:28, t:'Performance',                 f:'hrone-module-performance.html' },
-      { n:29, t:'Engagement',                  f:'hrone-module-engagement.html' },
-      { n:30, t:'Expense',                     f:'hrone-module-expense.html' },
-      { n:31, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
-    ]},
-  { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
-    slides:[
-      { n:32, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
-    ]},
-];
+// ── Manifest ─────────────────────────────────────────────────────
+const GROUPS = DECK.groups;
 
 // filename → slide lookup
 const SLIDE_DIR = 'slides/';   // all slide files live here
@@ -701,7 +647,6 @@ frame.addEventListener('load', () => {
   syncFrameCounter();
 });
 
-setActive(1);
 
 // ── Toggle ────────────────────────────────────────────────────────
 document.getElementById('toggleBtn').addEventListener('click', () => {
@@ -824,6 +769,8 @@ function navArrow(key) {
   updateNavBtns();
 }
 
+// Open the deck on its first slide
+{ const first = getFullList()[0]; goTo(first.n, first.f); }
 updateNavBtns();
 </script>
 </body>

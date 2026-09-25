@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — The Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<img class="corner" src="../Assets/Studio logo.svg" alt="Studio"/>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Client use cases</div>
+  <div class="hrow" style="margin-top:26px">
+    <div class="h1 in2" style="margin-top:0">Eleven apps. Four functions. <em>One platform.</em></div>
+  </div>
+  <div class="body"><div class="pf in4">
+    <div><div class="fn">Administration</div><div class="app"><div class="an">01</div><div><h4>Uniform Management</h4><p>Manufacturing</p></div></div><div class="app"><div class="an">02</div><div><h4>Stationery Management</h4><p>Manufacturing</p></div></div><div class="app"><div class="an">03</div><div><h4>Canteen Management</h4><p>Manufacturing</p></div></div><div class="app"><div class="an">04</div><div><h4>Seating Management</h4><p>Manufacturing</p></div></div></div>
+    <div><div class="fn">HR &amp; Time</div><div class="app"><div class="an">05</div><div><h4>Leave, Short Leave &amp; On-Duty</h4><p>Education</p></div></div><div class="app"><div class="an">06</div><div><h4>Overtime Requests</h4><p>Manufacturing</p></div></div><div class="app"><div class="an">08</div><div><h4>Attendance Kiosk</h4><p>Multi-site services</p></div></div></div>
+    <div><div class="fn">Training &amp; Feedback</div><div class="app"><div class="an">07</div><div><h4>On-the-Job Training Feedback</h4><p>Manufacturing</p></div></div><div class="app"><div class="an">11</div><div><h4>Project Feedback</h4><p>Technology services</p></div></div></div>
+    <div><div class="fn">Operations</div><div class="app"><div class="an">09</div><div><h4>Vendor &amp; Hawker Management</h4><p>Media &amp; publishing</p></div></div><div class="app"><div class="an">10</div><div><h4>Production &amp; Delivery Tracking</h4><p>Exports</p></div></div></div>
+  </div></div>
+</div>
+<div class="foot">Numbered in the order they appear on the slides that follow</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

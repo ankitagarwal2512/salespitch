@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — Vendor &amp; Hawker Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Use case 09<span class="sep">·</span><span class="ind">Media &amp; publishing</span><span class="tag conf">Confirmed results</span></div>
+  <div class="h1 in2">Vendor &amp; Hawker Management</div>
+  <div class="lede in3" style="margin-top:14px">Four processes, thousands of records.</div>
+  <div class="body" style="margin-top:36px"><div class="grid in4" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="col pb lift"><div class="lbl">The problem</div><ul class="pts"><li>Four separate vendor and hawker processes needed digitising.</li><li>Large record lists made vendor and hawker selection time-consuming.</li><li>Users had to scroll manually to locate the records they needed.</li><li>Limited filtering capability affected user efficiency.</li></ul></div>
+    <div class="col so lift"><div class="lbl">Studio solution</div><ul class="pts"><li class="lead">Four digital forms covering vendor and hawker management.</li><li>Standardised capture and processing of operational information.</li><li>Centralised vendor and hawker records for easier access.</li><li>Streamlined record selection and workflow navigation.</li></ul></div>
+    <div class="col rs lift"><div class="lbl">Results</div><ul class="pts"><li class="lead">Centralised, structured vendor and hawker information.</li><li>Standardised workflows across all four processes.</li><li>More accessible operational records.</li><li>Less manual effort locating and processing records.</li></ul></div>
+  </div></div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

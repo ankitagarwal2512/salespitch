@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — Configure the Round</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Step 03 <span class="sep">·</span> <span class="ind">Rounds</span></div>
+  <div class="split" style="margin-top:26px">
+    <div class="txt">
+      <div class="h1 in2" style="margin-top:0">Configure the round <em>once</em></div>
+      <div class="ubar in3"></div>
+      <p class="in3">Duration, rubric and question style. <b>AI generates role-specific questions</b> from the skills you set.</p>
+      <div class="stat in5"><b>~5 min</b><span>Total setup time before the<br/>first interview goes out</span></div>
+    </div>
+    <div class="pan in4"><div class="panel">
+      <div class="ph">Round details</div>
+      <div class="kv"><div><span>Round name</span><b>Introduction</b></div><div><span>Round type</span><b>Behavioral</b></div><div><span>Duration</span><b>15 min</b></div><div><span>Language</span><b>English</b></div><div><span>Question type</span><b>Hybrid</b></div><div><span>Interviewer</span><b>Maya</b></div></div>
+      <div class="ph" style="margin-top:30px;margin-bottom:12px">Must-have skills</div><div class="tags"><span>executive leadership</span><span>strategic thinking</span><span>decision making</span><span>stakeholder mgmt</span><span>business acumen</span><span>team alignment</span><span>change leadership</span></div>
+      <div class="ph" style="margin-top:26px;margin-bottom:12px">Good-to-have skills</div><div class="tags soft"><span>board communication</span><span>conflict resolution</span><span>cultural leadership</span><span>mergers &amp; acquisitions</span></div>
+    </div></div>
+  </div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

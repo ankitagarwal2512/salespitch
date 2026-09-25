@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — Transcript, Recording & Proctoring</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>The evidence</div>
+  <div class="hrow" style="margin-top:26px">
+    <div class="h1 in2" style="margin-top:0">Nothing is <em>taken on trust</em></div>
+    <div class="lede in3">Transcript, recording and proctoring evidence sit under every score.</div>
+  </div>
+  <div class="body"><div class="grid in4" style="grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(420px,auto)">
+    <div class="card lift"><div class="num">01 · Full transcript</div><h3>Every question, every answer</h3><p><b style="color:#fff">Maya · 04:12</b> — Can you walk me through a time you handled a difficult customer?<br/><br/><b style="color:#fff">Candidate · 04:29</b> — The client pushed back on price, so I moved the conversation to implementation support and total value…</p><p style="margin-top:auto;padding-top:18px;font-size:19px">12 questions · 6 AI follow-ups</p></div>
+    <div class="card lift"><div class="num">02 · Interview recording</div><h3>Replay any moment</h3><p>Audio &amp; video playback with the transcript in sync.</p><p style="margin-top:auto;padding-top:18px;font-size:19px">08:22 / 24:54</p></div>
+    <div class="card lift hi"><div class="num">03 · Proctoring</div><h3>Integrity, logged</h3><p>Periodic screenshots at 5, 10, 15 and 20 minutes. Tab switches and identity check logged. <b style="color:var(--st-coral)">Face not clearly visible at 14:22.</b></p><p style="margin-top:auto;padding-top:18px;font-size:19px;font-weight:700;color:#0a4831">Cheating detected: No</p></div>
+  </div></div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

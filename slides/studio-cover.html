@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Studio — Cover</title>
+<link rel="icon" type="image/svg+xml" href="../Assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#013A29}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body{display:initial;align-items:initial;justify-content:initial}
+#stage{position:absolute;top:0;left:0;transform-origin:0 0;background:initial;flex-shrink:initial}
+.slide {
+  width:1920px; height:1080px;
+  background:#013A29;
+  position:relative;
+  overflow:hidden;
+  font-family:'Public Sans',system-ui,-apple-system,sans-serif;
+  color:#fff;
+}
+
+/* ── BACKGROUND GLOWS (from Figma Ellipse 5334 + 5333) ── */
+/* Full-slide divs with radial-gradient centered at Figma ellipse centers */
+.glow-tl {
+  position:absolute;
+  inset:0;
+  /* Ellipse 5334: x=52 y=-39 w=703 h=255 → center=(403,88) */
+  background:radial-gradient(ellipse 620px 380px at 249px 88px,
+    rgba(35,165,120,0.38) 0%,
+    rgba(35,165,120,0.14) 40%,
+    transparent 68%);
+  pointer-events:none;
+}
+.glow-mr {
+  position:absolute;
+  inset:0;
+  /* Ellipse 5333: x=1217 y=365 w=670 h=272 → center=(1552,501) */
+  background:radial-gradient(ellipse 600px 360px at 1552px 501px,
+    rgba(35,165,120,0.34) 0%,
+    rgba(35,165,120,0.10) 40%,
+    transparent 68%);
+  pointer-events:none;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position:absolute;
+  left:0; top:0; right:0; height:86px;
+  display:flex; align-items:center;
+  padding:0 100px;
+}
+.tb-logo {
+  display:flex; align-items:center;
+  flex-shrink:0;
+}
+.tb-spacer { flex:1; }
+.tb-recognized {
+  text-align:right;
+  font-size:14.5px; font-weight:600;
+  letter-spacing:0.13em; text-transform:uppercase;
+  color:#23A578;
+  padding-right:40px;
+  flex-shrink:0;
+}
+.tb-badge-group {
+  display:flex; align-items:center;
+  gap:0; flex-shrink:0;
+}
+.tb-badge {
+  display:flex; align-items:center;
+  gap:12px; padding:0 26px;
+}
+.tb-badge-logo { flex-shrink:0; }
+.tb-badge-text { display:flex; flex-direction:column; gap:3px; }
+.tb-badge-title {
+  font-size:13px; font-weight:600;
+  color:#fff; letter-spacing:0.01em; white-space:nowrap;
+}
+.tb-badge-sub {
+  font-size:11px; font-weight:400;
+  color:rgba(255,255,255,0.55); white-space:nowrap;
+}
+.tb-rating {
+  display:flex; align-items:baseline;
+  gap:1px; margin-left:8px;
+}
+.tb-rating-num {
+  font-size:28px; font-weight:700;
+  color:#fff; line-height:1;
+}
+.tb-rating-denom {
+  font-size:14px; font-weight:400;
+  color:rgba(255,255,255,0.55);
+}
+.tb-vdivider {
+  width:1px; height:46px;
+  background:rgba(255,255,255,0.14);
+  flex-shrink:0;
+}
+.tb-extra {
+  display:flex; flex-direction:column;
+  align-items:flex-start; gap:2px; margin-left:14px;
+}
+.tb-extra-num {
+  font-size:18px; font-weight:700;
+  color:#fff; line-height:1;
+}
+.tb-extra-label {
+  font-size:11px; font-weight:400;
+  color:rgba(255,255,255,0.55);
+}
+.tb-hdivider {
+  position:absolute;
+  left:96px; right:96px; bottom:0;
+  height:1px;
+  background:rgba(255,255,255,0.10);
+}
+
+/* ── HERO ── */
+.hero {
+  position:absolute;
+  left:0; right:0; top:180px;
+  display:flex; flex-direction:column;
+  align-items:center; gap:0;
+  text-align:center;
+}
+.ai-pill {
+  display:inline-flex; align-items:center;
+  padding:14px 36px;
+  border-radius:100px;
+  position:relative;
+  background:transparent;
+  margin-bottom:22px;
+}
+.ai-pill::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:100px;
+  padding:2px;
+  background:linear-gradient(90deg,#FC704F,#FBBC04,#32D583,#23A578,#4ECDC4,#A78BFA,#FC704F);
+  background-size:300% 100%;
+  animation:gradient-border 3s linear infinite;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
+@keyframes gradient-border {
+  0%   { background-position:0% 0%; }
+  100% { background-position:300% 0%; }
+}
+.ai-pill-text {
+  font-size:22px; font-weight:600;
+  color:#fff; letter-spacing:0.02em;
+  position:relative; z-index:1;
+}
+.hero-h1 {
+  font-size:66px; font-weight:800;
+  color:#fff; line-height:1.04;
+  letter-spacing:-0.025em;
+  margin-bottom:18px;
+}
+.hero-sub {
+  font-size:21px; font-weight:400;
+  color:rgba(255,255,255,0.55);
+  letter-spacing:0.01em;
+}
+
+/* ── GREEN CUTOUT ── */
+.green-cutout {
+  position:absolute;
+  left:-139px; bottom:0;
+  width:1920px; height:176px;
+  pointer-events:none;
+}
+
+/* ── WAVE ── */
+.wave {
+  position:absolute;
+  left:0; bottom:0;
+  width:1920px; height:338px;
+  pointer-events:none;
+}
+.wave-2 {
+  position:absolute;
+  left:0; bottom:0;
+  width:1920px; height:338px;
+  pointer-events:none;
+}
+
+/* ── PRODUCT IMAGES ── */
+.product-web {
+  position:absolute;
+  left:649px; top:428px;
+  width:969px; height:830px;
+  object-fit:none; object-position:top center;
+  border-radius:12px 12px 0 0;
+  box-shadow:
+    0 -24px 80px rgba(0,18,10,0.38),
+    0 24px 60px rgba(0,18,10,0.28),
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 0 100px rgba(35,165,120,0.08);
+}
+.product-mobile {
+  position:absolute;
+  left:358px; top:517px;
+  width:265px; height:638px;
+  object-fit:none; object-position:top center;
+  border-radius:14px;
+  overflow:hidden;
+  background:#013A29;
+  box-shadow:
+    0 12px 60px rgba(0,18,10,0.35),
+    0 0 0 1px rgba(255,255,255,0.07),
+    0 0 40px rgba(35,165,120,0.07);
+}
+.mic-badge-wrap {
+  position:absolute;
+  left:302px; top:656px;
+  width:88px; height:85px;
+}
+.mic-badge {
+  width:88px; height:85px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+  position:relative; z-index:1;
+}
+/* ── SPARK SVG ── */
+.spark-svg {
+  position:absolute;
+  pointer-events:none;
+  z-index:10;
+  transform-origin:center center;
+  animation:twinkle-spark 2s ease-in-out infinite;
+}
+@keyframes twinkle-spark {
+  0%,100% { transform:scale(0) rotate(0deg);  opacity:0; }
+  40%,60% { transform:scale(1) rotate(45deg); opacity:1; }
+}
+
+.ai-circle-wrap {
+  position:absolute;
+  left:570px; top:726px;
+  width:113px; height:113px;
+}
+.ai-circle {
+  width:78px; height:78px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 20px rgba(35,165,120,0.35));
+  position:absolute; z-index:1;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+}
+.ai-circle-wrap::before,
+.ai-circle-wrap::after {
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:122px; height:122px;
+  margin:-61px 0 0 -61px;
+  border-radius:50%;
+  background:rgba(252,112,79,0.50);
+  animation:ripple-solid 2.2s ease-out infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.ai-circle-wrap::after { animation-delay:1.1s; }
+
+@keyframes ripple-solid {
+  0%   { transform:scale(1);   opacity:0.7; }
+  50%  { opacity:0.25; }
+  100% { transform:scale(2.2); opacity:0; }
+}
+
+/* ── STUDIO APPS WINDOW (replaces product screenshot) ── */
+.sw{position:absolute;left:400px;top:430px;width:1120px;height:780px;background:#fff;border-radius:16px 16px 0 0;overflow:hidden;
+  box-shadow:0 -24px 80px rgba(0,18,10,.38),0 24px 60px rgba(0,18,10,.28),0 0 0 1px rgba(255,255,255,.06),0 0 100px rgba(35,165,120,.08);animation:swIn .8s .2s ease backwards}
+@keyframes swIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.sw svg{width:18px;height:18px;flex-shrink:0}
+.sw-bar{height:58px;display:flex;align-items:center;gap:9px;padding:0 20px;background:#0a4831}
+.sw-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22)}
+.sw-logo{height:20px;margin-left:14px}
+.sw-crumb{color:rgba(255,255,255,.6);font-size:14px;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,.2)}
+.sw-search{margin-left:auto;display:flex;align-items:center;gap:8px;width:300px;height:34px;padding:0 12px;border-radius:9px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:13px}
+.sw-search svg{width:15px;height:15px}
+.sw-btn{background:#32d583;color:#013a29;font-size:13px;font-weight:700;padding:8px 14px;border-radius:9px;margin-left:12px}
+.sw-me{width:32px;height:32px;border-radius:50%;background:#F2D98C;color:#013a29;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-left:6px}
+.sw-body{display:flex;height:calc(100% - 58px)}
+.sw-side{width:176px;background:#f6f1e7;padding:18px 12px;display:flex;flex-direction:column;gap:4px;border-right:1px solid #ece4d6}
+.sw-side div{display:flex;align-items:center;gap:10px;font-size:14px;color:#5b6b63;padding:9px 12px;border-radius:9px}
+.sw-side div em{margin-left:auto;font-style:normal;font-size:11px;font-weight:800;color:#fff;background:#e56046;border-radius:10px;padding:1px 7px}
+.sw-side .on{background:#0a4831;color:#fff;font-weight:600}
+.sw-main{flex:1;background:#fdfbf7;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
+.sw-head{display:flex;align-items:flex-end;justify-content:space-between}
+.sw-head h5{font-size:19px;font-weight:700;color:#17281f}
+.sw-head p{font-size:12.5px;color:#8b968f;margin-top:3px}
+.sw-tabs{display:flex;gap:4px;background:#f1ece2;padding:3px;border-radius:9px}
+.sw-tabs span{font-size:12px;color:#6b7a72;padding:6px 11px;border-radius:7px}
+.sw-tabs .on{background:#fff;color:#0a4831;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sw-tile{border:1px solid #ebe3d6;border-radius:12px;background:#fff;padding:14px;transition:transform .18s,box-shadow .18s}
+.sw-tile:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(16,40,30,.1)}
+.sw-th{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.sw-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.sw-ic svg{width:21px;height:21px}
+.sw-st{font-size:10.5px;font-weight:700;color:#1f8a5b;background:#e8f3ec;padding:3px 8px;border-radius:10px}
+.sw-st.dr{color:#8b7a3c;background:#f6efd6}
+.sw-tile b{display:block;font-size:14.5px;color:#17281f}
+.sw-meta{display:block;font-size:12px;color:#98a49d;margin-top:3px}
+.sw-ft{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid #f1ebe0}
+.sw-av{display:flex}.sw-av i{width:20px;height:20px;border-radius:50%;border:2px solid #fff;margin-left:-6px}.sw-av i:first-child{margin-left:0}
+.sw-upd{font-size:10.5px;color:#a6b0aa}
+.sw-tile.on{border-color:#23A578;box-shadow:0 0 0 3px rgba(35,165,120,.14)}
+/* floating cards */
+.fl{position:absolute;background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 22px 60px rgba(0,18,10,.45),0 0 0 1px rgba(255,255,255,.08);z-index:5}
+.fl svg.fl-i{width:17px;height:17px;color:#0a4831}
+.fl-h{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#0a4831;margin-bottom:12px}
+.fl-h em{margin-left:auto;font-style:normal;font-size:10.5px;font-weight:700;color:#a9832a;background:#fdf3d6;padding:3px 8px;border-radius:10px}
+.fl-h em.ok{color:#1f8a5b;background:#e8f3ec}
+.fl-appr{left:96px;top:590px;width:300px;animation:flIn .6s .7s ease backwards,bob 6s 1.4s ease-in-out infinite}
+.fl-appr b{font-size:18px;color:#17281f}
+.fl-kv{display:flex;justify-content:space-between;font-size:13px;color:#6b7a72;margin-top:6px}
+.fl-kv span:last-child{font-weight:700;color:#17281f}
+.fl-btns{display:flex;gap:8px;margin-top:14px}
+.fl-btns span{flex:1;text-align:center;font-size:13px;font-weight:700;padding:9px 0;border-radius:9px}
+.fl-btns .rj{border:1px solid #e1d9cb;color:#6b7a72}.fl-btns .ap{background:#0a4831;color:#fff}
+.fl-flow{left:1568px;top:600px;width:260px;animation:flIn .6s .9s ease backwards,bob 6s 2.4s ease-in-out infinite}
+.fl-step{position:relative;display:flex;align-items:center;gap:11px;font-size:13.5px;color:#98a49d;padding:7px 0}
+.fl-step i{width:14px;height:14px;border-radius:50%;border:2px solid #cfd8d2;background:#fff;flex-shrink:0;position:relative;z-index:1}
+.fl-step+.fl-step::before{content:'';position:absolute;left:6px;top:-9px;height:18px;width:2px;background:#dfe6e1}
+.fl-step.done{color:#17281f}.fl-step.done i{background:#23A578;border-color:#23A578}
+.fl-step.cur{color:#0a4831;font-weight:700}.fl-step.cur i{border-color:#23A578;box-shadow:0 0 0 4px rgba(35,165,120,.18);animation:pulse 1.6s ease-in-out infinite}
+@keyframes flIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(35,165,120,.25)}50%{box-shadow:0 0 0 7px rgba(35,165,120,.08)}}
+@media (prefers-reduced-motion:reduce){.sw,.fl,.fl-step i{animation:none!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="slide">
+
+  <!-- Background glows -->
+  <div class="glow-tl"></div>
+  <div class="glow-mr"></div>
+
+  <!-- ── TOP BAR ── -->
+  <div class="topbar">
+
+    <!-- HROne Logo -->
+    <div class="tb-logo"><img src="../Assets/Studio logo.svg" alt="Studio by HROne" style="height:40px;display:block"></div>
+
+    <div class="tb-spacer"></div>
+    <!-- Recognised text -->
+    <div class="tb-recognized">Recognised by the platforms that matter</div>
+
+    <!-- Badge group -->
+    <div class="tb-badge-group">
+
+      <!-- Gartner -->
+      <div class="tb-badge">
+        <div class="tb-badge-logo">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 44C34.1503 44 44 34.1503 44 22C44 9.84974 34.1503 0 22 0C9.84974 0 0 9.84974 0 22C0 34.1503 9.84974 44 22 44Z" fill="white"/>
+            <path d="M21.8078 33.5118C25.5077 33.6193 28.3089 32.7538 31.1133 31.2536V20.113H22.4291L22.1168 24.0052H26.7425V28.7509C25.4443 29.3337 23.9441 29.6149 21.85 29.5626C17.3994 29.4458 14.5524 26.2462 14.6085 21.6035C14.6655 17.3183 17.2498 14.2017 21.5386 14.002C24.1674 13.8829 26.3672 14.6279 27.8623 15.9025L30.7727 12.9582C28.3566 10.8261 25.2654 9.94949 21.811 10.0023C14.9963 10.1098 10 14.6863 10 21.849C10 29.0432 14.9486 33.3024 21.8078 33.5118Z" fill="#002856"/>
+          </svg>
+        </div>
+        <div class="tb-badge-text">
+          <div class="tb-badge-title">Gartner Peer Insights</div>
+          <div class="tb-badge-sub">Customers' Choice 2025</div>
+        </div>
+        <div class="tb-rating">
+          <div class="tb-rating-num">4.8</div>
+          <div class="tb-rating-denom">&thinsp;/ 5</div>
+        </div>
+      </div>
+
+      <div class="tb-vdivider"></div>
+
+      <!-- G2 -->
+      <div class="tb-badge">
+        <div class="tb-badge-logo">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path d="M34 0H10C4.47715 0 0 4.47715 0 10V34C0 39.5228 4.47715 44 10 44H34C39.5228 44 44 39.5228 44 34V10C44 4.47715 39.5228 0 34 0Z" fill="#EF492D"/>
+            <path d="M31.8692 16.4226H28.1116C28.2128 15.833 28.578 15.503 29.3172 15.129L30.008 14.777C31.2444 14.1434 31.9044 13.4262 31.9044 12.2558C31.9044 11.521 31.6184 10.9402 31.0508 10.5222C30.4832 10.1042 29.8144 9.89737 29.0312 9.89737C28.4253 9.89025 27.8304 10.06 27.3196 10.3858C26.8048 10.7026 26.422 11.1118 26.1844 11.6222L27.2712 12.7134C27.6936 11.8598 28.3052 11.4418 29.1104 11.4418C29.7924 11.4418 30.2104 11.7938 30.2104 12.2822C30.2104 12.6914 30.008 13.0302 29.2248 13.4262L28.7804 13.6418C27.8168 14.1302 27.148 14.689 26.7608 15.3226C26.3736 15.9562 26.1844 16.7526 26.1844 17.7162V17.9802H31.8692V16.4226ZM31.3676 19.7754H25.146L22.0352 25.161H28.2568L31.3676 30.551L34.4784 25.161L31.3676 19.7754Z" fill="white"/>
+            <path d="M22.5708 28.756C18.6108 28.756 15.3856 25.5308 15.3856 21.5708C15.3856 17.6108 18.6108 14.3856 22.5708 14.3856L25.0304 9.242C24.2204 9.08094 23.3966 8.99988 22.5708 9C15.6276 9 10 14.6276 10 21.5708C10 28.514 15.6276 34.1416 22.5708 34.1416C25.2316 34.1466 27.8244 33.3018 29.9716 31.7304L27.2524 27.0136C25.9515 28.1373 24.2899 28.7558 22.5708 28.756Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="tb-badge-text">
+          <div class="tb-badge-title">Best Software 2026</div>
+          <div class="tb-badge-sub">Best Software Awards 2026</div>
+        </div>
+        <div class="tb-rating">
+          <div class="tb-rating-num">4.9</div>
+          <div class="tb-rating-denom">&thinsp;/ 5</div>
+        </div>
+        <div class="tb-extra">
+          <div class="tb-extra-num">2100+</div>
+          <div class="tb-extra-label">Reviews</div>
+        </div>
+      </div>
+
+    </div><!-- /badge-group -->
+    <div class="tb-hdivider"></div>
+  </div><!-- /topbar -->
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="ai-pill">
+      <span class="ai-pill-text">Introducing HROne Studio</span>
+    </div>
+    <h1 class="hero-h1">Build the HR apps your HCM software can&rsquo;t.</h1>
+    <p class="hero-sub">Built into HROne HCM. Integrates with the HCM suite you already run.</p>
+  </div>
+
+  <!-- ── STUDIO APPS WINDOW ── -->
+  <div class="sw">
+    <div class="sw-bar"><span class="sw-dot"></span><span class="sw-dot"></span><span class="sw-dot"></span>
+      <img src="../Assets/Studio logo.svg" alt="" class="sw-logo"><span class="sw-crumb">Apps</span>
+      <span class="sw-search"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Search apps, tables, records…</span>
+      <span class="sw-btn">+ Create App</span><span class="sw-me">AK</span></div>
+    <div class="sw-body">
+      <div class="sw-side"><div class="on"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Apps</span></div><div class=""><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span>Inbox</span><em>3</em></div><div class=""><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="12" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 6H12a3 3 0 013 3v.5M8.5 18H12a3 3 0 003-3v-.5"/></svg><span>Workflows</span></div><div class=""><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/></svg><span>Roles</span></div><div class=""><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V9M12 19V5M19 19v-7"/></svg><span>Reports</span></div></div>
+      <div class="sw-main">
+        <div class="sw-head"><div><h5>Your apps</h5><p>8 apps · 38 tables · 34k records</p></div>
+          <div class="sw-tabs"><span class="on">All</span><span>Admin</span><span>HR &amp; Time</span><span>Ops</span></div></div>
+        <div class="sw-grid"><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#e8f3ec;color:#1f8a5b"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 3 2 5 3-1v11h8V10l3 1 2-5-5-3c-1 2-2.3 3-4 3S9 5 8 3z"/></svg></span><span class="sw-st ">Live</span></div><b>Uniform Requests</b><span class="sw-meta">6 tables · 1.2k records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i></span><span class="sw-upd">Updated 2h ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#fdf0e3;color:#d27a2c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg></span><span class="sw-st ">Live</span></div><b>Stationery Requests</b><span class="sw-meta">3 tables · 640 records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i><i style="background:#eec6b3"></i></span><span class="sw-upd">Updated 1d ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#fcebe6;color:#e56046"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v5a6 6 0 01-6 6H10a6 6 0 01-6-6V8z"/><path d="M17 10h1.5a2.5 2.5 0 010 5H17"/><path d="M8 3v2M12 3v2"/></svg></span><span class="sw-st ">Live</span></div><b>Canteen Planning</b><span class="sw-meta">8 tables · 3.4k records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i></span><span class="sw-upd">Updated 3h ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#e8eefb;color:#4a6bd0"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v8H7z"/><path d="M5 12h14v3H5z"/><path d="M7 15v5M17 15v5"/></svg></span><span class="sw-st ">Live</span></div><b>Seat Allocation</b><span class="sw-meta">4 tables · 910 records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i><i style="background:#eec6b3"></i></span><span class="sw-upd">Updated 5h ago</span></div></div><div class="sw-tile on"><div class="sw-th"><span class="sw-ic" style="background:#f1ebfb;color:#7c5cc9"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><span class="sw-st ">Live</span></div><b>Overtime Requests</b><span class="sw-meta">5 tables · 2.1k records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i></span><span class="sw-upd">Updated 20m ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#e6f5f5;color:#1c8c8c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 17h4"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="sw-st ">Live</span></div><b>Attendance Kiosk</b><span class="sw-meta">2 tables · 18k records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i><i style="background:#eec6b3"></i></span><span class="sw-upd">Updated 1h ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#fdf6dc;color:#b88a12"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></span><span class="sw-st dr">Draft</span></div><b>Vendor &amp; Hawker</b><span class="sw-meta">7 tables · 5.6k records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i></span><span class="sw-upd">Updated 2d ago</span></div></div><div class="sw-tile"><div class="sw-th"><span class="sw-ic" style="background:#fbe9f1;color:#c2477f"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 10h8M8 13h5"/></svg></span><span class="sw-st ">Live</span></div><b>Project Feedback</b><span class="sw-meta">3 tables · 420 records</span><div class="sw-ft"><span class="sw-av"><i style="background:#f2d98c"></i><i style="background:#9fd8bb"></i><i style="background:#eec6b3"></i></span><span class="sw-upd">Updated 4h ago</span></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- floating: approval card -->
+  <div class="fl fl-appr">
+    <div class="fl-h"><svg class="fl-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-8h12l2 8v6H4z"/><path d="M4 13h5l1 2h4l1-2h5"/></svg><span>HROne Inbox</span><em>Pending with you</em></div>
+    <b>Overtime Request</b>
+    <div class="fl-kv"><span>Night shift · 4.0 hrs</span><span>₹ 1,840</span></div>
+    <div class="fl-btns"><span class="rj">Reject</span><span class="ap">Approve</span></div>
+  </div>
+
+  <!-- floating: workflow run -->
+  <div class="fl fl-flow">
+    <div class="fl-h"><svg class="fl-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="12" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 6H12a3 3 0 013 3v.5M8.5 18H12a3 3 0 003-3v-.5"/></svg><span>Workflow</span><em class="ok">● Live</em></div>
+    <div class="fl-step done"><i></i>Form submitted</div>
+    <div class="fl-step done"><i></i>Cost calculated</div>
+    <div class="fl-step cur"><i></i>Approval requested</div>
+    <div class="fl-step"><i></i>Gate report PDF</div>
+  </div>
+
+  <!-- ── GREEN CUTOUT (masks product bottom, under wave) ── -->
+  <div class="green-cutout">
+    <svg width="1920" height="176" viewBox="0 0 1920 176" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M315.827 18.4067L-17.5391 184.749L96.31 1056.68L1910.4 987.828L2017.43 136.346H1855.18L1597.5 0H1295.47L1191.85 52.4933L664.192 96.8058L315.827 18.4067Z" fill="#013A29"/>
+    </svg>
+  </div>
+
+  <!-- ── WAVE (top layer, bottom-aligned) ── -->
+  <img class="wave" src="../Assets/WAVE.svg" alt="">
+  <img class="wave-2" src="../Assets/WAVE.svg" alt="">
+
+</div>
+</div>
+
+<script src="../shared/slide.js" data-own-fit></script>
+<script>
+function fit() {
+  const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  const x = (window.innerWidth  - 1920 * s) / 2;
+  const y = (window.innerHeight - 1080 * s) / 2;
+  document.getElementById('stage').style.transform = `translate(${x}px,${y}px) scale(${s})`;
+}
+window.addEventListener('resize', fit);
+fit();
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+    e.preventDefault();
+    if (window.parent !== window) window.parent.postMessage({type:'nav-key', key:e.key}, '*');
+  }
+});
+</script>
+</body>
+</html>

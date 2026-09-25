@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — The Outcome</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>The outcome</div>
+  <div class="h1 in2" style="max-width:none">Less time screening. <em>More time hiring.</em></div>
+  <div class="body"><div class="grid in4" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card lift"><div class="big">92%</div><p>screening time saved per role</p></div>
+    <div class="card lift"><div class="big">18 → 6</div><p>days to hire at Uneecops</p></div>
+    <div class="card lift"><div class="big">24×7</div><p>interviews — candidates choose when</p></div>
+  </div>
+  <div class="quote in5"><div class="qm">“</div><div><p>We were running 40 sales-hiring screens a week. AI Interviewer picked up all of them. Our recruiters now only meet the top 12 — and our time-to-hire dropped from 18 days to 6.</p><div class="by"><b>Pushpa Unyauni</b> · Senior Manager – Human Resources, Uneecops</div></div></div></div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

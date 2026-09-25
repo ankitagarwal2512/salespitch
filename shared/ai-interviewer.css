@@ -1,0 +1,55 @@
+/* ══════════════════════════════════════════════════════════════════
+   AI Interviewer deck extras — loaded after shared/studio.css (which
+   supplies .pg/.eyebrow/.h1/.card/.col/.split/.panel etc.).
+   ══════════════════════════════════════════════════════════════════ */
+/* corner lockup: icon + product name */
+.lockup{position:absolute;right:96px;top:58px;display:flex;align-items:center;gap:12px;opacity:.92}
+.lockup img{height:40px;width:40px}
+.lockup span{font-size:20px;font-weight:700;color:#fff;letter-spacing:-.2px}
+.lockup small{font-size:15px;font-weight:600;color:rgba(255,255,255,.55);margin-left:4px}
+
+/* labelled bars (traits, rubric scores) */
+.bars{display:flex;flex-direction:column;gap:18px}
+.bar{display:grid;grid-template-columns:220px 1fr 56px;align-items:center;gap:18px}
+.bar .bl{font-size:21px;font-weight:600;color:var(--st-ink)}
+.bar .bt{height:9px;border-radius:5px;background:#e8dfcd;overflow:hidden}
+.bar .bt i{display:block;height:100%;border-radius:5px;background:#0a4831}
+.bar .bv{font-size:18px;font-weight:700;color:#0a4831;text-align:right}
+.bar.soft .bt i{background:#5c8a73}
+.bars .sub{font-size:14px;font-weight:700;letter-spacing:2px;color:#7b8a82;text-transform:uppercase;margin-top:6px}
+
+/* key/value grid inside a panel */
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 26px}
+.kv div span{display:block;font-size:15px;color:#7b8a82}
+.kv div b{display:block;font-size:22px;font-weight:700;color:var(--st-ink);margin-top:4px}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{font-size:18px;color:var(--st-ink);background:#efe7d6;border-radius:20px;padding:8px 15px}
+.tags.soft span{background:#fff;border:1px solid #e8ded0;color:#4a5a52}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:15px;font-weight:700;letter-spacing:1.8px;color:#7b8a82;text-transform:uppercase;text-align:left;padding:0 16px 16px}
+.tbl td{font-size:21px;color:var(--st-ink);padding:22px 16px;border-top:1px solid #e4d9c6}
+.tbl td.m{color:#4a5a52}
+.st{font-size:15px;font-weight:700;padding:6px 12px;border-radius:14px}
+.st.ok{background:#dcefe4;color:#0a4831}.st.wait{background:#fbf1d8;color:#8a6a16}
+.rec{font-weight:700;color:#0a4831}.rec.no{color:var(--st-coral)}
+
+/* big stat */
+.big{font-size:64px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1}
+.card.hi .big{color:var(--st-ink)}
+
+/* quote */
+.quote{display:flex;gap:28px;margin-top:48px}
+.quote .qm{font-size:90px;line-height:.8;font-weight:800;color:var(--st-green)}
+.quote p{font-size:30px;line-height:1.42;color:#fff;max-width:1500px}
+.quote .by{font-size:20px;color:var(--st-mute);margin-top:18px}
+.quote .by b{color:#fff;font-weight:600}
+
+/* pricing */
+.price{font-size:58px;font-weight:800;color:#fff;letter-spacing:-1.5px;margin-top:22px}
+.price small{font-size:22px;font-weight:600;color:var(--st-mute);letter-spacing:0}
+.card.hi .price{color:var(--st-ink)}.card.hi .price small{color:#4a5a52}
+.off{display:inline-block;font-size:14px;font-weight:700;letter-spacing:1.6px;color:#013a29;background:var(--st-green);border-radius:14px;padding:5px 12px;text-transform:uppercase;margin-left:10px;vertical-align:middle}
+.card .meta{margin-top:auto;padding-top:22px;border-top:1px solid var(--st-line);font-size:19px;color:var(--st-mute)}
+.card.hi .meta{border-color:#e4d9c6;color:#4a5a52}

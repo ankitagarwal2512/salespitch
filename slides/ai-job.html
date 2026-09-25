@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Interviewer — Create the Job</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+<link rel="stylesheet" href="../shared/ai-interviewer.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<div class="lockup"><img src="../Assets/AI Interviewer ICON.svg" alt=""/><span>AI Interviewer<small>by HROne</small></span></div>
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Step 01 <span class="sep">·</span> <span class="ind">Jobs</span></div>
+  <div class="split" style="margin-top:26px">
+    <div class="txt">
+      <div class="h1 in2" style="margin-top:0">Create <em>the job</em></div>
+      <div class="ubar in3"></div>
+      <p class="in3">Add the role, must-have skills and level. <b>No JD? AI drafts one</b> from your inputs — or parses the PDF you already have.</p>
+      <div class="chips in4"><span class="chip">Parse JD from file or URL</span><span class="chip">Industry · level · experience</span><span class="chip">Generate with AI</span></div>
+    </div>
+    <div class="pan in4"><div class="panel">
+      <div class="ph">Sales Manager · Active · Full time · Mid-senior</div>
+      <div class="kv" style="grid-template-columns:repeat(4,1fr)"><div><span>Total rounds</span><b>1</b></div><div><span>Applicants</span><b>1</b></div><div><span>Scheduled</span><b>1</b></div><div><span>Completed</span><b>0</b></div></div>
+      <div class="ph" style="margin-top:30px;margin-bottom:12px">Job description</div>
+      <p style="font-size:20px;line-height:1.5;color:#4a5a52">We are looking for a Sales Manager to own a regional pipeline, lead a team of six account executives, and hit quarterly revenue targets.</p>
+      <div style="margin-top:20px"><div class="tags"><span>objection handling</span><span>pipeline management</span><span>negotiation</span><span>team coaching</span><span>forecasting</span></div></div>
+      <div class="kv" style="margin-top:26px;padding-top:20px;border-top:1px solid #e4d9c6"><div><span>Experience</span><b>5–9 years</b></div><div><span>Openings</span><b>3</b></div><div><span>Created</span><b>4d ago</b></div></div>
+    </div></div>
+  </div>
+</div>
+<div class="foot">AI Interviewer · Structured AI interviews for hiring teams</div>
+<div class="nav"><span class="nav-cnt">1 / 11</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
