@@ -156,14 +156,12 @@
      RIGHT CARD — Gartner
 ══════════════════════════════════════════ -->
 
-<!-- Gartner wordmark logo -->
-<img class="a" src="../Assets/gartner white logo.svg" style="left:1042px;top:345px;width:95px;height:22px;object-fit:contain;object-position:left center">
-
-<!-- Header vertical divider right -->
-<div class="a" style="left:1152px;top:320px;width:1px;height:46px;background:rgba(255,255,255,.28)"></div>
-
-<!-- PEER INSIGHTS -->
-<p class="a" style="left:1168px;top:329px;font-size:22px;font-weight:600;color:#cfe0d6;letter-spacing:.5px;text-transform:uppercase;line-height:1">PEER INSIGHTS</p>
+<!-- Gartner header: wordmark | divider | PEER INSIGHTS (flex row keeps all three vertically centred) -->
+<div class="a" style="left:1042px;top:320px;height:46px;display:flex;align-items:center">
+  <img src="../Assets/gartner white logo.svg" style="width:95px;height:22px;object-fit:contain;object-position:left center;display:block">
+  <div style="width:1px;height:46px;margin:0 15px;background:rgba(255,255,255,.28)"></div>
+  <p style="font-size:22px;font-weight:600;color:#cfe0d6;letter-spacing:.5px;text-transform:uppercase;line-height:1">PEER INSIGHTS</p>
+</div>
 
 <!-- Gartner circular badge (gartnerbadge.png is actually SVG) -->
 <img id="gBadge" class="a" src="../Assets/gartnerbadge.png" style="left:1036px;top:408px;width:241px;height:207px;object-fit:contain">
@@ -228,9 +226,12 @@
 <p class="a" style="left:1449px;top:795px;width:356px;font-size:11px;color:rgba(255,255,255,.45);text-align:center;line-height:1">of customers recommend</p>
 
 <!-- Right footer -->
-<p class="a" style="left:1042px;top:877px;font-size:15px;font-weight:700;color:#7fbf9f;letter-spacing:.5px;text-transform:uppercase;line-height:1">QUADRANT POSITION</p>
-<div class="a" style="left:1214px;top:863px;width:1px;height:20px;background:rgba(255,255,255,.2)"></div>
-<p class="a" style="left:1228px;top:873px;font-size:16px;color:#cfe0d6;line-height:1">Customers' Choice · alongside Oracle, Workday, Darwinbox</p>
+<!-- Right footer: label | divider | text — texts share a baseline, divider centred -->
+<div class="a" style="left:1042px;top:870px;height:30px;display:flex;align-items:baseline">
+  <p style="font-size:15px;font-weight:700;color:#7fbf9f;letter-spacing:.5px;text-transform:uppercase;line-height:30px">QUADRANT POSITION</p>
+  <div style="width:1px;height:20px;margin:0 14px;background:rgba(255,255,255,.2);align-self:center"></div>
+  <p style="font-size:16px;color:#cfe0d6;line-height:30px">Customers' Choice · alongside Oracle, Workday, Darwinbox</p>
+</div>
 
 <!-- ══ NAV ══ -->
 <div class="nav">

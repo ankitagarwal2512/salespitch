@@ -264,7 +264,7 @@
   <button class="nav-btn" id="nextBtn" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 </div>
 
-<script src="../shared/slide.js" data-own-nav></script>
+<script src="../shared/slide.js"></script>
 <script>
 const MODULES = [
   { t:'Core HR', d:'Configure it as per your Business', x:100, y:282, icon:'corehr', f:['Employee Master','Org Chart','Document Vault','Policy Configuration','Custom Fields'] },
@@ -353,8 +353,6 @@ document.addEventListener('keydown', e => {
 document.getElementById('stage').addEventListener('click', e => {
   if(!e.target.closest('.card') && !e.target.closest('#popover')) closePop();
 });
-document.getElementById('prevBtn').addEventListener('click', ()=>{});
-document.getElementById('nextBtn').addEventListener('click', ()=>{ window.location.href='hrone-slide6.html'; });
 
 </script>
 </body>
