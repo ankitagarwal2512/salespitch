@@ -14,8 +14,8 @@ DECKS.studio = {
     slides:[
       { n:1,  t:'Cover · HROne Users',            f:'studio-cover-customer.html', optional:true },
       { n:2,  t:'Cover · Non-HROne',              f:'studio-cover-prospect.html', optional:true },
-      { n:3,  t:'Group Overview',                 f:'hrone-group-overview.html', optional:true },
-      { n:4,  t:'Why HROne',                      f:'hrone-why-hrone.html', optional:true },
+      { n:3,  t:'Group Overview',                 f:'hrone-group-overview.html' },
+      { n:4,  t:'Why HROne',                      f:'hrone-why-hrone.html' },
       { n:5,  t:'The Problem',                    f:'studio-problem.html' },
     ]},
   { id:'product', label:'The Platform', icon:'M2 2h4v4H2zM8 2h4v4H8zM2 8h4v4H2zM8 8h4v4H8z',
