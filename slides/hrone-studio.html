@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#06261a;--stage-bg:#06261a}
+
+@keyframes fd {from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu {from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fsr{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scIn{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ BG GLOWS ══ -->
+<div class="a" style="inset:0;background:radial-gradient(ellipse 55% 40% at 22% 18%,rgba(50,213,131,0.13) 0%,transparent 70%);pointer-events:none"></div>
+<div class="a" style="inset:0;background:radial-gradient(ellipse 45% 35% at 88% 5%,rgba(50,213,131,0.10) 0%,transparent 70%);pointer-events:none"></div>
+<div class="a" style="inset:0;background:radial-gradient(ellipse 50% 38% at 50% 105%,rgba(50,213,131,0.08) 0%,transparent 70%);pointer-events:none"></div>
+
+<!-- ══ HROne LOGO TOP-RIGHT ══ -->
+<img class="a" src="../Assets/hrone-white-logo.svg" style="left:1602px;top:73px;height:51px;width:auto;animation:fi .5s .06s ease both">
+
+<!-- ══ EYEBROW ══ -->
+<div class="a" style="left:72px;top:95px;display:flex;align-items:center;gap:12px;animation:fi .4s .08s ease both">
+  <div style="width:38px;height:2px;background:#32d583;border-radius:2px;flex-shrink:0"></div>
+  <p style="font-size:14px;font-weight:700;color:#32d583;letter-spacing:3px;text-transform:uppercase;white-space:nowrap">
+    Studio&nbsp;<span style="opacity:.5">·</span>&nbsp;Build your own app
+  </p>
+</div>
+
+<!-- ══ STUDIO LOGO ══ -->
+<img class="a" src="../Assets/studio-logo-full.svg" style="left:72px;top:196px;height:89px;width:auto;animation:fi .55s .14s ease both">
+
+<!-- ══ HEADLINE ══ -->
+<p class="a" style="left:72px;top:339px;font-size:90px;font-weight:800;color:white;line-height:90px;letter-spacing:-1.5px;animation:fd .65s .2s ease both">
+  Build it in<br>Studio
+</p>
+
+<!-- ══ SUBHEAD ══ -->
+<p class="a" style="left:72px;top:638px;font-size:32px;font-weight:400;color:#bfe0d6;white-space:nowrap;animation:fi .5s .28s ease both">
+  Your team never leaves HROne.
+</p>
+
+<!-- ══ DIVIDER ══ -->
+<div class="a" style="left:72px;top:700px;width:250px;height:2px;background:linear-gradient(90deg,#32d583 0%,rgba(50,213,131,0) 100%);animation:fi .5s .32s ease both"></div>
+
+<!-- ══ BODY COPY ══ -->
+<p class="a" style="left:72px;top:730px;width:700px;font-size:28px;font-weight:400;color:#bfe0d6;line-height:40px;opacity:.93;animation:fi .6s .36s ease both">
+  Design the forms and approvals your processes need. Your employees act on them inside HROne — the form in their <strong style="color:white;font-weight:700">Request tab,</strong> the approval in their <strong style="color:white;font-weight:700">Inbox,</strong> web or mobile.
+</p>
+
+<!-- ══ BULLET LIST ══ -->
+<div class="a" style="left:72px;top:878px;animation:fu .45s .44s ease both">
+  <p style="font-size:30px;font-weight:700;color:#27d77c;line-height:56px">›&nbsp;<span style="font-weight:500;color:#b2d3c9">Visitor Management App</span></p>
+  <p style="font-size:30px;font-weight:700;color:#27d77c;line-height:56px">›&nbsp;<span style="font-weight:500;color:#b2d3c9">Incentive Management App</span></p>
+  <p style="font-size:30px;font-weight:700;color:#27d77c;line-height:56px">›&nbsp;<span style="font-weight:500;color:#b2d3c9">Task Management App, etc.</span></p>
+</div>
+
+<!-- ══ APP MOCKUP ══ -->
+<img class="a" src="../Assets/visitor_management.png"
+     style="left:862px;top:201px;width:1020px;height:829px;object-fit:cover;object-position:top left;border-radius:12px;animation:fsr .7s .38s ease both">
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <span class="nav-cnt">17 / 31</span>
+  <button class="nav-btn" id="prevBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="nav-btn" id="nextBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+</nav>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

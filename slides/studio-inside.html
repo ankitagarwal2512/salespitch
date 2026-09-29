@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — What&#x27;s Inside</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<img class="corner" src="../Assets/Studio logo.svg" alt="Studio"/>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Studio · What's inside</div>
+  <div class="hrow" style="margin-top:26px">
+    <div class="h1 in2" style="margin-top:0">Nine building blocks, <em>three moves</em></div>
+    <div class="lede in3">Everything you need to build, automate and run real apps — in days, not months.</div>
+  </div>
+  <div class="body"><div class="grid in4" style="grid-template-columns:repeat(3,1fr)">
+    <div class="col so lift"><div class="lbl">01 · Model</div><div class="items"><div class="item"><h4>Apps</h4><p>A standalone app for any process your business runs</p></div><div class="item"><h4>Tables</h4><p>Model your data across multiple linked tables</p></div><div class="item"><h4>15+ property types</h4><p>Calculations, linked records, uploads, dependent fields, API-powered selects</p></div></div></div>
+    <div class="col so lift"><div class="lbl">02 · Collect</div><div class="items"><div class="item"><h4>Forms</h4><p>Multiple forms per table — public or private, conditional logic</p></div><div class="item"><h4>Views</h4><p>Table, card or board, each with its own filters, per role</p></div><div class="item"><h4>Records &amp; Export</h4><p>Create, import or capture by form · audit trails and export built in</p></div></div></div>
+    <div class="col rs lift"><div class="lbl">03 · Run</div><div class="items"><div class="item"><h4>Workflows</h4><p>Event-driven or scheduled · 30+ nodes incl. approval, API, AI</p></div><div class="item"><h4>Inbox &amp; Approvals</h4><p>One queue per user for every notification and approval</p></div><div class="item"><h4>Roles &amp; RBAC</h4><p>Property-level and row-level access. Granular control</p></div></div></div>
+  </div></div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

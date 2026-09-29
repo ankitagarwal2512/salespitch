@@ -235,6 +235,31 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 }
 .slide-row.active .slide-name{ color:#fff;font-weight:500; }
 .slide-row:hover:not(.stub) .slide-name{ color:rgba(255,255,255,.82); }
+.sub-row{
+  display:flex;align-items:center;gap:9px;position:relative;cursor:pointer;
+  padding:6px 14px 6px 72px;margin:1px 0;border-radius:7px;transition:background .15s;
+}
+.sub-row::before{ content:'';position:absolute;left:52px;top:2px;bottom:2px;width:1px;background:rgba(255,255,255,.13); }
+.sub-row:hover{ background:rgba(255,255,255,.05); }
+.sub-row.active{ background:rgba(242,217,140,.12); }
+.sub-row.active::before{ background:#F2D98C;width:2px; }
+.sub-dot{ width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0; }
+.sub-row.active .sub-dot{ background:#F2D98C; }
+.sub-name{ flex:1;font-size:12px;color:rgba(255,255,255,.5);line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.sub-row.active .sub-name{ color:#F2D98C;font-weight:500; }
+.sub-wrap{ overflow:hidden; max-height:0; transition:max-height .24s ease; }
+.sub-wrap.open{ max-height:280px; }
+.sub-toggle{
+  flex-shrink:0;width:22px;height:22px;border-radius:6px;border:none;
+  background:transparent;color:rgba(242,217,140,.7);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,color .15s,transform .2s;
+}
+.sub-toggle:hover{ background:rgba(242,217,140,.16); color:#F2D98C; }
+.sub-toggle.open{ transform:rotate(90deg); }
+.sub-toggle svg{ width:11px;height:11px; }
+.slide-row.has-sub.active .sub-toggle{ color:#F2D98C; }
 
 /* ── Empty state ─────────────── */
 .nav-empty{
@@ -304,7 +329,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   position:absolute;bottom:26px;right:30px;
   display:flex;align-items:center;gap:12px;
   z-index:20;
+  pointer-events:none;   /* never block the slide's own nav buttons underneath */
 }
+.stage-nav .nav-btn{ pointer-events:auto; }
 .nav-btn{
   width:44px;height:44px;border-radius:50%;
   border:1.5px solid rgba(255,255,255,.28);
@@ -372,7 +399,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 
   <!-- ════ STAGE ════ -->
   <div class="stage-host">
-    <iframe id="slideFrame" src="hrone-slide1.html" allowfullscreen title="Slide stage"></iframe>
+    <iframe id="slideFrame" allowfullscreen title="Slide stage"></iframe>
     <div class="stage-nav">
       <button class="nav-btn hidden" id="btnPrev" aria-label="Previous slide">
         <svg viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -384,65 +411,28 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   </div>
 
 </div>
+<script>window.DECKS = {};</script>
+<script src="decks/hrone.js"></script>
+<script src="decks/studio.js"></script>
+<script src="decks/ai-interviewer.js"></script>
 <script>
-// ── Manifest ─────────────────────────────────────────────────────
-const GROUPS = [
-  { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
-    slides:[
-      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1.html' },
-      { n:2,  t:'Group Overview',               f:'hrone-group-overview.html' },
-      { n:3,  t:'Why HROne',                   f:'hrone-why-hrone.html' },
-      { n:4,  t:'Recognition',                  f:'hrone-recognised.html' },
-    ]},
-  { id:'platform', label:'The Platform', icon:'M2 2h4v4H2zM8 2h4v4H8zM2 8h4v4H2zM8 8h4v4H8z',
-    slides:[
-      { n:5,  t:'Outgrow the Team, Not the Tool', f:'hrone-outgrow.html', optional:true },
-      { n:6,  t:'The Comprehensive HCM Suite', f:'hrone-slide5.html' },
-      { n:7,  t:'Payroll Outsourcing',          f:'hrone-payroll-outsourcing.html' },
-      { n:8,  t:'InboxforHR', html:'InboxforHR<sup style="font-size:.55em;vertical-align:super;line-height:0">TM</sup>', f:'hrone-inboxforhr.html' },
-      { n:9,  t:'Two Problems, One Inbox',     f:'hrone-what-it-kills.html' },
-      { n:10, t:'The Facts',                   f:'hrone-the-facts.html' },
-      { n:11, t:'Infosec & Trust',               f:'hrone-infosec.html' },
-    ]},
-  { id:'mobile', label:'Mobile & AI', icon:'M4.5 1h5a1 1 0 011 1v10a1 1 0 01-1 1h-5a1 1 0 01-1-1V2a1 1 0 011-1zM6 11.5h2',
-    slides:[
-      { n:12, t:'Mobile-First Experience',     f:'hrone-mobile.html' },
-      { n:13, t:'OneAI Voice Agent',           f:'hrone-oneai.html' },
-      { n:14, t:'OneAI Efficiency in Every Module', f:'hrone-efficiency.html' },
-      { n:15, t:'Integrations',                 f:'hrone-integrations.html' },
-      { n:16, t:'Service & Our Strength',         f:'hrone-service.html' },
-    ]},
-  { id:'build', label:'Build & Extend', icon:'M4 2.5L2 7l2 4.5M10 2.5l2 4.5-2 4.5',
-    slides:[
-      { n:17, t:'Studio — Build your own app',  f:'hrone-studio.html' },
-      { n:18, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
-      { n:19, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
-    ]},
+// ── Deck selection ───────────────────────────────────────────────
+// Each deck file in /decks registers itself on DECKS. The deck is picked by
+// ?deck=<id> (handy for local testing), else by domain, else HROne.
+const DECK = (() => {
+  const q = new URLSearchParams(location.search).get('deck');
+  if (q && DECKS[q]) return DECKS[q];
+  const host = location.hostname;
+  return Object.values(DECKS).find(d => (d.hosts || []).includes(host)) || DECKS.hrone;
+})();
+document.title = DECK.pageTitle;
+document.querySelector('.hdr-title').textContent = DECK.title;
 
-  { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
-    slides:[
-      { n:20, t:'Add-Ons',                      f:'hrone-marketplace.html' },
-    ]},
-  { id:'modules', label:'Modules', icon:'M1 4l6-3 6 3-6 3-6-3M1 8l6 3 6-3M1 11l6 3 6-3',
-    slides:[
-      { n:21, t:'Overview',                    f:'hrone-modules-overview.html' },
-      { n:22, t:'Recruitment',                 f:'hrone-recruitment.html' },
-      { n:23, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
-      { n:24, t:'Workforce Management',        f:'hrone-module-workforce.html' },
-      { n:25, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
-      { n:26, t:'Payroll',                     f:'hrone-module-payroll.html' },
-      { n:27, t:'Performance',                 f:'hrone-module-performance.html' },
-      { n:28, t:'Engagement',                  f:'hrone-module-engagement.html' },
-      { n:29, t:'Expense',                     f:'hrone-module-expense.html' },
-      { n:30, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
-    ]},
-  { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
-    slides:[
-      { n:31, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
-    ]},
-];
+// ── Manifest ─────────────────────────────────────────────────────
+const GROUPS = DECK.groups;
 
 // filename → slide lookup
+const SLIDE_DIR = 'slides/';   // all slide files live here
 const FILE_MAP = {};
 GROUPS.forEach(g => g.slides.forEach(s => { if (s.f) FILE_MAP[s.f] = s; }));
 
@@ -450,6 +440,7 @@ GROUPS.forEach(g => g.slides.forEach(s => { if (s.f) FILE_MAP[s.f] = s; }));
 const disabledSlides = new Set();
 
 const EYE_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const CHEV_SVG = `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5L8 6l-3.5 3.5"/></svg>`;
 const EYE_OFF_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0112 19c-7 0-11-7-11-7a18.5 18.5 0 015.06-5.94M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 7 11 7a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
 
 // ── Build nav DOM ─────────────────────────────────────────────────
@@ -478,12 +469,18 @@ GROUPS.forEach(g => {
      </div>
      <div class="grp-slides">
        ${g.slides.map(s =>
-         `<div class="slide-row${s.f ? '' : ' stub'}"
+         `<div class="slide-row${s.f ? '' : ' stub'}${s.sub ? ' has-sub' : ''}"
                data-n="${s.n}" data-q="${s.t.toLowerCase()}" data-file="${s.f || ''}">
             <span class="slide-num">${String(s.n).padStart(2,'0')}</span>
             <span class="slide-name">${s.html || s.t}</span>
+            ${s.sub ? `<button class="sub-toggle" type="button" data-toggle="${s.n}" aria-expanded="false" title="Show the ${s.sub.length} depth slides">${CHEV_SVG}</button>` : ''}
             ${s.optional ? `<button class="slide-eye" type="button" title="Show/hide this slide when presenting" aria-label="Toggle slide visibility">${EYE_SVG}</button>` : ''}
-          </div>`
+          </div>` +
+         (s.sub ? `<div class="sub-wrap" data-subwrap="${s.n}">` + s.sub.map((sb,i) =>
+           `<div class="sub-row" data-n="${s.n}" data-parent="${s.n}" data-sub="${i}"
+                 data-q="${sb.t.toLowerCase()}" data-file="${sb.f}" title="${sb.t} — depth ${i+1} of ${s.sub.length}">
+              <span class="sub-dot"></span><span class="sub-name">${sb.t}</span>
+            </div>`).join('') + `</div>` : '')
        ).join('')}
      </div>`;
 
@@ -493,6 +490,20 @@ GROUPS.forEach(g => {
 
   el.querySelectorAll('.slide-row:not(.stub)').forEach(row => {
     row.addEventListener('click', () => goTo(+row.dataset.n, row.dataset.file));
+  });
+
+  el.querySelectorAll('.sub-row').forEach(row => {
+    row.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goDepth(+row.dataset.parent, +row.dataset.sub);
+    });
+  });
+
+  el.querySelectorAll('.sub-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setSubOpen(+btn.dataset.toggle, !btn.classList.contains('open'));
+    });
   });
 
   el.querySelectorAll('.slide-eye').forEach(btn => {
@@ -512,6 +523,24 @@ const sidebar  = document.getElementById('sidebar');
 const frame    = document.getElementById('slideFrame');
 const slideCtr = document.getElementById('slideCtr');
 let   current  = 1;
+// -1 = on the spine slide itself; 0..n = index into that slide's depth stack.
+let   curSub   = -1;
+
+// depth filename -> { n: parent slide number, i: depth index }
+const SUB_MAP = {};
+GROUPS.forEach(g => g.slides.forEach(s => {
+  if (s.sub) s.sub.forEach((sb, i) => { SUB_MAP[sb.f] = { n: s.n, i }; });
+}));
+function setSubOpen(n, open) {
+  const btn  = document.querySelector(`.sub-toggle[data-toggle="${n}"]`);
+  const wrap = document.querySelector(`.sub-wrap[data-subwrap="${n}"]`);
+  if (btn)  btn.classList.toggle('open', open), btn.setAttribute('aria-expanded', String(open));
+  if (wrap) wrap.classList.toggle('open', open);
+}
+function subsFor(n) {
+  const s = GROUPS.flatMap(g => g.slides).find(x => x.n === n);
+  return (s && s.sub) || null;
+}
 
 // All slides with a real file, static manifest order.
 function getFullList() {
@@ -561,6 +590,13 @@ function setActive(n) {
     r.classList.toggle('active', +r.dataset.n === n);
   });
 
+  document.querySelectorAll('.sub-row').forEach(r => {
+    r.classList.toggle('active', +r.dataset.parent === n && +r.dataset.sub === curSub);
+  });
+
+  // the slide you're on reveals its own depth stack; others stay as you left them
+  if (subsFor(n)) setSubOpen(n, true);
+
   // Auto-open parent group
   document.querySelectorAll('.nav-grp').forEach(g => {
     const has = [...g.querySelectorAll('.slide-row')].some(r => +r.dataset.n === n);
@@ -577,7 +613,18 @@ function setActive(n) {
 
 function goTo(n, file) {
   if (!file) return;
-  frame.src = file;
+  curSub = -1;
+  frame.src = SLIDE_DIR + file;
+  setActive(n);
+  updateShellNav();
+}
+
+// Drop into the i-th depth slide behind spine slide n.
+function goDepth(n, i) {
+  const subs = subsFor(n);
+  if (!subs || !subs[i]) return;
+  curSub = i;
+  frame.src = SLIDE_DIR + subs[i].f;
   setActive(n);
   updateShellNav();
 }
@@ -591,15 +638,15 @@ function updateShellNav() {
 frame.addEventListener('load', () => {
   try {
     const file = frame.contentWindow.location.href.split('/').pop().split('?')[0];
-    const s = FILE_MAP[file];
-    if (s) setActive(s.n);
+    const sub = SUB_MAP[file];
+    if (sub) { curSub = sub.i; setActive(sub.n); }
+    else { const s = FILE_MAP[file]; if (s) { curSub = -1; setActive(s.n); } }
     updateShellNav();
   } catch(e) {}
   try { frame.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
   syncFrameCounter();
 });
 
-setActive(1);
 
 // ── Toggle ────────────────────────────────────────────────────────
 document.getElementById('toggleBtn').addEventListener('click', () => {
@@ -622,10 +669,12 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
   document.querySelectorAll('.nav-grp').forEach(g => {
     let hit = false;
-    g.querySelectorAll('.slide-row').forEach(r => {
+    g.querySelectorAll('.slide-row, .sub-row').forEach(r => {
       const show = !q || r.dataset.q.includes(q) || r.dataset.n.includes(q);
       r.style.display = show ? '' : 'none';
       if (show) hit = true;
+      // a matching depth slide is useless inside a collapsed stack
+      if (show && q && r.classList.contains('sub-row')) setSubOpen(+r.dataset.parent, true);
     });
     g.style.display = hit ? '' : 'none';
     if (q && hit) g.classList.add('open');
@@ -658,6 +707,7 @@ document.addEventListener('fullscreenchange', () => {
 // ── Keyboard (shell focus) ────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
+  if ([' ','PageDown','PageUp','ArrowDown','ArrowUp'].indexOf(e.key) > -1) e.preventDefault();
   navArrow(e.key);
 });
 
@@ -686,18 +736,41 @@ function updateNavBtns() {
 function navArrow(key) {
   const built = getActiveList();
   const idx   = built.findIndex(s => s.n === current);
+  const subs  = subsFor(current);
+  const spine = built.find(x => x.n === current) || getFullList().find(x => x.n === current);
+
+  // ── VERTICAL AXIS: the depth stack. Keyboard-only, deliberate. ──
+  if (key === 'ArrowDown') {
+    if (subs && curSub < subs.length - 1) goDepth(current, curSub + 1);
+    return;
+  }
+  if (key === 'ArrowUp' || key === 'Escape') {
+    if (curSub === -1) return;
+    if (key === 'Escape' || curSub === 0) { if (spine) goTo(spine.n, spine.f); }
+    else goDepth(current, curSub - 1);
+    return;
+  }
+
+  // ── HORIZONTAL AXIS: the spine. Always leaves depth, so a clicker
+  //    can never strand the presenter inside a sub-slide. ──
+  const fwd = (key === 'ArrowRight' || key === 'PageDown' || key === ' ');
+  const bwd = (key === 'ArrowLeft'  || key === 'PageUp');
+  if (!fwd && !bwd) return;
+
   // Previewing a slide the presenter has hidden — jump relative to its manifest position.
   if (idx === -1) {
-    if (key === 'ArrowRight') { const nxt = built.find(s => s.n > current); if (nxt) goTo(nxt.n, nxt.f); }
-    if (key === 'ArrowLeft')  { const prv = [...built].reverse().find(s => s.n < current); if (prv) goTo(prv.n, prv.f); }
+    if (fwd) { const nxt = built.find(s => s.n > current); if (nxt) goTo(nxt.n, nxt.f); }
+    if (bwd) { const prv = [...built].reverse().find(s => s.n < current); if (prv) goTo(prv.n, prv.f); }
     updateNavBtns();
     return;
   }
-  if (key === 'ArrowRight' && idx < built.length - 1) goTo(built[idx+1].n, built[idx+1].f);
-  if (key === 'ArrowLeft'  && idx > 0)                goTo(built[idx-1].n, built[idx-1].f);
+  if (fwd && idx < built.length - 1) goTo(built[idx+1].n, built[idx+1].f);
+  if (bwd && idx > 0)                goTo(built[idx-1].n, built[idx-1].f);
   updateNavBtns();
 }
 
+// Open the deck on its first slide
+{ const first = getFullList()[0]; goTo(first.n, first.f); }
 updateNavBtns();
 </script>
 </body>

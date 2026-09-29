@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — Overtime Requests</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Use case 06<span class="sep">·</span><span class="ind">Manufacturing</span><span class="tag conf">Confirmed results</span></div>
+  <div class="h1 in2">Overtime Requests</div>
+  <div class="lede in3" style="margin-top:14px">Overtime that reaches payroll on time.</div>
+  <div class="body" style="margin-top:36px"><div class="grid in4" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="col pb lift"><div class="lbl">The problem</div><ul class="pts"><li>Manual overtime requests arrived with missing or inconsistent information.</li><li>Approval delays affected timely payroll processing.</li><li>Limited tracking made pending requests hard to monitor.</li><li>Maintaining a reliable audit trail was challenging.</li></ul></div>
+    <div class="col so lift"><div class="lbl">Studio solution</div><ul class="pts"><li class="lead">A structured digital overtime request form.</li><li>Standardised information submitted by employees.</li><li>Systematic review and approval workflows.</li><li>Centralised overtime records for tracking and reference.</li></ul></div>
+    <div class="col rs lift"><div class="lbl">Results</div><ul class="pts"><li class="lead">Simpler submission and tracking of overtime requests.</li><li>Better approval turnaround and accountability.</li><li>Accurate, consistent information for payroll teams.</li><li>Stronger record-keeping and audit readiness.</li></ul></div>
+  </div></div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

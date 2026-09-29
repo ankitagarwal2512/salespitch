@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — Production &amp; Delivery Tracking</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Use case 10<span class="sep">·</span><span class="ind">Exports</span><span class="tag exp">Expected results · scoped build</span></div>
+  <div class="h1 in2">Production &amp; Delivery Tracking</div>
+  <div class="lede in3" style="margin-top:14px">Where is the order, and who owns the next step?</div>
+  <div class="body" style="margin-top:36px"><div class="grid in4" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="col pb lift"><div class="lbl">The problem</div><ul class="pts"><li>Sample and full-size orders passed through multiple production stages.</li><li>Fragmented tracking caused missed updates and repeated follow-ups.</li><li>Teams lacked clear visibility into production and delivery status.</li><li>Final field requirements needed business validation.</li></ul></div>
+    <div class="col so lift"><div class="lbl">Studio solution</div><ul class="pts"><li class="lead">A centralised order-tracking application.</li><li>Workflows for both sample and full-size production orders.</li><li>Production and delivery milestones built into the flow.</li><li>Clear ownership defined at each stage to support delivery continuity.</li></ul></div>
+    <div class="col rs lift"><div class="lbl">Expected results</div><ul class="pts"><li class="lead">End-to-end visibility across sample and full-size orders.</li><li>Clearer identification of pending stages and responsible owners.</li><li>Fewer manual status follow-ups and less coordination effort.</li><li>Better view of production progress and delivery readiness.</li></ul></div>
+  </div></div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

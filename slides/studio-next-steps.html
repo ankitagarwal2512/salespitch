@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio — Let's Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#013a29;--font:'Public Sans', system-ui, sans-serif}
+  #viewport { width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; }
+  #stage{transform-origin:center center}
+  .abs { position:absolute; }
+
+  .bg-photo { top:0; left:0; width:1920px; height:787px; object-fit:cover; display:block; }
+
+  .logo-wrap { left:170px; top:80px; height:48px; opacity:0; animation:fadeDown .6s .1s ease forwards; }
+  .logo-wrap svg { height:48px; width:auto; opacity:.55; }
+
+  .eyebrow { left:178px; top:250px; font-size:52px; font-weight:800; color:#32d583; letter-spacing:-.5px; opacity:0; animation:fadeUp .6s .3s ease forwards; }
+  .headline { left:172px; top:318px; width:1130px; font-size:76px; font-weight:800; color:#ffffff; letter-spacing:-2px; line-height:1.14; opacity:0; animation:fadeUp .7s .45s ease forwards; }
+
+  .copy { left:178px; top:522px; width:1090px; opacity:0; animation:fadeUp .7s .65s ease forwards; }
+  .copy p { font-size:23px; line-height:32px; font-weight:400; color:rgba(255,255,255,.92); }
+  .copy p + p { margin-top:24px; }
+
+  @keyframes fadeDown{ from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp{ from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+  .city-strip { left:0; top:787px; width:1920px; height:104px; background:#ffffff; display:flex; align-items:center; padding-left:178px; opacity:0; animation:fadeIn .5s .9s ease forwards; }
+  .city-strip span { font-size:25px; font-weight:500; color:#1a1a1a; white-space:nowrap; }
+  .city-strip .div { width:1.5px; height:26px; background:rgba(0,0,0,.15); margin:0 29px; flex-shrink:0; }
+
+  .contact-strip { left:0; top:891px; width:1920px; height:189px; background:#f7f6f1; opacity:0; animation:fadeIn .5s 1.05s ease forwards; }
+
+  .c-item { display:flex; align-items:center; gap:20px; top:24px; }
+  .c-icon { width:52px; height:52px; border-radius:12px; background:#e2603f; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .c-icon svg { width:26px; height:26px; }
+  .c-text { font-size:24px; font-weight:500; color:#1a1a1a; white-space:nowrap; }
+  .c-mail { left:259px; }
+  .c-web  { left:757px; }
+  .c-social { left:1225px; gap:20px; }
+  .social-icons { display:flex; gap:6px; }
+  .social-icons .c-icon { width:52px; height:52px; }
+
+  .divider { left:178px; top:1000px; width:1564px; height:1px; background:rgba(0,0,0,.12); }
+  .copyright { left:0; top:1027px; width:1920px; text-align:center; font-size:21px; font-weight:400; color:#3a3a3a; }
+
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+  <img class="abs bg-photo" src="../Assets/thank_u_bg.jpg" alt="">
+
+  <div class="abs logo-wrap"><img src="../Assets/Studio logo.svg" alt="Studio by HROne" style="height:48px;display:block;opacity:.8"></div>
+  <div class="abs eyebrow">Ready for the next step?</div>
+  <div class="abs headline">Have a workflow you want to automate?</div>
+
+  <div class="abs copy">
+    <p>Tell us your use case. Our team will help you explore what can be built with HROne Studio &mdash; the data model, the forms, the access rules and the automation, built by one person in days, not months.</p>
+    <p>Studio is built into HROne HCM: employee data syncs from HROne, approvals land in the HROne Inbox, and it&rsquo;s supported by the HROne team you already work with. No new vendor. No new login.</p>
+  </div>
+  <div class="abs city-strip" id="cityStrip"></div>
+
+  <div class="abs contact-strip">
+    <div class="abs c-item c-mail">
+      <div class="c-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5C3 5.67 3.67 5 4.5 5h15c.83 0 1.5.67 1.5 1.5v11c0 .83-.67 1.5-1.5 1.5h-15A1.5 1.5 0 013 17.5v-11z" fill="#fff"/><path d="M4 6.2l8 6 8-6" stroke="#e2603f" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="c-text">connect@hrone.cloud</span>
+    </div>
+    <div class="abs c-item c-web">
+      <div class="c-icon">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="12" rx="1.6" fill="#fff"/><rect x="9" y="19" width="6" height="1.8" rx=".9" fill="#fff"/><rect x="10.5" y="16.5" width="3" height="2.6" fill="#fff"/></svg>
+      </div>
+      <span class="c-text">hrone.studio</span>
+    </div>
+    <div class="abs c-item c-social">
+      <div class="social-icons">
+        <div class="c-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14.5 21v-7.2h2.4l.4-2.8h-2.8v-1.8c0-.8.2-1.4 1.4-1.4h1.5V5.3c-.3 0-1.1-.1-2.1-.1-2.1 0-3.5 1.3-3.5 3.6v2H9.4v2.8H12V21h2.5z" fill="#fff"/></svg></div>
+        <div class="c-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4.5" y="9.5" width="3" height="9" fill="#fff"/><circle cx="6" cy="6" r="1.8" fill="#fff"/><path d="M10.2 9.5h2.9v1.3c.4-.7 1.4-1.6 3-1.6 3.2 0 3.7 2.1 3.7 4.8v4.5h-3v-4c0-1 0-2.2-1.4-2.2s-1.6 1.1-1.6 2.1v4.1h-3V9.5z" fill="#fff"/></svg></div>
+        <div class="c-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 6.6c-.6.3-1.3.5-2 .6.7-.4 1.3-1.2 1.5-2-.7.4-1.5.7-2.3.9a3.6 3.6 0 00-6.2 3.3A10.2 10.2 0 014 5.9a3.6 3.6 0 001.1 4.9c-.6 0-1.1-.2-1.6-.4v.1c0 1.8 1.3 3.3 3 3.6-.5.2-1 .2-1.6.1.4 1.4 1.7 2.5 3.3 2.5A7.3 7.3 0 013 18.1a10.2 10.2 0 005.6 1.6c6.7 0 10.4-5.5 10.4-10.4v-.5c.7-.5 1.3-1.2 1.8-1.9z" fill="#fff"/></svg></div>
+      </div>
+      <span class="c-text">/hronecloud</span>
+    </div>
+  </div>
+
+  <div class="abs divider"></div>
+  <div class="abs copyright">Copyright &copy; 2026. Uneecops Workplace Solutions Pvt. Ltd. All Rights Reserved.</div>
+
+</div></div>
+
+<div class="nav">
+  <span class="nav-cnt">32 / 32</span>
+  <button class="nav-btn" id="prevBtn" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+<script src="../shared/slide.js"></script>
+<script>
+const CITIES = ['New Delhi','Chandigarh','Chennai','Noida','Hyderabad','Mumbai','Bengaluru','Ahmedabad','Pune','Kolkata'];
+const strip = document.getElementById('cityStrip');
+strip.innerHTML = CITIES.map((c,i)=>`<span>${c}</span>${i<CITIES.length-1?'<span class="div"></span>':''}`).join('');
+
+document.addEventListener('keydown', e => {
+  if(window.parent !== window && (e.key==='ArrowRight'||e.key==='ArrowLeft')){
+    e.preventDefault();
+    window.parent.postMessage({type:'nav-key', key:e.key}, '*');
+  }
+});
+
+</script>
+</body>
+</html>

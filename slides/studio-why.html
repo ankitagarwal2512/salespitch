@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — Why Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<img class="corner" src="../Assets/Studio logo.svg" alt="Studio"/>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Why Studio</div>
+  <div class="hrow" style="margin-top:26px">
+    <div class="h1 in2" style="margin-top:0">No new vendor. <em>No new login.</em></div>
+    <div class="lede in3">Studio is not a second platform bolted onto your HCM. It is the half of HROne that covers everything your modules don’t.</div>
+  </div>
+  <div class="body"><div class="grid in4" style="grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(330px,auto)"><div class="card lift "><div class="num">01</div><h3>Built where your data already lives</h3><p>Employee records sync from HROne. No integration project, no duplicate masters to reconcile.</p></div><div class="card lift "><div class="num">02</div><h3>Approvals land where people already look</h3><p>Requests arrive in the HROne Inbox your team opens daily — web or mobile, nothing new to adopt.</p></div><div class="card lift  hi"><div class="num">03</div><h3>One team, one support line</h3><p>Supported by the HROne team you already work with. No second vendor to onboard or chase.</p></div></div></div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

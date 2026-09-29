@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Integrations</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#fdf5e7;--stage-bg:#fdf5e7}
+
+@keyframes fd  {from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu  {from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fsl {from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fsr {from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scIn{from{opacity:0;transform:scale(0.86)}to{opacity:1;transform:scale(1)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes ring-breathe{0%,100%{opacity:0.45;transform:scale(1)}50%{opacity:0.75;transform:scale(1.025)}}
+@keyframes hub-glow{0%,100%{box-shadow:0 0 0 8px rgba(2,86,61,0.06),0 0 0 18px rgba(2,86,61,0.03),0 24px 50px rgba(2,86,61,0.22)}50%{box-shadow:0 0 0 14px rgba(2,86,61,0.09),0 0 0 28px rgba(2,86,61,0.05),0 28px 60px rgba(2,86,61,0.30)}}
+@keyframes dot-pop{0%{r:0;opacity:0}70%{r:6px;opacity:1}100%{r:5px;opacity:1}}
+@keyframes line-breathe{0%,100%{filter:brightness(1)}50%{filter:brightness(2.2)}}
+
+/* Card base */
+.card{position:absolute;height:194px;width:469px}
+/* Card icon circle */
+.ci{position:absolute;left:0;top:0;width:86px;height:86px;border-radius:50%;background:white;border:1.4px solid #52b585;
+    box-shadow:0 11px 30px rgba(2,86,61,0.16),inset 0 0 0 6.8px #fbf8f0;
+    display:flex;align-items:center;justify-content:center}
+.ci-ring{position:absolute;inset:-8.76px;border-radius:50%;border:1.4px dashed rgba(2,86,61,0.18);pointer-events:none}
+.ci img{width:37px;height:37px;object-fit:contain}
+/* Card text */
+.cn{position:absolute;left:106px;top:13px;font-size:13px;font-weight:700;color:#339169;letter-spacing:3px}
+.ct{position:absolute;left:106px;top:38px;font-size:28px;font-weight:700;color:#01382b;letter-spacing:-0.4px;line-height:32px}
+.cs{position:absolute;left:106px;top:74px;font-size:14.5px;font-style:italic;color:#64748b;white-space:nowrap}
+/* Divider */
+.cd{position:absolute;left:0;top:106px;right:0;height:1px;background:#e4dbc4}
+/* Bottom logo section */
+.cb{position:absolute;left:0;top:107px;right:0;bottom:0}
+/* Logo tile */
+.tile{position:absolute;top:7px;width:57px;height:57px;border-radius:15px;
+      box-shadow:0 4px 14px rgba(2,86,61,0.12);overflow:hidden;
+      display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tile img{max-width:80%;max-height:80%;object-fit:contain;display:block}
+/* Tile label */
+.tl{position:absolute;top:72px;font-size:11.5px;font-weight:500;color:#01382b;text-align:center;line-height:13px}
+
+/* Nav */
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ BACKGROUND RADIAL GLOW ══ -->
+<div class="a" style="inset:0;background:radial-gradient(ellipse 65% 52% at 49% 57%,rgba(82,181,133,0.11) 0%,rgba(82,181,133,0) 68%);pointer-events:none"></div>
+
+<!-- ══ TOP-RIGHT LOGO ══ -->
+<img class="a" src="../Assets/oneai_logo.svg" style="left:1713px;top:64px;height:48px;width:auto;animation:fi .5s .06s ease both">
+
+<!-- ══ EYEBROW ══ -->
+<div class="a" style="left:72px;top:105px;display:flex;align-items:center;gap:12px;animation:fi .4s .08s ease both">
+  <div style="width:38px;height:3px;background:#ee5a3c;border-radius:2px;flex-shrink:0"></div>
+  <p style="font-size:14px;font-weight:700;color:#ee5a3c;letter-spacing:3px;text-transform:uppercase;white-space:nowrap">Play Well With Others</p>
+</div>
+
+<!-- ══ HEADLINE ══ -->
+<p class="a" style="left:72px;top:128px;font-size:90px;font-weight:700;color:#0e0e0e;line-height:96px;letter-spacing:-2px;animation:fd .65s .18s ease both">Integrations</p>
+
+<!-- ══ DESCRIPTION ══ -->
+<p class="a" style="left:678px;top:151px;width:730px;font-size:19px;color:#3d3d3d;line-height:29px;animation:fi .6s .28s ease both">Modern HR runs across many systems, partners, and workflows.<br>HROne brings them into <strong style="font-weight:700">one connected operating layer,</strong> across <strong style="font-weight:600">six integration families,</strong> with no middleware in between.</p>
+
+<!-- ══ CENTER TEXT ══ -->
+<p class="a" style="left:0;right:0;top:325px;text-align:center;font-size:36px;font-weight:700;color:#01382b;line-height:40px;animation:fi .7s .42s ease both">
+  One hub. <span style="color:#339169">Every tool your HR runs on.</span>
+</p>
+
+<!-- ══ CONCENTRIC CIRCLES ══ -->
+<!-- Outer dashed  r≈187  center (938,607) -->
+<div class="a" style="left:751px;top:420px;width:374px;height:374px;border-radius:50%;border:1px dashed rgba(2,86,61,0.38);animation:fi .5s .3s ease both"></div>
+<!-- Inner dashed  r≈126 -->
+<div class="a" style="left:812px;top:481px;width:252px;height:252px;border-radius:50%;border:1px dashed rgba(2,86,61,0.38);animation:fi .5s .34s ease both"></div>
+<!-- Solid breathe ring  r≈100 -->
+<div class="a" style="left:838px;top:507px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(82,181,133,0.55);transform-origin:center;animation:ring-breathe 3.5s 0.6s ease-in-out infinite"></div>
+
+<!-- ══ CONNECTOR LINES ══ (hub center ≈ 938,607) -->
+<svg class="a" style="left:0;top:0;width:1920px;height:1080px;pointer-events:none;overflow:visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="pglow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base lines (IDs for mpath reference) -->
+  <path id="lk" d="M516,377 C650,450 790,530 858,598" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .52s ease forwards,line-breathe 3.8s 1.52s ease-in-out infinite"/>
+  <path id="lb" d="M1403,382 C1230,445 1090,535 1019,590" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .54s ease forwards,line-breathe 3.8s 1.8s ease-in-out infinite"/>
+  <path id="lf" d="M515,640 C650,635 790,628 858,618" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .56s ease forwards,line-breathe 3.8s 2.1s ease-in-out infinite"/>
+  <path id="li" d="M1409,684 C1240,668 1080,648 1019,626" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .58s ease forwards,line-breathe 3.8s 2.4s ease-in-out infinite"/>
+  <path id="lc" d="M469,862 C565,804 710,718 878,660" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .60s ease forwards,line-breathe 3.8s 2.7s ease-in-out infinite"/>
+  <path id="lm" d="M1031,866 C1010,800 988,724 960,662" stroke="#339169" stroke-opacity=".45" stroke-width="1.5"
+        pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"
+        style="animation:draw 1s .62s ease forwards,line-breathe 3.8s 3.0s ease-in-out infinite"/>
+
+  <!-- Dots at card-icon ends -->
+  <circle cx="516" cy="377" r="0" fill="#52b585" style="animation:dot-pop .35s 1.52s ease forwards"/>
+  <circle cx="1403" cy="382" r="0" fill="#52b585" style="animation:dot-pop .35s 1.54s ease forwards"/>
+  <circle cx="515" cy="640" r="0" fill="#52b585" style="animation:dot-pop .35s 1.56s ease forwards"/>
+  <circle cx="1409" cy="684" r="0" fill="#52b585" style="animation:dot-pop .35s 1.58s ease forwards"/>
+  <circle cx="469" cy="862" r="0" fill="#52b585" style="animation:dot-pop .35s 1.60s ease forwards"/>
+  <circle cx="1031" cy="866" r="0" fill="#52b585" style="animation:dot-pop .35s 1.62s ease forwards"/>
+
+  <!-- ═══ FLOWING PARTICLES ═══ -->
+  <!-- KYC — dur 2.6s, two dots 1.3s apart -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.6s" begin="2.0s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lk"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.6s" begin="2.0s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.6s" begin="3.3s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lk"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.6s" begin="3.3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- BGV — dur 2.8s -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.8s" begin="2.3s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lb"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.8s" begin="2.3s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.8s" begin="3.7s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lb"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.8s" begin="3.7s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Financial — dur 2.4s -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.4s" begin="2.1s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lf"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.4s" begin="2.1s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.4s" begin="3.3s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lf"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.4s" begin="3.3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Identity — dur 2.7s -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.7s" begin="2.5s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#li"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.7s" begin="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.7s" begin="3.85s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#li"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.7s" begin="3.85s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Communication — dur 3.2s -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="3.2s" begin="2.7s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lc"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="3.2s" begin="2.7s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="3.2s" begin="4.3s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lc"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="3.2s" begin="4.3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Biometric — dur 2.9s -->
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.9s" begin="2.9s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lm"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.9s" begin="2.9s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="4" fill="#86efb8" opacity="0" filter="url(#pglow)">
+    <animateMotion dur="2.9s" begin="4.35s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".42 0 .18 1"><mpath href="#lm"/></animateMotion>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.86;1" dur="2.9s" begin="4.35s" repeatCount="indefinite"/>
+  </circle>
+</svg>
+
+<!-- ══ CENTER HUB ══ -->
+<div class="a" style="left:859px;top:527px;width:159px;height:159px;background:#014735;border-radius:36px;
+     animation:scIn .55s .32s ease both,hub-glow 3.5s 1s ease-in-out infinite">
+  <!-- Inner border -->
+  <div style="position:absolute;inset:5.4px;border-radius:30px;border:1px solid rgba(82,181,133,0.18)"></div>
+  <img src="../Assets/Integrations/hrone-vertical-green.svg" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:118px">
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     01 — KYC    left:90  top:334  469×194
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:90px;top:334px;animation:fsl .55s .72s ease both">
+  <div class="ci" style="left:383px"><div class="ci-ring"></div><img src="../Assets/int-ic-shield.svg"></div>
+  <span class="cn" style="left:0;right:106px;text-align:right">01</span>
+  <span class="ct" style="left:0;right:106px;text-align:right">KYC</span>
+  <span class="cs" style="left:0;right:106px;text-align:right;white-space:normal">Indian compliance, native</span>
+  <div class="cd"></div>
+  <div class="cb">
+    <div class="tile" style="left:7.6px; background:white">        <img src="../Assets/kyc-aadhaar.png"></div>
+    <div class="tile" style="left:86.9px; background:#1e3a8a">    <img src="../Assets/kyc-pan.svg"></div>
+    <div class="tile" style="left:166.2px;background:#047857">    <img src="../Assets/kyc-bank.svg"></div>
+    <div class="tile" style="left:245.6px;background:#6d28d9">    <img src="../Assets/kyc-uan.png"></div>
+    <div class="tile" style="left:324.9px;background:#e56046">    <img src="../Assets/kyc-dl.svg"></div>
+    <div class="tile" style="left:404.3px;background:#0f766e">    <img src="../Assets/kyc-digisign.svg"></div>
+    <span class="tl" style="left:7.6px;width:57px">Aadhaar</span>
+    <span class="tl" style="left:86.9px;width:57px">PAN</span>
+    <span class="tl" style="left:166.2px;width:57px">Bank</span>
+    <span class="tl" style="left:245.6px;width:57px">UAN</span>
+    <span class="tl" style="left:324.9px;width:57px">DL</span>
+    <span class="tl" style="left:404.3px;width:57px">DigiSign</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     02 — BGV    left:1360  top:339  469×208
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:1360px;top:339px;height:208px;animation:fsr .55s .74s ease both">
+  <div class="ci"><div class="ci-ring"></div><img src="../Assets/int-ic-usersearch.svg"></div>
+  <span class="cn">02</span>
+  <span class="ct">BGV</span>
+  <span class="cs">Background verification</span>
+  <div class="cd"></div>
+  <div class="cb" style="bottom:-14px">
+    <div class="tile" style="left:15.5px; background:white"><img src="../Assets/bgv-ongrid.png"></div>
+    <div class="tile" style="left:110.6px;background:white"><img src="../Assets/bgv-springverify.png"></div>
+    <span class="tl" style="left:15.5px;width:57px">OnGrid</span>
+    <span class="tl" style="left:110.6px;width:57px">Spring<br>Verify</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     03 — Financial   left:89  top:589  469×194
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:89px;top:589px;animation:fsl .55s .76s ease both">
+  <div class="ci" style="left:383px;top:8px"><div class="ci-ring"></div><img src="../Assets/int-ic-banknote.svg"></div>
+  <span class="cn" style="left:0;right:106px;text-align:right">03</span>
+  <span class="ct" style="left:0;right:106px;text-align:right">Financial</span>
+  <span class="cs" style="left:0;right:106px;text-align:right;white-space:normal">Payroll &amp; accounting plumbing</span>
+  <div class="cd"></div>
+  <div class="cb">
+    <div class="tile" style="left:7px;background:white"><img src="../Assets/fin-tally.png"></div>
+    <div class="tile" style="left:80px;background:white"><img src="../Assets/fin-sap.png"></div>
+    <div class="tile" style="left:153px;background:white"><img src="../Assets/Integrations/ORACLE.png"></div>
+    <div class="tile" style="left:226px;background:white"><img src="../Assets/Integrations/microsoft.png"></div>
+    <div class="tile" style="left:299px;background:#047857"><img src="../Assets/fin-h2h.svg"></div>
+    <div class="tile" style="left:372px;background:#1f2937"><img src="../Assets/fin-jvapi.svg"></div>
+    <span class="tl" style="left:7px;width:57px">Tally</span>
+    <span class="tl" style="left:80px;width:57px">SAP</span>
+    <span class="tl" style="left:153px;width:57px">Oracle</span>
+    <span class="tl" style="left:226px;width:57px">Microsoft</span>
+    <span class="tl" style="left:299px;width:57px">H2H banks</span>
+    <span class="tl" style="left:372px;width:57px">JV API</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     04 — Identity / SSO   left:1366  top:641  461×194
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:1366px;top:641px;width:461px;animation:fsr .55s .78s ease both">
+  <div class="ci"><div class="ci-ring"></div><img src="../Assets/int-ic-key.svg"></div>
+  <span class="cn">04</span>
+  <span class="ct">Identity</span>
+  <span class="cs">SAML 2.0 / SSO</span>
+  <div class="cd"></div>
+  <div class="cb">
+    <div class="tile" style="left:14px;  width:64px;background:white"><img src="../Assets/Integrations/microsoft.png"></div>
+    <div class="tile" style="left:107.7px;width:64px;background:white"><img src="../Assets/id-google.svg" style="width:80%;height:80%"></div>
+    <div class="tile" style="left:202.6px;width:64px;background:#007DC1"><img src="../Assets/id-okta.svg"></div>
+    <div class="tile" style="left:296.3px;width:64px;background:white"><img src="../Assets/id-miniorange.png"></div>
+    <div class="tile" style="left:390px;  width:57px;background:white"><img src="../Assets/id-saml.png"></div>
+    <span class="tl" style="left:14px;   width:64px">Microsoft</span>
+    <span class="tl" style="left:107.7px;width:64px">Google W.</span>
+    <span class="tl" style="left:202.6px;width:64px">Okta</span>
+    <span class="tl" style="left:296.3px;width:64px">MiniOrange</span>
+    <span class="tl" style="left:390px;  width:57px">SAML 2.0</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     05 — Communication   left:426  top:819  469×194
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:426px;top:819px;animation:fu .55s .80s ease both">
+  <div class="ci"><div class="ci-ring"></div><img src="../Assets/int-ic-message.svg"></div>
+  <span class="cn">05</span>
+  <span class="ct">Communication</span>
+  <span class="cs">Reach employees where they are</span>
+  <div class="cd"></div>
+  <div class="cb">
+    <div class="tile" style="left:15.5px; background:#25d366"><img src="../Assets/com-whatsapp.svg"></div>
+    <div class="tile" style="left:110.7px;background:white"><img src="../Assets/com-msteams.png" style="max-width:62%;max-height:62%"></div>
+    <div class="tile" style="left:205.9px;background:#4a154b"><img src="../Assets/com-slack.svg"></div>
+    <div class="tile" style="left:301.1px;background:white">  <img src="../Assets/com-email.svg"></div>
+    <div class="tile" style="left:396.3px;background:#475569"><img src="../Assets/com-sms.svg"></div>
+    <span class="tl" style="left:15.5px; width:57px">WhatsApp</span>
+    <span class="tl" style="left:110.7px;width:57px">MS Teams</span>
+    <span class="tl" style="left:205.9px;width:57px">Slack</span>
+    <span class="tl" style="left:301.1px;width:57px">Email</span>
+    <span class="tl" style="left:396.3px;width:57px">SMS</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     06 — Biometric   left:988  top:823  469×194
+══════════════════════════════════════════════════════════ -->
+<div class="a card" style="left:988px;top:823px;animation:fu .55s .82s ease both">
+  <div class="ci"><div class="ci-ring"></div><img src="../Assets/Integrations/Biometric.svg"></div>
+  <span class="cn">06</span>
+  <span class="ct">Biometric</span>
+  <span class="cs">Punch data, synced to attendance</span>
+  <div class="cd"></div>
+  <div class="cb">
+    <div class="tile" style="left:15.5px; background:white"><img src="../Assets/bio-sql.png"></div>
+    <div class="tile" style="left:110.7px;background:#26557c"><img src="../Assets/bio-mysql.png"></div>
+    <div class="tile" style="left:205.9px;background:white"><img src="../Assets/bio-postgresql.png"></div>
+    <div class="tile" style="left:301.1px;background:white"><img src="../Assets/bio-device.png"></div>
+    <span class="tl" style="left:15.5px; width:57px">SQL</span>
+    <span class="tl" style="left:110.7px;width:57px">MySQL</span>
+    <span class="tl" style="left:205.9px;width:57px">PostgreSQL</span>
+    <span class="tl" style="left:301.1px;width:57px">API</span>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <span class="nav-cnt" id="nav-cnt">15 / 31</span>
+  <button class="nav-btn" id="prevBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="nav-btn" id="nextBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+  </button>
+</nav>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

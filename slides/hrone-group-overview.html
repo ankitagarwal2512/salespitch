@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne – Group Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--page-bg:#1a1210;--stage-bg:#fdf5e7;--nav-bg:rgba(1,58,41,.82);--nav-cnt:rgba(255,255,255,.65)}
+#viewport{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+
+@keyframes fadeIn   {from{opacity:0}to{opacity:1}}
+@keyframes fadeDown {from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp  {from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideR   {from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideL   {from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)}}
+
+/* ── Eyebrow ── */
+.eyebrow{position:absolute;left:79px;top:68px;display:flex;align-items:center;gap:10px;
+  opacity:0;animation:fadeIn .4s .1s ease forwards}
+.ey-line{width:28px;height:3px;background:#ee5a3c;border-radius:2px;flex-shrink:0}
+.ey-txt{font-size:14px;font-weight:700;color:#ee5a3c;letter-spacing:3px;text-transform:uppercase}
+
+/* ── Logo ── */
+.hd-logo{position:absolute;right:80px;top:52px;opacity:0;animation:fadeIn .4s .1s ease forwards}
+
+/* ── Title ── */
+.main-title{position:absolute;left:0;right:0;top:100px;text-align:center;
+  opacity:0;animation:fadeDown .55s .2s ease forwards}
+.main-title h1{font-size:90px;font-weight:800;letter-spacing:-2px;line-height:1;color:#0e0e0e}
+
+/* ── Subtitle ── */
+.subtitle{position:absolute;left:0;right:0;top:224px;text-align:center;
+  font-size:30px;font-weight:500;color:#3d3d3d;
+  opacity:0;animation:fadeIn .5s .32s ease forwards}
+
+/* ── Stats section ── */
+.stats-section{position:absolute;left:75px;top:336px;width:1694px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:slideUp .5s .44s ease forwards}
+.stats-row{display:flex;gap:90px;align-items:flex-start;width:100%;justify-content:space-between}
+
+/* Stat column */
+.stat-col{display:flex;flex-direction:column;align-items:center;gap:16px;
+  padding:20px 20px 24px;text-align:center}
+.stat-icon{width:44px;height:44px;object-fit:contain;flex-shrink:0}
+.stat-texts{display:flex;flex-direction:column;gap:8px;align-items:center}
+.stat-num{font-size:30px;font-weight:700;color:#0e0e0e;white-space:nowrap;line-height:1.1}
+.stat-num em{font-style:normal;color:#ee5a3c}
+.stat-sub{font-size:20px;font-weight:500;color:#272727;text-align:center;max-width:280px}
+
+/* Timeline */
+.timeline-wrap{width:100%;display:flex;justify-content:center}
+.timeline-svg{display:block;flex-shrink:0}
+
+/* ── Left cards (two separate) ── */
+.lcard{position:absolute;left:114px;width:559px;
+  background:#fff;border-radius:15px;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+  display:flex;align-items:center;gap:28px;
+  padding:24px 40px}
+.lcard-1{top:628px;opacity:0;animation:slideR .5s 1.0s ease forwards}
+.lcard-2{top:808px;opacity:0;animation:slideR .5s 1.08s ease forwards}
+.lcard-icon{width:44px;height:44px;object-fit:contain;flex-shrink:0}
+.lcard-divider{width:1px;height:100px;background:#e0dbd3;flex-shrink:0}
+.lcard-texts{display:flex;flex-direction:column;gap:6px}
+.lcard-title{font-size:32px;font-weight:700;color:#02563d;white-space:nowrap}
+.lcard-desc{font-size:16px;font-weight:500;color:#272727;line-height:1.5;max-width:390px}
+
+/* ── Right card ── */
+.rcard{position:absolute;left:703px;top:628px;width:1094px;height:326px;
+  background:#fff;border-radius:15px;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+  overflow:hidden;
+  opacity:0;animation:slideL .5s 1.04s ease forwards}
+/* HR-Tech label */
+.rc-hrtech{position:absolute;left:55px;top:68px;
+  font-size:24px;font-weight:700;color:#02563d}
+/* HROne logo */
+.rc-logo{position:absolute;left:55px;top:114px}
+/* Vertical divider */
+.rc-vdiv{position:absolute;left:322px;top:0;width:1px;height:100%;background:#e0dbd3}
+/* Bullets */
+.rc-bullets{position:absolute;left:362px;top:52px;width:680px;
+  display:flex;flex-direction:column;gap:28px}
+.bullet-row{display:flex;align-items:center;gap:14px}
+.bullet-icon{width:34px;height:34px;object-fit:contain;flex-shrink:0}
+.bullet-txt{font-size:20px;font-weight:500;color:#272727;line-height:1.4;white-space:nowrap}
+.bullet-txt b{font-weight:700}
+.coral{color:#ee5a3c}
+
+/* ── Nav ── */
+.nav{opacity:0;animation:fadeIn .6s 2.5s ease forwards}
+.nav-btn{transition:background .18s,border-color .18s,transform .12s}
+.nav-btn:hover{border-color:#23A578}
+</style>
+</head>
+<body>
+<div id="viewport">
+<div id="stage">
+
+<!-- ── Eyebrow ── -->
+<div class="eyebrow">
+  <div class="ey-line"></div>
+  <span class="ey-txt">Group Overview</span>
+</div>
+
+<!-- ── HROne Logo ── -->
+<div class="hd-logo">
+  <svg height="44" width="190" viewBox="0 0 228 51" fill="none">
+    <g clip-path="url(#go-h)">
+      <path d="M19.9582 23.0264L25.0472 25.5872L20.8408 41.815L18.8467 51C8.39627 47.8265 0 38.3481 0 26.618C0 24.285.305121 22.028.893568 19.874C1.11696 19.961 1.3349 20.064 1.54195 20.178L6.65817 23.01C7.87866 23.688 9.31163 23.911 10.6738 23.64L16.1278 22.527C17.4246 22.261 18.7758 22.446 19.9527 23.032L19.9582 23.0264Z" fill="#013b2a"/>
+      <path d="M17.6325 16.7746L26.2249 21.0987V21.1096L20.3949 18.4836C18.9783 17.8543 17.36 17.7946 15.9107 18.3426L10.8708 20.2306C9.416 20.7841 7.80322 20.7244 6.38658 20.0896L1.521 17.8922C1.78798 17.1489 2.08765 16.4165 2.42546 15.7112L4.33792 16.7692C5.5584 17.4419 6.98593 17.6589 8.35352 17.3768L13.813 16.2646C15.1043 16.0042 16.4501 16.1832 17.627 16.78L17.6325 16.7746Z" fill="#013b2a"/>
+      <path d="M52.9274 26.1836V26.3518C52.9219 27.8764 52.7748 29.3684 52.5187 30.817C52.4915 30.9689 52.4588 31.11 52.437 31.2565C52.4152 31.3759 52.3879 31.4952 52.3607 31.6146C52.3226 31.7882 52.2844 31.9564 52.2463 32.1246C51.3854 35.6729 49.7617 38.9607 47.555 41.8091H32.0647L30.8442 30.855H45.1795L46.7759 24.9791L26.2238 15.8534L18.0673 12.2346C16.6561 11.5998 15.0433 11.5455 13.594 12.0935L8.55406 13.987C7.09929 14.535 5.49195 14.4862 4.07532 13.846L3.5686 13.6181C3.72116 13.3468 3.86828 13.0864 4.02628 12.8205C8.614 5.13798 17.0212 0 26.6379 0C28.959 0 31.2038.298 33.3451.86266C44.2042 3.71649 52.3008 13.2763 52.8892 24.8218C52.911 25.2721 52.9274 25.7224 52.9274 26.1782V26.1836Z" fill="#013b2a"/>
+      <path d="M67.4917 41.7783V9.2251H76.3674V21.9425H88.1146V9.2251H96.9903V41.7783H88.1146V29.0608H76.3674V41.7783H67.4917Z" fill="#013b2a"/>
+      <path d="M100.303 41.7783V9.2251H114.415C116.839 9.2251 118.964 9.66457 120.784 10.5435C122.604 11.4224 124.02 12.692 125.028 14.3414C126.042 15.9962 126.543 17.9765 126.543 20.2878C126.543 22.599 126.02 24.5848 124.979 26.1853C123.95 27.7858 122.495 28.9957 120.621 29.8096C118.757 30.6234 116.583 31.0357 114.093 31.0357H105.664V24.167H112.306C113.347 24.167 114.235 24.0422 114.97 23.7872C115.717 23.5214 116.283 23.1036 116.676 22.5339C117.079 21.9642 117.281 21.2155 117.281 20.2932C117.281 19.3708 117.079 18.6004 116.676 18.0199C116.283 17.4285 115.711 16.9945 114.97 16.7178C114.235 16.4302 113.347 16.2891 112.306 16.2891H109.178V41.7837H100.303V41.7783ZM119.46 26.8364L127.633 41.7783H117.989L110.007 26.8364H119.455H119.46Z" fill="#013b2a"/>
+      <path d="M136.994 39.6117C134.504 38.1685 132.565 36.1882 131.115 33.6653C129.666 31.1913 128.99 28.4406 128.99 25.4674C128.99 22.4942 129.715 19.7489 131.159 17.226C132.608 14.7465 134.553 12.7662 137.081 11.3284C139.571 9.88524 142.328 9.16907 145.358 9.16907C148.387 9.16907 151.101 9.89066 153.634 11.3284C156.124 12.7716 158.113 14.7519 159.557 17.226C161.006 19.7489 161.725 22.4942 161.725 25.4674C161.725 28.4406 161.001 31.2293 159.557 33.7088C158.107 36.2316 156.168 38.1685 153.678 39.6063C151.144 41.0495 148.387 41.7657 145.358 41.7657C142.328 41.7657 139.479 41.0441 136.989 39.6063L136.994 39.6117ZM152.141 36.9532C154.13 35.7813 155.716 34.1591 156.843 32.1353C157.971 30.155 158.56 27.9034 158.56 25.4728C158.56 23.0422 157.971 20.834 156.843 18.8102C155.667 16.8299 154.086 15.2077 152.098 14.0358C150.06 12.8639 147.799 12.2345 145.358 12.2345C142.917 12.2345 140.612 12.8205 138.618 13.9924C136.629 15.1643 135.044 16.7865 133.872 18.8102C132.695 20.8394 132.156 23.0422 132.156 25.4728C132.156 27.9034 132.701 30.2039 133.872 32.1842C135 34.2079 136.586 35.7867 138.574 36.9586C140.563 38.1306 142.824 38.7165 145.358 38.7165C147.891 38.7165 150.153 38.1306 152.141 36.9586V36.9532Z" fill="#013b2a"/>
+      <path d="M164.93 41.7777V9.22453H168.782V14.4656C171.163 10.9661 174.786 9.15942 179.717 9.15942C182.436 9.15942 184.817 9.72368 186.855 10.7383C188.669 11.7528 190.026 13.1092 191.05 14.9159C192.015 16.7226 192.521 18.8114 192.521 21.2367V41.7777H188.669V21.2367C188.669 18.6433 187.819 16.6087 186.119 15.1438C184.419 13.6789 182.207 12.8868 179.374 12.8868C175.974 12.8868 173.37 13.8471 171.555 15.7623C169.686 17.6829 168.776 20.3903 168.776 23.8897V41.7777H164.924H164.93Z" fill="#013b2a"/>
+      <path d="M203.919 39.7422C201.472 38.3045 199.581 36.3133 198.192 33.823C196.803 31.3326 196.138 28.5656 196.138 25.5762C196.138 22.5867 196.803 19.8739 198.192 17.3836C199.581 14.8933 201.472 12.9021 203.919 11.4643C206.31 10.0266 208.975 9.25073 211.868 9.25073C214.761 9.25073 217.371 10.0266 219.758 11.4643C222.149 12.9021 224.035 14.8933 225.424 17.3836C226.813 19.8739 227.538 22.5867 227.538 25.5762C227.538 26.352 227.484 26.8512 227.484 27.1821H200.028C200.252 29.2872 200.916 31.1645 202.028 32.8247C203.139 34.5391 204.529 35.8684 206.251 36.807C207.918 37.8053 209.808 38.2448 211.863 38.2448C213.917 38.2448 215.698 37.7999 217.366 36.8613C219.033 35.9769 220.422 34.7019 221.534 33.0959H225.871C224.536 35.8087 222.591 37.9681 220.144 39.5144C217.644 41.1203 214.865 41.8962 211.863 41.8962C208.86 41.8962 206.305 41.1746 203.913 39.7368L203.919 39.7422ZM223.702 23.6392C223.37 21.6481 222.7 19.8197 221.588 18.1595C220.477 16.4992 219.033 15.2242 217.366 14.2856C215.698 13.4013 213.862 12.9021 211.863 12.9021C209.863 12.9021 207.972 13.4013 206.305 14.2856C204.638 15.2242 203.248 16.4992 202.137 18.1595C201.025 19.8197 200.301 21.6481 200.023 23.6392H223.697H223.702Z" fill="#013b2a"/>
+    </g>
+    <defs><clipPath id="go-h"><rect width="227.538" height="51" fill="white"/></clipPath></defs>
+  </svg>
+</div>
+
+<!-- ── Title ── -->
+<div class="main-title">
+  <h1>We are <span style="color:#ee5a3c">Uneecops Group,</span></h1>
+</div>
+
+<!-- ── Subtitle ── -->
+<p class="subtitle">A fast-growing conglomerate with</p>
+
+<!-- ── Stats Section ── -->
+<div class="stats-section">
+  <div class="stats-row">
+
+    <!-- Col 1: Revenue -->
+    <div class="stat-col">
+      <img class="stat-icon" src="../Assets/icons/revenue.svg" alt="Revenue icon"/>
+      <div class="stat-texts">
+        <p class="stat-num"><em>2000 Cr</em> Revenue</p>
+        <p class="stat-sub">10+ offices across India</p>
+      </div>
+    </div>
+
+    <!-- Col 2: Headcounts -->
+    <div class="stat-col" style="width:346px">
+      <img class="stat-icon" src="../Assets/icons/Headcounts.svg" alt="Headcounts icon"/>
+      <div class="stat-texts">
+        <p class="stat-num"><em>2200+</em> Headcounts</p>
+        <p class="stat-sub">CMMi Level 5 company</p>
+      </div>
+    </div>
+
+    <!-- Col 3: Entities -->
+    <div class="stat-col" style="width:346px">
+      <img class="stat-icon" src="../Assets/icons/Entities.svg" alt="Entities icon"/>
+      <div class="stat-texts">
+        <p class="stat-num"><em>03</em> Entities</p>
+        <p class="stat-sub">E-governance, IT services, &amp; HR tech</p>
+      </div>
+    </div>
+
+    <!-- Col 4: Experience -->
+    <div class="stat-col">
+      <img class="stat-icon" src="../Assets/icons/Experience.svg" alt="Experience icon"/>
+      <div class="stat-texts">
+        <p class="stat-num"><em>30+</em> Year Experience</p>
+        <p class="stat-sub">In business automation and services</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Timeline: SVG drawn by JS to align dots under each stat column -->
+  <div class="timeline-wrap" style="width:100%">
+    <svg id="tl-svg" width="1694" height="21" style="display:block;overflow:visible">
+      <line id="tl-line" y1="10" y2="10" stroke="#ee5a3c" stroke-width="1.5" stroke-dasharray="5 8" opacity=".45"/>
+      <g id="tl-dots"></g>
+    </svg>
+  </div>
+</div>
+
+<!-- ── Left Card 1: E-governance ── -->
+<div class="lcard lcard-1">
+  <img class="lcard-icon" src="../Assets/icons/E-governance.svg" alt="E-governance"/>
+  <div class="lcard-divider"></div>
+  <div class="lcard-texts">
+    <p class="lcard-title">E-governance</p>
+    <p class="lcard-desc">CMMi Level 5 accredited - powering 15,000+ smart classrooms and 200+ government projects.</p>
+  </div>
+</div>
+
+<!-- ── Left Card 2: IT Services ── -->
+<div class="lcard lcard-2">
+  <img class="lcard-icon" src="../Assets/icons/IT Services.svg" alt="IT Services"/>
+  <div class="lcard-divider"></div>
+  <div class="lcard-texts">
+    <p class="lcard-title">IT Services</p>
+    <p class="lcard-desc">SAP, Salesforce &amp; Tableau - trusted by 1,000+ enterprises globally.</p>
+  </div>
+</div>
+
+<!-- ── Right Card ── -->
+<div class="rcard">
+  <p class="rc-hrtech">HR-Tech</p>
+
+  <!-- HROne logo inside right card -->
+  <div class="rc-logo">
+    <svg width="220" height="49" viewBox="0 0 228 51" fill="none" aria-label="HROne">
+      <g clip-path="url(#rc-h)">
+        <path d="M19.9582 23.0264L25.0472 25.5872L20.8408 41.815L18.8467 51C8.39627 47.8265 0 38.3481 0 26.618C0 24.285.305121 22.028.893568 19.874C1.11696 19.961 1.3349 20.064 1.54195 20.178L6.65817 23.01C7.87866 23.688 9.31163 23.911 10.6738 23.64L16.1278 22.527C17.4246 22.261 18.7758 22.446 19.9527 23.032L19.9582 23.0264Z" fill="#013b2a"/>
+        <path d="M17.6325 16.7746L26.2249 21.0987V21.1096L20.3949 18.4836C18.9783 17.8543 17.36 17.7946 15.9107 18.3426L10.8708 20.2306C9.416 20.7841 7.80322 20.7244 6.38658 20.0896L1.521 17.8922C1.78798 17.1489 2.08765 16.4165 2.42546 15.7112L4.33792 16.7692C5.5584 17.4419 6.98593 17.6589 8.35352 17.3768L13.813 16.2646C15.1043 16.0042 16.4501 16.1832 17.627 16.78L17.6325 16.7746Z" fill="#013b2a"/>
+        <path d="M52.9274 26.1836V26.3518C52.9219 27.8764 52.7748 29.3684 52.5187 30.817C52.4915 30.9689 52.4588 31.11 52.437 31.2565C52.4152 31.3759 52.3879 31.4952 52.3607 31.6146C52.3226 31.7882 52.2844 31.9564 52.2463 32.1246C51.3854 35.6729 49.7617 38.9607 47.555 41.8091H32.0647L30.8442 30.855H45.1795L46.7759 24.9791L26.2238 15.8534L18.0673 12.2346C16.6561 11.5998 15.0433 11.5455 13.594 12.0935L8.55406 13.987C7.09929 14.535 5.49195 14.4862 4.07532 13.846L3.5686 13.6181C3.72116 13.3468 3.86828 13.0864 4.02628 12.8205C8.614 5.13798 17.0212 0 26.6379 0C28.959 0 31.2038.298 33.3451.86266C44.2042 3.71649 52.3008 13.2763 52.8892 24.8218C52.911 25.2721 52.9274 25.7224 52.9274 26.1782V26.1836Z" fill="#013b2a"/>
+        <path d="M67.4917 41.7783V9.2251H76.3674V21.9425H88.1146V9.2251H96.9903V41.7783H88.1146V29.0608H76.3674V41.7783H67.4917Z" fill="#013b2a"/>
+        <path d="M100.303 41.7783V9.2251H114.415C116.839 9.2251 118.964 9.66457 120.784 10.5435C122.604 11.4224 124.02 12.692 125.028 14.3414C126.042 15.9962 126.543 17.9765 126.543 20.2878C126.543 22.599 126.02 24.5848 124.979 26.1853C123.95 27.7858 122.495 28.9957 120.621 29.8096C118.757 30.6234 116.583 31.0357 114.093 31.0357H105.664V24.167H112.306C113.347 24.167 114.235 24.0422 114.97 23.7872C115.717 23.5214 116.283 23.1036 116.676 22.5339C117.079 21.9642 117.281 21.2155 117.281 20.2932C117.281 19.3708 117.079 18.6004 116.676 18.0199C116.283 17.4285 115.711 16.9945 114.97 16.7178C114.235 16.4302 113.347 16.2891 112.306 16.2891H109.178V41.7837H100.303V41.7783ZM119.46 26.8364L127.633 41.7783H117.989L110.007 26.8364H119.455H119.46Z" fill="#013b2a"/>
+        <path d="M136.994 39.6117C134.504 38.1685 132.565 36.1882 131.115 33.6653C129.666 31.1913 128.99 28.4406 128.99 25.4674C128.99 22.4942 129.715 19.7489 131.159 17.226C132.608 14.7465 134.553 12.7662 137.081 11.3284C139.571 9.88524 142.328 9.16907 145.358 9.16907C148.387 9.16907 151.101 9.89066 153.634 11.3284C156.124 12.7716 158.113 14.7519 159.557 17.226C161.006 19.7489 161.725 22.4942 161.725 25.4674C161.725 28.4406 161.001 31.2293 159.557 33.7088C158.107 36.2316 156.168 38.1685 153.678 39.6063C151.144 41.0495 148.387 41.7657 145.358 41.7657C142.328 41.7657 139.479 41.0441 136.989 39.6063L136.994 39.6117ZM152.141 36.9532C154.13 35.7813 155.716 34.1591 156.843 32.1353C157.971 30.155 158.56 27.9034 158.56 25.4728C158.56 23.0422 157.971 20.834 156.843 18.8102C155.667 16.8299 154.086 15.2077 152.098 14.0358C150.06 12.8639 147.799 12.2345 145.358 12.2345C142.917 12.2345 140.612 12.8205 138.618 13.9924C136.629 15.1643 135.044 16.7865 133.872 18.8102C132.695 20.8394 132.156 23.0422 132.156 25.4728C132.156 27.9034 132.701 30.2039 133.872 32.1842C135 34.2079 136.586 35.7867 138.574 36.9586C140.563 38.1306 142.824 38.7165 145.358 38.7165C147.891 38.7165 150.153 38.1306 152.141 36.9586V36.9532Z" fill="#013b2a"/>
+        <path d="M164.93 41.7777V9.22453H168.782V14.4656C171.163 10.9661 174.786 9.15942 179.717 9.15942C182.436 9.15942 184.817 9.72368 186.855 10.7383C188.669 11.7528 190.026 13.1092 191.05 14.9159C192.015 16.7226 192.521 18.8114 192.521 21.2367V41.7777H188.669V21.2367C188.669 18.6433 187.819 16.6087 186.119 15.1438C184.419 13.6789 182.207 12.8868 179.374 12.8868C175.974 12.8868 173.37 13.8471 171.555 15.7623C169.686 17.6829 168.776 20.3903 168.776 23.8897V41.7777H164.924H164.93Z" fill="#013b2a"/>
+        <path d="M203.919 39.7422C201.472 38.3045 199.581 36.3133 198.192 33.823C196.803 31.3326 196.138 28.5656 196.138 25.5762C196.138 22.5867 196.803 19.8739 198.192 17.3836C199.581 14.8933 201.472 12.9021 203.919 11.4643C206.31 10.0266 208.975 9.25073 211.868 9.25073C214.761 9.25073 217.371 10.0266 219.758 11.4643C222.149 12.9021 224.035 14.8933 225.424 17.3836C226.813 19.8739 227.538 22.5867 227.538 25.5762C227.538 26.352 227.484 26.8512 227.484 27.1821H200.028C200.252 29.2872 200.916 31.1645 202.028 32.8247C203.139 34.5391 204.529 35.8684 206.251 36.807C207.918 37.8053 209.808 38.2448 211.863 38.2448C213.917 38.2448 215.698 37.7999 217.366 36.8613C219.033 35.9769 220.422 34.7019 221.534 33.0959H225.871C224.536 35.8087 222.591 37.9681 220.144 39.5144C217.644 41.1203 214.865 41.8962 211.863 41.8962C208.86 41.8962 206.305 41.1746 203.913 39.7368L203.919 39.7422ZM223.702 23.6392C223.37 21.6481 222.7 19.8197 221.588 18.1595C220.477 16.4992 219.033 15.2242 217.366 14.2856C215.698 13.4013 213.862 12.9021 211.863 12.9021C209.863 12.9021 207.972 13.4013 206.305 14.2856C204.638 15.2242 203.248 16.4992 202.137 18.1595C201.025 19.8197 200.301 21.6481 200.023 23.6392H223.697H223.702Z" fill="#013b2a"/>
+      </g>
+      <defs><clipPath id="rc-h"><rect width="227.538" height="51" fill="white"/></clipPath></defs>
+    </svg>
+  </div>
+
+  <!-- Vertical divider -->
+  <div class="rc-vdiv"></div>
+
+  <!-- Bullets -->
+  <div class="rc-bullets">
+    <div class="bullet-row">
+      <svg class="bullet-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#02563d"/><polyline points="10,17 15,22 24,12" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <p class="bullet-txt">Globally <b>ranked #1</b> easiest-to-use HCM software <span class="coral">(G2)</span></p>
+    </div>
+    <div class="bullet-row">
+      <svg class="bullet-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#02563d"/><polyline points="10,17 15,22 24,12" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <p class="bullet-txt">Trusted by <b>2,500+ enterprises</b> <span class="coral">across PAN-India</span></p>
+    </div>
+    <div class="bullet-row">
+      <svg class="bullet-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="#02563d"/><polyline points="10,17 15,22 24,12" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <p class="bullet-txt"><b>10+ offices</b> nationwide <span class="coral">with 500+ team strength</span></p>
+    </div>
+  </div>
+</div>
+
+</div><!-- #stage -->
+</div><!-- #viewport -->
+
+<!-- ── Nav ── -->
+<div class="nav">
+  <span class="nav-cnt">2 / 32</span>
+  <button class="nav-btn" id="prevBtn" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="nav-btn" id="nextBtn" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<script src="../shared/slide.js"></script>
+<script>
+
+function drawTimeline(){
+  var cols=document.querySelectorAll('.stat-col');
+  var svg=document.getElementById('tl-svg');
+  if(!cols.length||!svg)return;
+  var centers=[];
+  cols.forEach(function(col){
+    centers.push(col.offsetLeft+col.offsetWidth/2);
+  });
+  var line=document.getElementById('tl-line');
+  line.setAttribute('x1',centers[0]);
+  line.setAttribute('x2',centers[centers.length-1]);
+  var dotsG=document.getElementById('tl-dots');
+  dotsG.innerHTML='';
+  centers.forEach(function(cx){
+    var o=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    o.setAttribute('cx',cx);o.setAttribute('cy','10');o.setAttribute('r','7');
+    o.setAttribute('stroke','#ee5a3c');o.setAttribute('stroke-width','1.5');o.setAttribute('fill','#fdf5e7');
+    dotsG.appendChild(o);
+    var i=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    i.setAttribute('cx',cx);i.setAttribute('cy','10');i.setAttribute('r','3.5');i.setAttribute('fill','#ee5a3c');
+    dotsG.appendChild(i);
+  });
+}
+window.addEventListener('load',function(){requestAnimationFrame(function(){requestAnimationFrame(drawTimeline);});});
+window.addEventListener('resize',drawTimeline);
+
+</script>
+</body>
+</html>

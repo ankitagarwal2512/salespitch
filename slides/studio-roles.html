@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Studio — Roles &amp;amp; Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio.css"/>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<div class="glow" style="right:-143px;top:-310px;width:729px;height:729px;background:radial-gradient(ellipse at center,rgba(50,213,131,.16) 0%,transparent 65%)"></div>
+<div class="glow" style="left:-385px;top:-284px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.11) 0%,transparent 60%)"></div>
+<div class="glow" style="left:520px;bottom:-330px;width:978px;height:978px;background:radial-gradient(ellipse at center,rgba(50,213,131,.08) 0%,transparent 60%)"></div>
+<img class="corner" src="../Assets/Studio logo.svg" alt="Studio"/>
+
+<div class="pg">
+  <div class="eyebrow in1"><i></i>Studio · Roles &amp; access</div>
+  <div class="split" style="margin-top:26px">
+    <div class="txt">
+      <div class="h1 in2" style="margin-top:0">Permissions down to the <em>property and the row</em></div>
+      <div class="ubar in3"></div>
+      <p class="in3">App roles carry table-level rights — view, edit, create, delete, import, export. <b>Property-level view and edit control per field.</b></p>
+      <p class="in4">Row-level data filters so a role sees only its own records. Visual builder or JSON.</p>
+    </div>
+    <div class="pan in4"><div class="panel">
+      <div class="ph">Three levels of control</div>
+      <div class="rows">
+        <div class="row"><div class="rn">01</div><div><h4>Table level</h4><p>View, edit, create, delete, import and export</p></div></div>
+        <div class="row"><div class="rn">02</div><div><h4>Property level</h4><p>View and edit control on every individual field</p></div></div>
+        <div class="row"><div class="rn">03</div><div><h4>Row level</h4><p>Data filters so a role sees only its own records</p></div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+<div class="nav"><span class="nav-cnt">1 / 25</span><button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button><button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
