@@ -15,7 +15,6 @@
 .h1{font-size:64px;font-weight:800;color:#fff;line-height:68px}
 .ubar{width:115px;height:6px;background:#32d583;border-radius:1px}
 .card{background:#fdf5e7;border-radius:28px;box-shadow:0 8px 60px rgba(0,0,0,.22)}
-.dcard{background:#00583e;border:1px solid rgba(255,255,255,.09);border-radius:28px;box-shadow:0 8px 60px rgba(0,0,0,.26)}
 .clabel{font-size:18px;font-weight:700;letter-spacing:2.4px;color:#e56046}
 .disc{border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .disc-p{background:#eec6b3}.disc-w{background:rgba(255,255,255,.14)}
@@ -55,19 +54,11 @@
 .pc .bt{font-size:20px;line-height:29px;color:#3a3a3a}
 .chips{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
 .chips span{font-size:15px;font-weight:600;letter-spacing:.4px;color:#0a4831;background:rgba(10,72,49,.07);border:1px solid rgba(10,72,49,.14);padding:5px 12px;border-radius:14px}
-.im{padding:34px 38px}
-.im .clabel{color:#F2D98C}
-.im .kick svg{stroke:#F2D98C}
-.irow{padding:15px 0;border-top:1px solid rgba(255,255,255,.12)}
-.irow:first-of-type{border-top:0}
-.irow h5{font-size:21px;font-weight:600;color:#fff;line-height:28px}
-.irow p{font-size:18px;color:rgba(255,255,255,.7);line-height:26px;margin-top:2px}
-.irow p em{font-style:normal;color:#7fe0ae;font-weight:600}
 .sc{padding:32px 38px}
 .sh{display:flex;align-items:center;gap:18px}
 .sh h3{font-size:30px;font-weight:600;color:#0e0e0e;letter-spacing:-.3px}
 .sh small{margin-left:auto;font-size:15px;font-weight:600;letter-spacing:1.6px;color:#8a7f70}
-.cgrid{display:grid;grid-template-columns:1fr 1fr 1.15fr;margin-top:26px}
+.cgrid{display:grid;grid-template-columns:1fr .8fr 1.35fr;margin-top:26px}
 .cgrid>div{padding:0 28px;border-left:1px solid #e8ded0}
 .cgrid>div:first-child{padding-left:0;border-left:0}
 .hd .cl{gap:22px}
@@ -83,15 +74,15 @@
 
 <p class="a sub-r" style="top:130px;width:620px;font-size:23px;font-weight:400;color:rgba(255,255,255,.86);line-height:32px;animation:fu .45s .22s ease backwards">Outside the standard scope, available at an additional commercial cost.</p>
 
-<div class="a card pc lift" style="left:72px;top:246px;width:573px;height:336px;animation:fu .5s .28s ease backwards">
+<div class="a card pc lift" style="left:72px;top:246px;width:874px;height:336px;animation:fu .5s .28s ease backwards">
   <div class="kick"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.4M4 5v4h4"/><path d="M4 13a8 8 0 0 0 14.6 4.4M20 19v-4h-4"/></svg><p class="clabel">ADDITIONAL PAYROLL CYCLE</p></div>
-  <div class="stat"><b>+25%</b><span>of agreed PEPM, user-wise</span></div>
+  <div class="stat"><b>+25%</b><span>of agreed PEPM per user</span></div>
   <div class="hr"></div>
-  <p class="bt">For adjustments after standard payroll is disbursed</p>
-  <div class="chips"><span>Variable</span><span>Incentive</span><span>Bonus etc.</span></div>
+  <p class="bt">For post-disbursement adjustments</p>
+  <div class="chips"><span>Variable pay</span><span>Incentives</span><span>Bonuses etc.</span></div>
 </div>
 
-<div class="a card pc lift" style="left:673px;top:246px;width:573px;height:336px;animation:fu .5s .36s ease backwards">
+<div class="a card pc lift" style="left:974px;top:246px;width:874px;height:336px;animation:fu .5s .36s ease backwards">
   <div class="kick"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3.2 2"/></svg><p class="clabel">FULL &amp; FINAL SETTLEMENT</p></div>
   <div class="stat"><b>48 hr</b><span>turnaround</span></div>
   <div class="hr"></div>
@@ -99,21 +90,12 @@
   <div class="chips"><span>New Labour Code</span></div>
 </div>
 
-<div class="a dcard im lift" style="left:1275px;top:246px;width:573px;height:336px;animation:fu .5s .44s ease backwards">
-  <div class="kick"><svg viewBox="0 0 24 24"><path d="M5 19l3.5-1 9-9a3.5 3.5 0 0 0-5-5l-9 9L2.5 16.5z"/><path d="M13.5 5.5l5 5"/></svg><p class="clabel">IMPLEMENTATION</p></div>
-  <div style="margin-top:14px">
-    <div class="irow"><h5>Existing HROne payroll user</h5><p>Current FY processed &amp; locked: <em>NA</em></p></div>
-    <div class="irow"><h5>Managed services + HROne</h5><p><em>Shared</em> implementation</p></div>
-    <div class="irow"><h5>Standalone managed services</h5><p>Current FY unprocessed: <em>50% of agreed PEPM</em></p></div>
-  </div>
-</div>
-
 <div class="a card sc lift" style="left:72px;top:610px;width:1175px;height:382px;animation:fu .5s .54s ease backwards">
   <div class="sh"><div class="disc disc-p" style="width:54px;height:54px"><svg viewBox="0 0 24 24" style="width:27px;height:27px"><path d="M12 2.8l7.4 3v5.4c0 4.4-3 8.2-7.4 9.8-4.4-1.6-7.4-5.4-7.4-9.8V5.8z"/><path d="M8.9 11.9l2.2 2.2 4.1-4.3"/></svg></div><h3>Compliance Services</h3></div>
   <div class="cgrid">
-    <div><p class="glab">NEW JOINER</p><ul class="cl"><li>PAN-Aadhaar link validation</li><li>ESIC IP Number link / generate</li><li>EPF/UAN Member ID link / generate</li></ul></div>
-    <div><p class="glab">F&amp;F</p><ul class="cl"><li>ESIC IP Number delink</li><li>EPF/UAN Member ID delink</li></ul></div>
-    <div><p class="glab">STATUTORY</p><ul class="cl"><li>Quarterly/Annual TDS return filing</li><li>ESI &amp; EPF challan submission on portal</li><li>Standard payroll compliance returns</li></ul></div>
+    <div><p class="glab">NEW JOINER</p><ul class="cl"><li>ESIC IP Number link / generate</li><li>EPF/UAN Member ID link / generate</li></ul></div>
+    <div><p class="glab">F&amp;F</p><ul class="cl"><li>IP Number delink</li><li>UAN ID delink</li></ul></div>
+    <div><p class="glab">STATUTORY</p><ul class="cl"><li>Quarterly/Annual TDS return filing</li><li>ESI &amp; EPF challan submission on portal</li><li>Standard payroll compliance returns</li><li>Payment ownership of customer</li></ul></div>
   </div>
 </div>
 
