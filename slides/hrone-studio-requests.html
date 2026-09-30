@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Studio · Employee Requests</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio-wf.css"/>
+<link rel="stylesheet" href="../shared/hrone-screen.css"/>
+<style>
+.shot{width:1240px;height:760px;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(6,38,26,.16)}
+.shot .scr{transform:scale(.86111)}
+/* demo states */
+.ri.new{max-height:0;padding-top:0;padding-bottom:0;opacity:0;overflow:hidden;transition:max-height .45s ease,padding .45s ease,opacity .35s ease .1s}
+#demo.submitted .ri.new{max-height:120px;padding-top:14px;padding-bottom:14px;opacity:1}
+#demo.submitted #rowOld{background:#fff;box-shadow:none}
+#demo.submitted .ri.new{background:#f3f8f5;box-shadow:inset 3px 0 0 #23A578}
+.s-new,.s-pd{display:none !important}
+#demo.submitted .s-old{display:none}#demo.submitted .s-new{display:inline !important}
+#demo.submitted.pending .s-ok{display:none !important}#demo.submitted.pending .s-pd{display:inline-flex !important}
+.rqd i{font-style:normal}
+.pd{height:24px;padding:0 10px;border-radius:12px;background:#fdf1dc;color:#b7791f;font-size:12px;font-weight:500;display:inline-flex;align-items:center}
+.a3{background:#fdf1dc}
+.g3{color:#b7791f;font-weight:500}
+#detail{transition:opacity .3s}
+#demo.flip #detail{opacity:.25}
+.ibv{left:200px;top:48px;width:1240px;height:834px;background:#fff;display:flex;z-index:5;transition:opacity .45s}
+#demo.onreq .ibv{opacity:0;pointer-events:none}
+.ibvn{width:220px;border-right:1px solid #e5e5e5;padding:0 12px}
+.ibvh{height:56px;display:flex;align-items:center;font-size:16px;font-weight:500;color:#171717;border-bottom:1px solid #e5e5e5;margin:0 -12px 8px;padding:0 16px}
+.ibvn .gi{justify-content:space-between}.ibvn .gi b{font-weight:400;color:#737373}
+.ibvl{width:420px;border-right:1px solid #e5e5e5;padding-top:56px}
+.ibvl .ri{gap:6px}
+.ibvl .ri.on{background:#f3f8f5;box-shadow:inset 3px 0 0 #23A578}
+.ibvl{overflow:hidden}
+.ibvd{flex:1;background:#f6f6f6;display:flex;flex-direction:column}
+.vh{position:relative;background:#fff;padding:18px 24px;border-bottom:1px solid #e5e5e5}
+.vh b{font-size:16px;font-weight:600;color:#0a0a0a}.vh p{font-size:12px;color:#525252;margin-top:6px}.vh em{font-style:normal;font-weight:600;color:#262626}
+.vh .pd{position:absolute;right:24px;top:20px}
+.vc{margin:32px 40px;background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:24px 28px}
+.vt{font-size:16px;font-weight:600;color:#0a0a0a}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;margin-top:20px}
+.vg .w{grid-column:1/3}.vg label{display:block;font-size:12px;color:#737373;margin-bottom:4px}.vg span{font-size:14px;color:#0a0a0a}
+.vb{display:flex;justify-content:center;gap:14px;margin-top:28px}.vb span{height:38px;padding:0 20px;border-radius:6px;display:flex;align-items:center;font-size:14px;font-weight:500;color:#fff}
+.vb .vbr{background:#a32a24}.vb .vba{background:#24583f}
+.l0 .l0i{transition:background .2s}
+.nr{left:200px;top:48px;width:1240px;height:834px;background:rgba(10,10,10,.28);z-index:6;opacity:0;pointer-events:none;transition:opacity .25s}
+#demo.modal .nr{opacity:1}
+.nrc{position:absolute;left:330px;top:90px;width:560px;background:#fff;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.22);padding:22px 24px 24px;transform:translateY(10px);transition:transform .25s}
+#demo.modal .nrc{transform:none}
+.v-form{display:none}#demo.form .v-form{display:block}#demo.form .v-pick{display:none}
+.nrh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.nrh b{font-size:18px;font-weight:600;color:#0a0a0a}.nrh span{font-size:14px;color:#737373}
+.tagu{height:24px;padding:0 10px;border-radius:12px;background:#f0f5f2;color:#02563d !important;font-size:12px !important;font-weight:500;display:flex;align-items:center}
+.nrs{height:38px;border:1px solid #e5e5e5;border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 12px;font-size:13px;color:#737373;margin-bottom:10px}
+.nrg{font-size:11px;letter-spacing:1px;color:#737373;padding:12px 4px 6px}
+.pk{height:44px;border-radius:8px;display:flex;align-items:center;gap:12px;padding:0 12px;font-size:14px;color:#0a0a0a;transition:background .15s}
+.pk em{margin-left:auto;font-style:normal;font-size:12px;color:#737373}
+.pk.hov{background:#f0f5f2}
+.ffs{display:flex;flex-direction:column;gap:12px}
+.ff label{display:block;font-size:12px;color:#525252;margin-bottom:6px}
+.ff .fi{height:40px;border:1px solid #e5e5e5;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:14px;color:#0a0a0a;overflow:hidden}
+.fv{opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+.ff.done .fv{opacity:1;transform:none}.ff.done .fi{border-color:#cfe4d8}
+.nrb{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+.nrb span{height:38px;padding:0 18px;border-radius:6px;display:flex;align-items:center;font-size:14px;font-weight:500}
+.bc{border:1px solid #e5e5e5;color:#404040}.bs{background:#02563d;color:#fff;transition:filter .15s}
+.bs.hov{filter:brightness(1.2)}
+.nb{transition:filter .15s}.nb.hov{filter:brightness(1.2)}
+.toast{left:1060px;top:64px;width:360px;background:#02563d;color:#fff;border-radius:10px;padding:14px 16px;display:flex;gap:12px;align-items:center;z-index:7;
+  box-shadow:0 14px 30px rgba(0,0,0,.2);opacity:0;transform:translateY(-10px);transition:opacity .3s,transform .3s}
+.toast svg{width:28px;height:28px;padding:6px;border-radius:50%;background:rgba(255,255,255,.18);flex-shrink:0}
+.toast b{display:block;font-size:14px;font-weight:600}.toast span{font-size:12px;opacity:.85}
+#demo.toasted .toast{opacity:1;transform:none}
+.cur{left:900px;top:620px;z-index:10;width:26px;height:26px;opacity:0;transition:left .75s cubic-bezier(.45,.05,.25,1),top .75s cubic-bezier(.45,.05,.25,1),opacity .3s;pointer-events:none}
+.cur svg{position:absolute;left:0;top:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
+.cur.on{opacity:1}
+.rip{position:absolute;left:-14px;top:-14px;width:32px;height:32px;border-radius:50%;background:rgba(35,165,120,.45);transform:scale(0);opacity:0}
+.cur.clk .rip{animation:rip .5s ease-out}
+@keyframes rip{0%{transform:scale(0);opacity:1}100%{transform:scale(1.6);opacity:0}}
+/* request screen content (native coords) */
+.rq{left:200px;top:48px;width:1240px;height:834px;display:flex;background:#fff}
+.rqn{width:220px;border-right:1px solid #e5e5e5;padding:16px 12px}
+.nb{height:40px;border-radius:6px;background:#02563d;color:#fff;font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px}
+.g{display:flex;align-items:center;justify-content:space-between;padding:0 10px;height:34px;font-size:11px;font-weight:500;letter-spacing:1px;color:#737373;margin-top:6px}
+.gi{height:32px;border-radius:6px;padding:0 14px;display:flex;align-items:center;font-size:14px;color:#404040}
+.gi.on{background:#eef6f1;color:#02563d;font-weight:500}
+.rql{width:340px;border-right:1px solid #e5e5e5;display:flex;flex-direction:column}
+.lh{height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid #e5e5e5}
+.cf{height:32px;padding:0 12px;border-radius:6px;background:#f5f5f4;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:#0a0a0a}
+.ri{padding:14px 18px;border-bottom:1px solid #f0f0ee;display:flex;flex-direction:column;gap:4px}
+.ri b{font-size:14px;font-weight:500;color:#0a0a0a}
+.ri .ap{font-size:12px;color:#525252}
+.ri .wh{font-size:12px;color:#737373}
+.ri .by{font-size:11px;font-weight:500;color:#0a7a50;margin-top:4px}
+.ri.on{background:#f3f8f5;box-shadow:inset 3px 0 0 #23A578}
+.rqd{flex:1;padding:28px 40px}
+.tabs{display:flex;border-bottom:1px solid #e5e5e5}
+.tb{flex:1;padding-bottom:14px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;color:#737373}
+.tb.on{color:#0a0a0a;font-weight:600;box-shadow:inset 0 -2px 0 #02563d}
+.ok{height:24px;padding:0 10px;border-radius:12px;background:#dcf2e6;color:#0a7a50;font-size:12px;font-weight:500;display:inline-flex;align-items:center}
+.wl{margin:28px 0 18px;font-size:14px;font-weight:500;color:#404040}
+.st{display:flex;gap:18px;margin-bottom:18px}
+.av{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.a1{background:#f1ece2;color:#6b5f4c}.a2{background:#dcf2e6}
+.bx{flex:1;border:1px solid #e5e5e5;border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:#525252}
+.bx b{font-size:15px;font-weight:600;color:#0a0a0a;display:flex;align-items:center;gap:10px}
+.bx em{margin-left:auto;font-style:normal;font-size:12px;font-weight:500;color:#7a3fb0;background:#efe2fb;border-radius:10px;padding:3px 10px}
+.bx a{font-size:13px;font-weight:600;color:#0a7a50;text-decoration:underline}
+.bx .g2{color:#0a7a50;font-weight:500}
+.cx{margin:34px auto 0;width:170px;height:44px;border:1px solid #d4d4d4;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;letter-spacing:.6px;color:#404040}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ TEXT ══ -->
+<div class="txt">
+  <div class="eyb"><i></i>Employee requests</div>
+  <img class="lg" src="../Assets/studio-logo-dark.svg" alt="Studio by HROne">
+  <p class="hl">Business requests.<br>One place to start.</p>
+  <p class="bd">Raise visitor, canteen and uniform requests from the same HROne Request experience.</p>
+</div>
+
+
+<!-- ══ PRODUCT VIEW ══ -->
+<div class="board">
+  <!-- product screen -->
+  <div class="a shot u3" id="demo" style="left:0;top:10px">
+    <div class="scr">
+    <div class="rq">
+  <div class="rqn">
+    <div class="nb" id="btnNew"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New request</div>
+    <div class="g">HRONE <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></div>
+    <div class="gi">Pending</div><div class="gi">Approved</div><div class="gi">Draft</div>
+    <div class="g">STUDIO <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></div>
+    <div class="gi">Pending</div><div class="gi">Approved</div><div class="gi">Draft</div>
+  </div>
+  <div class="rql">
+    <div class="lh"><span class="cf">All Category <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M7 12h10M10 18h4"/></svg></span>
+      <img src="../Assets/studio-apps-screen/tb-search.svg" width="16" height="16" alt=""></div>
+    <div class="ri new" id="rowNew"><b>Uniform request</b><span class="ap">Uniform Management</span><span class="wh">Just now</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri on" id="rowOld"><b>Uniform request</b><span class="ap">Uniform Management</span><span class="wh">15/06/2026, 4:27 PM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri"><b>Guest meal request</b><span class="ap">Canteen Management</span><span class="wh">15/06/2026, 11:02 AM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri"><b>Visitor pass request</b><span class="ap">Visitor Management</span><span class="wh">14/06/2026, 6:40 PM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri"><b>Uniform replacement</b><span class="ap">Uniform Management</span><span class="wh">12/06/2026, 3:15 PM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri"><b>Visitor pass request</b><span class="ap">Visitor Management</span><span class="wh">10/06/2026, 9:48 AM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div><div class="ri"><b>Guest meal request</b><span class="ap">Canteen Management</span><span class="wh">09/06/2026, 1:20 PM</span><span class="by">BY: Rajnikant A Rao (#Tech0001)</span></div>
+  </div>
+  <div class="rqd" id="detail">
+    <div class="tabs"><div class="tb on">Approval workflow <span class="ok s-ok">Approved</span><span class="pd s-pd">Pending</span></div><div class="tb">Discussion</div></div>
+    <p class="wl">Your request workflow</p>
+    <div class="st"><span class="av a1">RR</span><div class="bx"><b>Rajnikant A Rao (#Tech0001)</b><span><i class="s-old">15/06/2026</i><i class="s-new">Today, 10:42 AM</i></span><span>Uniform request · 2 sets · Shirt M · Trousers 32</span><a>View Form</a></div></div>
+    <div class="st"><span class="av a2 s-ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a7a50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="av a3 s-pd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b7791f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div class="bx"><b>Deepak Kumar Chauhan (#HR10017) <em>Level 1</em></b><span class="g2 s-ok">Request is approved.</span><span class="g3 s-pd">Pending approval</span><a>View Details</a></div></div>
+    <div class="cx">CANCEL</div>
+  </div>
+</div>
+    <div class="ibv" id="inboxView">
+      <div class="ibvn"><div class="ibvh">Inbox</div><div class="g">HRONE</div><div class="gi on">All messages<b>14</b></div><div class="gi">Approvals<b>3</b></div><div class="g">STUDIO</div><div class="gi">Uniform request<b>12</b></div><div class="gi">Visitor pass<b>8</b></div></div>
+      <div class="ibvl"><div class="ri on"><b>Leave request · Priya Nair</b><span class="wh">Today, 9:18 AM</span><span class="ap">Casual leave · 2 days</span></div><div class="ri"><b>Visitor pass · Arjun Mehta</b><span class="wh">Today, 8:55 AM</span><span class="ap">2 visitors · Pune Plant</span></div><div class="ri"><b>Guest meal request · Sneha Kulkarni</b><span class="wh">Yesterday, 6:10 PM</span><span class="ap">6 guests · Lunch</span></div><div class="ri"><b>Travel request · Vikram Singh</b><span class="wh">Yesterday, 2:32 PM</span><span class="ap">Mumbai · 3 days</span></div><div class="ri"><b>Uniform request · Anjali Verma</b><span class="wh">Yesterday, 11:43 AM</span><span class="ap">2 sets · Shirt S</span></div><div class="ri"><b>Attendance regularisation · Rohit Sharma</b><span class="wh">23/02/2026, 7:05 PM</span><span class="ap">Missed punch · 22/02</span></div><div class="ri"><b>Visitor pass · Karan Mehta</b><span class="wh">23/02/2026, 4:20 PM</span><span class="ap">1 visitor · Head Office</span></div><div class="ri"><b>Expense claim · Neha Kapoor</b><span class="wh">22/02/2026, 1:15 PM</span><span class="ap">Client travel · ₹4,850</span></div></div>
+      <div class="ibvd"><div class="vh"><b>Leave request · Priya Nair (#EMP0987)</b><p><em>From :</em> Priya Nair &nbsp;·&nbsp; <em>To :</em> Rajnikant A Rao</p><span class="pd">Pending</span></div>
+        <div class="vc"><b class="vt">Casual leave</b>
+          <div class="vg"><div><label>Leave type</label><span>Casual leave</span></div><div><label>Days</label><span>2</span></div>
+          <div><label>From</label><span>27/02/2026</span></div><div><label>To</label><span>28/02/2026</span></div>
+          <div class="w"><label>Reason</label><span>Family function in Nashik</span></div></div>
+          <div class="vb"><span class="vbr">Reject</span><span class="vba">Approve</span></div></div></div>
+    </div>
+    <div class="nr" id="modal">
+      <div class="nrc">
+        <div class="v-pick">
+          <div class="nrh"><b>New request</b><span>&#x2715;</span></div>
+          <div class="nrs"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span>Search forms</span></div>
+          <div class="nrg">HRONE</div><div class="pk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Leave</span></div><div class="pk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Travel</span></div><div class="pk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Attendance regularisation</span></div>
+          <div class="nrg">STUDIO</div><div class="pk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#02563d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9.5" rx="1.5"/><circle cx="6" cy="7.6" r="1.4"/><path d="M3.9 11a2.2 2.2 0 0 1 4.2 0M10 7h2.3M10 9.5h1.8"/></svg><span>Visitor pass</span><em>Visitor Management</em></div><div class="pk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#02563d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 1.5v4a1.5 1.5 0 0 0 3 0v-4M6 7v7.5M11.5 14.5V1.5C9.9 2.2 9 4.1 9 6.5V9h2.5"/></svg><span>Guest meal request</span><em>Canteen Management</em></div><div class="pk" id="pickUniform"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#02563d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.7 2.2 2.3 3.9l1 3 1.2-.4v7.3h7V6.5l1.2.4 1-3-3.4-1.7a2.3 2.3 0 0 1-4.6 0z"/></svg><span>Uniform request</span><em>Uniform Management</em></div>
+        </div>
+        <div class="v-form">
+          <div class="nrh"><b>Uniform request</b><span class="tagu">Uniform Management</span></div>
+          <div class="ffs"><div class="ff"><label>Location</label><div class="fi"><span class="fv">Pune Plant · Unit 2</span></div></div><div class="ff"><label>Item</label><div class="fi"><span class="fv">Shirt &amp; trousers</span></div></div><div class="ff"><label>Size</label><div class="fi"><span class="fv">Shirt M · Trousers 32</span></div></div><div class="ff"><label>Quantity</label><div class="fi"><span class="fv">2 sets</span></div></div><div class="ff"><label>Reason</label><div class="fi"><span class="fv">New joinee</span></div></div></div>
+          <div class="nrb"><span class="bc">Cancel</span><span class="bs" id="btnSubmit">Submit</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="l0">
+  <div class="brand"><span class="bh">H</span><span class="bn">HRONE</span></div>
+  <div class="l0body">
+    <div class="sec"><div class="cap">YOUR SPACE</div><div><div class="l0i on" id="navInbox"><img src="../Assets/studio-apps-screen/nav-inbox.svg" width="16" height="16" alt=""><span>Inbox</span></div><div class="l0i" id="navReq"><img src="../Assets/studio-apps-screen/nav-request.svg" width="16" height="16" alt=""><span>Request</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-teams.svg" width="16" height="16" alt=""><span>Teams</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-oneai.svg" width="16" height="16" alt=""><span>One AI</span></div></div></div>
+    <div class="sec"><div class="cap">APPS</div><div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-hrdesk.svg" width="16" height="16" alt=""><span>HR Desk</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-recruitment.svg" width="16" height="16" alt=""><span>Recruitment</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-teams.svg" width="16" height="16" alt=""><span>Workforce</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-timeoffice.svg" width="16" height="16" alt=""><span>Timeoffice</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-payroll.svg" width="16" height="16" alt=""><span>Payroll</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-performance.svg" width="16" height="16" alt=""><span>Performance</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-core.svg" width="16" height="16" alt=""><span>Core</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-workplan.svg" width="16" height="16" alt=""><span>Work plan</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-expense.svg" width="16" height="16" alt=""><span>Expense</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-helpdesk.svg" width="16" height="16" alt=""><span>Help desk</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-engage.svg" width="16" height="16" alt=""><span>Engage</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-aiinterviewer.svg" width="16" height="16" alt=""><span>AI Interviewer</span></div></div></div>
+    <div class="sec last"><div class="cap">CUSTOM APPS</div>
+      <div><div class="l0i"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F0F5F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9.5" rx="1.5"/><circle cx="6" cy="7.6" r="1.4"/><path d="M3.9 11a2.2 2.2 0 0 1 4.2 0M10 7h2.3M10 9.5h1.8"/></svg><span>Visitor Management</span></div><div class="l0i"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F0F5F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 1.5v4a1.5 1.5 0 0 0 3 0v-4M6 7v7.5M11.5 14.5V1.5C9.9 2.2 9 4.1 9 6.5V9h2.5"/></svg><span>Canteen Management</span></div><div class="l0i"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F0F5F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.7 2.2 2.3 3.9l1 3 1.2-.4v7.3h7V6.5l1.2.4 1-3-3.4-1.7a2.3 2.3 0 0 1-4.6 0z"/></svg><span>Uniform Management</span></div></div>
+      <div class="l0i dash"><img src="../Assets/studio-apps-screen/nav-appbuilder.svg" width="16" height="16" alt=""><span>App Builder</span></div>
+    </div>
+  </div>
+  <div class="l0foot"><div class="l0i"><img src="../Assets/studio-apps-screen/nav-settings.svg" width="16" height="16" alt=""><span>Settings</span></div></div>
+</div>
+    <div class="toast" id="toast"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Uniform request approved</b><span>by Deepak Kumar Chauhan · Level 1</span></div></div>
+    <div class="cur" id="cur"><i class="rip"></i><svg width="26" height="26" viewBox="0 0 24 24"><path d="M5 3l14 7.5-6.2 1.6L9.6 18z" fill="#0a0a0a" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+    <div class="topb">
+  <div class="tl"><img src="../Assets/studio-apps-screen/top-home.svg" width="16" height="16" alt=""><span>Brightline Industries Pvt. Ltd.</span></div>
+  <div class="tc"><div class="ts"><img src="../Assets/studio-apps-screen/top-search.svg" width="14" height="14" alt=""><span>Type a command or search</span></div>
+    <div class="tib"><img src="../Assets/studio-apps-screen/top-org.svg" width="16" height="16" alt=""></div></div>
+  <div class="tr"><i><img src="../Assets/studio-apps-screen/top-chat.svg" width="16" height="16" alt=""></i><i><img src="../Assets/studio-apps-screen/top-bell.svg" width="16" height="16" alt=""></i>
+    <img class="tav" src="../Assets/studio-apps-screen/top-avatar.png" alt=""></div>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt">— / 36</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+(function(){
+  var demo = document.getElementById('demo'), scr = demo.querySelector('.scr');
+  var cur = document.getElementById('cur');
+  function $(id){ return document.getElementById(id); }
+  function pos(el){ var x = 0, y = 0; while (el && el !== scr) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return {x:x, y:y}; }
+  function aim(el, dx, dy){ var p = pos(el); cur.style.left = (p.x + (dx == null ? el.offsetWidth/2 : dx)) + 'px'; cur.style.top = (p.y + (dy == null ? el.offsetHeight/2 : dy)) + 'px'; }
+  function click(){ cur.classList.remove('clk'); void cur.offsetWidth; cur.classList.add('clk'); }
+  function set(cls, on){ demo.classList.toggle(cls, on); }
+  var fields = [].slice.call(demo.querySelectorAll('.ff'));
+  function final(){ ['onreq','submitted'].forEach(function(c){ set(c, true); }); $('navReq').classList.add('on'); $('navInbox').classList.remove('on'); }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { final(); return; }
+
+  var T = [];
+  function at(ms, fn){ T.push([ms, fn]); }
+  at(0, function(){
+    demo.className = demo.className.replace(/\b(onreq|modal|form|submitted|pending|toasted|fade|flip)\b/g, '').trim();
+    $('navReq').classList.remove('on'); $('navInbox').classList.add('on');
+    fields.forEach(function(f){ f.classList.remove('done'); });
+    cur.style.transition = 'none'; cur.style.left = '900px'; cur.style.top = '640px'; void cur.offsetWidth; cur.style.transition = '';
+    cur.classList.add('on');
+  });
+  at(500,  function(){ aim($('navReq'), 60); });
+  at(1350, function(){ click(); $('navReq').classList.add('on'); $('navInbox').classList.remove('on'); set('onreq', true); });
+  at(2000, function(){ aim($('btnNew')); });
+  at(2850, function(){ click(); $('btnNew').classList.add('hov'); set('modal', true); });
+  at(3200, function(){ $('btnNew').classList.remove('hov'); });
+  at(3500, function(){ aim($('pickUniform'), 150); });
+  at(4250, function(){ $('pickUniform').classList.add('hov'); });
+  at(4450, function(){ click(); set('form', true); $('pickUniform').classList.remove('hov'); });
+  fields.forEach(function(f, i){ at(5000 + i*380, function(){ f.classList.add('done'); }); });
+  at(7000, function(){ aim($('btnSubmit')); });
+  at(7750, function(){ $('btnSubmit').classList.add('hov'); click(); });
+  at(8050, function(){ $('btnSubmit').classList.remove('hov'); set('modal', false); set('submitted', true); set('pending', true); set('flip', true); });
+  at(8350, function(){ set('flip', false); });
+  at(8600, function(){ cur.classList.remove('on'); });
+  at(10200, function(){ set('flip', true); });
+  at(10450, function(){ set('pending', false); set('flip', false); set('toasted', true); });
+  at(13400, function(){ set('toasted', false); });
+  var LOOP = 14200;
+  setTimeout(function run(){
+    T.forEach(function(t){ setTimeout(t[1], t[0]); });
+    setTimeout(run, LOOP);
+  }, 1300);
+})();
+</script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

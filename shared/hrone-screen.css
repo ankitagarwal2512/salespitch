@@ -1,0 +1,30 @@
+/* ══════════════════════════════════════════════════════════════════
+   HROne product chrome — top bar + L0 nav, from Figma
+   (Product revamp · 71:2491). Screens are built at native 1440×882
+   inside .scr and scaled down by the slide (.scr transform).
+   ══════════════════════════════════════════════════════════════════ */
+.scr{position:relative;width:1440px;height:882px;background:#fff;transform:scale(.86111);transform-origin:0 0;font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased}
+.scr > *{position:absolute}
+.scr img{display:block}
+.topb{left:0;top:0;width:1440px;height:48px;background:#01241a;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:3}
+.topb .tl{display:flex;align-items:center;gap:8px}.topb .tl img{margin:0 4px}
+.topb .tl span{font-size:14px;font-weight:500;line-height:18px;color:#fff}
+.topb .tc{display:flex;gap:10px;width:469px}
+.topb .ts{flex:1;height:32px;background:#fff;border:1px solid #d4d4d4;border-radius:6px;display:flex;align-items:center;gap:8px;padding:0 12px}
+.topb .ts span{font-size:12px;line-height:20px;letter-spacing:.096px;color:#737373}
+.topb .tib{width:32px;height:32px;border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center}
+.topb .tr{display:flex;align-items:center;gap:8px}
+.topb .tr i{height:32px;padding:0 12px;display:flex;align-items:center}
+.topb .tav{width:32px;height:32px;border-radius:100px;border:1px solid #02563d;object-fit:cover}
+.l0{left:0;top:0;width:200px;height:882px;background:#01241a;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:2}
+.brand{width:100%;height:48px;flex-shrink:0;border-bottom:1px solid rgba(230,247,240,.2);display:flex;align-items:center;gap:8px;padding:8px 12px;visibility:hidden}
+.bh{width:24px;height:24px;border-radius:12px;background:#02563d;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.bn{font-size:14px;font-weight:500;color:#e6f7f0}
+.l0body{flex:1;width:100%;padding:0 8px;display:flex;flex-direction:column;gap:13px}
+.sec{border-bottom:1px solid rgba(230,247,240,.2);padding-bottom:8px;display:flex;flex-direction:column;gap:4px}
+.sec.last{border-bottom:0}
+.cap{padding:0 12px;font-size:11px;line-height:16px;letter-spacing:.11px;color:rgba(73,191,155,.7)}
+.l0i{height:32px;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;font-size:12px;line-height:20px;letter-spacing:.096px;color:#f0f5f2;white-space:nowrap}
+.l0i.on{background:#013226;font-weight:500;line-height:16px;letter-spacing:0}
+.l0i.dash{border:1px dashed rgba(186,232,213,.3);margin-top:8px}
+.l0foot{width:100%;border-top:1px solid rgba(230,247,240,.2);padding:8px 8px 12px}

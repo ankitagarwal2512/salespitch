@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Studio · Connected to HROne</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio-wf.css"/>
+<style>
+.cd{width:400px;height:164px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(6,38,26,.04),0 8px 24px rgba(6,38,26,.05);
+  padding:22px 24px 20px;display:flex;flex-direction:column;transition:box-shadow .35s,border-color .35s}
+.hd{display:flex;align-items:center;gap:14px}
+.hd h4{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.3px;line-height:24px}
+.hd p{font-size:14px;color:var(--mute);margin-top:2px;line-height:18px}
+.ic{width:46px;height:46px;border-radius:12px;background:#e4f0e9;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ic svg{width:23px;height:23px;fill:none;stroke:var(--forest);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ic.c{background:#fbe6dd}.ic.c svg{stroke:#c94f36}
+.chips{margin-top:auto;display:flex;align-items:center;gap:8px}
+.ch{height:32px;padding:0 12px;border-radius:8px;background:#f6f2ea;border:1px solid #ece5d7;font-size:13.5px;font-weight:600;color:#34453c;
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.ch b{font-weight:800;color:var(--ink)}
+.ch i{width:7px;height:7px;border-radius:50%}
+.avs{display:inline-flex;margin-right:4px}
+.avs i{width:32px;height:32px;border-radius:50%;border:2px solid #fff;margin-left:-8px;font-style:normal;font-size:11px;font-weight:800;color:#34453c;
+  display:flex;align-items:center;justify-content:center}
+.avs i:first-child{margin-left:0}
+.col{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:800;letter-spacing:3.5px;color:var(--forest);text-transform:uppercase}
+.col i{width:8px;height:8px;border-radius:50%;background:#23A578}
+.col.r i{background:var(--coral)}
+.studio{background:var(--dk);border-radius:22px;box-shadow:0 24px 60px rgba(1,58,41,.32);padding:40px 28px 26px;display:flex;flex-direction:column;align-items:center;transition:box-shadow .35s}
+.studio .cap{margin-top:26px;font-size:26px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.tiles{margin-top:26px;width:100%;display:flex;gap:12px}
+.tile{flex:1;height:118px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:16px;font-weight:700;color:#fff}
+.tile span{width:44px;height:44px;border-radius:50%;background:rgba(50,213,131,.16);display:flex;align-items:center;justify-content:center}
+.tile svg{width:22px;height:22px;fill:none;stroke:var(--g);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.studio .foot{margin-top:auto;font-size:14px;font-weight:600;color:rgba(191,224,214,.75);letter-spacing:.2px}
+.wire{overflow:visible}
+.wire .ln{fill:none;stroke:var(--forest);stroke-width:2;stroke-opacity:.35;stroke-linecap:round}
+.wire .port{fill:var(--cream);stroke:var(--forest);stroke-width:2;stroke-opacity:.7}
+.wire .hub{fill:#fff;stroke:var(--forest);stroke-width:2;stroke-opacity:.7}
+.wire .hub-in{fill:var(--g)}
+.wire .pk{fill:var(--g);filter:drop-shadow(0 0 6px rgba(50,213,131,.9));opacity:0}
+.ctx{width:120px;height:62px;border-radius:14px;background:#fff;border:1.5px solid rgba(229,96,70,.5);color:#b8432c;font-size:14px;font-weight:800;line-height:18px;
+  display:flex;align-items:center;justify-content:center;text-align:center;letter-spacing:.2px;box-shadow:0 6px 18px rgba(229,96,70,.10);transition:box-shadow .35s}
+.cd.hot{border-color:rgba(35,165,120,.65);box-shadow:0 0 0 4px rgba(50,213,131,.15),0 8px 24px rgba(6,38,26,.06)}
+.ctx.hot{box-shadow:0 0 0 6px rgba(229,96,70,.14),0 6px 18px rgba(229,96,70,.16)}
+.studio.hot{box-shadow:0 0 0 7px rgba(50,213,131,.2),0 24px 60px rgba(1,58,41,.32)}
+.more{transition:box-shadow .35s,border-color .35s;width:400px;height:48px;border:1.5px dashed rgba(10,72,49,.35);border-radius:14px;background:rgba(255,255,255,.45);
+  display:flex;align-items:center;gap:12px;padding:0 18px 0 12px;font-size:15px;font-weight:800;color:var(--forest);white-space:nowrap}
+.more .pl{width:28px;height:28px;border-radius:8px;background:#fbe6dd;color:#c94f36;font-size:19px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.more span:last-child{margin-left:auto;font-size:13px;font-weight:600;color:var(--mute)}
+.wire .ln.ghost{stroke-dasharray:4 6;stroke-opacity:.3}
+.more.hot{border-color:rgba(35,165,120,.65);box-shadow:0 0 0 4px rgba(50,213,131,.15)}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+<img class="logo" src="../Assets/studio-logo-dark.svg" alt="Studio by HROne"/>
+
+<div class="a eyb" style="left:72px;top:95px"><i></i>Connected to HROne</div>
+<p class="a hl" style="left:72px;top:141px;margin:0;white-space:nowrap">Built around your organisation.</p>
+<p class="a bd" style="left:72px;top:222px;margin:0;width:auto;white-space:nowrap;font-size:30px;line-height:42px">Configure app users, permissions and workflows for the processes your companies, locations and teams run.</p>
+
+<div class="a" style="left:0;top:-12px;width:1920px;height:1080px">
+<div class="a col u1" style="left:102px;top:322px"><i></i>In HROne</div>
+<div class="a col r u1" style="left:1418px;top:322px"><i></i>Custom apps</div>
+
+<!-- connectors (stage coords) — drawn in, then pulses run HROne → Studio → apps -->
+<svg class="a wire" id="wire" style="left:0;top:0;width:1920px;height:1080px" viewBox="0 0 1920 1080">
+  <path class="ln" id="pL1" d="M512 440 C 556 440, 546 624, 590 624"/>
+  <path class="ln" id="pL2" d="M512 624 L 590 624"/>
+  <path class="ln" id="pL3" d="M512 808 C 556 808, 546 624, 590 624"/>
+  <path class="ln" id="pC1" d="M710 624 L 760 624"/>
+  <path class="ln" id="pC2" d="M1160 624 L 1238 624"/>
+  <path class="ln" id="pR1" d="M1262 624 C 1330 624, 1320 440, 1408 440"/>
+  <path class="ln" id="pR2" d="M1262 624 L 1408 624"/>
+  <path class="ln ghost" id="pR4" d="M1262 624 C 1335 624, 1320 930, 1408 930"/>
+  <path class="ln" id="pR3" d="M1262 624 C 1330 624, 1320 808, 1408 808"/>
+  <g id="ports">
+    <circle class="port" cx="512" cy="440" r="5"/><circle class="port" cx="512" cy="624" r="5"/><circle class="port" cx="512" cy="808" r="5"/>
+    <circle class="port" cx="1408" cy="440" r="5"/><circle class="port" cx="1408" cy="624" r="5"/><circle class="port" cx="1408" cy="808" r="5"/>
+    <circle class="port" cx="1408" cy="930" r="4" style="stroke-opacity:.35"/>
+    <circle class="hub" cx="1250" cy="624" r="12"/><circle class="hub-in" cx="1250" cy="624" r="5"/>
+  </g>
+  <g id="pks"></g>
+</svg>
+
+<!-- IN HRONE -->
+<div id="L1" class="a cd u2" style="left:102px;top:358px">
+  <div class="hd"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M2.5 21h19M7.5 8h3M7.5 12h3M7.5 16h3"/></svg></div><div><h4>Organisation</h4><p>Companies, locations &amp; teams</p></div></div>
+  <div class="chips"><span class="ch"><b>3</b> Companies</span><span class="ch"><b>12</b> Locations</span><span class="ch"><b>18</b> Teams</span></div>
+</div>
+<div id="L2" class="a cd u3" style="left:102px;top:542px">
+  <div class="hd"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5v-.8a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v.8M16.4 5.2a3.2 3.2 0 0 1 0 5.8M17.8 14.8a4 4 0 0 1 3.4 4v.7"/></svg></div><div><h4>People</h4><p>Employee records &amp; reporting lines</p></div></div>
+  <div class="chips"><span class="avs"><i style="background:#cfe4d8">AK</i><i style="background:#f6d9cc">RS</i><i style="background:#e6dcf5">PM</i><i style="background:#fbe8c3">NV</i></span><span class="ch"><b>1,240</b> Employees</span></div>
+</div>
+<div id="L3" class="a cd u4" style="left:102px;top:726px">
+  <div class="hd"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg></div><div><h4>Responsibilities</h4><p>Roles and approval authority</p></div></div>
+  <div class="chips"><span class="ch">HR</span><span class="ch">Manager</span><span class="ch">Admin</span><span class="ch">Finance</span></div>
+</div>
+
+<div id="CX" class="a ctx u4" style="left:590px;top:593px">Business<br>context</div>
+
+<!-- STUDIO -->
+<div id="ST" class="a studio u5" style="left:760px;top:434px;width:400px;height:380px">
+  <img src="../Assets/studio-logo-white-mark.svg" alt="Studio" style="height:50px;width:auto">
+  <p class="cap">Configure each process</p>
+  <div class="tiles">
+    <div class="tile"><span><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5v-.8a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v.8M16.4 5.2a3.2 3.2 0 0 1 0 5.8"/></svg></span>Users</div>
+    <div class="tile"><span><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></svg></span>Permissions</div>
+    <div class="tile"><span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="6" height="5" rx="1.2"/><rect x="15" y="4" width="6" height="5" rx="1.2"/><rect x="9" y="15" width="6" height="5" rx="1.2"/><path d="M6 9v2.5a1.5 1.5 0 0 0 1.5 1.5h9A1.5 1.5 0 0 0 18 11.5V9M12 13v2"/></svg></span>Workflows</div>
+  </div>
+  <p class="foot">Uses HROne data. No re-entry.</p>
+</div>
+
+<!-- CUSTOM APPS -->
+<div id="R1" class="a cd u6" style="left:1418px;top:358px">
+  <div class="hd"><div class="ic c"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="13" rx="2"/><circle cx="9" cy="12" r="2"/><path d="M6.5 16.5a2.8 2.8 0 0 1 5 0M14 11h3.5M14 14h2.5M9 6V4.5h6V6"/></svg></div><div><h4>Visitor Management</h4><p>Pre-approve, check in and track</p></div></div>
+  <div class="chips"><span class="ch"><i style="background:#23A578"></i><b>28</b> Checked in</span><span class="ch"><i style="background:#e9a23b"></i><b>5</b> Expected</span></div>
+</div>
+<div id="R2" class="a cd u7" style="left:1418px;top:542px">
+  <div class="hd"><div class="ic c"><svg viewBox="0 0 24 24"><path d="M7 3v8M5 3v4a2 2 0 0 0 4 0V3M7 11v10M16.5 21V3c-2.2 1-3.5 3.6-3.5 7v3h3.5"/></svg></div><div><h4>Canteen Management</h4><p>Meal plans, bookings and guest requests</p></div></div>
+  <div class="chips"><span class="ch"><i style="background:#23A578"></i><b>320</b> Meals booked</span><span class="ch"><i style="background:#e9a23b"></i><b>12</b> Guest requests</span></div>
+</div>
+<div id="R3" class="a cd u8" style="left:1418px;top:726px">
+  <div class="hd"><div class="ic c"><svg viewBox="0 0 24 24"><path d="M8.5 3.5L4 6l1.5 4.5L7 10v10.5h10V10l1.5.5L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z"/></svg></div><div><h4>Uniform Management</h4><p>Sizes, issuance and replacements</p></div></div>
+  <div class="chips"><span class="ch"><i style="background:#e9a23b"></i><b>14</b> Requested</span><span class="ch"><i style="background:#23A578"></i><b>86</b> Issued</span><span class="ch"><i style="background:#e56046"></i><b>3</b> Returns</span></div>
+</div>
+
+<div id="R4" class="a more u8" style="left:1418px;top:906px"><span class="pl">+</span><span>Any process you run</span><span>Assets · Travel · Permits …</span></div>
+
+</div>
+
+<div class="nav">
+  <span class="nav-cnt">— / 36</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var svg = $('wire'), pks = $('pks'), NS = 'http://www.w3.org/2000/svg';
+
+  // 1 · draw the lines in, staggered left → right
+  var order = [['pL1','pL2','pL3'], ['pC1'], ['pC2'], ['pR1','pR2','pR3','pR4']];
+  order.forEach(function(g, gi){ g.forEach(function(id){
+    var p = $(id), L = p.getTotalLength();
+    if (reduce) return;
+    if (p.classList.contains('ghost')) { p.animate([{opacity:0},{opacity:1}], {duration:520, delay:900 + gi*260, fill:'backwards'}); return; }
+    p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+    p.animate([{strokeDashoffset:L},{strokeDashoffset:0}], {duration:520, delay:900 + gi*260, easing:'ease-out', fill:'forwards'});
+  }); });
+  $('ports').animate && !reduce && $('ports').animate([{opacity:0},{opacity:1}], {duration:400, delay:800, fill:'backwards'});
+  if (reduce) return;
+
+  // 2 · pulses: each stage runs a packet along its paths; nodes light up on arrival
+  var T = 4200;                                   // loop length (ms)
+  var stages = [
+    { paths:['pL1','pL2','pL3'], t0:0,    t1:900,  from:['L1','L2','L3'], to:['CX'] },
+    { paths:['pC1'],             t0:900,  t1:1250, to:['ST'] },
+    { paths:['pC2'],             t0:2000, t1:2350 },
+    { paths:['pR1','pR2','pR3'], t0:2350, t1:3250, to:['R1','R2','R3'] },
+  ];
+  var dots = [];
+  stages.forEach(function(st){ st.paths.forEach(function(id){
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('r', 6); c.setAttribute('class', 'pk');
+    pks.appendChild(c); dots.push({ c:c, p:$(id), L:$(id).getTotalLength(), st:st });
+  }); });
+  function hot(ids, on){ (ids||[]).forEach(function(id){ $(id).classList.toggle('hot', on); }); }
+
+  var start = performance.now() + 2200;
+  function tick(now){
+    var t = now - start;
+    if (t >= 0) {
+      t = t % T;
+      dots.forEach(function(d){
+        var st = d.st, k = (t - st.t0) / (st.t1 - st.t0);
+        if (k < 0 || k > 1) { d.c.style.opacity = 0; return; }
+        var e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2)/2;      // ease-in-out
+        var pt = d.p.getPointAtLength(e * d.L);
+        d.c.setAttribute('cx', pt.x); d.c.setAttribute('cy', pt.y);
+        d.c.style.opacity = Math.min(1, k*6, (1-k)*6);
+      });
+      stages.forEach(function(st){
+        hot(st.from, t >= st.t0 && t < st.t0 + 500);
+        hot(st.to,   t >= st.t1 && t < st.t1 + 700);
+      });
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Studio · Apps inside HROne</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<link rel="stylesheet" href="../shared/studio-wf.css"/>
+<link rel="stylesheet" href="../shared/hrone-screen.css"/>
+<link rel="stylesheet" href="../shared/studio-loupe.css"/>
+<style>
+/* ── HROne product screen (Figma: Product revamp · 71:2491), native 1440×882, scaled to fit ── */
+.shot{width:1240px;height:760px;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(6,38,26,.16)}
+/* ── Studio app view: Visitor Management (native coords, right of the L0 nav) ── */
+.vm{left:200px;top:48px;width:1240px;height:834px;display:flex;background:#fff}
+.vtv{width:232px;flex-shrink:0;background:#fafafa;border-right:1px solid #e5e5e5}
+.vtvh{height:56px;display:flex;align-items:center;gap:10px;padding:0 14px 0 16px;border-bottom:1px solid #e5e5e5}
+.vtvh b{flex:1;font-size:17px;font-weight:600;color:#0a0a0a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vtvh i{display:flex}
+.vlogo{width:24px;height:24px;border-radius:7px;background:#02563d;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vtl{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 10px 16px;font-size:11px;letter-spacing:.3px;color:#737373}
+.vg{height:32px;display:flex;align-items:center;gap:8px;padding:0 16px 0 20px;font-size:13.5px;font-weight:500;color:#0a0a0a;margin-top:4px}
+.vi{height:30px;margin:0 12px 0 34px;border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:13px;color:#404040;white-space:nowrap}
+.vi.on{background:#ededeb;color:#0a0a0a;font-weight:500}
+.vmain{flex:1;min-width:0;padding:0 24px}
+.vcr{height:56px;display:flex;align-items:center;gap:10px;margin:0 -24px;padding:0 24px;font-size:13.5px;color:#525252}
+.vcr .sep{width:1px;height:18px;background:#e5e5e5;margin:0 4px}
+.vcr em{font-style:normal;color:#a3a3a3}.vcr b{font-weight:500;color:#0a0a0a}
+.vbar{height:40px;display:flex;align-items:center;gap:12px;margin:12px 0 22px}
+.vbar > b{font-size:20px;font-weight:700;color:#0a0a0a;margin-right:12px;white-space:nowrap}
+.vin{height:38px;border:1px solid #e5e5e5;border-radius:6px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;align-items:center;gap:8px;padding:0 14px;font-size:13.5px;font-weight:500;color:#0a0a0a;white-space:nowrap}
+.vin .ph{font-weight:400;color:#737373}
+.vadd{margin-left:auto;height:38px;border-radius:6px;background:#02563d;color:#fff;display:flex;align-items:center;gap:8px;padding:0 16px;font-size:13.5px;font-weight:600;white-space:nowrap}
+.vmore{width:38px;height:38px;border:1px solid #e5e5e5;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.vtb{border:1px solid #e5e5e5;border-radius:8px;overflow:hidden}
+.vtb .vr:last-child{border-bottom:0}
+.vth,.vr{display:grid;grid-template-columns:190px 230px 210px 1fr;align-items:center;white-space:nowrap}
+.vth{height:44px;background:#ececeb;font-size:13px;font-weight:500;color:#525252;padding-left:18px}
+.vr{height:50px;border-bottom:1px solid #eeeeec;font-size:13.5px;color:#0a0a0a;padding-left:20px}
+.vr span:last-child,.vth span:last-child{overflow:hidden}
+.vsb{height:22px;display:flex;align-items:center;gap:6px;padding:0 6px;background:#fafafa}
+.vsb i{flex:1;height:8px;position:relative}.vsb b{position:absolute;left:0;top:0;width:36%;height:8px;border-radius:4px;background:#8a8a88}
+.vpg{display:flex;align-items:center;justify-content:space-between;margin-top:22px;font-size:13px;color:#737373}
+.vpg div{display:flex;align-items:center;gap:14px}
+.vpg div{gap:6px}.vpg b{width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:500;color:#0a0a0a}
+.vpg b.cur{border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,.05)}.vpg b.el{color:#737373}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<!-- ══ TEXT ══ -->
+<div class="txt">
+  <div class="eyb"><i></i>Apps inside HROne</div>
+  <img class="lg" src="../Assets/studio-logo-dark.svg" alt="Studio by HROne">
+  <p class="hl">Your custom apps.<br>Inside HROne.</p>
+  <p class="bd">Access Studio apps alongside your HROne modules, in the workspace your teams already use.</p>
+</div>
+
+
+<!-- ══ PRODUCT VIEW ══ -->
+<div class="board zoomable">
+<div class="a shot u1" style="left:0;top:10px">
+  <div class="scr">
+    <div class="vm">
+<div class="vtv">
+  <div class="vtvh"><span class="vlogo"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#BAE8D5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9.5" rx="1.5"/><circle cx="6" cy="7.6" r="1.4"/><path d="M3.9 11a2.2 2.2 0 0 1 4.2 0M10 7h2.3M10 9.5h1.8"/></svg></span><b>Visitor Management</b><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.2 2h-.4a2 2 0 0 0-2 2v.2a2 2 0 0 1-1 1.7l-.4.3a2 2 0 0 1-2 0l-.2-.1a2 2 0 0 0-2.7.7l-.2.4a2 2 0 0 0 .7 2.7l.2.1a2 2 0 0 1 1 1.7v.5a2 2 0 0 1-1 1.8l-.2.1a2 2 0 0 0-.7 2.7l.2.4a2 2 0 0 0 2.7.7l.2-.1a2 2 0 0 1 2 0l.4.3a2 2 0 0 1 1 1.7v.2a2 2 0 0 0 2 2h.4a2 2 0 0 0 2-2v-.2a2 2 0 0 1 1-1.7l.4-.3a2 2 0 0 1 2 0l.2.1a2 2 0 0 0 2.7-.7l.2-.4a2 2 0 0 0-.7-2.7l-.2-.1a2 2 0 0 1-1-1.8v-.5a2 2 0 0 1 1-1.7l.2-.1a2 2 0 0 0 .7-2.7l-.2-.4a2 2 0 0 0-2.7-.7l-.2.1a2 2 0 0 1-2 0l-.4-.3a2 2 0 0 1-1-1.7V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></i></div>
+  <div class="vtl"><span>TABLES &amp; VIEWS</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></svg></div>
+  <div class="vg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span>Visitor</span></div><div class="vi on">All Visitors</div><div class="vg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span>Visit</span></div><div class="vi">All Visits</div><div class="vi">Completed Visits</div><div class="vi">Cancelled Visits</div><div class="vi">Head Office</div><div class="vi">Scheduled Visits</div><div class="vg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span>Pre-registration</span></div><div class="vi">All Pre-registrations</div><div class="vi">Management Team</div><div class="vg"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg><span>Watchlist</span></div><div class="vi">Blocked Visitors</div>
+</div>
+<div class="vmain"><div class="vcr"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg><i class="sep"></i><span>Visitor Management</span><em>/</em><span>Visitor</span><em>/</em><b>All Visitors</b></div>
+<div class="vbar"><b>All Visitors</b>
+  <div class="vin" style="width:224px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span class="ph">Search for records</span></div>
+  <div class="vin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg><span>Filter and Sort</span></div>
+  <div class="vin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Layout</span></div>
+  <div class="vadd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Add Record</span></div><div class="vmore"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></div>
+</div>
+<div class="vtb">
+  <div class="vth"><span>Visitor ID</span><span>Full Name</span><span>Contact Number</span><span>Email</span></div>
+  <div class="vr"><span>VIS-1048</span><span>Rishabh Jain</span><span>98103 42609</span><span>rishabh.jain@kaveritech.in</span></div><div class="vr"><span>VIS-1047</span><span>Kavya Iyer</span><span>98451 27730</span><span>kavya.iyer@nimbuslogistics.in</span></div><div class="vr"><span>VIS-1046</span><span>Mohammed Arif</span><span>91670 48215</span><span>m.arif@coastalfreight.co.in</span></div><div class="vr"><span>VIS-1045</span><span>Sanjana Reddy</span><span>97013 56482</span><span>sanjana.reddy@zenithpharma.in</span></div><div class="vr"><span>VIS-1044</span><span>Harpreet Singh</span><span>98765 03318</span><span>harpreet.singh@northfieldinfra.com</span></div><div class="vr"><span>VIS-1043</span><span>Aditya Kulkarni</span><span>99236 17054</span><span>aditya.k@vertexautomation.in</span></div><div class="vr"><span>VIS-1042</span><span>Neha Bansal</span><span>98110 76293</span><span>neha.bansal@auroratextiles.in</span></div><div class="vr"><span>VIS-1041</span><span>Rahul Deshmukh</span><span>90282 44517</span><span>rahul.d@pinnacleengg.com</span></div><div class="vr"><span>VIS-1040</span><span>Fatima Sheikh</span><span>98921 35068</span><span>fatima.sheikh@meridianhealth.in</span></div><div class="vr"><span>VIS-1039</span><span>Vivek Nair</span><span>94470 82136</span><span>vivek.nair@bluepeakconsult.com</span></div>
+</div>
+<div class="vpg"><span>Results : 1-10 of 248</span><div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg><b class="cur">1</b><b>2</b><b>3</b><b class="el">…</b><b>25</b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></div></div></div>
+</div>
+    <div class="l0">
+  <div class="brand"><span class="bh">H</span><span class="bn">HRONE</span></div>
+  <div class="l0body">
+    <div class="sec"><div class="cap">YOUR SPACE</div><div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-inbox.svg" width="16" height="16" alt=""><span>Inbox</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-request.svg" width="16" height="16" alt=""><span>Request</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-teams.svg" width="16" height="16" alt=""><span>Teams</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-oneai.svg" width="16" height="16" alt=""><span>One AI</span></div></div></div>
+    <div class="sec"><div class="cap">APPS</div><div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-hrdesk.svg" width="16" height="16" alt=""><span>HR Desk</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-recruitment.svg" width="16" height="16" alt=""><span>Recruitment</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-teams.svg" width="16" height="16" alt=""><span>Workforce</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-timeoffice.svg" width="16" height="16" alt=""><span>Timeoffice</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-payroll.svg" width="16" height="16" alt=""><span>Payroll</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-performance.svg" width="16" height="16" alt=""><span>Performance</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-core.svg" width="16" height="16" alt=""><span>Core</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-workplan.svg" width="16" height="16" alt=""><span>Work plan</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-expense.svg" width="16" height="16" alt=""><span>Expense</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-helpdesk.svg" width="16" height="16" alt=""><span>Help desk</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-engage.svg" width="16" height="16" alt=""><span>Engage</span></div><div class="l0i"><img src="../Assets/studio-apps-screen/nav-aiinterviewer.svg" width="16" height="16" alt=""><span>AI Interviewer</span></div></div></div>
+    <div class="sec last"><div class="cap">CUSTOM APPS</div>
+      <div id="myapps"><div class="l0i on"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#BAE8D5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9.5" rx="1.5"/><circle cx="6" cy="7.6" r="1.4"/><path d="M3.9 11a2.2 2.2 0 0 1 4.2 0M10 7h2.3M10 9.5h1.8"/></svg><span>Visitor Management</span></div><div class="l0i"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F0F5F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 1.5v4a1.5 1.5 0 0 0 3 0v-4M6 7v7.5M11.5 14.5V1.5C9.9 2.2 9 4.1 9 6.5V9h2.5"/></svg><span>Canteen Management</span></div><div class="l0i"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F0F5F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.7 2.2 2.3 3.9l1 3 1.2-.4v7.3h7V6.5l1.2.4 1-3-3.4-1.7a2.3 2.3 0 0 1-4.6 0z"/></svg><span>Uniform Management</span></div></div>
+      <div id="newapp" class="l0i dash"><img src="../Assets/studio-apps-screen/nav-appbuilder.svg" width="16" height="16" alt=""><span>App Builder</span></div>
+    </div>
+  </div>
+  <div class="l0foot"><div class="l0i"><img src="../Assets/studio-apps-screen/nav-settings.svg" width="16" height="16" alt=""><span>Settings</span></div></div>
+</div>
+    <div class="topb">
+  <div class="tl"><img src="../Assets/studio-apps-screen/top-home.svg" width="16" height="16" alt=""><span>Brightline Industries Pvt. Ltd.</span></div>
+  <div class="tc"><div class="ts"><img src="../Assets/studio-apps-screen/top-search.svg" width="14" height="14" alt=""><span>Type a command or search</span></div>
+    <div class="tib"><img src="../Assets/studio-apps-screen/top-org.svg" width="16" height="16" alt=""></div></div>
+  <div class="tr"><i><img src="../Assets/studio-apps-screen/top-chat.svg" width="16" height="16" alt=""></i><i><img src="../Assets/studio-apps-screen/top-bell.svg" width="16" height="16" alt=""></i>
+    <img class="tav" src="../Assets/studio-apps-screen/top-avatar.png" alt=""></div>
+</div>
+
+  </div>
+</div>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt">— / 36</span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script src="../shared/studio-loupe.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
