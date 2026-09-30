@@ -45,12 +45,12 @@ DECKS.hrone = {
     ]},
   { id:'build', label:'Build & Extend', icon:'M4 2.5L2 7l2 4.5M10 2.5l2 4.5-2 4.5',
     slides:[
-      { n:17, t:"Studio — What's Inside",       f:'hrone-studio-inside.html' },
-      { n:18, t:'Studio — Connected to HROne',  f:'hrone-studio-connect.html' },
-      { n:19, t:'Studio — Apps inside HROne',   f:'hrone-studio-apps.html' },
-      { n:20, t:'Studio — Employee Requests',   f:'hrone-studio-requests.html' },
-      { n:21, t:'Studio — Inbox',               f:'hrone-studio-inbox.html' },
-      { n:22, t:'Studio — Use Cases',           f:'hrone-studio-usecases.html' },
+      { n:17, t:"Studio — What's Inside",      f:'hrone-studio-inside.html' },
+      { n:18, t:'Connected to HROne',         f:'hrone-studio-connect.html' },
+      { n:19, t:'Apps inside HROne',          f:'hrone-studio-apps.html' },
+      { n:20, t:'Employee Requests',          f:'hrone-studio-requests.html' },
+      { n:21, t:'Inbox Approvals',            f:'hrone-studio-inbox.html' },
+      { n:22, t:'Use Cases',                  f:'hrone-studio-usecases.html' },
       { n:23, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
     ]},
 
