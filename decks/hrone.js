@@ -50,9 +50,9 @@ DECKS.hrone = {
       { n:19, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
     ]},
 
-  { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
+  { id:'market', label:'Add-Ons', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
     slides:[
-      { n:20, t:'Add-Ons',                      f:'hrone-marketplace.html' },
+      { n:20, t:'Overview',                     f:'hrone-marketplace.html' },
       { n:21, t:'Visitor Management',           f:'hrone-visitor-management.html',
         sub:[
           { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
