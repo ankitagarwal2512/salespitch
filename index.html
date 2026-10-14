@@ -218,6 +218,21 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
 .slide-eye svg{ width:15px;height:15px; }
 .slide-row.row-disabled .slide-eye{ color:#e2735a; }
 
+/* light/dark switch on slides that have themes */
+.theme-switch{
+  flex-shrink:0;position:relative;width:38px;height:20px;border-radius:10px;border:none;cursor:pointer;padding:0;
+  background:rgba(255,255,255,.14);transition:background .2s;
+}
+.theme-switch:hover{ background:rgba(255,255,255,.22); }
+.theme-switch .ts-knob{
+  position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;
+  background:#fdf5e7;color:#c98a1b;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .2s ease,background .2s,color .2s;
+}
+.theme-switch .ts-knob svg{ width:10px;height:10px; }
+.theme-switch[data-mode="dark"]{ background:rgba(35,165,120,.45); }
+.theme-switch[data-mode="dark"] .ts-knob{ transform:translateX(18px);background:#013A29;color:#a0f0c8; }
+
 .slide-num{
   font-size:11px;font-weight:700;
   color:rgba(255,255,255,.22);
@@ -435,6 +450,18 @@ const GROUPS = DECK.groups;
 const SLIDE_DIR = 'slides/';   // all slide files live here
 const FILE_MAP = {};
 GROUPS.forEach(g => g.slides.forEach(s => { if (s.f) FILE_MAP[s.f] = s; }));
+// Themed slides: restore this browser's last light/dark choice, and let either file resolve to the slide.
+const themeKey = n => `slide-theme-${n}`;
+GROUPS.forEach(g => g.slides.forEach(s => {
+  if (!s.themes) return;
+  let mode = null;
+  try { mode = localStorage.getItem(themeKey(s.n)); } catch(e) {}
+  if (mode && s.themes[mode]) s.f = s.themes[mode];
+  Object.values(s.themes).forEach(f => { FILE_MAP[f] = s; });
+}));
+const themeOf = s => Object.keys(s.themes).find(k => s.themes[k] === s.f) || Object.keys(s.themes)[0];
+const SUN_SVG  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>`;
+const MOON_SVG = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>`;
 
 // Slides the presenter has hidden from numbering/arrow-nav for this session (not persisted).
 const disabledSlides = new Set();
@@ -474,6 +501,7 @@ GROUPS.forEach(g => {
             <span class="slide-num">${String(s.n).padStart(2,'0')}</span>
             <span class="slide-name">${s.html || s.t}</span>
             ${s.sub ? `<button class="sub-toggle" type="button" data-toggle="${s.n}" aria-expanded="false" title="Show the ${s.sub.length} depth slides">${CHEV_SVG}</button>` : ''}
+            ${s.themes ? `<button class="theme-switch" type="button" data-mode="${themeOf(s)}" title="Switch cover: light / dark" aria-label="Switch between light and dark cover"><span class="ts-knob">${themeOf(s) === 'dark' ? MOON_SVG : SUN_SVG}</span></button>` : ''}
             ${s.optional ? `<button class="slide-eye" type="button" title="Show/hide this slide when presenting" aria-label="Toggle slide visibility">${EYE_SVG}</button>` : ''}
           </div>` +
          (s.sub ? `<div class="sub-wrap" data-subwrap="${s.n}">` + s.sub.map((sb,i) =>
@@ -503,6 +531,21 @@ GROUPS.forEach(g => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       setSubOpen(+btn.dataset.toggle, !btn.classList.contains('open'));
+    });
+  });
+
+  el.querySelectorAll('.theme-switch').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const row = btn.closest('.slide-row');
+      const s = GROUPS.flatMap(g => g.slides).find(x => x.n === +row.dataset.n);
+      const mode = themeOf(s) === 'dark' ? 'light' : 'dark';
+      s.f = s.themes[mode];
+      row.dataset.file = s.f;
+      btn.dataset.mode = mode;
+      btn.querySelector('.ts-knob').innerHTML = mode === 'dark' ? MOON_SVG : SUN_SVG;
+      try { localStorage.setItem(themeKey(s.n), mode); } catch(e) {}
+      if (current === s.n) goTo(s.n, s.f);   // swap the slide in place if it's showing
     });
   });
 

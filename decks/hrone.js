@@ -14,7 +14,9 @@ DECKS.hrone = {
   groups: [
   { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
     slides:[
-      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1.html' },
+      // themes: a light/dark switch on the nav row picks which file this slide shows
+      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1-light.html',
+        themes:{ light:'hrone-slide1-light.html', dark:'hrone-slide1-dark.html' } },
       { n:2,  t:'Group Overview',               f:'hrone-group-overview.html' },
       { n:3,  t:'Why HROne',                   f:'hrone-why-hrone.html' },
       { n:4,  t:'Recognition',                  f:'hrone-recognised.html' },
