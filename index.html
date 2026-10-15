@@ -309,6 +309,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   box-shadow:0 4px 16px rgba(35,165,120,.32);
 }
 .btn-present svg{ width:10px;height:10px;flex-shrink:0; }
+/* Nudge: a soft ring breathes out and a sheen sweeps across every few seconds,
+   until the deck has been presented once this session. */
+.btn-present{ position:relative; }
+.btn-present.nudge{ animation:presentRing 3.6s ease-out infinite; }
+.btn-present.nudge::after{
+  content:'';position:absolute;top:0;bottom:0;left:-60%;width:45%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-18deg);pointer-events:none;
+  animation:presentSheen 3.6s ease-in-out infinite;
+}
+.btn-present.nudge:hover,.btn-present.nudge:hover::after{ animation-play-state:paused; }
+@keyframes presentRing{
+  0%   { box-shadow:0 2px 12px rgba(35,165,120,.22),0 0 0 0 rgba(35,165,120,.55); }
+  45%  { box-shadow:0 2px 12px rgba(35,165,120,.22),0 0 0 9px rgba(35,165,120,0); }
+  100% { box-shadow:0 2px 12px rgba(35,165,120,.22),0 0 0 9px rgba(35,165,120,0); }
+}
+@keyframes presentSheen{
+  0%,55% { left:-60%; }
+  85%,100% { left:120%; }
+}
+@media (prefers-reduced-motion:reduce){
+  .btn-present.nudge,.btn-present.nudge::after{ animation:none; }
+}
 .btn-present-lbl{
   overflow:hidden;
   transition:max-width .3s ease, opacity .2s;
@@ -326,6 +349,163 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   transition:opacity .2s;
 }
 .sidebar.collapsed .slide-ctr{ display:none; }
+
+.btn-dl{
+  flex-shrink:0;width:36px;height:36px;border-radius:9px;
+  background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.7);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.btn-dl:hover{ background:rgba(255,255,255,.13);color:#fff;border-color:rgba(255,255,255,.2); }
+.btn-dl svg{ width:16px;height:16px; }
+/* not while presenting, not in the slim rail */
+.sidebar.collapsed .btn-dl, body.presenting .btn-dl{ display:none; }
+
+/* ═══════════════════════════════
+   DOWNLOAD PAGE  (#download)
+═══════════════════════════════ */
+.xp{
+  position:fixed;inset:0;z-index:100;
+  background:#0a1a12;color:#fff;
+  display:flex;flex-direction:column;
+}
+.xp[hidden]{ display:none; }
+.xp-hdr{
+  flex-shrink:0;display:flex;align-items:center;gap:16px;
+  height:56px;padding:0 24px;
+  border-bottom:1px solid rgba(255,255,255,.07);background:#0d1f14;
+}
+.xp-back{
+  height:34px;padding:0 12px 0 8px;border-radius:9px;border:none;
+  background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);
+  font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;gap:6px;transition:background .15s,color .15s;
+}
+.xp-back:hover{ background:rgba(255,255,255,.13);color:#fff; }
+.xp-back svg{ width:16px;height:16px; }
+.xp-hdr h1{ font-size:16px;font-weight:700; }
+
+.xp-body{
+  flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 320px;
+}
+.xp-main{ min-height:0;display:flex;flex-direction:column; }
+.xp-tools{
+  flex-shrink:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:12px 24px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.xp-tools-lbl{ font-size:12px;font-weight:600;color:rgba(255,255,255,.38);margin-right:4px;letter-spacing:.02em; }
+.xp-chip{
+  height:30px;padding:0 12px;border-radius:15px;
+  border:1.5px solid rgba(255,255,255,.12);background:transparent;
+  color:rgba(255,255,255,.7);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.xp-chip:hover{ background:rgba(255,255,255,.07);color:#fff; }
+.xp-chip:disabled{ opacity:.35;cursor:default;background:transparent; }
+.xp-list{ flex:1;overflow-y:auto;padding:16px 24px; }
+.xp-cols{ columns:215px 5;column-gap:14px; }
+.xp-list::-webkit-scrollbar{ width:6px; }
+.xp-list::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.12);border-radius:3px; }
+
+.xp-grp{
+  background:#0d1f14;border:1px solid rgba(255,255,255,.06);
+  border-radius:10px;margin-bottom:14px;overflow:hidden;
+  break-inside:avoid;
+}
+.xp-row{
+  display:flex;align-items:center;gap:12px;
+  min-height:28px;padding:0 12px;cursor:pointer;user-select:none;
+  transition:background .1s;
+}
+.xp-row:hover{ background:rgba(255,255,255,.04); }
+.xp-grp-hdr{ min-height:38px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:3px; }
+.xp-grp > .xp-row:last-child{ margin-bottom:5px; }
+.xp-grp-hdr .xp-ico{ width:14px;height:14px;color:rgba(255,255,255,.45);flex-shrink:0; }
+.xp-grp-name{ flex:1;font-size:13px;font-weight:700; }
+.xp-grp-count{ font-size:11.5px;font-weight:700;color:rgba(255,255,255,.35);font-variant-numeric:tabular-nums; }
+.xp-num{
+  width:22px;text-align:right;flex-shrink:0;
+  font-size:11px;font-weight:700;color:rgba(255,255,255,.3);font-variant-numeric:tabular-nums;
+}
+.xp-name{ flex:1;min-width:0;font-size:12.5px;color:rgba(255,255,255,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.xp-sub{ padding-left:44px; }
+.xp-sub .xp-name{ font-size:12px;color:rgba(255,255,255,.6); }
+.xp-sub-mark{ width:10px;height:10px;flex-shrink:0;border-left:1.5px solid rgba(242,217,140,.45);border-bottom:1.5px solid rgba(242,217,140,.45);border-radius:0 0 0 3px;margin:-6px 0 0 -4px; }
+.xp-tag{
+  flex-shrink:0;font-size:10.5px;font-weight:600;letter-spacing:.02em;
+  padding:2px 8px;border-radius:10px;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);
+}
+
+/* custom checkbox with tri-state */
+.xp-cb{ appearance:none;-webkit-appearance:none;flex-shrink:0;margin:0;
+  width:16px;height:16px;border-radius:4px;cursor:pointer;
+  border:1.5px solid rgba(255,255,255,.3);background:transparent;
+  display:grid;place-content:center;transition:background .12s,border-color .12s;
+}
+.xp-cb:hover{ border-color:rgba(255,255,255,.55); }
+.xp-cb:checked,.xp-cb:indeterminate{ background:#23A578;border-color:#23A578; }
+.xp-cb::before{ content:'';width:9px;height:9px;transform:scale(0);transition:transform .1s;background:#fff;
+  clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0%,43% 62%); }
+.xp-cb:checked::before{ transform:scale(1); }
+.xp-cb:indeterminate::before{ transform:scale(1);clip-path:inset(40% 5% 40% 5% round 2px); }
+.xp-cb:focus-visible{ outline:2px solid #a0f0c8;outline-offset:2px; }
+
+/* right column */
+.xp-side{
+  min-height:0;overflow-y:auto;
+  border-left:1px solid rgba(255,255,255,.07);background:#0d1f14;
+  padding:24px;display:flex;flex-direction:column;gap:18px;
+}
+.xp-side > *{ flex-shrink:0; }
+.xp-sum{ display:flex;align-items:baseline;gap:8px; }
+.xp-sum b{ font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em; }
+.xp-sum span{ font-size:13px;color:rgba(255,255,255,.45); }
+.xp-field label{ display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:7px; }
+.xp-name-wrap{ display:flex;align-items:center;height:40px;border-radius:9px;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);transition:border-color .15s; }
+.xp-name-wrap:focus-within{ border-color:rgba(35,165,120,.6); }
+.xp-name-wrap input{ flex:1;min-width:0;height:100%;background:transparent;border:none;outline:none;
+  color:#fff;font-family:inherit;font-size:13.5px;padding:0 0 0 12px; }
+.xp-name-wrap span{ padding:0 12px 0 2px;font-size:13px;color:rgba(255,255,255,.35); }
+.xp-go{
+  height:46px;border-radius:10px;border:none;
+  background:#23A578;color:#fff;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  box-shadow:0 4px 18px rgba(35,165,120,.25);transition:background .15s;
+}
+.xp-go:hover{ background:#1c9c6e; }
+.xp-go:disabled{ background:rgba(255,255,255,.1);color:rgba(255,255,255,.35);box-shadow:none;cursor:default; }
+.xp-go svg{ width:17px;height:17px; }
+.xp-note{ font-size:12px;line-height:1.55;color:rgba(255,255,255,.4); }
+.xp-prog{ display:none;flex-direction:column;gap:10px; }
+.xp-prog.on{ display:flex; }
+.xp-bar{ height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden; }
+.xp-bar i{ display:block;height:100%;width:0;background:#23A578;border-radius:3px;transition:width .3s ease; }
+.xp-prog-txt{ display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:rgba(255,255,255,.65); }
+.xp-prog-txt span:first-child{ min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.xp-cancel{ align-self:flex-start;height:30px;padding:0 12px;border-radius:8px;border:1.5px solid rgba(255,255,255,.14);
+  background:transparent;color:rgba(255,255,255,.7);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer; }
+.xp-cancel:hover{ background:rgba(255,255,255,.07);color:#fff; }
+.xp-msg{ display:none;font-size:13px;line-height:1.5;padding:12px 14px;border-radius:9px; }
+.xp-msg.ok{ display:block;background:rgba(35,165,120,.12);color:#a0f0c8; }
+.xp-msg.err{ display:block;background:rgba(226,115,90,.12);color:#f2a08c; }
+.xp.busy .xp-main{ pointer-events:none;opacity:.55; }
+/* capture frame: full size, tucked under the download page so it renders but stays unseen */
+.xp-cap{ position:fixed;top:0;left:0;width:1920px;height:1080px;border:0;z-index:50;pointer-events:none; }
+
+@media (max-width:1440px){
+  .xp-body{ grid-template-columns:minmax(0,1fr) 290px; }
+  .xp-side{ padding:20px; }
+}
+@media (max-width:900px){
+  .xp-body{ grid-template-columns:minmax(0,1fr);overflow-y:auto; }
+  .xp-main{ min-height:auto; }
+  .xp-list{ overflow:visible; }
+  .xp-side{ border-left:none;border-top:1px solid rgba(255,255,255,.07);overflow:visible; }
+  .xp-hdr,.xp-tools,.xp-list{ padding-left:16px;padding-right:16px; }
+}
 
 /* ═══════════════════════════════
    STAGE
@@ -401,7 +581,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
     </div>
 
     <div class="nav-ftr">
-      <button class="btn-present" id="presentBtn" title="Present fullscreen">
+      <button class="btn-dl" id="downloadBtn" type="button" title="Download as PowerPoint" aria-label="Download as PowerPoint">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/>
+        </svg>
+      </button>
+      <button class="btn-present nudge" id="presentBtn" title="Present fullscreen">
         <svg viewBox="0 0 10 10" fill="currentColor">
           <polygon points="1,0.5 9.5,5 1,9.5"/>
         </svg>
@@ -426,6 +611,47 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
   </div>
 
 </div>
+
+<!-- ════ DOWNLOAD PAGE ════ -->
+<section class="xp" id="xp" hidden role="dialog" aria-modal="true" aria-labelledby="xpTitle">
+  <header class="xp-hdr">
+    <button class="xp-back" id="xpBack" type="button">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg>
+      Back to deck
+    </button>
+    <h1 id="xpTitle">Download as PowerPoint</h1>
+  </header>
+  <div class="xp-body">
+    <div class="xp-main">
+      <div class="xp-tools">
+        <span class="xp-tools-lbl">Quick pick</span>
+        <button class="xp-chip" type="button" data-pick="all">All slides</button>
+        <button class="xp-chip" type="button" data-pick="main">Main slides only</button>
+        <button class="xp-chip" type="button" data-pick="none">Clear</button>
+      </div>
+      <div class="xp-list" id="xpList"></div>
+    </div>
+    <aside class="xp-side">
+      <div class="xp-sum"><b id="xpCount">0</b><span id="xpCountOf">slides selected</span></div>
+      <div class="xp-field">
+        <label for="xpName">File name</label>
+        <div class="xp-name-wrap"><input id="xpName" type="text" spellcheck="false" autocomplete="off"><span>.pptx</span></div>
+      </div>
+      <button class="xp-go" id="xpGo" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/></svg>
+        <span id="xpGoLbl">Download</span>
+      </button>
+      <div class="xp-prog" id="xpProg" aria-live="polite">
+        <div class="xp-bar"><i id="xpBar"></i></div>
+        <div class="xp-prog-txt"><span id="xpProgTxt">Getting ready…</span><span id="xpProgNum"></span></div>
+        <button class="xp-cancel" id="xpCancel" type="button">Cancel</button>
+      </div>
+      <div class="xp-msg" id="xpMsg" role="status"></div>
+      <p class="xp-note">Slides are saved as pictures, so the file looks exactly like the deck and can't be edited. Keep this tab open while it builds.</p>
+    </aside>
+  </div>
+</section>
+
 <script>window.DECKS = {};</script>
 <script src="decks/hrone.js"></script>
 <script src="decks/studio.js"></script>
@@ -739,6 +965,8 @@ document.getElementById('presentBtn').addEventListener('click', () => {
 });
 
 document.addEventListener('fullscreenchange', () => {
+  document.body.classList.toggle('presenting', !!document.fullscreenElement);
+  if (document.fullscreenElement) document.getElementById('presentBtn').classList.remove('nudge');   // reminder done its job
   if (document.fullscreenElement) {
     sidebar.classList.add('collapsed');
   } else {
@@ -750,13 +978,14 @@ document.addEventListener('fullscreenchange', () => {
 // ── Keyboard (shell focus) ────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
+  if (!xpPage.hidden) return;   // download page owns the keyboard while open
   if ([' ','PageDown','PageUp','ArrowDown','ArrowUp'].indexOf(e.key) > -1) e.preventDefault();
   navArrow(e.key);
 });
 
 // ── Keyboard (iframe focus → postMessage) ─────────────────────────
 window.addEventListener('message', e => {
-  if (e.data && e.data.type === 'nav-key') navArrow(e.data.key);
+  if (e.data && e.data.type === 'nav-key' && xpPage.hidden) navArrow(e.data.key);
 });
 
 const btnPrev = document.getElementById('btnPrev');
@@ -812,9 +1041,317 @@ function navArrow(key) {
   updateNavBtns();
 }
 
+// ── Download as PowerPoint ────────────────────────────────────────
+// Opens at #download. Every picked slide is rendered at 1920×1080 in a hidden
+// frame, captured to an image, and placed full-bleed on a .pptx slide, so the
+// file looks exactly like the deck and has nothing editable in it.
+const xpPage = document.getElementById('xp');
+const XP_LIBS = {
+  shot: 'https://cdn.jsdelivr.net/npm/modern-screenshot@4.6.8/dist/index.js',
+  pptx: 'https://cdn.jsdelivr.net/npm/pptxgenjs@4.0.1/dist/pptxgen.bundle.js',
+};
+const XP_SETTLE_MS = 2800;   // slides stagger their entrances with timers up to ~2.3s; let them land
+const XP_PARALLEL = 3;       // slides rendered at once
+
+// Exportable items in deck order: a spine slide, then its depth slides.
+// key: "n" for a spine slide, "n.i" for depth slide i behind it.
+function xpItems() {
+  return GROUPS.flatMap(g => g.slides.filter(s => s.f).flatMap(s => [
+    { key: `${s.n}`, gid: g.id, n: s.n, t: s.t, f: s.f, depth: false },
+    ...(s.sub || []).map((sb, i) => ({ key: `${s.n}.${i}`, gid: g.id, n: s.n, t: sb.t, f: sb.f, depth: true })),
+  ]));
+}
+const xpPicked = new Set();
+let xpBusy = false, xpCancelled = false;
+
+function xpPick(mode) {
+  xpPicked.clear();
+  xpItems().forEach(it => {
+    if (mode === 'all' ||
+        (mode === 'main' && !it.depth)) xpPicked.add(it.key);
+  });
+  xpSync();
+}
+
+function xpRender() {
+  const items = xpItems();
+  const list = document.getElementById('xpList');
+  list.innerHTML = '<div class="xp-cols">' + GROUPS.map(g => {
+    const gi = items.filter(it => it.gid === g.id);
+    if (!gi.length) return '';
+    return `<div class="xp-grp" data-gid="${g.id}">
+      <label class="xp-row xp-grp-hdr">
+        <input class="xp-cb" type="checkbox" data-grp="${g.id}" aria-label="Select all in ${g.label}">
+        <svg class="xp-ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${g.icon}"/></svg>
+        <span class="xp-grp-name">${g.label}</span>
+        <span class="xp-grp-count" data-count="${g.id}"></span>
+      </label>
+      ${gi.map(it => `<label class="xp-row${it.depth ? ' xp-sub' : ''}" data-key="${it.key}" title="${it.t}">
+        <input class="xp-cb" type="checkbox" data-key="${it.key}">
+        ${it.depth ? '<span class="xp-sub-mark"></span>' : `<span class="xp-num">${disabledSlides.has(it.n) ? '—' : String(displayNumberFor(it.n)).padStart(2,'0')}</span>`}
+        <span class="xp-name">${it.t}</span>
+        ${!it.depth && disabledSlides.has(it.n) ? '<span class="xp-tag">Hidden</span>' : ''}
+      </label>`).join('')}
+    </div>`;
+  }).join('') + '</div>';
+}
+
+// Reflect xpPicked in checkboxes, group tri-states, counts and the button.
+function xpSync() {
+  const items = xpItems();
+  document.querySelectorAll('#xpList input[data-key]').forEach(cb => { cb.checked = xpPicked.has(cb.dataset.key); });
+  GROUPS.forEach(g => {
+    const gi = items.filter(it => it.gid === g.id);
+    const on = gi.filter(it => xpPicked.has(it.key)).length;
+    const cb = document.querySelector(`#xpList input[data-grp="${g.id}"]`);
+    if (cb) { cb.checked = on === gi.length && on > 0; cb.indeterminate = on > 0 && on < gi.length; }
+    const c = document.querySelector(`#xpList [data-count="${g.id}"]`);
+    if (c) c.textContent = `${on} of ${gi.length}`;
+  });
+  const n = xpPicked.size;
+  document.getElementById('xpCount').textContent = n;
+  document.getElementById('xpCountOf').textContent = `of ${items.length} slides selected`;
+  document.getElementById('xpGoLbl').textContent = n ? `Download ${n} slide${n === 1 ? '' : 's'}` : 'Pick at least one slide';
+  document.getElementById('xpGo').disabled = !n || xpBusy;
+}
+
+document.getElementById('xpList').addEventListener('change', e => {
+  const cb = e.target;
+  const items = xpItems();
+  if (cb.dataset.grp) {
+    items.filter(it => it.gid === cb.dataset.grp).forEach(it => cb.checked ? xpPicked.add(it.key) : xpPicked.delete(it.key));
+  } else if (cb.dataset.key) {
+    const it = items.find(x => x.key === cb.dataset.key);
+    // a spine slide carries its depth slides with it; depth slides can still be unticked one by one
+    const keys = it.depth ? [it.key] : items.filter(x => x.n === it.n).map(x => x.key);
+    keys.forEach(k => cb.checked ? xpPicked.add(k) : xpPicked.delete(k));
+  }
+  xpSync();
+});
+document.querySelectorAll('.xp-chip[data-pick]').forEach(b => b.addEventListener('click', () => xpPick(b.dataset.pick)));
+
+
+// ── Open / close (#download, so browser Back closes it too) ──
+function xpOpen() {
+  if (!xpPage.hidden) return;
+  xpRender();
+  xpPick('all');
+  const d = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  document.getElementById('xpName').value = `${DECK.pageTitle} - ${d}`;
+  document.getElementById('xpMsg').className = 'xp-msg';
+  xpPage.hidden = false;
+  document.getElementById('xpBack').focus();
+  xpLoadLibs().catch(() => {});   // warm up while they pick
+}
+function xpClose() {
+  if (xpPage.hidden) return;
+  if (xpBusy && !confirm('Stop the download in progress?')) { history.pushState({ xp: 1 }, '', '#download'); return; }
+  xpCancelled = true;
+  xpPage.hidden = true;
+  document.getElementById('presentBtn').focus();
+}
+function xpRoute() { location.hash === '#download' ? xpOpen() : xpClose(); }
+addEventListener('hashchange', xpRoute);
+addEventListener('popstate', xpRoute);
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  history.pushState({ xp: 1 }, '', '#download');
+  xpOpen();
+});
+document.getElementById('xpBack').addEventListener('click', () => {
+  if (history.state && history.state.xp) return history.back();   // popstate → xpRoute closes it
+  history.replaceState(null, '', location.pathname + location.search);   // landed straight on #download
+  xpClose();
+});
+xpPage.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('xpBack').click(); });
+
+// ── Capture ──
+let xpLibsP = null, xpShotSrc = '';
+function xpLoadLibs() {
+  return xpLibsP ||= (async () => {
+    const shot = fetch(XP_LIBS.shot).then(r => { if (!r.ok) throw new Error('screenshot library'); return r.text(); });
+    if (!window.PptxGenJS) await new Promise((ok, fail) => {
+      const s = document.createElement('script');
+      s.src = XP_LIBS.pptx; s.onload = ok; s.onerror = () => fail(new Error('PowerPoint library'));
+      document.head.appendChild(s);
+    });
+    xpShotSrc = await shot;
+  })().catch(e => { xpLibsP = null; throw e; });
+}
+
+const xpWait = ms => new Promise(r => setTimeout(r, ms));
+const xpFrameLoaded = f => new Promise(ok => {
+  if (f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentWindow.location.href !== 'about:blank') return ok();
+  f.addEventListener('load', ok, { once: true });
+  setTimeout(ok, 10000);
+});
+
+// Get a document ready for its picture: fonts in, media decoded, entrances finished.
+async function xpSettle(doc) {
+  const win = doc.defaultView;
+  if (!win.modernScreenshot) { const s = doc.createElement('script'); s.textContent = xpShotSrc; doc.head.appendChild(s); }
+  await Promise.race([doc.fonts.ready, xpWait(4000)]);
+  await Promise.all([...doc.images].map(img => img.complete ? 0 : new Promise(r => { img.onload = img.onerror = r; setTimeout(r, 5000); })));
+  await Promise.all([...doc.querySelectorAll('video')].map(v => v.readyState >= 2 ? 0 :
+    new Promise(r => { v.addEventListener('loadeddata', r, { once: true }); setTimeout(r, 5000); })));
+  for (const f of doc.querySelectorAll('iframe')) { await xpFrameLoaded(f); try { await xpSettle(f.contentDocument); } catch(e) {} }
+}
+function xpFinishAnimations(doc) {
+  doc.getAnimations().forEach(a => {
+    const t = a.effect && a.effect.getComputedTiming();
+    if (t && isFinite(t.endTime)) { try { a.finish(); } catch(e) {} }
+  });
+  doc.querySelectorAll('iframe').forEach(f => { try { xpFinishAnimations(f.contentDocument); } catch(e) {} });
+}
+// The screenshot library pins each element's measured width, and its text can come out a hair
+// wider, so a line that just fits would wrap. Every text block that doesn't wrap on screen (its
+// only line breaks are <br>s) is locked to nowrap; everything else keeps its own setting.
+function xpLockLines(doc) {
+  const win = doc.defaultView, range = doc.createRange();
+  const els = [...doc.body.querySelectorAll('*')];
+  const ws = new Map(els.map(el => [el, win.getComputedStyle(el).whiteSpace]));
+  const softWraps = el => {   // walks el's text, stepping into inline children only
+    let last = null, any = false;
+    const walk = node => {
+      for (const n of node.childNodes) {
+        if (n.nodeType === 3) {
+          if (!n.textContent.trim()) continue;
+          any = true;
+          range.selectNodeContents(n);
+          for (const r of range.getClientRects()) {
+            if (!r.width) continue;
+            if (last && r.top >= last.bottom - 1) return true;
+            last = r;
+          }
+        } else if (n.nodeType === 1) {
+          if (n.tagName === 'BR') { last = null; continue; }
+          if (win.getComputedStyle(n).display === 'inline' && walk(n)) return true;
+        }
+      }
+      return false;
+    };
+    return walk(el) || !any;
+  };
+  for (const el of els) {
+    const w = ws.get(el);
+    const lock = win.getComputedStyle(el).display !== 'inline' && (w === 'normal' || w === 'pre-line') && !softWraps(el);
+    el.style.whiteSpace = lock ? 'nowrap' : w;   // pin every element, so a lock never leaks into children
+  }
+}
+// The library copies SVG attributes but drops style values that look like defaults, so an inline
+// style overriding an attribute (opacity="0" faded in by script) loses. Write the live value back.
+function xpSyncSvgAttrs(doc) {
+  const win = doc.defaultView;
+  doc.querySelectorAll('svg *').forEach(el => {
+    for (const a of ['opacity', 'fill-opacity', 'stroke-opacity', 'visibility', 'display']) {
+      if (el.hasAttribute(a)) el.setAttribute(a, win.getComputedStyle(el).getPropertyValue(a));
+    }
+  });
+}
+// The screenshot library can't see inside iframes, so swap each one for a picture of itself, innermost first.
+async function xpFlattenFrames(doc) {
+  for (const f of [...doc.querySelectorAll('iframe')]) {
+    const fd = f.contentDocument, fw = f.contentWindow;
+    if (!fd || !fw.modernScreenshot) continue;
+    await xpFlattenFrames(fd);
+    const url = await fw.modernScreenshot.domToPng(fd.documentElement, { width: fw.innerWidth, height: fw.innerHeight });
+    const img = doc.createElement('img');
+    const cs = doc.defaultView.getComputedStyle(f);
+    for (const p of cs) img.style.setProperty(p, cs.getPropertyValue(p));
+    img.src = url;
+    await img.decode().catch(() => {});
+    f.replaceWith(img);
+  }
+}
+
+async function xpCaptureSlide(file) {
+  const f = document.createElement('iframe');
+  f.className = 'xp-cap';
+  f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1;
+  f.src = SLIDE_DIR + file;
+  document.body.appendChild(f);
+  try {
+    await xpFrameLoaded(f);
+    const doc = f.contentDocument;
+    await xpSettle(doc);
+    await xpWait(XP_SETTLE_MS);
+    xpFinishAnimations(doc);
+    doc.querySelectorAll('.nav').forEach(n => n.style.display = 'none');   // the slide's own prev/next pill
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await xpFlattenFrames(doc);
+    xpLockLines(doc);
+    xpSyncSvgAttrs(doc);
+    const stage = doc.getElementById('stage') || doc.body;
+    stage.style.transform = 'none';
+    return await f.contentWindow.modernScreenshot.domToJpeg(stage, { width: 1920, height: 1080, quality: .92 });
+  } finally { f.remove(); }
+}
+
+function xpProgress(done, total, label) {
+  document.getElementById('xpBar').style.width = `${Math.round(done / total * 100)}%`;
+  document.getElementById('xpProgTxt').textContent = label;
+  document.getElementById('xpProgNum').textContent = `${done} / ${total}`;
+}
+function xpMessage(kind, text) {
+  const m = document.getElementById('xpMsg');
+  m.className = `xp-msg ${kind}`; m.textContent = text;
+}
+
+document.getElementById('xpCancel').addEventListener('click', () => { xpCancelled = true; });
+document.getElementById('xpGo').addEventListener('click', async () => {
+  const items = xpItems().filter(it => xpPicked.has(it.key));
+  if (!items.length || xpBusy) return;
+  const name = (document.getElementById('xpName').value.trim() || DECK.pageTitle).replace(/[\\/:*?"<>|]+/g, '-');
+
+  xpBusy = true; xpCancelled = false;
+  xpPage.classList.add('busy');
+  document.getElementById('xpProg').classList.add('on');
+  document.getElementById('xpMsg').className = 'xp-msg';
+  xpSync();
+  try {
+    xpProgress(0, items.length, 'Getting ready…');
+    await xpLoadLibs();
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE';   // 13.33 × 7.5 in, 16:9
+    pptx.title = name; pptx.company = 'HROne'; pptx.author = 'HROne';
+    // Capture a few at a time; slides are added afterwards so the order never changes.
+    const imgs = new Array(items.length);
+    let next = 0, done = 0;
+    await Promise.all(Array.from({ length: Math.min(XP_PARALLEL, items.length) }, async () => {
+      while (next < items.length) {
+        if (xpCancelled) throw 'cancelled';
+        const i = next++;
+        xpProgress(done, items.length, `Capturing “${items[i].t}”`);
+        imgs[i] = await xpCaptureSlide(items[i].f);
+        xpProgress(++done, items.length, `Captured “${items[i].t}”`);
+      }
+    }));
+    items.forEach((it, i) => {
+      const s = pptx.addSlide();
+      s.background = { color: '013A29' };
+      s.addImage({ data: imgs[i], x: 0, y: 0, w: 13.333, h: 7.5 });
+      s.addNotes(it.t);
+    });
+    if (xpCancelled) throw 'cancelled';
+    xpProgress(items.length, items.length, 'Building the PowerPoint…');
+    await pptx.writeFile({ fileName: `${name}.pptx`, compression: true });
+    xpMessage('ok', `Downloaded “${name}.pptx” with ${items.length} slide${items.length === 1 ? '' : 's'}.`);
+  } catch (e) {
+    if (e === 'cancelled') xpMessage('err', 'Download cancelled.');
+    else { console.error('[download]', e); xpMessage('err', `Couldn't build the file${e && e.message ? ` (${e.message})` : ''}. Check your connection and try again.`); }
+  } finally {
+    xpBusy = false;
+    xpPage.classList.remove('busy');
+    document.getElementById('xpProg').classList.remove('on');
+    document.querySelectorAll('.xp-cap').forEach(f => f.remove());
+    xpSync();
+  }
+});
+
 // Open the deck on its first slide
 { const first = getFullList()[0]; goTo(first.n, first.f); }
 updateNavBtns();
+xpRoute();
 </script>
 </body>
 </html>
