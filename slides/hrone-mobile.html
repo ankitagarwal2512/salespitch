@@ -4,6 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>HROne — All of HR. On Your Palm.</title>
+<!-- the full-bleed photo is the slide: fetch it first, ahead of fonts and icons -->
+<link rel="preload" as="image" href="../Assets/mobileapp_bg.webp" fetchpriority="high"/>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../shared/slide.css"/>
 <style>
@@ -17,7 +19,7 @@
 <div id="vp"><div id="stage">
 
 <!-- ══ BACKGROUND PHOTO (phone in pocket) ══ -->
-<img class="a" src="../Assets/mobileapp_bg.png"
+<img class="a" src="../Assets/mobileapp_bg.webp" fetchpriority="high" decoding="async" alt=""
      style="left:0;top:0;width:1920px;height:1080px;object-fit:cover;object-position:center;pointer-events:none">
 
 <!-- ══ HRONE WHITE LOGO ══ -->

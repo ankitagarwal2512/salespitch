@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Live Trip Expense</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--app:#0f4b36;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:12px}
+.eyebrow{gap:10px!important}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+/* step captions */
+.step{width:290px}
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:16px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:14px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+.step.wide{width:598px}
+
+/* phone */
+.phone{width:250px;height:520px;border-radius:40px;padding:9px;
+  background:linear-gradient(150deg,#f7f3ea 0%,#ebe5d8 55%,#e0d9c9 100%);
+  box-shadow:inset 0 0 0 1.5px #d8d0bf,inset 0 0 0 4px rgba(255,255,255,.55),
+    0 1px 1px rgba(40,34,20,.08),            /* contact edge */
+    0 4px 8px -2px rgba(40,34,20,.10),       /* close shadow */
+    0 20px 36px -10px rgba(13,68,48,.22),    /* mid depth */
+    0 52px 90px -22px rgba(13,68,48,.36)}    /* long ambient, tinted to the brand green */
+/* soft oval the phone rests on */
+.ground{width:230px;height:40px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(40,34,20,.30) 0%,rgba(40,34,20,.14) 40%,rgba(40,34,20,0) 72%)}
+/* side buttons, as on the cover phone */
+.phone::before,.phone::after{content:'';position:absolute;width:4px;border-radius:2px;background:#ddd5c4}
+.phone::before{left:-3px;top:104px;height:40px;box-shadow:0 52px 0 #ddd5c4}
+.phone::after{right:-3px;top:138px;height:62px}
+.screen{position:relative;width:232px;height:502px;border-radius:32px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px #d6cebd}
+/* All three screens share one skeleton: white status bar, 60px header, 20px side inset,
+   bottom panels with a 30px safe area. Laid out in flow so nothing overlaps. */
+.scr{position:absolute;top:0;left:0;width:390px;height:844px;transform:scale(.5949);transform-origin:0 0;
+  display:flex;flex-direction:column;font-family:'Public Sans',sans-serif;color:#1d2b25;background:#fff}
+.sb{flex-shrink:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;
+  background:#fff;font-size:18px;font-weight:600;color:#6b6b6b;position:relative;z-index:3}
+.sb svg{display:block}
+.hdr{flex-shrink:0;height:60px;display:flex;align-items:center;gap:14px;padding:0 20px;background:#fff;
+  border-bottom:1px solid #edf0ee;font-size:20px;font-weight:700;position:relative;z-index:2}
+.hdr svg{flex-shrink:0}
+.panel{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:24px 24px 0 0;padding:18px 20px 30px;z-index:2}
+.btn{height:54px;border-radius:12px;background:var(--app);color:#fff;font-size:17px;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+/* screen 1 — new requests + share location sheet */
+.s1 .hdr{background:var(--app);color:#fff;border-bottom:none}
+.s1 .grid{display:grid;grid-template-columns:repeat(4,1fr);row-gap:22px;align-content:start;padding:22px 20px;background:#f4f6f5;flex:1}
+.s1 .tile{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12px;color:#55665e;text-align:center;line-height:14px}
+.s1 .tile i{width:46px;height:46px;border-radius:50%;background:#e4efe9;display:block}
+.s1 .tile:nth-child(4n+2) i{background:#fde8df}
+.s1 .tile:nth-child(4n+3) i{background:#e8e6f6}
+.s1 .dim{position:absolute;left:0;right:0;top:50px;bottom:0;background:rgba(14,26,21,.42);z-index:2}
+.s1 .handle{width:46px;height:5px;border-radius:3px;background:#c9d1cd;margin:0 auto 16px}
+.s1 .panel h4{font-size:21px;font-weight:700}
+.s1 .note{margin-top:16px;background:#fdeee6;border-radius:12px;padding:14px 16px}
+.s1 .note b{display:flex;align-items:center;gap:8px;font-size:15px;color:#c2410c}
+.s1 .note b::before{content:'!';width:18px;height:18px;border-radius:50%;background:#ea7a2a;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+.s1 .note ul{margin:8px 0 0 18px;font-size:14px;line-height:20px;color:#3d4b45}
+.s1 .note li+li{margin-top:4px}
+.s1 .field{position:relative;margin-top:24px;height:56px;border:1.5px solid var(--app);border-radius:10px;display:flex;align-items:center;padding:0 16px;font-size:17px;font-weight:500}
+.s1 .field span{position:absolute;top:-9px;left:12px;background:#fff;padding:0 5px;font-size:12px;color:#55665e}
+.s1 .btn{margin-top:20px}
+
+/* screen 2 — live tracking */
+.s2 .map{position:relative;flex:1;background:#eef1ea;overflow:hidden}
+.s2 .map svg{position:absolute;inset:0;width:100%;height:100%}
+.s2 .route{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.6s .9s cubic-bezier(.45,.05,.3,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.s2 .pulse{transform-origin:center;transform-box:fill-box;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.55}100%{transform:scale(2.2);opacity:0}}
+.s2 .panel{position:relative;flex-shrink:0;box-shadow:0 -6px 20px rgba(0,0,0,.08);margin-top:-20px}
+.s2 .row{display:flex;gap:30px;align-items:flex-start}
+.s2 .k{font-size:13px;color:#7a8a82}
+.s2 .v{font-size:18px;font-weight:700;margin-top:3px}
+.s2 .live{margin-left:auto;display:flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:15px;background:#e3f5ec;color:#15803d;font-size:14px;font-weight:700}
+.s2 .live::before{content:'';width:8px;height:8px;border-radius:50%;background:#16a34a}
+.s2 .loc{margin-top:14px;padding-top:14px;border-top:1px solid #edf0ee}
+.s2 .loc .v{font-size:15px;font-weight:600;line-height:21px}
+.s2 .warn{margin-top:14px;background:#fdeee6;border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:19px;color:#3d4b45}
+.s2 .warn b{display:block;color:#c2410c;font-size:15px;margin-bottom:2px}
+.s2 .btn{margin-top:16px}
+
+/* privacy note under step 02 */
+.callout{display:inline-flex;align-items:center;gap:9px;margin-top:20px;height:40px;padding:0 16px 0 12px;border-radius:20px;background:#fff;
+  border:1px solid #e1d6c2;box-shadow:0 6px 16px rgba(13,68,48,.08);font-size:15px;font-weight:700;color:var(--forest);white-space:nowrap}
+.callout svg{width:18px;height:18px;flex-shrink:0}
+
+/* screen 3 — trips on the day */
+.s3 .hdr span{margin-left:auto;font-size:14px;font-weight:600;color:#55665e;border:1px solid #dfe5e2;border-radius:8px;padding:6px 10px}
+.s3 .list{flex:1;background:#f4f6f5;padding:0 20px}
+.s3 .lbl{padding:18px 0 10px;font-size:14px;font-weight:700;color:#7a8a82;letter-spacing:.5px;text-transform:uppercase}
+.s3 .trip{margin-bottom:12px;background:#fff;border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.s3 .top{display:flex;align-items:center;gap:10px}
+.s3 .ico{width:38px;height:38px;border-radius:9px;background:#f0f2f1;border:1px solid #e3e7e5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s3 .name{font-size:18px;font-weight:600}
+.s3 .tag{font-size:12.5px;font-weight:600;color:#1d4ed8;background:#e8effd;padding:4px 10px;border-radius:12px;box-shadow:0 0 0 2.5px #ee5a3c}
+.s3 .ln{margin-top:9px;font-size:14px;line-height:20px;color:#3d4b45}
+.s3 .ln i{font-style:normal;color:#7a8a82}
+.s3 .meta{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:13.5px;color:#55665e}
+.s3 .meta a{margin-left:auto;color:#0f4b36;font-weight:600;text-decoration:underline}
+.s3 .km{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:#0f4b36;background:#e3f5ec;padding:4px 10px;border-radius:8px}
+
+/* outcomes */
+/* why it matters: a quiet footnote row, below the steps in weight */
+.outs{display:flex;align-items:center;gap:44px;padding-top:22px;border-top:1px solid #eadfcc}
+.outs .lead{font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#8fa39a;white-space:nowrap}
+.out{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:18px;color:#55665e}
+.out svg{width:20px;height:20px;flex-shrink:0}
+.out b{font-weight:700;color:var(--forest)}
+
+.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:11px;
+  background:rgba(0,88,62,.07);border:1px solid rgba(0,88,62,.3);
+  padding:10px 20px 10px 12px;border-radius:40px;cursor:pointer;z-index:90;
+  transition:background .18s,transform .14s;animation:fu .5s .8s ease both}
+.depthchip:hover{background:rgba(0,88,62,.14);transform:translateY(-2px)}
+.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#00583e;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+  animation:bob 1.9s ease-in-out infinite}
+.depthchip span.t{color:#00583e;font-size:16px;font-weight:700;letter-spacing:.2px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.s2 .route{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Live Trip Expense</div>
+<p class="a sub" style="left:830px;top:150px;width:680px;animation:fu .5s .35s ease both">Pay for the trip that actually happened. Every route<br>tracked live, every claim filed automatically.</p>
+
+<!-- ══ 01 — START ══ -->
+<div class="a ground" style="left:82px;top:791px;animation:fi .6s .28s ease both"></div>
+<div class="a phone" style="left:72px;top:290px;animation:fu .55s .28s ease both"><div class="screen"><div class="scr s1">
+  <div class="sb"><span>10:50</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
+  <div class="hdr">New Requests</div>
+  <div class="grid">
+    <div class="tile"><i></i>Expense<br>advance</div><div class="tile"><i></i>Helpdesk<br>ticket</div><div class="tile"><i></i>Job<br>requisition</div><div class="tile"><i></i>Leave</div>
+    <div class="tile"><i></i>Loan</div><div class="tile"><i></i>Mark<br>attendance</div><div class="tile"><i></i>On duty</div><div class="tile"><i></i>Propose<br>invest</div>
+    <div class="tile"><i></i>Reimburse-<br>ment</div><div class="tile"><i></i>Resignation</div><div class="tile"><i></i>Restricted<br>holiday</div><div class="tile"><i></i>Short leave</div>
+  </div>
+  <div class="dim"></div>
+  <div class="panel">
+    <div class="handle"></div>
+    <h4>Share My Location</h4>
+    <div class="note"><b>Note</b><ul>
+      <li>Location will be tracked in the background until the trip ends.</li>
+      <li>If you forget to end the trip, it will stop on its own after 16 hours.</li>
+    </ul></div>
+    <div class="field"><span>Purpose</span>Client Visit</div>
+    <div class="btn">Share My Location</div>
+  </div>
+</div></div></div>
+<div class="a step" style="left:350px;top:303px;animation:fu .5s .34s ease both">
+  <span class="num">01</span>
+  <h3>Start the trip</h3>
+  <p>Tap <b>Share My Location</b> and add a purpose. Android and iOS.</p>
+</div>
+
+<!-- ══ 02 — TRACK ══ -->
+<div class="a ground" style="left:670px;top:791px;animation:fi .6s .40s ease both"></div>
+<div class="a phone" style="left:660px;top:290px;animation:fu .55s .40s ease both"><div class="screen"><div class="scr s2">
+  <div class="sb"><span>10:51</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
+  <div class="hdr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d2b25" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Location tracking</div>
+  <div class="map">
+    <svg viewBox="0 110 390 340" preserveAspectRatio="xMidYMid slice">
+      <path d="M-20 120 L420 180 M-20 300 L420 250 M60 -10 L120 620 M260 -10 L210 620 M-20 470 L420 420 M330 -10 L360 620" stroke="#fff" stroke-width="14" fill="none"/>
+      <path d="M-20 210 L420 215 M170 -10 L160 620 M-20 380 L420 340 M20 -10 L40 620" stroke="#fff" stroke-width="7" fill="none"/>
+      <rect x="230" y="270" width="80" height="60" rx="10" fill="#d6ead8"/><rect x="40" y="410" width="70" height="50" rx="10" fill="#d6ead8"/>
+      <path class="route" d="M88 172 L84 238 L168 246 L163 300 L232 296 L236 352 L300 344 L304 404" stroke="#2563eb" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="88" cy="172" r="9" fill="#fff" stroke="#16a34a" stroke-width="5"/>
+      <circle class="pulse" cx="304" cy="404" r="16" fill="#2563eb"/>
+      <circle cx="304" cy="404" r="9" fill="#2563eb" stroke="#fff" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div><div class="k">Duration</div><div class="v">4 min</div></div>
+      <div><div class="k">Started at</div><div class="v">10:46 AM</div></div>
+      <span class="live">Ongoing</span>
+    </div>
+    <div class="loc"><div class="k">Start Location</div><div class="v">B, Block A, Sector 68, Noida, 201301, Uttar Pradesh, India</div></div>
+    <div class="warn"><b>Partially affected</b>Intermittent signal issues. We're smoothing the route.</div>
+    <div class="btn">End trip</div>
+  </div>
+</div></div></div>
+<div class="a step" style="left:938px;top:303px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>Route tracked live</h3>
+  <p>The route is drawn as they travel. Auto-stops after 16 hours.</p>
+  <div class="callout">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+  Tracks only during the trip
+</div>
+</div>
+
+<!-- ══ 03 — CLAIM ══ -->
+<div class="a ground" style="left:1258px;top:791px;animation:fi .6s .52s ease both"></div>
+<div class="a phone" style="left:1248px;top:290px;animation:fu .55s .52s ease both"><div class="screen"><div class="scr s3">
+  <div class="sb"><span>10:58</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
+  <div class="hdr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d2b25" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Trips<span>14/10/2026</span></div>
+  <div class="list">
+  <div class="lbl">Today</div>
+  <div class="trip">
+    <div class="top"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55665e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><path d="M18 10c0 3-3.5 5-3.5 5S11 13 11 10a3.5 3.5 0 017 0z"/><path d="M8.5 17H14a3 3 0 000-6h-1"/></svg></span><span class="name">Trip 1</span><span class="tag">Mark attendance</span></div>
+    <div class="ln"><i>From</i> 7th Floor, A-8, Block A, Sector 68, Noida</div>
+    <div class="ln"><i>To</i> A, 8, Block A, Sector 68, Noida</div>
+    <div class="meta">10:08 AM → 10:26 AM<a>View on map</a></div>
+  </div>
+  <div class="trip">
+    <div class="top"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55665e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><path d="M18 10c0 3-3.5 5-3.5 5S11 13 11 10a3.5 3.5 0 017 0z"/><path d="M8.5 17H14a3 3 0 000-6h-1"/></svg></span><span class="name">client visit</span><span class="tag">Expense</span></div>
+    <div class="ln"><i>From</i> Gali No 17, Block 17, Vishwas Nagar, Shahdara, Delhi</div>
+    <div class="ln"><i>To</i> Radhey Puri, Arjun Gali, Vishwas Nagar, Shahdara, Delhi</div>
+    <span class="km">Distance: 1.1 km</span>
+    <div class="meta">9:02 AM → 9:04 AM<a>View on map</a></div>
+  </div>
+  <div class="trip">
+    <div class="top"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#55665e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><path d="M18 10c0 3-3.5 5-3.5 5S11 13 11 10a3.5 3.5 0 017 0z"/><path d="M8.5 17H14a3 3 0 000-6h-1"/></svg></span><span class="name">client visit</span><span class="tag" style="box-shadow:none">Expense</span></div>
+    <div class="ln"><i>From</i> Naveen Shahdara, Oldanpur, Delhi</div>
+    <span class="km">Distance: 1.0 km</span>
+  </div>
+  </div>
+</div></div></div>
+<div class="a step" style="left:1526px;top:303px;width:322px;animation:fu .5s .58s ease both">
+  <span class="num">03</span>
+  <h3>End the trip, claim filed</h3>
+  <p>Kilometres priced at the <b>per-km rate for their vehicle and grade</b>. The same trip can also <b>mark attendance</b>.</p>
+</div>
+
+<!-- ══ OUTCOMES ══ -->
+<div class="a outs" style="left:72px;top:865px;width:1776px;animation:fu .55s .7s ease both">
+  <span class="lead">Why it matters</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M10 5c3 0 4.5 1.6 4.5 4S13 13 10 13H8l6 6"/></svg><b>Finance</b> no estimated kilometres</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 19c0-3.6 2.9-6.5 6.5-6.5 1.4 0 2.6.4 3.7 1.1"/><path d="M15 18l2 2 4-4"/></svg><b>Employee</b> fair pay, no paperwork</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg><b>Manager</b> approve with proof</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-3.5 7-9V5.5L12 3 5 5.5V12c0 5.5 7 9 7 9z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg><b>Audit</b> a record that holds up</span>
+</div>
+
+<div class="depthchip" id="depthChip" title="Press the down arrow to watch a trip on the record">
+  <span class="arw">&#8595;</span>
+  <span class="t">1 more: see a trip on the record</span>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

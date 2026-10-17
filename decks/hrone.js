@@ -14,7 +14,9 @@ DECKS.hrone = {
   groups: [
   { id:'intro', label:'Introduction', icon:'M2 3.5h10M2 7h8M2 10.5h6',
     slides:[
-      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1.html' },
+      // themes: a light/dark switch on the nav row picks which file this slide shows
+      { n:1,  t:'Welcome to HROne',           f:'hrone-slide1-light.html',
+        themes:{ light:'hrone-slide1-light.html', dark:'hrone-slide1-dark.html' } },
       { n:2,  t:'Group Overview',               f:'hrone-group-overview.html' },
       { n:3,  t:'Why HROne',                   f:'hrone-why-hrone.html' },
       { n:4,  t:'Recognition',                  f:'hrone-recognised.html' },
@@ -54,10 +56,22 @@ DECKS.hrone = {
       { n:23, t:'Reporting & Analytics',        f:'hrone-dashboards.html' },
     ]},
 
-  { id:'market', label:'Annexure', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
+  { id:'market', label:'Add-Ons', icon:'M2 5h10l-1.5 7H3.5L2 5zM5.5 5V3.5a1.5 1.5 0 013 0V5',
     slides:[
-      { n:24, t:'Add-Ons',                      f:'hrone-marketplace.html' },
-      { n:25, t:'Visitor Management',           f:'hrone-visitor-management.html',
+      { n:24, t:'Overview',                     f:'hrone-marketplace.html' },
+      { n:25, t:'Live Trip Expense',            f:'hrone-addon-live-trip-expense.html',
+        sub:[
+          { t:'A Trip on the Record',           f:'hrone-addon-live-trip-record.html' },
+        ]},
+      { n:26, t:'Biometric Kiosk',              f:'hrone-addon-biometric-kiosk.html',
+        sub:[
+          { t:'Set Up in Minutes',              f:'hrone-addon-biometric-setup.html' },
+        ]},
+      { n:27, t:'Geo Pulse',                    f:'hrone-addon-geo-pulse.html',
+        sub:[
+          { t:'The Team on One Map',            f:'hrone-addon-geo-pulse-team.html' },
+        ]},
+      { n:28, t:'Visitor Management',           f:'hrone-visitor-management.html',
         sub:[
           { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
           { t:'Walk-in Visitors',               f:'hrone-visitor-walkin.html' },
@@ -67,23 +81,23 @@ DECKS.hrone = {
     ]},
   { id:'modules', label:'Modules', icon:'M1 4l6-3 6 3-6 3-6-3M1 8l6 3 6-3M1 11l6 3 6-3',
     slides:[
-      { n:26, t:'Overview',                    f:'hrone-modules-overview.html' },
-      { n:27, t:'Recruitment',                 f:'hrone-recruitment.html' },
-      { n:28, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
-      { n:29, t:'Workforce Management',        f:'hrone-module-workforce.html' },
-      { n:30, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
-      { n:31, t:'Payroll',                     f:'hrone-module-payroll.html',
+      { n:29, t:'Overview',                    f:'hrone-modules-overview.html' },
+      { n:30, t:'Recruitment',                 f:'hrone-recruitment.html' },
+      { n:31, t:'Onboarding',                  f:'hrone-module-onboarding.html' },
+      { n:32, t:'Workforce Management',        f:'hrone-module-workforce.html' },
+      { n:33, t:'Time Office',                 f:'hrone-module-timeoffice.html' },
+      { n:34, t:'Payroll',                     f:'hrone-module-payroll.html',
         sub:[
           { t:'New Wage Code',                  f:'hrone-payroll-wagecode.html' },
         ]},
-      { n:32, t:'Performance',                 f:'hrone-module-performance.html' },
-      { n:33, t:'Engagement',                  f:'hrone-module-engagement.html' },
-      { n:34, t:'Expense',                     f:'hrone-module-expense.html' },
-      { n:35, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
+      { n:35, t:'Performance',                 f:'hrone-module-performance.html' },
+      { n:36, t:'Engagement',                  f:'hrone-module-engagement.html' },
+      { n:37, t:'Expense',                     f:'hrone-module-expense.html' },
+      { n:38, t:'Helpdesk',                    f:'hrone-module-helpdesk.html' },
     ]},
   { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
     slides:[
-      { n:36, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
+      { n:39, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
     ]},
 ],
 };

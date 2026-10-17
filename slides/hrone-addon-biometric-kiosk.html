@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Biometric Kiosk</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+/* the real kiosk, filmed */
+.clip{width:320px;height:568px;border-radius:24px;overflow:hidden;background:#e9e4da;
+  box-shadow:0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.22),0 52px 90px -22px rgba(13,68,48,.36)}
+.clip video{display:block;width:100%;height:100%;object-fit:cover}
+.live{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:17px;background:rgba(255,255,255,.92);
+  font-size:14px;font-weight:700;color:var(--forest);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.live::before{content:'';width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.18)}
+
+/* three points */
+.pt{width:424px}
+.pt .ic{width:64px;height:64px;border-radius:50%;background:#fde8df;display:flex;align-items:center;justify-content:center}
+.pt .ic svg{width:30px;height:30px}
+.pt h3{margin-top:26px;font-size:30px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.pt p{margin-top:14px;font-size:20px;color:#55665e;line-height:30px}
+.pt p b{color:var(--forest);font-weight:700}
+
+/* where it works */
+.where{display:flex;align-items:flex-start;gap:0;padding-top:28px;border-top:1px solid #eadfcc}
+.where .lead{width:250px;flex-shrink:0;padding-top:6px}
+.where .lead small{display:block;font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#8fa39a}
+.where .lead b{display:block;margin-top:10px;font-size:20px;font-weight:700;color:var(--forest);line-height:27px}
+.site{flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.site .ic{width:72px;height:72px;border-radius:20px;background:#fff;border:1px solid #ece3d4;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 16px rgba(20,50,38,.05)}
+.site .ic svg{width:32px;height:32px}
+.site span{font-size:17px;font-weight:700;color:var(--forest)}
+
+.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:11px;
+  background:rgba(0,88,62,.07);border:1px solid rgba(0,88,62,.3);
+  padding:10px 20px 10px 12px;border-radius:40px;cursor:pointer;z-index:90;
+  transition:background .18s,transform .14s;animation:fu .5s .8s ease both}
+.depthchip:hover{background:rgba(0,88,62,.14);transform:translateY(-2px)}
+.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#00583e;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+  animation:bob 1.9s ease-in-out infinite}
+.depthchip span.t{color:#00583e;font-size:16px;font-weight:700;letter-spacing:.2px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Biometric Kiosk</div>
+<p class="a sub" style="left:761px;top:150px;width:680px;animation:fu .5s .35s ease both">Look up, you're checked in within seconds. Face<br>attendance that lands in HROne the moment it happens.</p>
+
+<!-- ══ THE REAL KIOSK ══ -->
+<div class="a clip" style="left:72px;top:290px;animation:fu .55s .28s ease both">
+  <video src="../Assets/bio-metric/kiosk.mp4?v=2" poster="../Assets/bio-metric/kiosk-poster.jpg" autoplay loop muted playsinline></video>
+</div>
+<div class="a live" style="left:92px;top:310px;animation:fi .4s .9s ease both">Live kiosk</div>
+
+<!-- ══ WHY IT WORKS ══ -->
+<div class="a pt" style="left:460px;top:300px;animation:fu .5s .36s ease both">
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#bb4f2c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/><circle cx="9.5" cy="10" r=".6" fill="#bb4f2c"/><circle cx="14.5" cy="10" r=".6" fill="#bb4f2c"/><path d="M9 14.5c1.6 1.4 4.4 1.4 6 0"/></svg></span>
+  <h3>Touchless, in seconds</h3>
+  <p>Face recognition at the entrance. <b>No cards, no fingerprints, no queue</b> at shift change.</p>
+</div>
+<div class="a pt" style="left:942px;top:300px;animation:fu .5s .42s ease both">
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#bb4f2c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-3.5 7-9V5.5L12 3 5 5.5V12c0 5.5 7 9 7 9z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span>
+  <h3>Real faces only</h3>
+  <p>Built to detect a live face, so <b>a photo won't pass</b>. Buddy punching and proxy attendance stop.</p>
+</div>
+<div class="a pt" style="left:1424px;top:300px;animation:fu .5s .48s ease both">
+  <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#bb4f2c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13h6l-1 8 8-10h-6l1-8z"/></svg></span>
+  <h3>Live in HROne</h3>
+  <p>Every punch reaches attendance <b>in real time</b>, mapped to the right employee. No device exports.</p>
+</div>
+
+<!-- ══ WHERE IT WORKS ══ -->
+<div class="a where" style="left:460px;top:722px;width:1388px;animation:fu .55s .6s ease both">
+  <div class="lead"><small>Works wherever</small><b>One attendance process across every location</b></div>
+  <div class="site"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 011-1h9a1 1 0 011 1v16M15 9h4a1 1 0 011 1v11M3 21h18"/><path d="M8 8h3M8 12h3M8 16h3"/></svg></span><span>Offices</span></div>
+  <div class="site"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11l5 3V11l5 3V7l8 4v10H3z"/><path d="M7 17h2M12 17h2M17 17h1"/></svg></span><span>Plants</span></div>
+  <div class="site"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-8h10v8M7 17h10"/></svg></span><span>Warehouses</span></div>
+  <div class="site"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9M4 9h16v3a2.7 2.7 0 01-5.3 0 2.7 2.7 0 01-5.4 0A2.7 2.7 0 014 12V9z"/><path d="M5 13.5V21h14v-7.5M10 21v-4h4v4"/></svg></span><span>Stores</span></div>
+  <div class="site"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0d4430" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 0116 0"/><path d="M12 9v-3M9 9.6V7.5M15 9.6V7.5"/><path d="M2 17h20v2H2z"/></svg></span><span>Project sites</span></div>
+</div>
+
+<div class="depthchip" id="depthChip" title="Press the down arrow to see kiosk setup">
+  <span class="arw">&#8595;</span>
+  <span class="t">1 more: set up a kiosk in minutes</span>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

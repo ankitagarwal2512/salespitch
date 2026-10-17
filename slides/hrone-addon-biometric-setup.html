@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Biometric Kiosk: setup</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+/* cream device frame, as on slide 25 */
+.dev{width:244px;height:509px;border-radius:38px;padding:13px;
+  background:linear-gradient(150deg,#f7f3ea 0%,#ebe5d8 55%,#e0d9c9 100%);
+  box-shadow:inset 0 0 0 1.5px #d8d0bf,inset 0 0 0 4px rgba(255,255,255,.55),
+    0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.22),0 52px 90px -22px rgba(13,68,48,.36)}
+.dev .scr{position:relative;width:218px;height:483px;border-radius:27px;overflow:hidden;background:#2b5a44;box-shadow:0 0 0 1px #d6cebd}
+/* kiosk app screens, rebuilt in HTML: drawn at 390px wide, scaled into the frame */
+.ui{position:absolute;left:0;top:0;width:320px;height:709px;transform:scale(.68125);transform-origin:0 0;
+  background:#2b5a44;color:#fff;font-family:'Public Sans',sans-serif;display:flex;flex-direction:column}
+.ui .top{display:flex;align-items:center;gap:10px;padding:26px 18px 0;font-size:19px;font-weight:700}
+.ui .stepper{position:relative;display:flex;justify-content:space-between;margin:24px 34px 0}
+.ui .stepper::before{content:'';position:absolute;left:14px;right:14px;top:13px;height:2px;background:rgba(255,255,255,.28)}
+.ui .stepper .fill{position:absolute;left:14px;top:13px;height:2px;background:#5fd39a}
+.ui .st{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;width:28px}
+.ui .st i{width:28px;height:28px;border-radius:50%;background:#6f8d80;color:#fff;font-style:normal;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ui .st.on i{background:#22a06b;box-shadow:0 0 0 5px rgba(34,160,107,.28)}
+.ui .st.done i{background:#22a06b}
+.ui .st span{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.ui .card{background:#fff;color:#1d2b25;border-radius:22px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.ui .btns{display:flex;gap:10px;margin-top:18px}
+.ui .btn{flex:1;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+.ui .btn.ghost{border:1.5px solid #0d4430;color:#0d4430}
+.ui .btn.solid{background:#0d4430;color:#fff}
+.ground{width:220px;height:40px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(40,34,20,.30) 0%,rgba(40,34,20,.14) 40%,rgba(40,34,20,0) 72%)}
+
+.step{width:290px}
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:16px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:14px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+
+/* admin controls: quiet footnote row, as on slide 25 */
+.outs{display:flex;align-items:center;gap:44px;padding-top:22px;border-top:1px solid #eadfcc}
+.outs .lead{font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#8fa39a;white-space:nowrap}
+.out{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:18px;color:#55665e}
+.out svg{width:20px;height:20px;flex-shrink:0}
+.out b{font-weight:700;color:var(--forest)}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Biometric Kiosk</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Set up in minutes</div>
+<p class="a sub" style="left:821px;top:150px;width:640px;animation:fu .5s .35s ease both">An admin readies a kiosk in three guided steps.<br>No device to configure by hand.</p>
+
+<!-- ══ 01 SYNC ══ -->
+<div class="a ground" style="left:84px;top:790px;animation:fi .6s .28s ease both"></div>
+<div class="a dev" style="left:72px;top:300px;animation:fu .55s .28s ease both"><div class="scr">
+  <div class="ui" style="justify-content:center;padding:0 16px">
+    <div class="card" style="padding:28px 20px 24px;text-align:center">
+      <span style="display:inline-flex;width:64px;height:64px;border-radius:14px;background:#0d4430;align-items:center;justify-content:center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span>
+      <div style="margin-top:18px;font-size:20px;font-weight:700;white-space:nowrap">Syncing Employee Data</div>
+      <div style="margin-top:6px;font-size:16px;color:#55665e">Setting up your device</div>
+      <div style="margin-top:24px;font-size:30px;font-weight:700">500 / 1280</div>
+      <div style="margin-top:4px;font-size:15px;color:#55665e">Employees synced</div>
+      <div style="margin-top:20px;height:8px;border-radius:4px;background:#e6ebe8;overflow:hidden"><div style="width:39%;height:100%;background:#1f8f5f;border-radius:4px"></div></div>
+      <div style="margin-top:18px;font-size:15px;font-weight:600;color:#3d4b45">Syncing in progress…</div>
+      <div style="margin-top:5px;font-size:14px;color:#6b7a73">This may take a few moments</div>
+    </div>
+  </div>
+</div></div>
+<div class="a step" style="left:362px;top:318px;animation:fu .5s .34s ease both">
+  <span class="num">01</span>
+  <h3>Sync employees</h3>
+  <p>Employee and org data comes over from <b>HROne automatically</b>. Nothing to upload.</p>
+</div>
+
+<!-- ══ 02 REGISTER ══ -->
+<div class="a ground" style="left:672px;top:790px;animation:fi .6s .40s ease both"></div>
+<div class="a dev" style="left:660px;top:300px;animation:fu .55s .40s ease both"><div class="scr">
+  <div class="ui">
+    <div class="top"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Settings</div>
+    <div class="stepper"><span class="fill" style="width:0"></span>
+      <div class="st on"><i>1</i><span>Employee Info</span></div><div class="st"><i>2</i><span>Face Capture</span></div><div class="st"><i>3</i><span>Complete</span></div></div>
+    <div style="margin:30px auto 0;width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/><circle cx="9.5" cy="10" r=".7" fill="#fff"/><circle cx="14.5" cy="10" r=".7" fill="#fff"/><path d="M9 14.5c1.6 1.4 4.4 1.4 6 0"/></svg></div>
+    <div style="margin-top:16px;text-align:center;font-size:25px;font-weight:700">Register Face</div>
+    <div style="margin:6px 20px 0;text-align:center;font-size:15px;line-height:20px;color:rgba(255,255,255,.88)">Please register your face to mark attendance</div>
+    <div class="card" style="margin:22px 16px 0;padding:20px 18px 18px">
+      <div style="font-size:19px;font-weight:700">Register Face</div>
+      <div style="margin-top:6px;font-size:15px;line-height:20px;color:#55665e">Enter employee details to begin face enrolment</div>
+      <div style="position:relative;margin-top:22px;height:52px;border:1.5px solid #0d4430;border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 14px;font-size:17px;font-weight:600">
+        <span style="position:absolute;top:-9px;left:12px;background:#fff;padding:0 5px;font-size:13px;font-weight:600;color:#55665e">Employee</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7a73" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>Riya (#HI924)</div>
+      <div class="btns"><span class="btn ghost">Cancel</span><span class="btn solid">Continue</span></div>
+      <div style="margin-top:16px;text-align:center;font-size:12.5px;color:#6b7a73">© 2026 HROne · <u>Privacy policy</u></div>
+    </div>
+  </div>
+</div></div>
+<div class="a step" style="left:950px;top:318px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>Register faces</h3>
+  <p>Pick the employee and start enrolment. Each face is <b>tied to their HROne profile</b>.</p>
+</div>
+
+<!-- ══ 03 CAPTURE ══ -->
+<div class="a ground" style="left:1260px;top:790px;animation:fi .6s .52s ease both"></div>
+<div class="a dev" style="left:1248px;top:300px;animation:fu .55s .52s ease both"><div class="scr">
+  <div class="ui">
+    <div class="top"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Settings</div>
+    <div class="stepper"><span class="fill" style="width:46%"></span>
+      <div class="st done"><i>✓</i><span>Employee Info</span></div><div class="st on"><i>2</i><span>Face Capture</span></div><div class="st"><i>3</i><span>Complete</span></div></div>
+    <div style="position:relative;margin:22px 16px 0;height:330px;border-radius:22px;overflow:hidden;background:#9fc7cf url(../Assets/bio-metric/avatar.jpg) center 22%/cover no-repeat">
+      <div style="position:absolute;left:50%;top:44%;width:196px;height:196px;margin:-98px 0 0 -98px;border-radius:50%;box-shadow:0 0 0 3px #6fd6a2,0 0 0 600px rgba(10,40,28,.38)"></div>
+      <span style="position:absolute;right:14px;top:14px;font-size:13.5px;font-weight:700;color:#a8f0c8;background:rgba(10,40,28,.8);padding:5px 11px;border-radius:12px">Quality: 100%</span>
+    </div>
+    <div class="card" style="margin:16px 16px 0;padding:20px 16px 18px;text-align:center">
+      <div style="font-size:21px;font-weight:700">Setup Face ID</div>
+      <div style="margin-top:6px;font-size:15px;color:#55665e">Look straight at the camera</div>
+      <div class="btns" style="margin-top:18px"><span class="btn ghost">Cancel</span><span class="btn solid">Capture Face</span></div>
+    </div>
+  </div>
+</div></div>
+<div class="a step" style="left:1538px;top:318px;width:310px;animation:fu .5s .58s ease both">
+  <span class="num">03</span>
+  <h3>Capture and go</h3>
+  <p>Guided capture with a <b>live quality check</b>. The kiosk is ready to mark attendance.</p>
+</div>
+
+<!-- ══ ADMIN CONTROLS ══ -->
+<div class="a outs" style="left:72px;top:865px;width:1776px;animation:fu .55s .7s ease both">
+  <span class="lead">Admin controls</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg><b>Password-protected</b> admin access</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><b>Controlled</b> configuration and sync</span>
+  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><b>Every kiosk</b> managed centrally</span>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
