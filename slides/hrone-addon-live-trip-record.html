@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Live Trip Expense: on the record</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.web{width:1180px;background:#fff;border:1px solid #ece3d4;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(13,68,48,.12)}
+.web .bar{height:40px;display:flex;align-items:center;gap:7px;padding:0 18px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:11px;height:11px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:14px;font-weight:600;color:#7a8a82}
+.web video{display:block;width:1180px;height:616px;object-fit:cover;background:#f4f6f5}
+
+.pt{width:548px;display:flex;gap:20px}
+.pt .n{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.pt h3{font-size:25px;font-weight:800;color:var(--forest);line-height:30px;letter-spacing:-.3px}
+.pt p{margin-top:8px;font-size:18px;color:#55665e;line-height:26px}
+.pt p b{color:var(--forest);font-weight:700}
+.sep{width:548px;height:1px;background:#eadfcc}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Live Trip Expense</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Every trip, on the record.</div>
+<p class="a sub" style="left:72px;top:236px;white-space:nowrap;animation:fu .5s .35s ease both">What HR and finance see: every trip on the employee's attendance day, with addresses, coordinates and the route.</p>
+
+<!-- ══ RECORDING ══ -->
+<div class="a web" style="left:72px;top:310px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · Attendance › Trips › Trip details</span></div>
+  <video src="../Assets/live-trip/trip-route.mp4" poster="../Assets/live-trip/trip-route-poster.jpg" autoplay loop muted playsinline></video>
+</div>
+
+<!-- ══ WHAT TO POINT AT ══ -->
+<div class="a pt" style="left:1300px;top:320px;animation:fu .5s .36s ease both">
+  <span class="n">01</span>
+  <div><h3>On the attendance day</h3><p>Trips sit under the employee's day, next to workplan and timesheet, each tagged <b>Mark attendance</b> or <b>Expense</b>.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:474px;animation:fi .4s .4s ease both"></div>
+<div class="a pt" style="left:1300px;top:502px;animation:fu .5s .44s ease both">
+  <span class="n">02</span>
+  <div><h3>Start and end, pinned</h3><p>Address, coordinates and time for both points, with the <b>distance from the actual route</b>.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:630px;animation:fi .4s .48s ease both"></div>
+<div class="a pt" style="left:1300px;top:658px;animation:fu .5s .52s ease both">
+  <span class="n">03</span>
+  <div><h3>The route, one click away</h3><p><b>View on map</b> opens the full A → B path, for approval or audit.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:786px;animation:fi .4s .56s ease both"></div>
+<div class="a pt" style="left:1300px;top:814px;animation:fu .5s .6s ease both">
+  <span class="n">04</span>
+  <div><h3>Weak signal, handled</h3><p>If the network drops mid-trip, the route is <b>smoothed, not broken</b>.</p></div>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

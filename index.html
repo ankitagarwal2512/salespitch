@@ -581,7 +581,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
     </div>
 
     <div class="nav-ftr">
-      <button class="btn-dl" id="downloadBtn" type="button" title="Download as PowerPoint" aria-label="Download as PowerPoint">
+      <button class="btn-dl" id="downloadBtn" type="button" title="Download as PDF" aria-label="Download as PDF">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/>
         </svg>
@@ -619,7 +619,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg>
       Back to deck
     </button>
-    <h1 id="xpTitle">Download as PowerPoint</h1>
+    <h1 id="xpTitle">Download as PDF</h1>
   </header>
   <div class="xp-body">
     <div class="xp-main">
@@ -635,7 +635,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#013a29;font-family:
       <div class="xp-sum"><b id="xpCount">0</b><span id="xpCountOf">slides selected</span></div>
       <div class="xp-field">
         <label for="xpName">File name</label>
-        <div class="xp-name-wrap"><input id="xpName" type="text" spellcheck="false" autocomplete="off"><span>.pptx</span></div>
+        <div class="xp-name-wrap"><input id="xpName" type="text" spellcheck="false" autocomplete="off"><span>.pdf</span></div>
       </div>
       <button class="xp-go" id="xpGo" type="button">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8.5M4.5 7.5L8 11l3.5-3.5M2.5 13.5h11"/></svg>
@@ -1041,17 +1041,18 @@ function navArrow(key) {
   updateNavBtns();
 }
 
-// ── Download as PowerPoint ────────────────────────────────────────
+// ── Download as PDF ───────────────────────────────────────────────
 // Opens at #download. Every picked slide is rendered at 1920×1080 in a hidden
-// frame, captured to an image, and placed full-bleed on a .pptx slide, so the
+// frame, captured to an image, and placed full-bleed on a 16:9 PDF page, so the
 // file looks exactly like the deck and has nothing editable in it.
 const xpPage = document.getElementById('xp');
 const XP_LIBS = {
   shot: 'https://cdn.jsdelivr.net/npm/modern-screenshot@4.6.8/dist/index.js',
-  pptx: 'https://cdn.jsdelivr.net/npm/pptxgenjs@4.0.1/dist/pptxgen.bundle.js',
+  pdf:  'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js',
 };
 const XP_SETTLE_MS = 2800;   // slides stagger their entrances with timers up to ~2.3s; let them land
 const XP_PARALLEL = 3;       // slides rendered at once
+const XP_SCALE = 1.5;        // capture at 2880×1620: sharp product screenshots at ~200 KB a page (2× only adds weight)
 
 // Exportable items in deck order: a spine slide, then its depth slides.
 // key: "n" for a spine slide, "n.i" for depth slide i behind it.
@@ -1170,9 +1171,9 @@ let xpLibsP = null, xpShotSrc = '';
 function xpLoadLibs() {
   return xpLibsP ||= (async () => {
     const shot = fetch(XP_LIBS.shot).then(r => { if (!r.ok) throw new Error('screenshot library'); return r.text(); });
-    if (!window.PptxGenJS) await new Promise((ok, fail) => {
+    if (!window.jspdf) await new Promise((ok, fail) => {
       const s = document.createElement('script');
-      s.src = XP_LIBS.pptx; s.onload = ok; s.onerror = () => fail(new Error('PowerPoint library'));
+      s.src = XP_LIBS.pdf; s.onload = ok; s.onerror = () => fail(new Error('PDF library'));
       document.head.appendChild(s);
     });
     xpShotSrc = await shot;
@@ -1180,6 +1181,12 @@ function xpLoadLibs() {
 }
 
 const xpWait = ms => new Promise(r => setTimeout(r, ms));
+// Let layout settle. Browsers stop drawing frames in a background tab, so never wait on a
+// frame alone: whichever comes first, two frames or a short timer, lets the export carry on.
+const xpNextFrame = () => Promise.race([
+  new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))),
+  xpWait(120),
+]);
 const xpFrameLoaded = f => new Promise(ok => {
   if (f.contentDocument && f.contentDocument.readyState === 'complete' && f.contentWindow.location.href !== 'about:blank') return ok();
   f.addEventListener('load', ok, { once: true });
@@ -1192,8 +1199,6 @@ async function xpSettle(doc) {
   if (!win.modernScreenshot) { const s = doc.createElement('script'); s.textContent = xpShotSrc; doc.head.appendChild(s); }
   await Promise.race([doc.fonts.ready, xpWait(4000)]);
   await Promise.all([...doc.images].map(img => img.complete ? 0 : new Promise(r => { img.onload = img.onerror = r; setTimeout(r, 5000); })));
-  await Promise.all([...doc.querySelectorAll('video')].map(v => v.readyState >= 2 ? 0 :
-    new Promise(r => { v.addEventListener('loadeddata', r, { once: true }); setTimeout(r, 5000); })));
   for (const f of doc.querySelectorAll('iframe')) { await xpFrameLoaded(f); try { await xpSettle(f.contentDocument); } catch(e) {} }
 }
 function xpFinishAnimations(doc) {
@@ -1248,13 +1253,27 @@ function xpSyncSvgAttrs(doc) {
     }
   });
 }
+// Swap every <video> for its poster image before capture. Hidden tabs never load video, and the
+// screenshot library would wait on it forever; the poster gives the same picture either way.
+async function xpFlattenVideos(doc) {
+  const win = doc.defaultView;
+  for (const v of [...doc.querySelectorAll('video')]) {
+    const img = doc.createElement('img');
+    const cs = win.getComputedStyle(v);
+    for (const p of cs) img.style.setProperty(p, cs.getPropertyValue(p));
+    if (v.poster) { img.src = v.poster; await img.decode().catch(() => {}); }
+    else img.style.visibility = 'hidden';
+    v.replaceWith(img);
+  }
+}
 // The screenshot library can't see inside iframes, so swap each one for a picture of itself, innermost first.
 async function xpFlattenFrames(doc) {
   for (const f of [...doc.querySelectorAll('iframe')]) {
     const fd = f.contentDocument, fw = f.contentWindow;
     if (!fd || !fw.modernScreenshot) continue;
     await xpFlattenFrames(fd);
-    const url = await fw.modernScreenshot.domToPng(fd.documentElement, { width: fw.innerWidth, height: fw.innerHeight });
+    await xpFlattenVideos(fd);
+    const url = await fw.modernScreenshot.domToPng(fd.documentElement, { width: fw.innerWidth, height: fw.innerHeight, scale: XP_SCALE });
     const img = doc.createElement('img');
     const cs = doc.defaultView.getComputedStyle(f);
     for (const p of cs) img.style.setProperty(p, cs.getPropertyValue(p));
@@ -1277,13 +1296,14 @@ async function xpCaptureSlide(file) {
     await xpWait(XP_SETTLE_MS);
     xpFinishAnimations(doc);
     doc.querySelectorAll('.nav').forEach(n => n.style.display = 'none');   // the slide's own prev/next pill
-    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await xpNextFrame();
     await xpFlattenFrames(doc);
+    await xpFlattenVideos(doc);
     xpLockLines(doc);
     xpSyncSvgAttrs(doc);
     const stage = doc.getElementById('stage') || doc.body;
     stage.style.transform = 'none';
-    return await f.contentWindow.modernScreenshot.domToJpeg(stage, { width: 1920, height: 1080, quality: .92 });
+    return await f.contentWindow.modernScreenshot.domToJpeg(stage, { width: 1920, height: 1080, scale: XP_SCALE, quality: .72 });
   } finally { f.remove(); }
 }
 
@@ -1311,9 +1331,6 @@ document.getElementById('xpGo').addEventListener('click', async () => {
   try {
     xpProgress(0, items.length, 'Getting ready…');
     await xpLoadLibs();
-    const pptx = new PptxGenJS();
-    pptx.layout = 'LAYOUT_WIDE';   // 13.33 × 7.5 in, 16:9
-    pptx.title = name; pptx.company = 'HROne'; pptx.author = 'HROne';
     // Capture a few at a time; slides are added afterwards so the order never changes.
     const imgs = new Array(items.length);
     let next = 0, done = 0;
@@ -1326,16 +1343,19 @@ document.getElementById('xpGo').addEventListener('click', async () => {
         xpProgress(++done, items.length, `Captured “${items[i].t}”`);
       }
     }));
-    items.forEach((it, i) => {
-      const s = pptx.addSlide();
-      s.background = { color: '013A29' };
-      s.addImage({ data: imgs[i], x: 0, y: 0, w: 13.333, h: 7.5 });
-      s.addNotes(it.t);
-    });
     if (xpCancelled) throw 'cancelled';
-    xpProgress(items.length, items.length, 'Building the PowerPoint…');
-    await pptx.writeFile({ fileName: `${name}.pptx`, compression: true });
-    xpMessage('ok', `Downloaded “${name}.pptx” with ${items.length} slide${items.length === 1 ? '' : 's'}.`);
+    xpProgress(items.length, items.length, 'Building the PDF…');
+    // One 16:9 page per slide (1440 × 810 pt), with a bookmark per slide title.
+    const W = 1440, H = 810;
+    const pdf = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'pt', format: [W, H], compress: true });
+    pdf.setProperties({ title: name, author: 'HROne', creator: 'HROne Deck' });
+    items.forEach((it, i) => {
+      if (i) pdf.addPage([W, H], 'landscape');
+      pdf.addImage(imgs[i], 'JPEG', 0, 0, W, H, undefined, 'FAST');
+      pdf.outline.add(null, it.t, { pageNumber: i + 1 });
+    });
+    pdf.save(`${name}.pdf`);
+    xpMessage('ok', `Downloaded “${name}.pdf” with ${items.length} slide${items.length === 1 ? '' : 's'}.`);
   } catch (e) {
     if (e === 'cancelled') xpMessage('err', 'Download cancelled.');
     else { console.error('[download]', e); xpMessage('err', `Couldn't build the file${e && e.message ? ` (${e.message})` : ''}. Check your connection and try again.`); }
