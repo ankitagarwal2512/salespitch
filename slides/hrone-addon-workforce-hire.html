@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Workforce Planning: from plan to hire</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+/* plan → fill, the trail every hire leaves */
+.flow{display:flex;align-items:center;gap:10px}
+.flow .st{height:52px;display:flex;align-items:center;gap:10px;padding:0 20px 0 8px;border-radius:26px;background:#fff;border:1px solid #ece3d4;
+  font-size:17px;font-weight:700;color:var(--forest);white-space:nowrap}
+.flow .st i{width:36px;height:36px;border-radius:50%;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center}
+.flow .st i svg{width:19px;height:19px;color:var(--coral)}
+.flow>svg{width:18px;height:18px;color:#c4b9a6;flex-shrink:0}
+
+.web{width:1180px;background:#fff;border:1px solid #ece3d4;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(13,68,48,.12)}
+.web .bar{height:40px;display:flex;align-items:center;gap:7px;padding:0 18px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:11px;height:11px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:14px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:1180px;height:510px;object-fit:cover;object-position:left top}
+
+.pt{width:548px;display:flex;gap:20px}
+.pt .n{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.pt h3{font-size:25px;font-weight:800;color:var(--forest);line-height:30px;letter-spacing:-.3px}
+.pt p{margin-top:8px;font-size:18px;color:#55665e;line-height:26px}
+.pt p b{color:var(--forest);font-weight:700}
+.sep{width:548px;height:1px;background:#eadfcc}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Workforce Planning</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Hire only what's approved.</div>
+<p class="a sub" style="left:1200px;top:150px;width:648px;animation:fu .5s .35s ease both">Recruiters pick from approved positions,<br>so there are no headcount approvals to wait on.</p>
+
+<!-- ══ PLAN → FILL ══ -->
+<div class="a flow" style="left:72px;top:262px;animation:fu .5s .3s ease both">
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/></svg></i>Workforce plan</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></i>Position approved</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M12 11v6M9 14h6"/></svg></i>Job requisition</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></i>Candidate</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0112 0v1M16 11l2 2 4-4"/></svg></i>Hired</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V6a2 2 0 012-2h8a2 2 0 012 2v5"/><path d="M4 11h16v4H4zM6 15v5M18 15v5"/></svg></i>Position filled</span>
+</div>
+
+<!-- ══ APPROVED POSITIONS ══ -->
+<div class="a web" style="left:72px;top:370px;animation:fu .55s .36s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · New Request › Job requisition › Approved positions</span></div>
+  <img src="../Assets/workforce-planning/approved-positions.png" alt="Approved Positions list: position code, job title, JD, start month, experience range and minimum CTC">
+</div>
+
+<!-- ══ WHAT TO POINT AT ══ -->
+<div class="a pt" style="left:1300px;top:420px;animation:fu .5s .42s ease both">
+  <span class="n">01</span>
+  <div><h3>Raised against a seat</h3><p>A requisition can only be raised on a <b>sanctioned, approved position</b>. No ad-hoc asks.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:548px;animation:fi .4s .46s ease both"></div>
+<div class="a pt" style="left:1300px;top:576px;animation:fu .5s .5s ease both">
+  <span class="n">02</span>
+  <div><h3>Criteria come pre-filled</h3><p>JD, experience range, hiring period and <b>budgeted CTC</b> are already on the position.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:704px;animation:fi .4s .54s ease both"></div>
+<div class="a pt" style="left:1300px;top:732px;animation:fu .5s .58s ease both">
+  <span class="n">03</span>
+  <div><h3>Budget stays on plan</h3><p>Every hire traces back to an approved plan, so <b>headcount and cost stay in control</b>.</p></div>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Workforce Planning: set up the plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.shadow{box-shadow:0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.20),0 46px 80px -24px rgba(13,68,48,.30)}
+.web{background:#fff;border:1px solid #ece3d4;border-radius:16px;overflow:hidden}
+.web .bar{height:36px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:10px;height:10px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:13px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:100%;height:494px;object-fit:cover;object-position:left top}
+
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:14px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:10px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Workforce Planning</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Plan it your way.</div>
+<p class="a sub" style="left:72px;top:236px;white-space:nowrap;animation:fu .5s .35s ease both">Choose the levels you plan by, then track every approved position from one dashboard.</p>
+
+<!-- ══ 01 DIMENSIONS ══ -->
+<div class="a web shadow" style="left:72px;top:310px;width:560px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Setup › Workforce planning</span></div>
+  <img src="../Assets/workforce-planning/setup-dimensions.png" alt="Workforce Planning setup: enable, then select OUs such as Company and Designation">
+</div>
+<div class="a step" style="left:72px;top:874px;width:560px;animation:fu .5s .34s ease both">
+  <span class="num">01</span>
+  <h3>Pick your planning levels</h3>
+  <p>Company, region, business unit, branch, department, grade, designation. <b>Any mix you need.</b></p>
+</div>
+
+<!-- ══ 02 DASHBOARD ══ -->
+<div class="a web shadow" style="left:680px;top:310px;width:1168px;animation:fu .55s .40s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Workforce planning › Position management</span></div>
+  <img src="../Assets/workforce-planning/position-dashboard.png" alt="Position Management: 953 total, 337 occupied, 612 vacant, 4 vacant with requisition; position cards by code">
+</div>
+<div class="a step" style="left:680px;top:874px;width:1168px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>Every position, live</h3>
+  <p><b>Total, occupied, vacant and vacant with a requisition</b>, plus who sits in which seat, by position code.</p>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Project Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.web{width:1180px;background:#fff;border:1px solid #ece3d4;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(13,68,48,.12)}
+.web .bar{height:40px;display:flex;align-items:center;gap:7px;padding:0 18px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:11px;height:11px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:14px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:1180px;height:582px;object-fit:cover;object-position:left top}
+
+.pt{width:548px;display:flex;gap:20px}
+.pt .n{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.pt h3{font-size:25px;font-weight:800;color:var(--forest);line-height:30px;letter-spacing:-.3px}
+.pt p{margin-top:8px;font-size:18px;color:#55665e;line-height:26px}
+.pt p b{color:var(--forest);font-weight:700}
+.sep{width:548px;height:1px;background:#eadfcc}
+
+.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:10px;
+  color:rgba(0,88,62,.62);cursor:pointer;z-index:90;opacity:0;transition:opacity .3s,color .18s}
+.depthchip:hover{color:#00583e}
+.depthchip:hover,body.mm .depthchip{opacity:1}
+.depthchip .arw{width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;animation:bob 1.9s ease-in-out infinite}
+.depthchip .arw svg{width:12px;height:12px}
+.depthchip span.t{font-size:15px;font-weight:600;letter-spacing:.2px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Project Management</div>
+<p class="a sub" style="left:980px;top:150px;width:680px;animation:fu .5s .35s ease both">Run client projects from milestone to invoice,<br>with timesheets and billing in the same place.</p>
+
+<!-- ══ POSITION ORG CHART ══ -->
+<div class="a web" style="left:72px;top:310px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · Project management › My projects</span></div>
+  <img src="../Assets/project-management/projects-dashboard.png" alt="My Projects: six active project cards with health bars, type, timesheet mode, dates and open/closed tasks">
+</div>
+
+<!-- ══ WHAT TO POINT AT ══ -->
+<div class="a pt" style="left:1300px;top:393px;animation:fu .5s .36s ease both">
+  <span class="n">01</span>
+  <div><h3>Every project, one view</h3><p>Client and internal projects, <b>fixed cost or billable</b>, each with an owner and team.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:521px;animation:fi .4s .4s ease both"></div>
+<div class="a pt" style="left:1300px;top:549px;animation:fu .5s .44s ease both">
+  <span class="n">02</span>
+  <div><h3>Health at a glance</h3><p>Green, amber and red bars show which projects are <b>on track, at risk or critical</b>.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:677px;animation:fi .4s .48s ease both"></div>
+<div class="a pt" style="left:1300px;top:705px;animation:fu .5s .52s ease both">
+  <span class="n">03</span>
+  <div><h3>Dates and tasks on the card</h3><p>Planned start and end dates, with <b>open and closed tasks</b> for each project.</p></div>
+</div>
+
+<div class="depthchip" id="depthChip" title="Press the down arrow to see how a project is set up">
+  <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+  <span class="t">Project setup</span>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+/* chip is hidden until the mouse moves, so the audience never sees it */
+(function(){var t;document.addEventListener('mousemove',function(){document.body.classList.add('mm');clearTimeout(t);t=setTimeout(function(){document.body.classList.remove('mm');},2000);});})();
+document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

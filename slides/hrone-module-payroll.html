@@ -47,15 +47,14 @@
 .group-list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
 .group-list p{font-size:14.5px;color:#243b31}
 .group-list p span{color:#ee5a3c;font-weight:700;margin-right:8px}
-.depthchip{position:absolute;left:72px;bottom:44px;display:flex;align-items:center;gap:11px;
-  background:rgba(0,88,62,.07);border:1px solid rgba(0,88,62,.3);
-  padding:10px 20px 10px 12px;border-radius:40px;cursor:pointer;z-index:90;
-  transition:background .18s,transform .14s;animation:fu .5s .7s ease both}
-.depthchip:hover{background:rgba(0,88,62,.14);transform:translateY(-2px)}
-.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#00583e;color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
-  animation:bob 1.9s ease-in-out infinite}
-.depthchip span.t{color:#00583e;font-size:16px;font-weight:700;letter-spacing:.2px}
+.depthchip{position:absolute;left:72px;bottom:44px;display:flex;align-items:center;gap:10px;
+  color:rgba(0,88,62,.62);cursor:pointer;z-index:90;opacity:0;transition:opacity .3s,color .18s}
+.depthchip:hover{color:#00583e}
+.depthchip:hover,body.mm .depthchip{opacity:1}
+.depthchip .arw{width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;animation:bob 1.9s ease-in-out infinite}
+.depthchip .arw svg{width:12px;height:12px}
+.depthchip span.t{font-size:15px;font-weight:600;letter-spacing:.2px}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 @media (prefers-reduced-motion:reduce){.depthchip .arw{animation:none}}
 </style>
@@ -312,7 +311,7 @@
 
 <!-- ══ NAV ══ -->
 <div class="depthchip" id="depthChip" title="Press the down arrow to open New Wage Code">
-  <span class="arw">&#8595;</span>
+  <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
   <span class="t">New Wage Code</span>
 </div>
 
@@ -326,6 +325,8 @@
 <script src="../shared/slide.js"></script>
 <script>
 
+/* chip is hidden until the mouse moves, so the audience never sees it */
+(function(){var t;document.addEventListener('mousemove',function(){document.body.classList.add('mm');clearTimeout(t);t=setTimeout(function(){document.body.classList.remove('mm');},2000);});})();
 document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
 document.addEventListener('keydown',function(e){
   if(parent===window)return;

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Project Management: timesheet to invoice</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.flow{display:flex;align-items:center;gap:10px}
+.flow .st{height:52px;display:flex;align-items:center;gap:10px;padding:0 20px 0 8px;border-radius:26px;background:#fff;border:1px solid #ece3d4;
+  font-size:17px;font-weight:700;color:var(--forest);white-space:nowrap}
+.flow .st i{width:36px;height:36px;border-radius:50%;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center}
+.flow .st i svg{width:19px;height:19px;color:var(--coral)}
+.flow>svg{width:18px;height:18px;color:#c4b9a6;flex-shrink:0}
+
+.web{width:560px;background:#fff;border:1px solid #ece3d4;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(13,68,48,.12)}
+.web .bar{height:40px;display:flex;align-items:center;gap:7px;padding:0 18px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:11px;height:11px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:14px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:560px;height:530px;object-fit:cover;object-position:left top}
+
+.pt{width:548px;display:flex;gap:20px}
+.pt .n{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.pt h3{font-size:25px;font-weight:800;color:var(--forest);line-height:30px;letter-spacing:-.3px}
+.pt p{margin-top:8px;font-size:18px;color:#55665e;line-height:26px}
+.pt p b{color:var(--forest);font-weight:700}
+.sep{width:548px;height:1px;background:#eadfcc}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Project Management</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">From timesheet to invoice.</div>
+
+<!-- ══ POSITION ORG CHART ══ -->
+<!-- ══ PROJECT → INVOICE ══ -->
+<div class="a flow" style="left:72px;top:262px;animation:fu .5s .3s ease both">
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></i>Project</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg></i>Milestone</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12l2 2 4-4"/></svg></i>Task</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></i>Timesheet</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <span class="st"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></i>Invoice</span>
+</div>
+
+<div class="a web" style="left:72px;top:370px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · Project management › Timesheet</span></div>
+  <img src="../Assets/project-management/timesheet-entry.png" alt="Log time: start and end date and time for a task, billable toggle and description"">
+</div>
+
+<!-- ══ WHAT TO POINT AT ══ -->
+<div class="a pt" style="left:704px;top:430px;animation:fu .5s 0.42s ease both">
+  <span class="n">01</span>
+  <div><h3>Logged against the task</h3><p>Start and end time per entry, with a <b>billable toggle</b> and a short description.</p></div>
+</div>
+<div class="a pt" style="left:1300px;top:430px;animation:fu .5s 0.48s ease both">
+  <span class="n">02</span>
+  <div><h3>Draft, submit, approve</h3><p>Save as draft, submit for approval, and keep <b>a full history</b> of effort.</p></div>
+</div>
+<div class="a pt" style="left:704px;top:640px;animation:fu .5s 0.54s ease both">
+  <span class="n">03</span>
+  <div><h3>Invoices from approved time</h3><p>Billable hours at project rates, or a finished milestone, <b>become the invoice</b>.</p></div>
+</div>
+<div class="a pt" style="left:1300px;top:640px;animation:fu .5s 0.60s ease both">
+  <span class="n">04</span>
+  <div><h3>Counts as attendance</h3><p>Project punches can be used as <b>in and out time</b>, so nothing is entered twice.</p></div>
+</div>
+<div class="a sep" style="left:704px;top:590px;width:1144px;animation:fi .4s .5s ease both"></div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

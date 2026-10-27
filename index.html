@@ -1056,8 +1056,9 @@ const XP_SCALE = 1.5;        // capture at 2880×1620: sharp product screenshots
 
 // Exportable items in deck order: a spine slide, then its depth slides.
 // key: "n" for a spine slide, "n.i" for depth slide i behind it.
+// A slide marked noExport in its deck file (and its depth slides) is left out.
 function xpItems() {
-  return GROUPS.flatMap(g => g.slides.filter(s => s.f).flatMap(s => [
+  return GROUPS.flatMap(g => g.slides.filter(s => s.f && !s.noExport).flatMap(s => [
     { key: `${s.n}`, gid: g.id, n: s.n, t: s.t, f: s.f, depth: false },
     ...(s.sub || []).map((sb, i) => ({ key: `${s.n}.${i}`, gid: g.id, n: s.n, t: sb.t, f: sb.f, depth: true })),
   ]));
@@ -1302,7 +1303,8 @@ async function xpCaptureSlide(file) {
     xpLockLines(doc);
     xpSyncSvgAttrs(doc);
     const stage = doc.getElementById('stage') || doc.body;
-    stage.style.transform = 'none';
+    // scale(1), not 'none': slide.css hides any #stage whose style has no "scale" (the pre-fit guard)
+    stage.style.transform = 'scale(1)';
     return await f.contentWindow.modernScreenshot.domToJpeg(stage, { width: 1920, height: 1080, scale: XP_SCALE, quality: .72 });
   } finally { f.remove(); }
 }

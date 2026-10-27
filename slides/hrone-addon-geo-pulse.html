@@ -60,22 +60,15 @@
 .step p{margin-top:10px;font-size:18px;color:#55665e;line-height:26px}
 .step p b{color:var(--forest);font-weight:700}
 
-/* why it matters: same footnote row as slide 25 */
-.outs{display:flex;align-items:center;gap:44px;padding-top:22px;border-top:1px solid #eadfcc}
-.outs .lead{font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#8fa39a;white-space:nowrap}
-.out{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:18px;color:#55665e}
-.out svg{width:22px;height:22px;flex-shrink:0}
-.out b{font-weight:700;color:var(--forest)}
 
-.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:11px;
-  background:rgba(0,88,62,.07);border:1px solid rgba(0,88,62,.3);
-  padding:10px 20px 10px 12px;border-radius:40px;cursor:pointer;z-index:90;
-  transition:background .18s,transform .14s;animation:fu .5s .8s ease both}
-.depthchip:hover{background:rgba(0,88,62,.14);transform:translateY(-2px)}
-.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#00583e;color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
-  animation:bob 1.9s ease-in-out infinite}
-.depthchip span.t{color:#00583e;font-size:16px;font-weight:700;letter-spacing:.2px}
+.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:10px;
+  color:rgba(0,88,62,.62);cursor:pointer;z-index:90;opacity:0;transition:opacity .3s,color .18s}
+.depthchip:hover{color:#00583e}
+.depthchip:hover,body.mm .depthchip{opacity:1}
+.depthchip .arw{width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;animation:bob 1.9s ease-in-out infinite}
+.depthchip .arw svg{width:12px;height:12px}
+.depthchip span.t{font-size:15px;font-weight:600;letter-spacing:.2px}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 
 @keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
@@ -93,9 +86,9 @@
 <p class="a sub" style="left:527px;top:150px;width:680px;animation:fu .5s .35s ease both">Know where your field team is, every 15 minutes,<br>from check-in to check-out.</p>
 
 <!-- ══ 01 SWITCH ON ══ -->
-<div class="a web shadow" style="left:72px;top:290px;width:560px;height:400px;animation:fu .55s .28s ease both">
+<div class="a web shadow" style="left:72px;top:330px;width:560px;height:400px;animation:fu .55s .28s ease both">
   <div class="bar"><i></i><i></i><i></i><span>Employee Profile › Setting</span></div>
-  <div class="prof"><span class="av">AB</span><div><b>Abhinav Bindra</b><small>Field Sales · HT257</small></div><em>Licences</em></div>
+  <div class="prof"><span class="av">AB</span><div><b>Abhinav Bindra</b><small>Field Sales · HT257</small></div><em>Features</em></div>
   <div style="padding-top:8px">
     <div class="lic"><span>Expense live trip</span><label><i class="on"></i>Yes</label><label><i></i>No</label></div>
     <div class="lic"><span>Facial recognition</span><label><i class="on"></i>Yes</label><label><i></i>No</label></div>
@@ -104,14 +97,14 @@
     <div class="lic"><span>WhatsApp</span><label><i></i>Yes</label><label><i class="on"></i>No</label></div>
   </div>
 </div>
-<div class="a step" style="left:72px;top:722px;width:560px;animation:fu .5s .34s ease both">
+<div class="a step" style="left:72px;top:762px;width:560px;animation:fu .5s .34s ease both">
   <span class="num">01</span>
   <h3>Switched on per employee</h3>
-  <p>HR turns on the <b>Geo Pulse licence</b> only for people who need it. They're notified at check-in.</p>
+  <p>HR turns on the <b>Geo Pulse feature</b> only for people who need it. They're notified at check-in.</p>
 </div>
 
 <!-- ══ 02 PINGS ══ -->
-<div class="a web shadow" style="left:680px;top:290px;width:560px;height:400px;animation:fu .55s .40s ease both">
+<div class="a web shadow" style="left:680px;top:330px;width:560px;height:400px;animation:fu .55s .40s ease both">
   <div class="bar"><i></i><i></i><i></i><span>Geo Pulse · Today</span></div>
   <div class="who"><span class="av">AB</span><div><b>Abhinav Bindra</b><small>Field Sales · Noida</small></div><em>Checked in 10:00 AM</em></div>
   <div class="tl">
@@ -124,34 +117,26 @@
     <div class="ping"><span class="t">11:30 AM</span><span class="ad">Connaught Place, Delhi</span><span class="c">28.6315, 77.2167</span></div>
   </div>
 </div>
-<div class="a step" style="left:680px;top:722px;width:560px;animation:fu .5s .46s ease both">
+<div class="a step" style="left:680px;top:762px;width:560px;animation:fu .5s .46s ease both">
   <span class="num">02</span>
   <h3>A ping every 15 minutes</h3>
   <p>Each with <b>time, address and GPS coordinates</b>, until check-out. Not a live route, just points across the day.</p>
 </div>
 
 <!-- ══ 03 MANAGER VIEW ══ -->
-<div class="a web shadow" style="left:1288px;top:290px;width:560px;height:400px;animation:fu .55s .52s ease both">
+<div class="a web shadow" style="left:1288px;top:330px;width:560px;height:400px;animation:fu .55s .52s ease both">
   <div class="bar"><i></i><i></i><i></i><span>HR Analytics › Geo dashboard</span></div>
   <img src="../Assets/geopulse/team-map.png" alt="Geo dashboard map view, team member pinned near Noida">
 </div>
-<div class="a step" style="left:1288px;top:722px;width:560px;animation:fu .5s .52s ease both">
+<div class="a step" style="left:1288px;top:762px;width:560px;animation:fu .5s .52s ease both">
   <span class="num">03</span>
   <h3>Managers see the day</h3>
   <p>The team on one map. Open anyone for their timeline, or <b>download the report</b>.</p>
 </div>
 
-<!-- ══ WHY IT MATTERS ══ -->
-<div class="a outs" style="left:72px;top:900px;width:1776px;animation:fu .55s .7s ease both">
-  <span class="lead">Why it matters</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-11a6 6 0 0112 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2.2"/></svg><b>Managers</b> deployment at a glance</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 8-6-16-3 8H2"/></svg><b>Ops</b> no more calls asking “where are you?”</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-3.5 7-9V5.5L12 3 5 5.5V12c0 5.5 7 9 7 9z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg><b>Employees</b> tracked only between check-in and check-out</span>
-</div>
-
 <div class="depthchip" id="depthChip" title="Press the down arrow to watch the Geo dashboard">
-  <span class="arw">&#8595;</span>
-  <span class="t">1 more: the team on one map</span>
+  <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+  <span class="t">Team map</span>
 </div>
 
 <div class="nav">
@@ -163,6 +148,8 @@
 </div></div>
 <script src="../shared/slide.js"></script>
 <script>
+/* chip is hidden until the mouse moves, so the audience never sees it */
+(function(){var t;document.addEventListener('mousemove',function(){document.body.classList.add('mm');clearTimeout(t);t=setTimeout(function(){document.body.classList.remove('mm');},2000);});})();
 document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
 document.addEventListener('keydown',function(e){
   if(parent===window)return;

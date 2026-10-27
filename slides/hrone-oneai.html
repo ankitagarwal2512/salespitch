@@ -54,7 +54,94 @@
   animation:ring-out 2.4s ease-out infinite;
 }
 
-/* ── Nav ── */
+
+/* ── Agent visuals — taken from the homepage One AI section (Centred Hero Section Uplift,
+   public/legacy/hrone-home) so the deck and the site show the same product pieces.
+   Each visual is laid out at the site's size (408×300) and scaled 1.08× into its card (top offset keeps it flush with the bottom);
+   the clip box trims it flush with the card's bottom edge, as on the site. ── */
+.oa2-clip{position:absolute;overflow:hidden;width:557px;height:359px;border-radius:0 0 18.5px 18.5px}
+.oa2{position:absolute;left:50%;top:35px;width:408px;height:300px;margin-left:-204px;transform:scale(1.08);transform-origin:top center;
+  --ink:#16201a;--t1:#171717;--t2:#404040;--t3:#737373;--t4:#8a8a8a;
+  --line:#e5e5e5;--line2:#eeeeee;--brand:#02563d;--soft:#e5f0e8;--deep:#0b4a2e;
+  font-family:"Public Sans",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.oa2 *{box-sizing:border-box;margin:0;padding:0}
+
+/* employee — phone in a light bezel, cropped by the card's bottom edge */
+.oa2-phone{position:absolute;left:50%;top:0;width:262px;height:330px;margin-left:-131px;border-radius:36px;padding:7px;border:1px solid #cfe2d4;background:linear-gradient(150deg,#f1f7f3,#dfece4 55%,#ebf3ee);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 14px 32px -20px rgba(11,74,46,.22),0 3px 8px -6px rgba(11,74,46,.12)}
+.oa2-screen{position:relative;height:100%;border-radius:29px;background:#fff;overflow:hidden;box-shadow:0 0 0 1px rgba(20,40,25,.12)}
+.oa2-notch{position:absolute;left:50%;top:7px;width:40px;height:16px;margin-left:-20px;border-radius:99px;background:rgba(22,32,26,.7)}
+.oa2-status{height:30px;display:flex;align-items:center;justify-content:space-between;padding:4px 18px 0;color:rgba(22,32,26,.7)}
+.oa2-status b{font-size:10px;font-weight:600}
+.oa2a{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 12px 0}
+.oa2a-icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(160deg,#0f5b40 0%,#063f2d 55%,#032c20 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(2,60,42,.3),0 8px 16px -8px rgba(1,36,26,.5)}
+.oa2a-icon svg{width:21px;height:21px}
+.oa2a-title{margin-top:9px;font-size:14px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
+.oa2a-field{margin-top:11px;width:100%;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 10px 7px 12px;box-shadow:0 4px 12px -6px rgba(11,74,46,.18)}
+.oa2a-field span{flex:1;text-align:left;font-size:10px;color:var(--t4)}
+.oa2a-chips{margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.oa2a-chip{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--line);border-radius:7px;padding:4px 7px;font-size:9px;font-weight:600;color:var(--t1);white-space:nowrap}
+.oa2a-chip svg{color:var(--t2);flex-shrink:0}
+
+/* analytics + policy — the app's chat view, trimmed to one exchange */
+.oa2p{position:absolute;inset:0 0 -1px 0;background:#fff;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 18px 40px -28px rgba(11,74,46,.28)}
+.oa2p-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line2)}
+.oa2p-bar b{font-size:12px;font-weight:700;color:var(--t1)}
+.oa2p-body{flex:1;min-height:0;padding:12px 14px 0;display:flex;flex-direction:column;gap:11px}
+.oa2p-q{display:flex;align-items:flex-start;justify-content:flex-end;gap:7px}
+.oa2p-q p{max-width:80%;background:#f3f4f6;border-radius:10px;padding:7px 10px;font-size:10px;line-height:1.4;color:var(--t1)}
+.oa2p-me{flex-shrink:0;width:20px;height:20px;border-radius:50%;overflow:hidden;background:var(--soft);box-shadow:0 0 0 1px rgba(20,40,25,.1)}
+.oa2p-me img{display:block;width:100%;height:100%;object-fit:cover}
+.oa2p-a{display:flex;align-items:flex-start;gap:8px}
+.oa2p-ai{flex-shrink:0;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;background:linear-gradient(160deg,#0f5b40,#032c20);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.oa2p-ai svg{width:12px;height:12px}
+.oa2p-ans{flex:1;min-width:0;font-size:10px;line-height:1.45;color:var(--t1)}
+.oa2p-ans ul{margin-top:4px;list-style:none}
+.oa2p-ans li{position:relative;margin-top:3px;padding-left:10px;color:var(--t2)}
+.oa2p-ans li::before{content:"";position:absolute;left:1px;top:.6em;width:4px;height:4px;border-radius:50%;background:#c4c4c4}
+.oa2p-ans b{font-weight:700;color:var(--t1)}
+.oa2p-src{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.oa2p-src span{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:500;color:#0a8e5f;text-decoration:underline;text-underline-offset:2px}
+.oa2p-src svg{color:var(--t2)}
+.oa2p-fb{margin-top:6px;display:flex;gap:9px}
+.oa2pol .oa2p-body{padding-top:16px;gap:16px}
+.oa2pol .oa2p-ans li{margin-top:5px}
+.oa2pol .oa2p-src{margin-top:12px;gap:7px}
+.oa2pol .oa2p-fb{margin-top:11px}
+.oa2pol .oa2p-input{margin-bottom:20px}
+.oa2p-input{margin:0 12px 16px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:99px;padding:7px 10px 7px 12px;box-shadow:0 4px 12px -6px rgba(11,74,46,.18)}
+.oa2p-input span{flex:1;font-size:10px;color:var(--t4)}
+
+/* analytics — research steps resolve, then the chart draws */
+.oa2an .oa2p-body{gap:10px}
+.oa2an-steps{position:relative;display:inline-grid;font-size:9px;font-weight:600}
+.oa2an-steps > span{grid-area:1/1;display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:3px 8px;white-space:nowrap}
+.oa2an-run{background:#f3f4f6;color:var(--t3);animation:oa2Out .25s 1.85s ease both}
+.oa2an-ok{background:var(--soft);color:var(--deep);opacity:0;animation:oa2InFade .25s 1.9s ease both}
+.oa2an-spin{display:block;width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(2,86,61,.2);border-top-color:#02563d;animation:oa2Spin .7s linear infinite}
+.oa2an-chart{margin-top:7px;border:1px solid var(--line);border-radius:9px;padding:8px 9px 5px;background:#fff;opacity:0;animation:oa2InFade .35s 2s ease both}
+.oa2an-h{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+.oa2an-h b{font-size:9.5px;font-weight:700;color:var(--t1)}
+.oa2an-h span{font-size:8.5px;font-weight:600;color:var(--brand);white-space:nowrap}
+.oa2an-svg{display:block;width:100%;height:auto;margin-top:5px;overflow:visible}
+.oa2an-line{stroke-dasharray:1;stroke-dashoffset:1;animation:oa2Draw 1.1s 2.1s cubic-bezier(.4,0,.2,1) both}
+.oa2an-area{opacity:0;animation:oa2InFade .6s 2.8s ease both}
+.oa2an-dots circle{opacity:0;animation:oa2InFade .25s var(--d) ease both}
+.oa2an-sum{margin-top:7px;font-size:9.5px;line-height:1.4;color:var(--t2);opacity:0;animation:oa2Up .4s 3.2s ease both}
+.oa2an-sum b{color:var(--t1);font-weight:700}
+
+/* entrance — pieces assemble after the cards land (site delays + .6s) */
+.oa2 [data-a]{animation:oa2Up .45s calc(var(--d,0s) + .6s) ease both}
+.oa2-mic{animation:micPulse 1.6s 1.8s ease-in-out infinite}
+@keyframes oa2Up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes oa2Out{to{opacity:0}}
+@keyframes oa2InFade{from{opacity:0}to{opacity:1}}
+@keyframes oa2Spin{to{transform:rotate(1turn)}}
+@keyframes oa2Draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  .oa2 *{animation:none !important}
+  .oa2an-run{display:none}.oa2an-ok,.oa2an-area,.oa2an-chart,.oa2an-sum,.oa2an-dots circle{opacity:1}
+  .oa2an-line{stroke-dashoffset:0}
+}
 </style>
 </head>
 <body>
@@ -154,53 +241,43 @@
 <p class="a" style="left:191px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .52s ease both">Analytics Agent</p>
 <p class="a" style="left:191px;top:576px;width:411px;font-size:18px;font-weight:400;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .55s ease both">Ask MIS questions in plain language.<br>It summarises numbers and builds the chart.</p>
 
-<!-- ── Analytics screenshot shell ── -->
-<div class="a" style="left:115px;top:652px;width:490px;height:320px;background:#f9f5ef;border:1.5px solid #dcd2c0;border-radius:10px;overflow:hidden;animation:fi .5s .6s ease both">
-  <!-- Browser chrome bar -->
-  <div style="height:32px;background:#ede7dc;border-bottom:1px solid #d8cebc;display:flex;align-items:center;padding:0 14px;gap:6px;flex-shrink:0">
-    <div style="width:12px;height:12px;border-radius:50%;background:#ff6059"></div>
-    <div style="width:12px;height:12px;border-radius:50%;background:#ffbc2e"></div>
-    <div style="width:12px;height:12px;border-radius:50%;background:#29c740"></div>
-  </div>
-  <!-- Content: left panel + arrow + right chart panel — fills remaining 288px -->
-  <div style="display:flex;height:288px">
-    <!-- Left: You ask panel -->
-    <div style="width:210px;background:#fff;border-right:1px solid #e4d9ca;padding:16px 14px 12px;flex-shrink:0;display:flex;flex-direction:column">
-      <p style="font-size:13px;font-weight:700;color:#10231b;margin-bottom:14px">You ask</p>
-      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;margin-bottom:8px;animation:btnUp .4s .7s ease both">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
-        <span style="font-size:9px;font-weight:600;color:#42554c">Show attrition by dept</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;margin-bottom:8px;animation:btnUp .4s .8s ease both">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
-        <span style="font-size:9px;font-weight:600;color:#42554c">Sites with high overtime</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:9px;background:#f5f0e8;border-radius:8px;padding:8px 10px;animation:btnUp .4s .9s ease both">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx="1.5" stroke="#0a8e5f" stroke-width="1.2"/><line x1="3" y1="5" x2="7" y2="5" stroke="#0a8e5f" stroke-width="1.2"/></svg>
-        <span style="font-size:9px;font-weight:600;color:#42554c">Summarise payroll cost</span>
-      </div>
-    </div>
-    <!-- Arrow -->
-    <div style="width:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:fi .4s .95s ease both">
-      <span style="font-size:22px;font-weight:900;color:#0a8e5f;line-height:1">→</span>
-    </div>
-    <!-- Right: chart panel — tighter margin so bars have room to breathe -->
-    <div style="flex:1;background:#fbf8f1;border:1px solid #ded4c2;margin:12px 12px 12px 0;border-radius:10px;padding:12px 14px 10px;display:flex;flex-direction:column">
-      <p style="font-size:11px;font-weight:700;color:#10231b;margin-bottom:10px;flex-shrink:0">Attrition by department</p>
-      <!-- Explicit 160px chart area so bars grow to nearly full height -->
-      <div style="height:160px;display:flex;align-items:flex-end;gap:8px">
-        <div style="width:26px;height:48px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s .85s ease-out both"></div>
-        <div style="width:26px;height:112px;background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s .93s ease-out both"></div>
-        <div style="width:26px;height:74px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.01s ease-out both"></div>
-        <div style="width:26px;height:152px;background:rgba(244,81,55,0.82); border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.09s ease-out both"></div>
-        <div style="width:26px;height:96px; background:rgba(40,185,121,0.72);border-radius:4px 4px 0 0;transform-origin:bottom center;animation:barGrow .6s 1.17s ease-out both"></div>
-      </div>
-      <!-- Axis baseline -->
-      <div style="height:1px;background:#d4ccbf;margin-bottom:8px;flex-shrink:0"></div>
-      <p style="font-size:10px;font-weight:700;color:#0a8e5f;flex-shrink:0;animation:fi .5s 1.3s ease both">↓ 12% <span style="color:#999;font-weight:400">QoQ — summary ready</span></p>
-    </div>
+<!-- ── Analytics visual (from the homepage One AI section) ── -->
+<div class="a oa2-clip" style="left:81.5px;top:633px;animation:fi .5s .6s ease both">
+  <div class="oa2">
+          <div class="oa2p oa2an" aria-hidden="true">
+            <div class="oa2p-bar"><b>Analytics Agent</b><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+            <div class="oa2p-body">
+              <div class="oa2p-q" data-a style="--d:.2s">
+                <p>Monthly attrition trend, past 12 months?</p>
+                <span class="oa2p-me"><img src="../Assets/oneai/avatar-hr.png" alt="" style="transform:scale(1.11) translateY(3%)"></span>
+              </div>
+              <div class="oa2p-a" data-a style="--d:.5s">
+                <span class="oa2p-ai"><svg viewBox="0 0 16 16" fill="none"><defs><linearGradient id="oa2an-spark" x1="1.33" y1="8" x2="14.67" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#E07A6B"/><stop offset=".5" stop-color="#D9DB4A"/><stop offset="1" stop-color="#4CC46A"/></linearGradient></defs><path d="M13.3333 1.33333V4M14.6667 2.66667H12M7.34464 1.87597C7.3732 1.72304 7.45435 1.58491 7.57403 1.48551C7.69372 1.38612 7.84439 1.33171 7.99997 1.33171C8.15554 1.33171 8.30622 1.38612 8.4259 1.48551C8.54559 1.58491 8.62674 1.72304 8.6553 1.87597L9.35597 5.5813C9.40573 5.84473 9.53375 6.08705 9.72332 6.27662C9.91289 6.46618 10.1552 6.59421 10.4186 6.64397L14.124 7.34464C14.2769 7.3732 14.415 7.45435 14.5144 7.57403C14.6138 7.69372 14.6682 7.84439 14.6682 7.99997C14.6682 8.15554 14.6138 8.30622 14.5144 8.4259C14.415 8.54559 14.2769 8.62674 14.124 8.6553L10.4186 9.35597C10.1552 9.40573 9.91289 9.53375 9.72332 9.72332C9.53375 9.91289 9.40573 10.1552 9.35597 10.4186L8.6553 14.124C8.62674 14.2769 8.54559 14.415 8.4259 14.5144C8.30622 14.6138 8.15554 14.6682 7.99997 14.6682C7.84439 14.6682 7.69372 14.6138 7.57403 14.5144C7.45435 14.415 7.3732 14.2769 7.34464 14.124L6.64397 10.4186C6.59421 10.1552 6.46618 9.91289 6.27662 9.72332C6.08705 9.53375 5.84473 9.40573 5.5813 9.35597L1.87597 8.6553C1.72304 8.62674 1.58491 8.54559 1.48551 8.4259C1.38612 8.30622 1.33171 8.15554 1.33171 7.99997C1.33171 7.84439 1.38612 7.69372 1.48551 7.57403C1.58491 7.45435 1.72304 7.3732 1.87597 7.34464L5.5813 6.64397C5.84473 6.59421 6.08705 6.46618 6.27662 6.27662C6.46618 6.08705 6.59421 5.84473 6.64397 5.5813L7.34464 1.87597ZM4 13.3333C4 14.0697 3.40305 14.6667 2.66667 14.6667C1.93029 14.6667 1.33333 14.0697 1.33333 13.3333C1.33333 12.597 1.93029 12 2.66667 12C3.40305 12 4 12.597 4 13.3333Z" stroke="url(#oa2an-spark)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="oa2p-ans">
+                  <span class="oa2an-steps">
+                    <span class="oa2an-run"><i class="oa2an-spin"></i>Researching · selecting tables</span>
+                    <span class="oa2an-ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Research · 6 steps</span>
+                  </span>
+                  <div class="oa2an-chart">
+                    <div class="oa2an-h"><b>Monthly employee departures</b><span>Full chart →</span></div>
+                    <svg viewBox="0 0 260 84" class="oa2an-svg">
+                      <defs><linearGradient id="oa2an-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#02563d" stop-opacity=".16"/><stop offset="1" stop-color="#02563d" stop-opacity="0"/></linearGradient></defs>
+                      <line x1="0" x2="260" y1="68.0" y2="68.0" stroke="#eeeeee" stroke-width="1"/><line x1="0" x2="260" y1="43.2" y2="43.2" stroke="#eeeeee" stroke-width="1"/><line x1="0" x2="260" y1="18.4" y2="18.4" stroke="#eeeeee" stroke-width="1"/>
+                      <path class="oa2an-area" d="M6.0 50.6 C9.8 51.5 21.0 53.5 28.5 55.6 C36.1 57.7 43.6 62.6 51.1 63.0 C58.6 63.5 66.1 58.5 73.6 58.1 C81.2 57.7 88.7 60.1 96.2 60.6 C103.7 61.0 111.2 61.0 118.7 60.6 C126.2 60.1 133.8 62.6 141.3 58.1 C148.8 53.5 156.3 34.9 163.8 33.3 C171.3 31.6 178.8 51.9 186.4 48.2 C193.9 44.4 201.4 16.3 208.9 11.0 C216.4 5.6 223.9 12.2 231.5 15.9 C239.0 19.6 250.2 30.4 254.0 33.3 L254.0 68 L6.0 68 Z" fill="url(#oa2an-fill)"/>
+                      <path class="oa2an-line" d="M6.0 50.6 C9.8 51.5 21.0 53.5 28.5 55.6 C36.1 57.7 43.6 62.6 51.1 63.0 C58.6 63.5 66.1 58.5 73.6 58.1 C81.2 57.7 88.7 60.1 96.2 60.6 C103.7 61.0 111.2 61.0 118.7 60.6 C126.2 60.1 133.8 62.6 141.3 58.1 C148.8 53.5 156.3 34.9 163.8 33.3 C171.3 31.6 178.8 51.9 186.4 48.2 C193.9 44.4 201.4 16.3 208.9 11.0 C216.4 5.6 223.9 12.2 231.5 15.9 C239.0 19.6 250.2 30.4 254.0 33.3" fill="none" stroke="#02563d" stroke-width="1.6" stroke-linecap="round" pathLength="1"/>
+                      <g class="oa2an-dots"><circle cx="6.0" cy="50.6" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.15s"/><circle cx="28.5" cy="55.6" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.19s"/><circle cx="51.1" cy="63.0" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.23s"/><circle cx="73.6" cy="58.1" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.27s"/><circle cx="96.2" cy="60.6" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.31s"/><circle cx="118.7" cy="60.6" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.35s"/><circle cx="141.3" cy="58.1" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.39s"/><circle cx="163.8" cy="33.3" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.43s"/><circle cx="186.4" cy="48.2" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.47s"/><circle cx="208.9" cy="11.0" r="2.6" fill="#02563d" stroke="#02563d" stroke-width="1.2" style="--d:2.51s"/><circle cx="231.5" cy="15.9" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.55s"/><circle cx="254.0" cy="33.3" r="1.7" fill="#fff" stroke="#02563d" stroke-width="1.2" style="--d:2.59s"/></g>
+                      
+                      <g font-size="7" fill="#8a8a8a" font-family="Public Sans,sans-serif"><text x="6.0" y="83">Sep</text><text x="96.2" y="83" text-anchor="middle">Jan</text><text x="186.4" y="83" text-anchor="middle">May</text><text x="254.0" y="83" text-anchor="end">Aug</text></g>
+                    </svg>
+                  </div>
+                  <p class="oa2an-sum">Exits peaked at <b>23 in June</b>, up from a low of 2 in November.</p>
+                </div>
+              </div>
+            </div>
+          </div>
   </div>
 </div>
+
 
 <!-- ══════════════════════════════════════════════════════
      EMPLOYEE AGENT CARD
@@ -218,79 +295,40 @@
 <p class="a" style="left:794px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .57s ease both">Employee Agent</p>
 <p class="a" style="left:794px;top:576px;width:369px;font-size:18px;font-weight:500;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .6s ease both">20+ tasks by text or voice. It does not tell you how - it does it.</p>
 
-<!-- ── Phone shell ── -->
-<div class="a" style="left:796px;top:653px;width:310px;height:276px;border-radius:34px;background:#1a1a1a;box-shadow:0 8px 28px rgba(0,0,0,0.22),inset 0 0 0 1px rgba(255,255,255,0.08);animation:fu .5s .65s ease both">
-  <!-- Screen inset -->
-  <div style="position:absolute;left:8px;top:8px;right:8px;bottom:8px;border-radius:26px;background:#ffffff;overflow:hidden">
-    <!-- Status bar -->
-    <div style="height:28px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;flex-shrink:0">
-      <span style="font-size:10px;font-weight:700;color:#1a1a1a;letter-spacing:-0.2px">9:41</span>
-      <div style="display:flex;align-items:center;gap:5px">
-        <!-- signal bars -->
-        <svg width="17" height="11" viewBox="0 0 17 11" fill="#1a1a1a">
-          <rect x="0"  y="7" width="3" height="4" rx="0.8"/>
-          <rect x="4"  y="4" width="3" height="7" rx="0.8"/>
-          <rect x="8"  y="2" width="3" height="9" rx="0.8"/>
-          <rect x="12" y="0" width="3" height="11" rx="0.8" opacity=".3"/>
-        </svg>
-        <!-- wifi -->
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round">
-          <path d="M1 4.5c3.9-3.9 10.1-3.9 14 0"/>
-          <path d="M3.5 7c2.5-2.5 6.5-2.5 9 0"/>
-          <path d="M6 9.5c1.1-1.1 3-1.1 4 0"/>
-          <circle cx="8" cy="11" r="1" fill="#1a1a1a" stroke="none"/>
-        </svg>
-        <!-- battery -->
-        <svg width="22" height="11" viewBox="0 0 22 11" fill="none">
-          <rect x="0.5" y="0.5" width="18" height="10" rx="2.5" stroke="#1a1a1a" stroke-width="1"/>
-          <rect x="19.5" y="3.5" width="2" height="4" rx="1" fill="#1a1a1a" opacity=".4"/>
-          <rect x="2" y="2" width="13" height="7" rx="1.5" fill="#1a1a1a"/>
-        </svg>
-      </div>
-    </div>
-    <!-- "How can I help you?" + mic icon -->
-    <div style="padding:10px 16px 8px;display:flex;align-items:center;justify-content:space-between">
-      <span style="font-size:18px;font-weight:700;color:#10231b">How can I help you?</span>
-      <!-- mic icon pulses to suggest voice -->
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a8e5f" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;animation:micPulse 1.6s 1.2s ease-in-out infinite">
-        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
-        <path d="M19 10v2a7 7 0 01-14 0v-2"/>
-        <line x1="12" y1="19" x2="12" y2="23"/>
-        <line x1="8" y1="23" x2="16" y2="23"/>
-      </svg>
-    </div>
-    <!-- 2×2 action grid -->
-    <div style="padding:0 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .75s ease both">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <span style="font-size:11px;font-weight:500;color:#272727">Apply leave</span>
-      </div>
-      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .82s ease both">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span style="font-size:11px;font-weight:500;color:#272727">Get payslip</span>
-      </div>
-      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .89s ease both">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span style="font-size:11px;font-weight:500;color:#272727">Raise ticket</span>
-      </div>
-      <div style="background:#f5f5f5;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;animation:btnUp .35s .96s ease both">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        <span style="font-size:11px;font-weight:500;color:#272727">On-duty</span>
-      </div>
-    </div>
-    <!-- +16 more -->
-    <div style="margin:8px 14px 0;background:#f5f5f5;border-radius:8px;padding:5px 10px;text-align:center;animation:btnUp .35s 1.03s ease both">
-      <span style="font-size:10px;font-weight:500;color:#003d2e;letter-spacing:0.4px">+16 more</span>
-    </div>
+<!-- ── Employee visual (from the homepage One AI section) ── -->
+<div class="a oa2-clip" style="left:681.5px;top:633px;animation:fi .5s .6s ease both">
+  <div class="oa2">
+          <div class="oa2-phone" aria-hidden="true">
+            <div class="oa2-screen">
+              <span class="oa2-notch"></span>
+              <div class="oa2-status">
+                <b>9:41</b>
+                <span style="display:flex;align-items:center;gap:4px">
+                  <svg width="13" height="9" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx=".8"/><rect x="4" y="4" width="3" height="7" rx=".8"/><rect x="8" y="2" width="3" height="9" rx=".8"/><rect x="12" y="0" width="3" height="11" rx=".8" opacity=".3"/></svg>
+                  <svg width="21" height="10" viewBox="0 0 25 12" fill="none"><rect x=".6" y=".6" width="21" height="10.8" rx="3.2" stroke="currentColor" stroke-width="1.2" opacity=".4"/><path d="M23.2 4.2v3.6c.8-.3 1.3-1 1.3-1.8s-.5-1.5-1.3-1.8z" fill="currentColor" opacity=".45"/><rect x="2.4" y="2.4" width="15" height="7.2" rx="1.8" fill="currentColor"/></svg>
+                </span>
+              </div>
+              <!-- Employee Agent home screen, as in the app: One AI mark, prompt field, task chips -->
+              <div class="oa2a">
+                <span class="oa2a-icon"><svg viewBox="0 0 16 16" fill="none"><defs><linearGradient id="oa2a-spark" x1="1.33" y1="8" x2="14.67" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#E07A6B"/><stop offset=".5" stop-color="#D9DB4A"/><stop offset="1" stop-color="#4CC46A"/></linearGradient></defs><path d="M13.3333 1.33333V4M14.6667 2.66667H12M7.34464 1.87597C7.3732 1.72304 7.45435 1.58491 7.57403 1.48551C7.69372 1.38612 7.84439 1.33171 7.99997 1.33171C8.15554 1.33171 8.30622 1.38612 8.4259 1.48551C8.54559 1.58491 8.62674 1.72304 8.6553 1.87597L9.35597 5.5813C9.40573 5.84473 9.53375 6.08705 9.72332 6.27662C9.91289 6.46618 10.1552 6.59421 10.4186 6.64397L14.124 7.34464C14.2769 7.3732 14.415 7.45435 14.5144 7.57403C14.6138 7.69372 14.6682 7.84439 14.6682 7.99997C14.6682 8.15554 14.6138 8.30622 14.5144 8.4259C14.415 8.54559 14.2769 8.62674 14.124 8.6553L10.4186 9.35597C10.1552 9.40573 9.91289 9.53375 9.72332 9.72332C9.53375 9.91289 9.40573 10.1552 9.35597 10.4186L8.6553 14.124C8.62674 14.2769 8.54559 14.415 8.4259 14.5144C8.30622 14.6138 8.15554 14.6682 7.99997 14.6682C7.84439 14.6682 7.69372 14.6138 7.57403 14.5144C7.45435 14.415 7.3732 14.2769 7.34464 14.124L6.64397 10.4186C6.59421 10.1552 6.46618 9.91289 6.27662 9.72332C6.08705 9.53375 5.84473 9.40573 5.5813 9.35597L1.87597 8.6553C1.72304 8.62674 1.58491 8.54559 1.48551 8.4259C1.38612 8.30622 1.33171 8.15554 1.33171 7.99997C1.33171 7.84439 1.38612 7.69372 1.48551 7.57403C1.58491 7.45435 1.72304 7.3732 1.87597 7.34464L5.5813 6.64397C5.84473 6.59421 6.08705 6.46618 6.27662 6.27662C6.46618 6.08705 6.59421 5.84473 6.64397 5.5813L7.34464 1.87597ZM4 13.3333C4 14.0697 3.40305 14.6667 2.66667 14.6667C1.93029 14.6667 1.33333 14.0697 1.33333 13.3333C1.33333 12.597 1.93029 12 2.66667 12C3.40305 12 4 12.597 4 13.3333Z" stroke="url(#oa2a-spark)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <b class="oa2a-title">Employee Agent</b>
+                <div class="oa2a-field" data-a style="--d:.2s">
+                  <span>Ask anything</span>
+                  <svg class="oa2-mic" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M19 10v1a7 7 0 01-14 0v-1M12 18v4"/></svg>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="#02563d"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12 2-12 2z"/></svg>
+                </div>
+                <div class="oa2a-chips">
+                <span class="oa2a-chip" data-a style="--d:0.35s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg>Apply Leave</span>
+                <span class="oa2a-chip" data-a style="--d:0.41s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8" r="3.5"/><path d="M3 20a6.5 6.5 0 0111-4.7"/><circle cx="17.5" cy="16.5" r="3"/><path d="m20 19 2 2"/></svg>Helpdesk</span>
+                <span class="oa2a-chip" data-a style="--d:0.47s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7.5" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0110-5.5"/><circle cx="17" cy="16" r="4.5"/><path d="M17 14v2.2l1.4 1"/></svg>On Duty</span>
+                <span class="oa2a-chip" data-a style="--d:0.53s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/><path d="M12 13.5v3"/></svg>Attendance regularization</span>
+                <span class="oa2a-chip" data-a style="--d:0.59s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg>Short Leave</span>
+                <span class="oa2a-chip" data-a style="--d:0.65s"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a2 2 0 012 2v14a2 2 0 01-2 2h-5M10 17l5-5-5-5M15 12H3"/></svg>Mark Attendance</span>
+                </div>
+              </div>
+            </div>
+          </div>
   </div>
-</div>
-
-<!-- Employee proof strip -->
-<div class="a" style="left:720px;top:885px;width:480px;height:46px;background:#ffe6da;border-radius:12px;display:flex;align-items:center;padding:0 22px;gap:12px;animation:fu .5s .7s ease both">
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f45137" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-  <p style="font-size:18px;font-weight:400;color:#10231b;white-space:nowrap">
-    <strong style="font-weight:700;color:#f45137">3 Cr+ tasks</strong> completed every month
-  </p>
 </div>
 
 <!-- ══════════════════════════════════════════════════════
@@ -309,45 +347,38 @@
 <p class="a" style="left:1394px;top:531px;font-size:32px;font-weight:800;color:#10231b;line-height:1.1;animation:fd .4s .62s ease both">Policy Agent</p>
 <p class="a" style="left:1394px;top:576px;width:369px;font-size:18px;font-weight:500;color:rgba(66,85,76,0.92);line-height:1.26;animation:fi .4s .65s ease both">Any HR-policy question, answered instantly, so HR stops being the help desk.</p>
 
-<!-- ── Policy dark chat panel ── -->
-<div class="a" style="left:1320px;top:668px;width:485px;height:210px;background:#003d2e;border-radius:14px;box-shadow:0 8px 18px rgba(0,0,0,0.1);overflow:hidden;animation:fi .5s .7s ease both">
-  <div style="padding:22px 24px 0">
-    <!-- Header -->
-    <p style="font-size:16px;font-weight:700;color:#fff;margin-bottom:12px;animation:fi .4s .75s ease both">Ask a policy question</p>
-    <!-- Horizontal separator -->
-    <div style="height:1px;background:rgba(255,255,255,0.12);margin-bottom:12px"></div>
-    <!-- Chip 1 -->
-    <div style="display:flex;align-items:center;justify-content:space-between;background:#0a8e5f;border-radius:12px;padding:6px 14px;margin-bottom:8px;animation:chipIn .45s .8s ease both">
-      <span style="font-size:9.6px;font-weight:700;color:#fff">How many leaves do I have?</span>
-      <span style="font-size:13px;font-weight:900;color:#fff;line-height:1">›</span>
-    </div>
-    <!-- Chip 2 -->
-    <div style="display:flex;align-items:center;justify-content:space-between;background:#0a8e5f;border-radius:12px;padding:6px 14px;margin-bottom:14px;animation:chipIn .45s .9s ease both">
-      <span style="font-size:9.6px;font-weight:700;color:#fff">Maternity eligibility?</span>
-      <span style="font-size:13px;font-weight:900;color:#fff;line-height:1">›</span>
-    </div>
-    <!-- Answer row -->
-    <div style="display:flex;align-items:flex-start;gap:10px;animation:answerReveal .5s 1.1s ease both">
-      <div style="flex-shrink:0;margin-top:2px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      </div>
-      <div style="flex:1">
-        <p style="font-size:11.2px;font-weight:500;color:#fff;line-height:1.45">You have 12 earned leaves remaining this year.</p>
-        <p style="font-size:10px;font-weight:500;color:rgba(221,240,231,0.75);margin-top:4px;letter-spacing:0.2px">Source: Leave Policy · 4.2</p>
-      </div>
-      <div style="flex-shrink:0">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-      </div>
-    </div>
+<!-- ── Policy visual (from the homepage One AI section) ── -->
+<div class="a oa2-clip" style="left:1281.5px;top:633px;animation:fi .5s .6s ease both">
+  <div class="oa2">
+          <div class="oa2p oa2pol" aria-hidden="true">
+            <div class="oa2p-bar"><b>Policy Agent</b><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#404040" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
+            <div class="oa2p-body">
+              <div class="oa2p-q" data-a style="--d:.2s">
+                <p>How many hours make a full day?</p>
+                <span class="oa2p-me"><img src="../Assets/oneai/avatar-employee.png" alt="" style="transform:scale(1.3)"></span>
+              </div>
+              <div class="oa2p-a" data-a style="--d:.55s">
+                <span class="oa2p-ai"><svg viewBox="0 0 16 16" fill="none"><defs><linearGradient id="oa2p-spark" x1="1.33" y1="8" x2="14.67" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#E07A6B"/><stop offset=".5" stop-color="#D9DB4A"/><stop offset="1" stop-color="#4CC46A"/></linearGradient></defs><path d="M13.3333 1.33333V4M14.6667 2.66667H12M7.34464 1.87597C7.3732 1.72304 7.45435 1.58491 7.57403 1.48551C7.69372 1.38612 7.84439 1.33171 7.99997 1.33171C8.15554 1.33171 8.30622 1.38612 8.4259 1.48551C8.54559 1.58491 8.62674 1.72304 8.6553 1.87597L9.35597 5.5813C9.40573 5.84473 9.53375 6.08705 9.72332 6.27662C9.91289 6.46618 10.1552 6.59421 10.4186 6.64397L14.124 7.34464C14.2769 7.3732 14.415 7.45435 14.5144 7.57403C14.6138 7.69372 14.6682 7.84439 14.6682 7.99997C14.6682 8.15554 14.6138 8.30622 14.5144 8.4259C14.415 8.54559 14.2769 8.62674 14.124 8.6553L10.4186 9.35597C10.1552 9.40573 9.91289 9.53375 9.72332 9.72332C9.53375 9.91289 9.40573 10.1552 9.35597 10.4186L8.6553 14.124C8.62674 14.2769 8.54559 14.415 8.4259 14.5144C8.30622 14.6138 8.15554 14.6682 7.99997 14.6682C7.84439 14.6682 7.69372 14.6138 7.57403 14.5144C7.45435 14.415 7.3732 14.2769 7.34464 14.124L6.64397 10.4186C6.59421 10.1552 6.46618 9.91289 6.27662 9.72332C6.08705 9.53375 5.84473 9.40573 5.5813 9.35597L1.87597 8.6553C1.72304 8.62674 1.58491 8.54559 1.48551 8.4259C1.38612 8.30622 1.33171 8.15554 1.33171 7.99997C1.33171 7.84439 1.38612 7.69372 1.48551 7.57403C1.58491 7.45435 1.72304 7.3732 1.87597 7.34464L5.5813 6.64397C5.84473 6.59421 6.08705 6.46618 6.27662 6.27662C6.46618 6.08705 6.59421 5.84473 6.64397 5.5813L7.34464 1.87597ZM4 13.3333C4 14.0697 3.40305 14.6667 2.66667 14.6667C1.93029 14.6667 1.33333 14.0697 1.33333 13.3333C1.33333 12.597 1.93029 12 2.66667 12C3.40305 12 4 12.597 4 13.3333Z" stroke="url(#oa2p-spark)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div class="oa2p-ans">
+                  <p>Based on the Time &amp; Attendance Policy:</p>
+                  <ul>
+                    <li><b>8.30 hours</b> in your shift marks you <b>Present&nbsp;(P)</b>.</li>
+                    <li>Below that, the day is marked <b>Half-Day Present (HP)</b>.</li>
+                  </ul>
+                  <div class="oa2p-src" data-a style="--d:.95s">
+                    <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h5"/></svg>Time Attendance Policy</span>
+                    <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h8M8 17h5"/></svg>Attendance Management Policy</span>
+                  </div>
+                  <div class="oa2p-fb" data-a style="--d:1.70s">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v11H4a1 1 0 01-1-1v-9a1 1 0 011-1h3zm0 0 4-7a2 2 0 012 2v4h5.5a2 2 0 012 2.3l-1.2 7A2 2 0 0117.3 20H7"/></svg>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="transform:scaleY(-1)"><path d="M7 10v11H4a1 1 0 01-1-1v-9a1 1 0 011-1h3zm0 0 4-7a2 2 0 012 2v4h5.5a2 2 0 012 2.3l-1.2 7A2 2 0 0117.3 20H7"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="oa2p-input"><span>Ask anything</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="2" stroke-linecap="round"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"/><path d="M19 10v1a7 7 0 01-14 0v-1M12 18v4"/></svg><svg width="12" height="12" viewBox="0 0 24 24" fill="#02563d"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12 2-12 2z"/></svg></div>
+          </div>
   </div>
-</div>
-
-<!-- Policy proof strip -->
-<div class="a" style="left:1320px;top:898px;width:485px;height:46px;background:#e7f4ee;border-radius:12px;display:flex;align-items:center;padding:0 20px;gap:12px;animation:fu .5s .75s ease both">
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0a8e5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
-  <p style="font-size:16px;font-weight:400;color:#003d2e;white-space:nowrap">
-    <strong style="font-weight:600">Answers</strong> from your actual policy · In plain language
-  </p>
 </div>
 
 <!-- ══ NAV ══ -->

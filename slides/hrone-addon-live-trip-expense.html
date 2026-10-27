@@ -111,23 +111,14 @@
 .s3 .meta a{margin-left:auto;color:#0f4b36;font-weight:600;text-decoration:underline}
 .s3 .km{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:#0f4b36;background:#e3f5ec;padding:4px 10px;border-radius:8px}
 
-/* outcomes */
-/* why it matters: a quiet footnote row, below the steps in weight */
-.outs{display:flex;align-items:center;gap:44px;padding-top:22px;border-top:1px solid #eadfcc}
-.outs .lead{font-size:13px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:#8fa39a;white-space:nowrap}
-.out{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:18px;color:#55665e}
-.out svg{width:20px;height:20px;flex-shrink:0}
-.out b{font-weight:700;color:var(--forest)}
-
-.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:11px;
-  background:rgba(0,88,62,.07);border:1px solid rgba(0,88,62,.3);
-  padding:10px 20px 10px 12px;border-radius:40px;cursor:pointer;z-index:90;
-  transition:background .18s,transform .14s;animation:fu .5s .8s ease both}
-.depthchip:hover{background:rgba(0,88,62,.14);transform:translateY(-2px)}
-.depthchip .arw{width:26px;height:26px;border-radius:7px;background:#00583e;color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
-  animation:bob 1.9s ease-in-out infinite}
-.depthchip span.t{color:#00583e;font-size:16px;font-weight:700;letter-spacing:.2px}
+.depthchip{position:absolute;left:72px;bottom:40px;display:flex;align-items:center;gap:10px;
+  color:rgba(0,88,62,.62);cursor:pointer;z-index:90;opacity:0;transition:opacity .3s,color .18s}
+.depthchip:hover{color:#00583e}
+.depthchip:hover,body.mm .depthchip{opacity:1}
+.depthchip .arw{width:24px;height:24px;border-radius:50%;border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;animation:bob 1.9s ease-in-out infinite}
+.depthchip .arw svg{width:12px;height:12px}
+.depthchip span.t{font-size:15px;font-weight:600;letter-spacing:.2px}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
 
 @keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
@@ -145,8 +136,8 @@
 <p class="a sub" style="left:830px;top:150px;width:680px;animation:fu .5s .35s ease both">Pay for the trip that actually happened. Every route<br>tracked live, every claim filed automatically.</p>
 
 <!-- ══ 01 — START ══ -->
-<div class="a ground" style="left:82px;top:791px;animation:fi .6s .28s ease both"></div>
-<div class="a phone" style="left:72px;top:290px;animation:fu .55s .28s ease both"><div class="screen"><div class="scr s1">
+<div class="a ground" style="left:82px;top:831px;animation:fi .6s .28s ease both"></div>
+<div class="a phone" style="left:72px;top:330px;animation:fu .55s .28s ease both"><div class="screen"><div class="scr s1">
   <div class="sb"><span>10:50</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
   <div class="hdr">New Requests</div>
   <div class="grid">
@@ -166,15 +157,15 @@
     <div class="btn">Share My Location</div>
   </div>
 </div></div></div>
-<div class="a step" style="left:350px;top:303px;animation:fu .5s .34s ease both">
+<div class="a step" style="left:350px;top:343px;animation:fu .5s .34s ease both">
   <span class="num">01</span>
   <h3>Start the trip</h3>
   <p>Tap <b>Share My Location</b> and add a purpose. Android and iOS.</p>
 </div>
 
 <!-- ══ 02 — TRACK ══ -->
-<div class="a ground" style="left:670px;top:791px;animation:fi .6s .40s ease both"></div>
-<div class="a phone" style="left:660px;top:290px;animation:fu .55s .40s ease both"><div class="screen"><div class="scr s2">
+<div class="a ground" style="left:670px;top:831px;animation:fi .6s .40s ease both"></div>
+<div class="a phone" style="left:660px;top:330px;animation:fu .55s .40s ease both"><div class="screen"><div class="scr s2">
   <div class="sb"><span>10:51</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
   <div class="hdr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d2b25" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Location tracking</div>
   <div class="map">
@@ -199,7 +190,7 @@
     <div class="btn">End trip</div>
   </div>
 </div></div></div>
-<div class="a step" style="left:938px;top:303px;animation:fu .5s .46s ease both">
+<div class="a step" style="left:938px;top:343px;animation:fu .5s .46s ease both">
   <span class="num">02</span>
   <h3>Route tracked live</h3>
   <p>The route is drawn as they travel. Auto-stops after 16 hours.</p>
@@ -210,8 +201,8 @@
 </div>
 
 <!-- ══ 03 — CLAIM ══ -->
-<div class="a ground" style="left:1258px;top:791px;animation:fi .6s .52s ease both"></div>
-<div class="a phone" style="left:1248px;top:290px;animation:fu .55s .52s ease both"><div class="screen"><div class="scr s3">
+<div class="a ground" style="left:1258px;top:831px;animation:fi .6s .52s ease both"></div>
+<div class="a phone" style="left:1248px;top:330px;animation:fu .55s .52s ease both"><div class="screen"><div class="scr s3">
   <div class="sb"><span>10:58</span><svg width="76" height="16" viewBox="0 0 76 16"><g fill="currentColor"><rect x="0" y="10" width="3.4" height="5" rx="1"/><rect x="5" y="7.5" width="3.4" height="7.5" rx="1"/><rect x="10" y="5" width="3.4" height="10" rx="1"/><rect x="15" y="2" width="3.4" height="13" rx="1" opacity=".35"/></g><path d="M31 6.2a10 10 0 0113.4 0M33.6 9a6.2 6.2 0 018.2 0M36.2 11.7a2.4 2.4 0 013 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="51" y="2" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="53" y="4" width="18" height="8" rx="2" fill="#0f6b48"/><rect x="74" y="6" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></div>
   <div class="hdr"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d2b25" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Trips<span>14/10/2026</span></div>
   <div class="list">
@@ -236,24 +227,15 @@
   </div>
   </div>
 </div></div></div>
-<div class="a step" style="left:1526px;top:303px;width:322px;animation:fu .5s .58s ease both">
+<div class="a step" style="left:1526px;top:343px;width:322px;animation:fu .5s .58s ease both">
   <span class="num">03</span>
   <h3>End the trip, claim filed</h3>
-  <p>Kilometres priced at the <b>per-km rate for their vehicle and grade</b>. The same trip can also <b>mark attendance</b>.</p>
-</div>
-
-<!-- ══ OUTCOMES ══ -->
-<div class="a outs" style="left:72px;top:865px;width:1776px;animation:fu .55s .7s ease both">
-  <span class="lead">Why it matters</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M10 5c3 0 4.5 1.6 4.5 4S13 13 10 13H8l6 6"/></svg><b>Finance</b> no estimated kilometres</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 19c0-3.6 2.9-6.5 6.5-6.5 1.4 0 2.6.4 3.7 1.1"/><path d="M15 18l2 2 4-4"/></svg><b>Employee</b> fair pay, no paperwork</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h9"/></svg><b>Manager</b> approve with proof</span>
-  <span class="out"><svg viewBox="0 0 24 24" fill="none" stroke="#ee5a3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-3.5 7-9V5.5L12 3 5 5.5V12c0 5.5 7 9 7 9z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg><b>Audit</b> a record that holds up</span>
+  <p>Kilometres priced <b>as per your expense policy</b>.</p>
 </div>
 
 <div class="depthchip" id="depthChip" title="Press the down arrow to watch a trip on the record">
-  <span class="arw">&#8595;</span>
-  <span class="t">1 more: see a trip on the record</span>
+  <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+  <span class="t">Trip record</span>
 </div>
 
 <div class="nav">
@@ -265,6 +247,8 @@
 </div></div>
 <script src="../shared/slide.js"></script>
 <script>
+/* chip is hidden until the mouse moves, so the audience never sees it */
+(function(){var t;document.addEventListener('mousemove',function(){document.body.classList.add('mm');clearTimeout(t);t=setTimeout(function(){document.body.classList.remove('mm');},2000);});})();
 document.getElementById('depthChip').onclick=function(){if(parent!==window)parent.postMessage({type:'nav-key',key:'ArrowDown'},'*');};
 document.addEventListener('keydown',function(e){
   if(parent===window)return;
