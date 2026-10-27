@@ -100,7 +100,8 @@ DECKS.hrone = {
           { t:'Every Task, on Track',           f:'hrone-addon-project-tasks.html' },
           { t:'From Timesheet to Invoice',      f:'hrone-addon-project-invoice.html' },
         ]},
-      { n:40, t:'Visitor Management',           f:'hrone-visitor-management.html',
+      { n:40, t:'Wi-Fi Attendance',             f:'hrone-addon-wifi-attendance.html' },
+      { n:41, t:'Visitor Management',           f:'hrone-visitor-management.html',
         sub:[
           { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
           { t:'Walk-in Visitors',               f:'hrone-visitor-walkin.html' },
@@ -110,7 +111,7 @@ DECKS.hrone = {
     ]},
   { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
     slides:[
-      { n:41, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
+      { n:42, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
     ]},
 ],
 };

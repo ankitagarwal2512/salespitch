@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Wi-Fi Attendance</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.shadow{box-shadow:0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.20),0 46px 80px -24px rgba(13,68,48,.30)}
+
+/* web cards */
+.web{background:#fff;border:1px solid #ece3d4;border-radius:16px;overflow:hidden}
+.web .bar{height:36px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:10px;height:10px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:13px;font-weight:600;color:#7a8a82}
+
+/* step 02: the agent on the employee's laptop */
+.dev{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid #f0ebe1}
+.dev .av{width:42px;height:42px;border-radius:50%;background:#0d4430;color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.dev b{display:block;font-size:17px;color:#1d2b25}
+.dev small{display:block;font-size:13px;color:#7a8a82;margin-top:2px}
+.net{margin:18px 22px 0;padding:16px 18px;border-radius:12px;background:#f3f8f5;display:flex;align-items:center;gap:14px}
+.net i{width:40px;height:40px;border-radius:50%;background:#fff;color:var(--forest);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.net i svg{width:22px;height:22px}
+.net b{display:block;font-size:16px;color:var(--forest)}
+.net small{display:block;font-size:13.5px;color:#55665e;margin-top:2px}
+.net em{margin-left:auto;font-style:normal;font-size:12.5px;font-weight:700;color:#15803d;background:#e3f5ec;padding:5px 11px;border-radius:10px;white-space:nowrap}
+.os-l{margin:24px 22px 0;font-size:13px;color:#7a8a82}
+.os{display:flex;gap:10px;margin:10px 22px 0}
+.os span{flex:1;height:58px;border-radius:12px;border:1px solid #ece3d4;display:flex;align-items:center;justify-content:center;font-size:14.5px;font-weight:700;color:#3d4b45}
+.os+p{margin:18px 22px 0;font-size:13.5px;color:#7a8a82}
+
+.web img{display:block;width:100%;height:364px;object-fit:cover;object-position:left top;background:#fff}
+.web img.fit{object-fit:contain;object-position:center top}
+
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:14px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:10px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Wi-Fi Attendance</div>
+<p class="a sub" style="left:828px;top:150px;width:680px;animation:fu .5s .35s ease both">Connect to the office Wi-Fi and you're marked in.<br>No biometric machine, no extra tap.</p>
+
+<!-- ══ 01 WI-FI BANK ══ -->
+<div class="a web shadow" style="left:72px;top:330px;width:560px;height:400px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Setup › Location › Wi-Fi bank</span></div>
+  <img class="fit" src="../Assets/wifi-attendance/wifi-bank.png" alt="Manage Wi-Fi Bank: Hrone A-Block network with 12 network configurations">
+</div>
+<div class="a step" style="left:72px;top:762px;width:560px;animation:fu .5s .34s ease both">
+  <span class="num">01</span>
+  <h3>Add your office networks</h3>
+  <p>Each office, branch or block goes into the <b>Wi-Fi bank</b>, so only approved networks count.</p>
+</div>
+
+<!-- ══ 02 AGENT ══ -->
+<div class="a web shadow" style="left:680px;top:330px;width:560px;height:400px;animation:fu .55s .40s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne agent · on the employee's laptop</span></div>
+  <div class="dev"><span class="av">GS</span><div><b>Geetanjali Srivastava</b><small>Support · Noida</small></div></div>
+  <div class="net"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.8a15 15 0 0120 0M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19.5" r="1"/></svg></i><div><b>Hrone A-Block</b><small>Office network detected at login</small></div><em>Punched in 09:58</em></div>
+  <div class="os-l">Agent runs on</div>
+  <div class="os"><span>Windows</span><span>Linux</span><span>iOS</span></div>
+  <p>Installed only for the employees you choose.</p>
+</div>
+<div class="a step" style="left:680px;top:762px;width:560px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>A light agent does the rest</h3>
+  <p>Login and logout on office Wi-Fi become <b>punch-in and punch-out</b>. Nothing for the employee to do.</p>
+</div>
+
+<!-- ══ 03 CLOCKING TIMES ══ -->
+<div class="a web shadow" style="left:1288px;top:330px;width:560px;height:400px;animation:fu .55s .52s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Attendance › Clocking times</span></div>
+  <img src="../Assets/wifi-attendance/clocking-times.png" alt="Clocking times for one day: Wi-Fi attendance punches alongside a biometric punch and a marked attendance">
+</div>
+<div class="a step" style="left:1288px;top:762px;width:560px;animation:fu .5s .52s ease both">
+  <span class="num">03</span>
+  <h3>Every punch on the record</h3>
+  <p>Timestamped <b>Wi-Fi punches</b> sit next to biometric and app punches, ready for audit.</p>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
