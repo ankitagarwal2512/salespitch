@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Digi-Sign: generate, sign, done</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.shadow{box-shadow:0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.20),0 46px 80px -24px rgba(13,68,48,.30)}
+
+.web{background:#fff;border:1px solid #ece3d4;border-radius:16px;overflow:hidden}
+.web .bar{height:36px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:10px;height:10px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:13px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:100%;height:434px;object-fit:cover;object-position:left top;background:#fff}
+
+/* employee signing screen, drawn in HROne's UI */
+.sign{height:434px;display:flex;background:#f4f6f5}
+.doc{width:420px;margin:26px 0 0 30px;height:408px;background:#fff;border:1px solid #e6ebe8;border-bottom:0;border-radius:10px 10px 0 0;padding:24px 26px 0;
+  box-shadow:0 6px 18px rgba(13,68,48,.08)}
+.doc .hd{display:flex;align-items:center;justify-content:space-between}
+.doc .hd img{width:84px;height:19px}
+.doc .hd small{font-size:11.5px;color:#7a8a82}
+.doc h5{margin-top:18px;font-size:17px;font-weight:800;color:#1d2b25}
+.doc .to{margin-top:4px;font-size:12.5px;color:#7a8a82}
+.doc .ln{height:7px;border-radius:4px;background:#edf0ee;margin-top:11px}
+.stamp{margin-top:20px;border:1.5px dashed #2f8f63;border-radius:10px;background:#eef8f2;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.stamp i{width:34px;height:34px;border-radius:50%;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stamp i svg{width:18px;height:18px}
+.stamp b{display:block;font-size:13.5px;color:var(--forest)}
+.stamp small{display:block;font-size:11.5px;color:#55665e;margin-top:2px}
+.otp{flex:1;padding:30px 32px 0 30px}
+.otp h5{font-size:19px;font-weight:800;color:#1d2b25}
+.otp .hint{margin-top:6px;font-size:13px;color:#55665e;line-height:19px}
+.otp .hint b{color:#1d2b25}
+.boxes{display:flex;gap:8px;margin-top:18px}
+.boxes span{width:46px;height:52px;border-radius:10px;border:1.5px solid var(--forest);background:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:21px;font-weight:700;color:#1d2b25}
+.timer{margin-top:12px;font-size:12.5px;color:#7a8a82}
+.timer b{color:var(--coral)}
+.agree{margin-top:16px;display:flex;gap:9px;font-size:12.5px;color:#3d4b45;line-height:18px}
+.agree i{width:17px;height:17px;border-radius:4px;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.agree i svg{width:12px;height:12px}
+.btn{margin-top:18px;height:46px;border-radius:8px;background:var(--forest);color:#fff;font-size:14.5px;font-weight:700;letter-spacing:.5px;
+  display:flex;align-items:center;justify-content:center;gap:9px}
+.btn svg{width:17px;height:17px}
+.done{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#15803d;background:#e3f5ec;padding:8px 12px;border-radius:10px}
+.done svg{width:15px;height:15px}
+
+
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:14px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:10px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>Digi-Sign</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Generate, sign, done.</div>
+<p class="a sub" style="left:72px;top:236px;white-space:nowrap;animation:fu .5s .35s ease both">Appointment, confirmation, transfer and relieving letters, signed in minutes instead of days.</p>
+
+<!-- ══ HR GENERATES ══ -->
+<div class="a web shadow" style="left:72px;top:320px;width:868px;height:470px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Inbox › Appointment letter › Generate &amp; publish</span></div>
+  <img src="../Assets/digi-sign/ds-generate.png" alt="Inbox task to generate an appointment letter: view template, choose to share on personal or official email, then generate and publish">
+</div>
+<div class="a step" style="left:72px;top:822px;width:820px;animation:fu .5s .36s ease both">
+  <span class="num">01</span>
+  <h3>Generate and publish in one click</h3>
+  <p>The letter is built from its template and <b>emailed to the employee</b> automatically. No follow-ups.</p>
+</div>
+
+
+<!-- ══ EMPLOYEE SIGNS ══ -->
+<div class="a web shadow" style="left:980px;top:320px;width:868px;height:470px;animation:fu .55s .40s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Employee · Sign with OTP</span></div>
+  <div class="sign">
+    <div class="doc">
+      <div class="hd"><img src="../Assets/hrone-logo-dark.svg" alt="HROne"><small>Ref. HR/AL/2026/0350</small></div>
+      <h5>Appointment Letter</h5>
+      <p class="to">To: Vishni Chandran (#HT350) · Web Development</p>
+      <div class="ln" style="width:100%"></div><div class="ln" style="width:94%"></div><div class="ln" style="width:98%"></div>
+      <div class="ln" style="width:72%"></div><div class="ln" style="width:100%"></div><div class="ln" style="width:86%"></div>
+      <div class="stamp"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></i>
+        <div><b>Digitally signed by Vishni Chandran</b><small>OTP verified · 26 Oct 2026, 12:31 PM</small></div></div>
+      <p class="to" style="margin-top:18px">For HROne Technologies</p>
+      <p class="to" style="margin-top:2px;font-weight:700;color:#3d4b45">HR Manager</p>
+    </div>
+    <div class="otp">
+      <h5>Verify to sign</h5>
+      <p class="hint">Enter the OTP sent to <b>vi••••@hrone.cloud</b></p>
+      <div class="boxes"><span>4</span><span>8</span><span>2</span><span>9</span><span>1</span><span>6</span></div>
+      <p class="timer">Session expires in <b>09:34</b></p>
+      <div class="agree"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></i>I have read the appointment letter and accept it, signing electronically.</div>
+      <div class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>SIGN NOW</div>
+      <div class="done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Document signed successfully</div>
+    </div>
+  </div>
+</div>
+<div class="a step" style="left:980px;top:822px;width:820px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>Signed with an OTP, from anywhere</h3>
+  <p>An <b>OTP verifies the employee</b> before signing. The signed copy stays tamper-proof and stored in one place.</p>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

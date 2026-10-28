@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Background Verification</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+/* the two sign types */
+.checks{display:flex;align-items:center;gap:10px}
+.checks .st{height:52px;display:flex;align-items:center;gap:10px;padding:0 20px 0 8px;border-radius:26px;background:#fff;border:1px solid #ece3d4;
+  font-size:17px;font-weight:700;color:var(--forest);white-space:nowrap}
+.checks .st i{width:36px;height:36px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center}
+.checks .st i img{width:22px;height:22px;object-fit:contain}
+.checks .st i.logo{background:#fff;border:1px solid #ece3d4}
+.checks .st i.logo img{width:24px;height:24px}
+.checks .st i.mark{font-size:15px;font-weight:800;color:#e3262f;letter-spacing:-.5px}
+.checks em{margin-left:14px;font-style:normal;font-size:16px;color:#7a8a82}
+.checks em b{color:var(--forest);font-weight:700}
+
+.web{width:1180px;background:#fff;border:1px solid #ece3d4;border-radius:18px;overflow:hidden;box-shadow:0 18px 44px rgba(13,68,48,.12)}
+.web .bar{height:40px;display:flex;align-items:center;gap:7px;padding:0 18px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:11px;height:11px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:14px;font-weight:600;color:#7a8a82}
+.web img{display:block;width:1180px;height:494px;object-fit:cover;object-position:left top}
+/* screenshot set on a soft canvas with breathing room */
+.canvas{height:494px;background:#f3f5f4;display:flex;align-items:center;justify-content:center}
+.web .canvas img{width:1040px;height:auto;object-fit:fill;border:1px solid #e3e8e5;border-radius:12px;box-shadow:0 10px 28px rgba(13,68,48,.10)}
+
+.pt{width:548px;display:flex;gap:20px}
+.pt .n{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:rgba(238,90,60,.12);color:var(--coral);
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.pt h3{font-size:25px;font-weight:800;color:var(--forest);line-height:30px;letter-spacing:-.3px}
+.pt p{margin-top:8px;font-size:18px;color:#55665e;line-height:26px}
+.pt p b{color:var(--forest);font-weight:700}
+.sep{width:548px;height:1px;background:#eadfcc}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">BGV</div>
+<p class="a sub" style="left:330px;top:150px;width:720px;animation:fu .5s .35s ease both">Background verification with your chosen partner,<br>started and tracked without leaving HROne.</p>
+
+<!-- ══ PARTNERS ══ -->
+<div class="a checks" style="left:72px;top:262px;animation:fu .5s .3s ease both">
+  <span class="st"><i class="logo"><img src="../Assets/bgv-ongrid.png" alt=""></i>OnGrid</span>
+  <span class="st"><i class="logo mark">cF</i>CFirst</span>
+  <span class="st"><i class="logo"><img src="../Assets/bgv-springverify.png" alt=""></i>SpringVerify</span>
+  <em>leading BGV partners, <b>no lock-in</b> to a single vendor</em>
+</div>
+
+<!-- ══ SETUP ══ -->
+<div class="a web" style="left:72px;top:350px;animation:fu .55s .36s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · Setup › Integration › BGV verification</span></div>
+  <div class="canvas"><img src="../Assets/bgv/bgv-setup.png" alt="BGV verification setup: OnGrid connected as integration partner, single legal entity mapping, partner credentials, and BGV enabled for upcoming joiners and employees"></div>
+</div>
+
+<!-- ══ WHAT TO POINT AT ══ -->
+<div class="a pt" style="left:1300px;top:400px;animation:fu .5s .42s ease both">
+  <span class="n">01</span>
+  <div><h3>Partners, one setup page</h3><p>Credentials, entity mapping and rules for every partner, <b>managed in one place</b>.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:528px;animation:fi .4s .46s ease both"></div>
+<div class="a pt" style="left:1300px;top:556px;animation:fu .5s .50s ease both">
+  <span class="n">02</span>
+  <div><h3>One entity or many</h3><p><b>Single or multiple legal entity</b> mapping, so each business unit or subsidiary runs its own BGV policy.</p></div>
+</div>
+<div class="a sep" style="left:1300px;top:684px;animation:fi .4s .54s ease both"></div>
+<div class="a pt" style="left:1300px;top:712px;animation:fu .5s .58s ease both">
+  <span class="n">03</span>
+  <div><h3>Choose who gets verified</h3><p>Turn BGV on for <b>upcoming joiners, employees</b> or both, then let requests start and track automatically.</p></div>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>

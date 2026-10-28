@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40130FJZLC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-40130FJZLC', { send_page_view: false });   // one page_view per slide is sent below instead
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HROne Deck</title>
@@ -800,6 +808,43 @@ const SUB_MAP = {};
 GROUPS.forEach(g => g.slides.forEach(s => {
   if (s.sub) s.sub.forEach((sb, i) => { SUB_MAP[sb.f] = { n: s.n, i }; });
 }));
+
+// ── Usage analytics (GA4) ─────────────────────────────────────────
+// Who's using the deck: /me (SSO server) gives an opaque hashed id — never the email —
+// so GA counts people rather than browsers. Off the SSO server /me 404s and events still go.
+const gaReady = fetch('/me', { credentials: 'same-origin' })
+  .then(r => r.ok ? r.json() : {})
+  .then(u => { if (u.uid) gtag('set', { user_id: u.uid }); })
+  .catch(() => {});
+function track(name, params) { gaReady.then(() => gtag('event', name, params)); }
+// The server drops a one-shot cookie right after a successful Microsoft sign-in.
+if (/(^|;\s*)ga_login=1/.test(document.cookie)) {
+  document.cookie = 'ga_login=; Max-Age=0; Path=/';
+  track('login', { method: 'Microsoft' });
+}
+// slide number → its sidebar section ("Introduction", "Modules", …)
+const SECTION_OF = {};
+GROUPS.forEach(g => g.slides.forEach(s => { SECTION_OF[s.n] = g.label; }));
+// One page_view + slide_view per slide shown, whether reached from the sidebar, next/prev,
+// arrow keys or the slide's own buttons — all of them end in the frame loading a slide.
+let lastTracked = null;
+function trackSlide(file) {
+  const sub = SUB_MAP[file];
+  const n = sub ? sub.n : FILE_MAP[file]?.n;
+  const s = sub ? subsFor(sub.n)[sub.i] : FILE_MAP[file];
+  if (!s) return;
+  const key = `${n}:${sub ? sub.i : -1}`;
+  if (key === lastTracked) return;   // same slide reloaded in place (light/dark switch) — not a new view
+  lastTracked = key;
+  track('page_view', {
+    page_title: `${DECK.pageTitle} · ${s.t}`,
+    page_location: `${location.origin}${location.pathname}?slide=${file.replace(/\.html$/, '')}`,
+  });
+  // slide_number is the deck's own number for the slide (depth slides carry their parent's),
+  // so it stays comparable even when a presenter hides slides and the on-screen count shifts.
+  track('slide_view', { slide_number: n, slide_title: s.t, slide_section: SECTION_OF[n] });
+}
+
 function setSubOpen(n, open) {
   const btn  = document.querySelector(`.sub-toggle[data-toggle="${n}"]`);
   const wrap = document.querySelector(`.sub-wrap[data-subwrap="${n}"]`);
@@ -911,6 +956,7 @@ frame.addEventListener('load', () => {
     if (sub) { curSub = sub.i; setActive(sub.n); }
     else { const s = FILE_MAP[file]; if (s) { curSub = -1; setActive(s.n); } }
     updateShellNav();
+    trackSlide(file);
   } catch(e) {}
   try { frame.contentWindow.dispatchEvent(new Event('resize')); } catch(e) {}
   syncFrameCounter();
@@ -967,6 +1013,7 @@ document.getElementById('presentBtn').addEventListener('click', () => {
 document.addEventListener('fullscreenchange', () => {
   document.body.classList.toggle('presenting', !!document.fullscreenElement);
   if (document.fullscreenElement) document.getElementById('presentBtn').classList.remove('nudge');   // reminder done its job
+  if (document.fullscreenElement) track('present_start');
   if (document.fullscreenElement) {
     sidebar.classList.add('collapsed');
   } else {
@@ -1357,6 +1404,7 @@ document.getElementById('xpGo').addEventListener('click', async () => {
       pdf.outline.add(null, it.t, { pageNumber: i + 1 });
     });
     pdf.save(`${name}.pdf`);
+    track('deck_download', { file_type: 'pdf', slide_count: items.length });   // not the typed file name — may hold a client's name
     xpMessage('ok', `Downloaded “${name}.pdf” with ${items.length} slide${items.length === 1 ? '' : 's'}.`);
   } catch (e) {
     if (e === 'cancelled') xpMessage('err', 'Download cancelled.');

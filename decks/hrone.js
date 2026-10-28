@@ -101,6 +101,19 @@ DECKS.hrone = {
           { t:'From Timesheet to Invoice',      f:'hrone-addon-project-invoice.html' },
         ]},
       { n:40, t:'Wi-Fi Attendance',             f:'hrone-addon-wifi-attendance.html' },
+      { n:43, t:'Single Sign-On',               f:'hrone-addon-sso.html' },
+      { n:44, t:'e-KYC',                        f:'hrone-addon-ekyc.html',
+        sub:[
+          { t:'Request It Where You Work',      f:'hrone-addon-ekyc-requests.html' },
+        ]},
+      { n:45, t:'Digi-Sign',                    f:'hrone-addon-digisign.html',
+        sub:[
+          { t:'Generate, Sign, Done',           f:'hrone-addon-digisign-flow.html' },
+        ]},
+      { n:46, t:'BGV',                          f:'hrone-addon-bgv.html',
+        sub:[
+          { t:'Start It From the Joiner List',  f:'hrone-addon-bgv-initiate.html' },
+        ]},
       { n:41, t:'Visitor Management',           f:'hrone-visitor-management.html',
         sub:[
           { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },

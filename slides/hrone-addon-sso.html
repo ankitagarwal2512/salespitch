@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HROne — Single Sign-On</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/slide.css"/>
+<style>
+:root{--stage-bg:#fdf5e7;--nav-bg:rgba(1,59,42,.9);--forest:#0d4430;--coral:#ee5a3c}
+.eyebrow{display:flex;align-items:center;gap:10px}
+.eyebrow i{width:28px;height:3px;background:var(--coral);border-radius:2px;display:block;flex-shrink:0}
+.eyebrow p{font-size:14px;font-weight:700;color:var(--coral);letter-spacing:3px;text-transform:uppercase;white-space:nowrap}
+.h1{font-size:90px;font-weight:800;color:#0e0e0e;line-height:1;letter-spacing:-2.5px;white-space:nowrap}
+.sub{font-size:21.5px;font-weight:400;color:#3d3d3d;line-height:1.52}
+
+.shadow{box-shadow:0 1px 1px rgba(40,34,20,.08),0 4px 8px -2px rgba(40,34,20,.10),0 20px 36px -10px rgba(13,68,48,.20),0 46px 80px -24px rgba(13,68,48,.30)}
+
+/* web cards */
+.web{background:#fff;border:1px solid #ece3d4;border-radius:16px;overflow:hidden}
+.web .bar{height:36px;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid #f0ebe1;background:#faf7f1}
+.web .bar i{width:10px;height:10px;border-radius:50%;background:#e2d9c8;display:block}
+.web .bar span{margin-left:10px;font-size:13px;font-weight:600;color:#7a8a82}
+
+/* step 01: the employee's login screen */
+.login>*{flex-shrink:0}
+.login{height:364px;padding:0 40px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.login img.logo{width:118px;height:26.5px;display:block;margin:0 auto}
+.login h4{margin-top:16px;font-size:20px;font-weight:700;color:#1d2b25}
+.login .hint{margin-top:4px;font-size:13.5px;color:#7a8a82}
+.idp{margin-top:18px;height:52px;border-radius:12px;border:1.5px solid var(--forest);display:flex;align-items:center;justify-content:center;gap:12px;
+  font-size:16px;font-weight:700;color:var(--forest);background:#f3f8f5}
+.ms{display:grid;grid-template-columns:repeat(2,10px);gap:2px}
+.ms i{width:10px;height:10px;display:block}
+.alt{display:flex;gap:10px;margin-top:12px}
+.alt span{flex:1;height:44px;border-radius:12px;border:1px solid #ece3d4;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13.5px;font-weight:600;color:#3d4b45}
+.alt img{width:18px;height:18px;object-fit:contain}
+.alt .okta{width:20px;height:20px;border-radius:50%;background:#1d2b25;display:flex;align-items:center;justify-content:center}
+.alt .okta img{width:13px;height:13px}
+.nopw{margin:20px auto 0;display:inline-flex;align-self:center;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#15803d;background:#e3f5ec;padding:6px 12px;border-radius:10px}
+.nopw svg{width:14px;height:14px}
+
+.web img.shot{display:block;width:100%;height:364px;object-fit:cover;object-position:left top;background:#fff}
+.web img.fit{object-fit:contain;object-position:center top}
+
+.step .num{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:15px;
+  background:rgba(238,90,60,.12);color:var(--coral);font-size:14px;font-weight:800;letter-spacing:1.5px}
+.step h3{margin-top:14px;font-size:27px;font-weight:800;color:var(--forest);line-height:33px;letter-spacing:-.4px}
+.step p{margin-top:10px;font-size:18px;color:#55665e;line-height:26px}
+.step p b{color:var(--forest);font-weight:700}
+
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="vp"><div id="stage">
+
+<div class="a eyebrow" style="left:72px;top:109px;animation:fi .4s .06s ease both"><i></i><p>HROne Add-On</p></div>
+<img class="a" src="../Assets/hrone-logo-dark.svg" style="right:72px;top:67px;width:160.2px;height:36px;animation:fi .5s .1s ease both">
+
+<div class="a h1" style="left:68px;top:133px;animation:fd .55s .14s ease both">Single Sign-On</div>
+<p class="a sub" style="left:760px;top:150px;width:680px;animation:fu .5s .35s ease both">Employees sign in with the work account they already have.<br>One password fewer, and your IT team stays in control.</p>
+
+<!-- ══ 01 EMPLOYEE LOGIN ══ -->
+<div class="a web shadow" style="left:72px;top:330px;width:560px;height:400px;animation:fu .55s .28s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>HROne · Sign in</span></div>
+  <div class="login">
+    <img class="logo" src="../Assets/hrone-logo-dark.svg" alt="HROne">
+    <h4>Welcome back</h4>
+    <p class="hint">Use your company account to continue</p>
+    <div class="idp"><span class="ms"><i style="background:#f25022"></i><i style="background:#7fba00"></i><i style="background:#00a4ef"></i><i style="background:#ffb900"></i></span>Sign in with Microsoft</div>
+    <div class="alt">
+      <span><img src="../Assets/id-google.svg" alt="">Google</span>
+      <span><i class="okta"><img src="../Assets/id-okta.svg" alt=""></i>Okta</span>
+      <span><img src="../Assets/id-miniorange.png" alt="">miniOrange</span>
+    </div>
+    <span class="nopw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No separate HROne password</span>
+  </div>
+</div>
+<div class="a step" style="left:72px;top:762px;width:560px;animation:fu .5s .34s ease both">
+  <span class="num">01</span>
+  <h3>Log in with the work account</h3>
+  <p>Existing corporate credentials open HROne. <b>Nothing new to remember</b>, and new joiners are in from day one.</p>
+</div>
+
+<!-- ══ 02 IDP SETUP ══ -->
+<div class="a web shadow" style="left:680px;top:330px;width:560px;height:400px;animation:fu .55s .40s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Setup › Integration › Single sign on</span></div>
+  <img class="shot fit" src="../Assets/sso/sso-setup.png" alt="Single sign on setup: SAML 2.0 selected, Office 365 as identity provider, with client ID, domain code and certificate expiry">
+</div>
+<div class="a step" style="left:680px;top:762px;width:560px;animation:fu .5s .46s ease both">
+  <span class="num">02</span>
+  <h3>Plugs into your identity provider</h3>
+  <p>Connect Office 365 / Azure AD, Google, Okta or miniOrange over <b>SAML 2.0 or OAuth 2.0</b>. Your IdP decides who gets in.</p>
+</div>
+
+<!-- ══ 03 PER-EMPLOYEE SWITCH ══ -->
+<div class="a web shadow" style="left:1288px;top:330px;width:560px;height:400px;animation:fu .55s .52s ease both">
+  <div class="bar"><i></i><i></i><i></i><span>Workforce › Employee profile › Setting</span></div>
+  <img class="shot fit" src="../Assets/sso/sso-employee.png" alt="Employee profile setting: SSO integration licence switched on with the employee's company email as ID">
+</div>
+<div class="a step" style="left:1288px;top:762px;width:560px;animation:fu .5s .52s ease both">
+  <span class="num">03</span>
+  <h3>Switch it on, person by person</h3>
+  <p>Enable SSO for <b>selected employees</b> right from their profile, with full visibility of who's on it.</p>
+</div>
+
+<div class="nav">
+  <span class="nav-cnt"></span>
+  <button class="nav-btn" id="prevBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nav-btn" id="nextBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+</div>
+
+</div></div>
+<script src="../shared/slide.js"></script>
+<script>
+document.addEventListener('keydown',function(e){
+  if(parent===window)return;
+  if(['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Escape','PageDown','PageUp',' '].indexOf(e.key)>-1){
+    e.preventDefault();parent.postMessage({type:'nav-key',key:e.key},'*');}
+});
+</script>
+</body>
+</html>
