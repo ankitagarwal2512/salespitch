@@ -85,38 +85,38 @@ DECKS.hrone = {
           { t:'Set Up in Minutes',              f:'hrone-addon-biometric-setup.html' },
           { t:'On Mobile, Too',                 f:'hrone-addon-facial-kiosk-mobile.html' },
         ]},
-      { n:48, t:'Facial Recognition',           f:'hrone-addon-facial-mobile.html' },
-      { n:37, t:'Geo Pulse',                    f:'hrone-addon-geo-pulse.html',
+      { n:37, t:'Facial Recognition',           f:'hrone-addon-facial-mobile.html' },
+      { n:38, t:'Geo Pulse',                    f:'hrone-addon-geo-pulse.html',
         sub:[
           { t:'The Team on One Map',            f:'hrone-addon-geo-pulse-team.html' },
         ]},
-      { n:38, t:'Workforce Planning',           f:'hrone-addon-workforce-planning.html',
+      { n:39, t:'Workforce Planning',           f:'hrone-addon-workforce-planning.html',
         sub:[
           { t:'Plan It Your Way',               f:'hrone-addon-workforce-setup.html' },
           { t:'Hire Only What\'s Approved',     f:'hrone-addon-workforce-hire.html' },
           { t:'Moves Keep the Plan True',       f:'hrone-addon-workforce-moves.html' },
         ]},
-      { n:39, t:'Project Management',           f:'hrone-addon-project-management.html',
+      { n:40, t:'Project Management',           f:'hrone-addon-project-management.html',
         sub:[
           { t:'Set Up How It\'s Billed',        f:'hrone-addon-project-setup.html' },
           { t:'Every Task, on Track',           f:'hrone-addon-project-tasks.html' },
           { t:'From Timesheet to Invoice',      f:'hrone-addon-project-invoice.html' },
         ]},
-      { n:40, t:'Wi-Fi Attendance',             f:'hrone-addon-wifi-attendance.html' },
-      { n:43, t:'Single Sign-On',               f:'hrone-addon-sso.html' },
-      { n:44, t:'e-KYC',                        f:'hrone-addon-ekyc.html',
+      { n:41, t:'Wi-Fi Attendance',             f:'hrone-addon-wifi-attendance.html' },
+      { n:42, t:'Single Sign-On',               f:'hrone-addon-sso.html' },
+      { n:43, t:'e-KYC',                        f:'hrone-addon-ekyc.html',
         sub:[
           { t:'Request It Where You Work',      f:'hrone-addon-ekyc-requests.html' },
         ]},
-      { n:45, t:'Digi-Sign',                    f:'hrone-addon-digisign.html',
+      { n:44, t:'Digi-Sign',                    f:'hrone-addon-digisign.html',
         sub:[
           { t:'Generate, Sign, Done',           f:'hrone-addon-digisign-flow.html' },
         ]},
-      { n:46, t:'BGV',                          f:'hrone-addon-bgv.html',
+      { n:45, t:'BGV',                          f:'hrone-addon-bgv.html',
         sub:[
           { t:'Start It From the Joiner List',  f:'hrone-addon-bgv-initiate.html' },
         ]},
-      { n:41, t:'Visitor Management',           f:'hrone-visitor-management.html',
+      { n:46, t:'Visitor Management',           f:'hrone-visitor-management.html',
         sub:[
           { t:'Pre-approved Visitors',          f:'hrone-visitor-preapproved.html' },
           { t:'Walk-in Visitors',               f:'hrone-visitor-walkin.html' },
@@ -126,7 +126,7 @@ DECKS.hrone = {
     ]},
   { id:'close', label:'Close', icon:'M2 7l3.5 3.5 6.5-6.5',
     slides:[
-      { n:42, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
+      { n:47, t:'Next Steps & Demo',           f:'hrone-next-steps.html' },
     ]},
 ],
 };
