@@ -83,7 +83,6 @@ DECKS.hrone = {
       { n:36, t:'Facial Kiosk',              f:'hrone-addon-biometric-kiosk.html',
         sub:[
           { t:'Set Up in Minutes',              f:'hrone-addon-biometric-setup.html' },
-          { t:'On Mobile, Too',                 f:'hrone-addon-facial-kiosk-mobile.html' },
         ]},
       { n:37, t:'Facial Recognition',           f:'hrone-addon-facial-mobile.html' },
       { n:38, t:'Geo Pulse',                    f:'hrone-addon-geo-pulse.html',
